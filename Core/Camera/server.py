@@ -11,11 +11,15 @@ import socket
 import os
 from _thread import *
 
+from ..Library.config import Config
+
+
 ServerSocket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 ServerSocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
-host = '127.0.0.1'
-port = 1233
+host = Config.host
+port = Config.port
+
 ThreadCount = 0
 try:
     ServerSocket.bind((host, port))
@@ -80,7 +84,7 @@ def threaded_client(connection):
 
                 frame = cv2.imdecode(frame, cv2.IMREAD_COLOR)
                 # cv2.imshow('ImageWindow', frame)
-                dir = '../Panel/storage/app/public/collected/' + str(camera_id)
+                dir = Config.collected_data_path + str(camera_id)
                 if_directory_not_exist_create(dir)
 
                 if face:

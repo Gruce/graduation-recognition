@@ -4,7 +4,7 @@ import requests
 from requests.api import head
 import cv2
 
-api = 'http://127.0.0.1:9000/api/'
+api = 'http://127.0.0.1:8000/api/'
 email = 'gruceing@gmail.com'
 password = '123456'
 

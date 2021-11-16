@@ -1,3 +1,5 @@
+import os
+import pathlib
 import threading
 import cv2
 import sys
@@ -7,6 +9,7 @@ import struct
 import time
 
 from ..Library.api import Auth
+from ..Library.config import Config
 
 # Socket Client
 import socket
@@ -22,8 +25,8 @@ class Camera(threading.Thread):
         camera_id = self.id
 
         ClientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        host = '127.0.0.1'
-        port = 1233
+        host = Config.host
+        port = Config.port
         print('Waiting for connection')
         try:
             ClientSocket.connect((host, port))
@@ -41,9 +44,11 @@ class Camera(threading.Thread):
         auth = Auth()
         auth.camera(camera_id, 1)
 
-        cam = cv2.VideoCapture(self.source)
+        print(pathlib.Path(Config.cascade_path + 'haarcascade_frontalface_default.xml').absolute())
 
-        face_detector = cv2.CascadeClassifier('../Library/Cascades/haarcascade_frontalface_default.xml')
+        cam = cv2.VideoCapture(self.source)
+        
+        face_detector = cv2.CascadeClassifier(pathlib.Path(Config.cascade_path + 'haarcascade_frontalface_default.xml').absolute().__str__())
 
         def current_milli_time():
             return round(time.time() * 1000)

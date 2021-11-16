@@ -10,9 +10,11 @@ from cv2 import countNonZero, threshold
 from pathlib import Path
 
 from ..Library.utilities import Utilities
+from ..Library.config import Config
+
 
 class DeepFaceThread(threading.Thread):
-    db_path = '../Panel/storage/app/public/db/'
+    db_path = Config.db_path
     
     def __init__(self, camera_id, auth, people, collected_path):
         threading.Thread.__init__(self)

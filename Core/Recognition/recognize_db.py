@@ -5,12 +5,13 @@ import os
 
 from ..Library.deepface_thread import DeepFaceThread
 from ..Library.api import Auth
+from ..Library.config import Config
 
 # Auth to API
 auth = Auth()
 
 #collected
-collected_path = '../Panel/storage/app/public/collected/'
+collected_path = Config.collected_data_path
 
 def get_directories_in_directory(dir):
     return [os.path.join(dir, f) for f in os.listdir(dir) if not f.startswith('.')]

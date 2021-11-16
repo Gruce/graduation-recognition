@@ -7,6 +7,7 @@ import numpy as np
 
 from ..Library.api import Auth
 from ..Library.utilities import Utilities
+from ..Library.config import Config
 
 
 # Auth to API
@@ -52,7 +53,7 @@ def if_directory_not_exist_create(directory):
 
 count = 1
 
-face_detector = cv2.CascadeClassifier('../Library/Cascades/haarcascade_frontalface_default.xml')
+face_detector = cv2.CascadeClassifier(Config.cascade_path + 'haarcascade_frontalface_default.xml')
 
 
 while(True):
@@ -78,7 +79,7 @@ while(True):
 
             gray_face = cv2.resize(roi_gray, (128, 128))
 
-            dir = "../Panel/storage/app/public/db/" + str(person_id)
+            dir = Config.db_path + str(person_id)
             if_directory_not_exist_create(dir)
 
             cv2.imwrite(dir + '/' + str(count) + ".jpg", img[y:y+h,x:x+w])

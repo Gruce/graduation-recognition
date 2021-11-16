@@ -22,14 +22,14 @@ customtkinter.set_appearance_mode("Light")
 
 def refresh():
     root_tk.destroy()
-    os.popen("py main.py")
+    os.popen("py -m Core.Camera.clientApp")
 
 def start_camera(id, source):
     camera_thread = Camera(id, source)
     camera_thread.start()
 
     root_tk.destroy()
-    os.popen("py main.py")
+    os.popen("py -m Core.Camera.clientApp")
 
 counter = 1
 for index, camera in enumerate(cameras):

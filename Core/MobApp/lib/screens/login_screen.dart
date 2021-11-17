@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:graduaiton_app/controllers/login_controller.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:graduaiton_app/screens/home_page/main.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -154,7 +155,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             minWidth: MediaQuery.of(context).size.width,
                             padding:
                                 EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                            onPressed: () {},
+                           onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomePage()),
+            );},
                             child: Text(
                               "Login",
                               style: GoogleFonts.openSans(

@@ -69,7 +69,8 @@ class _SplashScreenState extends State<SplashScreen> {
               baseColor: Color(0xff6875F5),
               highlightColor: Colors.black.withOpacity(.0),
               child: Container(
-                padding: EdgeInsets.all(18.0),
+                margin: EdgeInsets.symmetric(horizontal: 60.0),
+                padding: EdgeInsets.all(20.0),
                 child: Image.asset('STLogo.png',width: 400,
                         height: 250,),
                   //  style: TextStyle(

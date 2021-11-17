@@ -23,7 +23,8 @@ class MyApp extends StatelessWidget {
         textTheme: Theme.of(context).textTheme.apply(displayColor: Color(0xFF222B45)),
         // fontFamily: "Pacifico",
       ),
-      home: SplashScreen(),
+       home: SplashScreen(),
+      //  home: LoginScreen(),
       //  home: const SplashScreen(),
     );
   }

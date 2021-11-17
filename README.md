@@ -7,7 +7,7 @@
 4. Composer 2
 
 ### Steps
-1. Navigate to `Laravel` Folder (using CL) => cd ...
+1. Navigate to Laravel Folder (using CL) => cd ...
 2. Using CL write those two commands
   a. composer install
   b. composer update

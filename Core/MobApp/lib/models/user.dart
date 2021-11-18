@@ -3,7 +3,7 @@ class UserModel {
   String name = '';
   String email = '';
 
-  UserModel({required this.id, required this.name, required this.email});
+  UserModel({id, name, email});
 
   UserModel.fromJson(Map<dynamic, dynamic> json) {
     id = json['id'];

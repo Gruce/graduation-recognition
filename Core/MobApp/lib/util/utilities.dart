@@ -11,9 +11,9 @@ class Utilities {
             AlertDialog(title: Text(title), content: Text(text)),
       );
 
-  static Future<UserModel> getUser = Future(() async {
+  static Future<UserModel> get getUser async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     Map data = json.decode(prefs.getString('user') ?? '');
     return UserModel.fromJson(data);
-  });
+  }
 }

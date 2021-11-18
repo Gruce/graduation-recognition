@@ -52,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       Text(
                         "Login",
-                        style:  GoogleFonts.openSans(
+                        style: GoogleFonts.openSans(
                           color: Colors.white,
                           fontSize: 46.0,
                           fontWeight: FontWeight.w800,
@@ -102,7 +102,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           keyboardType: TextInputType.text,
                           decoration: InputDecoration(
                             labelText: 'Username',
-                            labelStyle: TextStyle(color: Colors.black.withOpacity(.6)),
+                            labelStyle:
+                                TextStyle(color: Colors.black.withOpacity(.6)),
                             hintText: ('Enter your username'),
                             hintStyle: TextStyle(
                                 fontSize: 13.0,
@@ -122,7 +123,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           decoration: InputDecoration(
                             labelText: 'Password',
                             hintText: 'Enter your password',
-                            labelStyle: TextStyle(color: Colors.black.withOpacity(.6)),
+                            labelStyle:
+                                TextStyle(color: Colors.black.withOpacity(.6)),
                             hintStyle: TextStyle(
                                 fontSize: 13.0,
                                 color: Colors.black.withOpacity(.5)),
@@ -155,11 +157,13 @@ class _LoginScreenState extends State<LoginScreen> {
                             minWidth: MediaQuery.of(context).size.width,
                             padding:
                                 EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => HomePage()),
-            );},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomePage()),
+                              );
+                            },
                             child: Text(
                               "Login",
                               style: GoogleFonts.openSans(

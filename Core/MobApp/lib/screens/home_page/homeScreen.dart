@@ -1,6 +1,5 @@
 // ignore_for_file: file_names, unnecessary_new, prefer_const_literals_to_create_immutables, prefer_const_constructors
 import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:graduaiton_app/screens/home_page/side_bar.dart';
 

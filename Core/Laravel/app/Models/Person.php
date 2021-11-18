@@ -14,4 +14,10 @@ class Person extends Model
     {
         return $this->hasMany(Tracking::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

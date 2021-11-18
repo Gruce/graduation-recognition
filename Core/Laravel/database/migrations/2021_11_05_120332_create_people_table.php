@@ -16,9 +16,14 @@ class CreatePeopleTable extends Migration
         Schema::create('people', function (Blueprint $table) {
             $table->id();
             $table->string("name")->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->integer('training_id')->default(0);
             $table->integer('type')->default(0);
             $table->timestamps();
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users');
         });
     }
 

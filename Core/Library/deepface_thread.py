@@ -15,6 +15,7 @@ from ..Library.config import Config
 
 class DeepFaceThread(threading.Thread):
     db_path = Config.db_path
+    print(db_path)
     
     def __init__(self, camera_id, auth, people, collected_path):
         threading.Thread.__init__(self)

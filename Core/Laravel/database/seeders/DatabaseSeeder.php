@@ -40,14 +40,14 @@ class DatabaseSeeder extends Seeder
             'name' => 'Hassan Alkhalidi',
             'user_id' => 1,
             'training_id' => 1,
-            'type' => 1,
+            'type' => 2,
         ]);
 
         \App\Models\Person::create([
             'name' => 'AbdulKareem Mgbl',
             'user_id' => 2,
             'training_id' => 1,
-            'type' => 1,
+            'type' => 2,
         ]);
     }
 }

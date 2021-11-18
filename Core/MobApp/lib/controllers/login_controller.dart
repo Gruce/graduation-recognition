@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:graduaiton_app/main.dart';
 import 'package:graduaiton_app/models/user.dart';
-import 'package:graduaiton_app/screens/admin/home_page/homeScreen.dart';
 import 'package:graduaiton_app/util/utilities.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -25,7 +25,7 @@ class LoginController {
       // Navigate to home page
       Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (context) => const HomeScreen()),
+        MaterialPageRoute(builder: (context) => const MyApp()),
         (Route<dynamic> route) => false,
       );
     } else {

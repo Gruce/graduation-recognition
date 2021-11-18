@@ -2,10 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:graduaiton_app/screens/admin/home_page/homeScreen.dart';
 import 'package:graduaiton_app/screens/login_screen.dart';
 import 'package:graduaiton_app/screens/splash_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'screens/admin/home_page/home_screen.dart';
 
 Future main() async {
   await dotenv.load(fileName: ".env");

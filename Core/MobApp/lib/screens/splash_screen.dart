@@ -61,17 +61,6 @@ class _SplashScreenState extends State<SplashScreen> {
                   width: 400,
                   height: 250,
                 ),
-                //  style: TextStyle(
-                //   fontFamily: 'Pacifico',
-                //   fontSize: 50.0,
-                //   shadows: <Shadow>[
-                //     Shadow(
-                //       blurRadius: 10.0,
-                //       color: Colors.black87,
-                //       offset: Offset.fromDirection(120, 12)
-                //     )
-                //   ]
-                // ),
               ),
             ),
           ],

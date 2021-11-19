@@ -2,6 +2,7 @@
 import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:graduaiton_app/models/user.dart';
+import 'package:graduaiton_app/screens/admin/nav_bar/nav_bar.dart';
 import 'package:graduaiton_app/screens/admin/side_bar.dart';
 import 'package:graduaiton_app/util/utilities.dart';
 
@@ -42,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     IconButton(
                       icon: Icon(Icons.menu),
-                      onPressed: () => _scaffoldKey.currentState!.openDrawer(),
+                     onPressed: () => _scaffoldKey.currentState!.openDrawer(),
                     ),
                     Column(
                       children: [
@@ -67,6 +68,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
+              // Center(
+              //   child: NavBar(),
+              // ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                 margin: EdgeInsets.symmetric(vertical: 30, horizontal: 20),

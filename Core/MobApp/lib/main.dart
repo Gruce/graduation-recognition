@@ -6,6 +6,7 @@ import 'package:graduaiton_app/screens/login_screen.dart';
 import 'package:graduaiton_app/screens/splash_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'screens/admin/home_page/home_screen.dart';
+import 'screens/admin/nav_bar/nav_bar.dart';
 
 Future main() async {
   await dotenv.load(fileName: ".env");
@@ -47,7 +48,7 @@ class MyApp extends StatelessWidget {
               if (jwt.length != 3) {
                 return const LoginScreen();
               } else {
-                return const HomeScreen();
+                return const Nav();
               }
             } else {
               return const LoginScreen();

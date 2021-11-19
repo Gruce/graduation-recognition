@@ -6,6 +6,9 @@ import 'package:graduaiton_app/screens/admin/sidebar_taps/schedule_page.dart';
 import 'package:graduaiton_app/screens/admin/sidebar_taps/show_tracking.dart';
 import 'package:graduaiton_app/util/utilities.dart';
 
+import 'nav_bar/add_new/add_new.dart';
+import 'nav_bar/nav_bar.dart';
+
 class SideBar extends StatefulWidget {
   const SideBar({Key? key}) : super(key: key);
 
@@ -133,7 +136,8 @@ class _SideBarState extends State<SideBar> {
                     ),
                     selected: true,
                     onTap: () {
-                      // scaffoldKey.currentState!.openEndDrawer();
+                          Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => AddNew()));
                     },
                   ),
                   SizedBox(
@@ -154,7 +158,8 @@ class _SideBarState extends State<SideBar> {
                     ),
                     selected: true,
                     onTap: () {
-                      // scaffoldKey.currentState!.openEndDrawer();
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => AddNew()));
                     },
                   ),
                   SizedBox(
@@ -175,7 +180,8 @@ class _SideBarState extends State<SideBar> {
                     ),
                     selected: true,
                     onTap: () {
-                      // scaffoldKey.currentState!.openEndDrawer();
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => AddNew()));
                     },
                   ),
                   SizedBox(
@@ -203,7 +209,7 @@ class _SideBarState extends State<SideBar> {
           ),
           ListTile(
             title: Text(
-              "Setting",
+              "Settings",
               style: TextStyle(
                 color: Color(0xff6875F5),
                 fontSize: 19,

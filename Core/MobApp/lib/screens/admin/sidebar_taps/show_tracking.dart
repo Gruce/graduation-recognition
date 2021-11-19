@@ -16,7 +16,7 @@ class ShowTracking extends StatelessWidget {
             floating: true,
             expandedHeight: 200,
             backgroundColor: Color(0xff6875F5),
-            iconTheme: IconThemeData(color: Colors.white),
+            iconTheme: IconThemeData(color: Color(0xff6875F5)),
             flexibleSpace: FlexibleSpaceBar(
               title: Text('ShowTracking'),
               centerTitle: true,

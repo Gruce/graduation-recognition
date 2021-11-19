@@ -148,7 +148,7 @@ if __name__ == '__main__':
     app.setStyle(QtWidgets.QStyleFactory.create("Cleanlooks"))
     mw = QtWidgets.QMainWindow()
     mw.setWindowTitle('Camera GUI')
-    mw.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+    # mw.setWindowFlags(QtCore.Qt.FramelessWindowHint)
 
     cw = QtWidgets.QWidget()
     ml = QtWidgets.QGridLayout()
@@ -160,14 +160,24 @@ if __name__ == '__main__':
     screen_width = QtWidgets.QApplication.desktop().screenGeometry().width()
     screen_height = QtWidgets.QApplication.desktop().screenGeometry().height()
 
-    for camera in cameras:
+    row = 0
+    column = 0
+    rows = len(cameras)//3
+    if len(cameras) > 4:
+        rows = 2
+
+    for (index, camera) in enumerate(cameras):
         # Create camera widgets
         print('Creating Camera Widgets...')
         cam = CameraWidget(screen_width//len(cameras), screen_height//len(cameras), stream_link=camera['source'], camera_id=camera['id'], description=camera['description'])
 
         # Add widgets to layout
         print('Adding widgets to layout...')
-        ml.addWidget(cam.get_video_frame())
+        ml.addWidget(cam.get_video_frame(), row, column, 1, 1)
+        column += 1
+        if (row == rows):
+            row += 1
+            column = 0
 
     print('Verifying camera credentials...')
 

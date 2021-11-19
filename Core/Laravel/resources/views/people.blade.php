@@ -21,10 +21,10 @@
                 <div x-show="activeTab!==-1">
                     <div class="container px-5 py-10 mx-auto bg-white rounded-lg max-w-7xl sm:px-6 lg:px-8">
                         <div x-show="activeTab===0">
-                            <livewire:person-add />
+                            @livewire('person-add')
                         </div>
                         <div x-show="activeTab===1">
-                            <livewire:people-search />
+                            @livewire('people-search')
                         </div>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
             </div>
             <!--actual component end-->
         </div>
-        <livewire:people />
+        @livewire('people')
     </div>
 
     <script>

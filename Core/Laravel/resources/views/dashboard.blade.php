@@ -7,9 +7,9 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <livewire:dashboard-stats />
-            
-            <livewire:cameras />
+            @livewire('dashboard-stats')
+
+            @livewire('cameras')
         </div>
     </div>
 </x-app-layout>

@@ -27,6 +27,14 @@
                     <x-jet-nav-link href="{{ route('unkown_people') }}" :active="request()->routeIs('unkown_people')">
                         Unknown People
                     </x-jet-nav-link>
+
+                    <x-jet-nav-link href="{{ route('teachers') }}" :active="request()->routeIs('teachers')">
+                        Teachers
+                    </x-jet-nav-link>
+
+                    <x-jet-nav-link href="{{ route('settings') }}" :active="request()->routeIs('settings')">
+                        Settings
+                    </x-jet-nav-link>
                 </div>
             </div>
 
@@ -166,6 +174,16 @@
             <x-jet-responsive-nav-link href="{{ route('unkown_people') }}" :active="request()->routeIs('unkown_people')">
                 Unkown People
             </x-jet-responsive-nav-link>
+
+            <x-jet-responsive-nav-link href="{{ route('teachers') }}" :active="request()->routeIs('teachers')">
+                Teachers
+            </x-jet-responsive-nav-link>
+
+            <x-jet-responsive-nav-link href="{{ route('settings') }}" :active="request()->routeIs('settings')">
+                Settings
+            </x-jet-responsive-nav-link>
+
+            
         </div>
 
         <!-- Responsive Settings Options -->

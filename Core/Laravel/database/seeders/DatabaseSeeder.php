@@ -49,5 +49,27 @@ class DatabaseSeeder extends Seeder
             'training_id' => 1,
             'type' => 2,
         ]);
+
+        // Teachers
+        \App\Models\Teacher::create([
+            'user_id' => 1,
+            'person_id' => 1,
+            'speciality' => "Computer Vision",
+        ]);
+
+
+        // Sections
+        \App\Models\Section::create(
+            ['name' => 'Computer Science'],
+        );
+        
+        \App\Models\Section::create(
+            ['name' => 'Information Systems'],
+        );
+        
+
+        $this->call([
+            SettingSeeder::class,
+        ]);
     }
 }

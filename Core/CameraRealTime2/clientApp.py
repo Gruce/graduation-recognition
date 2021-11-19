@@ -4,7 +4,7 @@ import tkinter
 import customtkinter  # <- import the CustomTkinter module
 from ..Library.api import Auth
 
-from ..Camera.cam_thread import Camera
+from ..CameraRealTime.classes.cam_thread import Camera
 
 auth = Auth()
 

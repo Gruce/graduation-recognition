@@ -2,7 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:graduaiton_app/models/user.dart';
+import 'package:graduaiton_app/screens/admin/sidebar_taps/schedule_page.dart';
+import 'package:graduaiton_app/screens/admin/sidebar_taps/show_tracking.dart';
 import 'package:graduaiton_app/util/utilities.dart';
+
+import 'nav_bar/add_new/add_new.dart';
+import 'nav_bar/nav_bar.dart';
 
 class SideBar extends StatefulWidget {
   const SideBar({Key? key}) : super(key: key);
@@ -68,7 +73,7 @@ class _SideBarState extends State<SideBar> {
                   Divider(
                     height: 50,
                     thickness: 0.6,
-                    color: Colors.white.withOpacity(0.6),
+                    color: Colors.white.withOpacity(0.7),
                     indent: 22,
                     endIndent: 32,
                   ),
@@ -77,7 +82,7 @@ class _SideBarState extends State<SideBar> {
                       "Schedule",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 17,
+                        fontSize: 19,
                         fontWeight: FontWeight.w300,
                       ),
                     ),
@@ -87,15 +92,19 @@ class _SideBarState extends State<SideBar> {
                     ),
                     selected: true,
                     onTap: () {
-                      // scaffoldKey.currentState!.openEndDrawer();
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => Schedule()));
                     },
+                  ),
+                  SizedBox(
+                    height: 5,
                   ),
                   ListTile(
                     title: Text(
                       "Show Tracking",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 17,
+                        fontSize: 19,
                         fontWeight: FontWeight.w300,
                       ),
                     ),
@@ -105,15 +114,19 @@ class _SideBarState extends State<SideBar> {
                     ),
                     selected: true,
                     onTap: () {
-                      // scaffoldKey.currentState!.openEndDrawer();
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => ShowTracking()));
                     },
+                  ),
+                  SizedBox(
+                    height: 5,
                   ),
                   ListTile(
                     title: Text(
                       "New Person",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 17,
+                        fontSize: 19,
                         fontWeight: FontWeight.w300,
                       ),
                     ),
@@ -123,15 +136,19 @@ class _SideBarState extends State<SideBar> {
                     ),
                     selected: true,
                     onTap: () {
-                      // scaffoldKey.currentState!.openEndDrawer();
+                          Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => AddNew()));
                     },
+                  ),
+                  SizedBox(
+                    height: 5,
                   ),
                   ListTile(
                     title: Text(
-                      "New Lucture",
+                      "New Lucturer",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 17,
+                        fontSize: 19,
                         fontWeight: FontWeight.w300,
                       ),
                     ),
@@ -141,15 +158,19 @@ class _SideBarState extends State<SideBar> {
                     ),
                     selected: true,
                     onTap: () {
-                      // scaffoldKey.currentState!.openEndDrawer();
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => AddNew()));
                     },
+                  ),
+                  SizedBox(
+                    height: 5,
                   ),
                   ListTile(
                     title: Text(
                       "New Camera",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 17,
+                        fontSize: 19,
                         fontWeight: FontWeight.w300,
                       ),
                     ),
@@ -159,20 +180,21 @@ class _SideBarState extends State<SideBar> {
                     ),
                     selected: true,
                     onTap: () {
-                      // scaffoldKey.currentState!.openEndDrawer();
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => AddNew()));
                     },
                   ),
+                  SizedBox(
+                    height: 200,
+                  ),
                 ])),
-          ),
-          SizedBox(
-            height: 300,
           ),
           ListTile(
             title: Text(
               "My Account",
               style: TextStyle(
                 color: Color(0xff6875F5),
-                fontSize: 17,
+                fontSize: 19,
                 fontWeight: FontWeight.w300,
               ),
             ),
@@ -187,10 +209,10 @@ class _SideBarState extends State<SideBar> {
           ),
           ListTile(
             title: Text(
-              "Setting",
+              "Settings",
               style: TextStyle(
                 color: Color(0xff6875F5),
-                fontSize: 17,
+                fontSize: 19,
                 fontWeight: FontWeight.w300,
               ),
             ),

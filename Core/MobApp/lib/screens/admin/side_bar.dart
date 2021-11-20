@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:graduaiton_app/models/user.dart';
+import 'package:graduaiton_app/screens/admin/nav_bar/add_new/Teacher_add.dart';
 import 'package:graduaiton_app/screens/admin/sidebar_taps/schedule_page.dart';
 import 'package:graduaiton_app/screens/admin/sidebar_taps/show_tracking.dart';
 import 'package:graduaiton_app/util/utilities.dart';
@@ -159,7 +160,7 @@ class _SideBarState extends State<SideBar> {
                     selected: true,
                     onTap: () {
                       Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => AddNew()));
+                          MaterialPageRoute(builder: (context) => CameraAdd()));
                     },
                   ),
                   SizedBox(

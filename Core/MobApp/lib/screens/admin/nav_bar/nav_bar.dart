@@ -1,11 +1,12 @@
 // ignore_for_file: deprecated_member_use, prefer_final_fields
 
 import 'package:flutter/material.dart';
+import 'package:graduaiton_app/screens/admin/home_page/Tables/tables.dart';
+import 'package:graduaiton_app/screens/admin/home_page/app_bar.dart';
 import 'package:graduaiton_app/screens/admin/home_page/home_screen.dart';
 import 'package:graduaiton_app/screens/admin/nav_bar/add_new/add_new.dart';
 import 'package:graduaiton_app/screens/admin/sidebar_taps/schedule_page.dart';
 import 'package:graduaiton_app/screens/admin/sidebar_taps/show_tracking.dart';
-
 import '../side_bar.dart';
 
 class Nav extends StatefulWidget {
@@ -19,7 +20,7 @@ class _NavState extends State<Nav> {
   int _selectedIndex = 0;
   List<Widget> _widgetOptions = <Widget>[
     const HomeScreen(),
-    const ShowTracking(),
+    const Tables(),
     const Schedule(),
     const AddNew(),
   ];
@@ -33,7 +34,11 @@ class _NavState extends State<Nav> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: const SideBar(),
+      drawer: const SideBar(),
+      // appBar: const PreferredSize(
+      //   preferredSize: Size.fromHeight(100),
+      //   child: AppBarr(),
+      // ),
       body: Container(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
@@ -46,16 +51,18 @@ class _NavState extends State<Nav> {
             ),
             // ignore: deprecated_member_use
             title: Text(
-              'Home',style: TextStyle(color: Color(0xff6875F5)),
+              'Home',
+              style: TextStyle(color: Color(0xff6875F5)),
             ),
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.art_track,
+              Icons.table_view,
               color: Color(0xff6875F5),
             ),
             title: Text(
-              'Tracking',style: TextStyle(color: Color(0xff6875F5)),
+              'Tables',
+              style: TextStyle(color: Color(0xff6875F5)),
             ),
           ),
           BottomNavigationBarItem(
@@ -64,7 +71,8 @@ class _NavState extends State<Nav> {
               color: Color(0xff6875F5),
             ),
             title: Text(
-              'Schedule',style: TextStyle(color: Color(0xff6875F5)),
+              'Schedule',
+              style: TextStyle(color: Color(0xff6875F5)),
             ),
           ),
           BottomNavigationBarItem(
@@ -73,7 +81,8 @@ class _NavState extends State<Nav> {
               color: Color(0xff6875F5),
             ),
             title: Text(
-              'Add New',style: TextStyle(color: Color(0xff6875F5)),
+              'Add New',
+              style: TextStyle(color: Color(0xff6875F5)),
             ),
           ),
         ],

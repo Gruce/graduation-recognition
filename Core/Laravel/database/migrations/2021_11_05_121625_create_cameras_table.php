@@ -17,7 +17,7 @@ class CreateCamerasTable extends Migration
             $table->id();
             $table->string("description");
             $table->integer("state")->default(0);
-            $table->integer("source")->default(0);
+            $table->string("source")->default(0);
             $table->timestamps();
         });
     }

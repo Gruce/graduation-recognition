@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduaiton_app/controllers/login_controller.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:graduaiton_app/screens/home_page/main.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -14,6 +13,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   late bool _passwordVisible;
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
 
   void initState() {
     _passwordVisible = false;
@@ -52,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       Text(
                         "Login",
-                        style:  GoogleFonts.openSans(
+                        style: GoogleFonts.openSans(
                           color: Colors.white,
                           fontSize: 46.0,
                           fontWeight: FontWeight.w800,
@@ -99,11 +100,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         // ),
                         SizedBox(height: 30),
                         TextFormField(
+                          controller: email,
                           keyboardType: TextInputType.text,
                           decoration: InputDecoration(
-                            labelText: 'Username',
-                            labelStyle: TextStyle(color: Colors.black.withOpacity(.6)),
-                            hintText: ('Enter your username'),
+                            labelText: 'Email',
+                            labelStyle:
+                                TextStyle(color: Colors.black.withOpacity(.6)),
+                            hintText: ('Enter your email'),
                             hintStyle: TextStyle(
                                 fontSize: 13.0,
                                 color: Colors.black.withOpacity(.5)),
@@ -116,13 +119,15 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         SizedBox(height: 15),
                         TextFormField(
+                          controller: password,
                           keyboardType: TextInputType.text,
                           obscureText:
                               !_passwordVisible, //This will obscure text dynamically
                           decoration: InputDecoration(
                             labelText: 'Password',
                             hintText: 'Enter your password',
-                            labelStyle: TextStyle(color: Colors.black.withOpacity(.6)),
+                            labelStyle:
+                                TextStyle(color: Colors.black.withOpacity(.6)),
                             hintStyle: TextStyle(
                                 fontSize: 13.0,
                                 color: Colors.black.withOpacity(.5)),
@@ -155,11 +160,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             minWidth: MediaQuery.of(context).size.width,
                             padding:
                                 EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => HomePage()),
-            );},
+                            onPressed: () async => await LoginController()
+                                .login(context, email.text, password.text),
                             child: Text(
                               "Login",
                               style: GoogleFonts.openSans(

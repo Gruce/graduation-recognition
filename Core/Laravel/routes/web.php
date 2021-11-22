@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TrackingController;
 use App\Http\Controllers\PeopleController;
+use App\Http\Livewire\Teachers;
+use App\Http\Livewire\Settings;
 
 
 /*
@@ -31,5 +33,11 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
     // Unkown people
     Route::get('/peopleUnkown', [PeopleController::class, 'unkown'])->name('unkown_people');
+
+    // Teachers
+    Route::get('/teachers/{id?}', Teachers::class)->name('teachers');
+
+    // Settings
+    Route::get('/settings', Settings::class)->name('settings');
 });
 

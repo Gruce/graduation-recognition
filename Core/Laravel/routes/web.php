@@ -29,7 +29,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
     ## Teachers ##
     Route::group(['prefix' => 'teachers'] ,function(){
-        Route::get('/{id?}', Teachers::class)->name('teachers');
+        Route::get('/', Teachers::class)->name('teachers');
     });
 
 

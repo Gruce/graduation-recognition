@@ -67,7 +67,8 @@ class Teachers extends Component
         $search = '%' . $this->search . '%';
         $this->teachers = Teacher::whereHas('user' , function($q) use ($search){
             $q->where('name' , 'LIKE' , $search)->orWhere('email' , 'LIKE' , $search);
-        })->with('user:id,name')
+        })
+        // ->with('user:id,name,email')
         ->orderBy('id', 'DESC')
         ->get();
 

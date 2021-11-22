@@ -130,36 +130,31 @@ class CameraWidget(QtWidgets.QWidget):
                     status, frame = self.capture.read()
                     if status:
                         # # # Any modifications to frame
-                        try:
-                            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                            # # Detect faces
-                            boxes, _ = mtcnn.detect(frame)
-                            frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
-                            # # Draw faces
-                            if boxes is not None:
-                                for box in boxes:
-                                    x1, y1, x2, y2 = box.astype(int)
-                                    # dir = tmp_path + str(self.camera_id)
-                                    
-                                    # if_directory_not_exists_create(dir)
-                                    # filename = dir + '/' + str(self.get_milliseconds()) + '.jpg'
-                                    # cv2.imwrite(filename, frame[y1:y2, x1:x2])
-                                    image = numpy.array(frame[y1:y2, x1:x2])
+                        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                        # # Detect faces
+                        boxes, _ = mtcnn.detect(frame)
+                        frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
+                        # # Draw faces
+                        if boxes is not None:
+                            for box in boxes:
+                                x1, y1, x2, y2 = box.astype(int)
 
-                                    # print(filename)
-                                    if not self.verify(image):
-                                        self.total_faces.append(image)
-                                        print('New face detected')
+                                image = numpy.array(frame[y1:y2, x1:x2])
+                                # print(filename)
+                                if not self.isFaceAdded(image):
+                                    self.total_faces.append(image)
+                                    print('New face detected')
+                                
                                     
-                                        
-                                    cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
-                        except Exception as e:
-                            print(e)
+                                cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
+                    
 
                         if len(self.total_faces) >= 2:
                             try:
-                                self.RecognizeThread(self.total_faces)
-                                self.total_faces = []
+                                print("Recognizing [1]")
+                                thread = self.RecognizeThread(self.total_faces)
+                                thread.start()
+                                self.total_faces.clear()
                             except Exception as e:
                                 print(e)
 
@@ -218,32 +213,34 @@ class CameraWidget(QtWidgets.QWidget):
     def get_video_frame(self):
         return self.video_frame
 
-    def verify(self, face):
-        try: 
-            for _face in self.total_faces:
+    def isFaceAdded(self, face):
+        for _face in self.total_faces:
+            try:
                 result = DeepFace.verify(
                         img1_path = face,
                         img2_path = _face,
                         model_name= 'ArcFace',
-                        # enforce_detection=False,
+                        enforce_detection=False,
                     )
-                return result[0]
-        except Exception as e:
-            print(e)
-            return True
+                if result['verified']:
+                    return True
+            except Exception as e:
+                continue
+        return False
 
     class RecognizeThread(threading.Thread):
         def __init__(self, total_faces):
             threading.Thread.__init__(self)
             self.total_faces = total_faces
-            print(total_faces)
+            print("Recognizing [2]")
+
         def run(self):
+            print(len(self.total_faces))
             try:
-                print(self.total_faces)
+                print("Recognizing [3]")
                 for filename in self.total_faces:
-                    print(filename)
                     df = DeepFace.find(
-                        img_path = os.path.normpath(filename),
+                        img_path = filename,
                         model_name= 'ArcFace',
                         # distance_metric='cosine',
                         db_path = db_path,
@@ -251,9 +248,6 @@ class CameraWidget(QtWidgets.QWidget):
                         detector_backend = 'mtcnn',
                         align=True,
                     )
-
-                    os.remove(filename)
-                    self.total_faces.remove(filename)
 
                     if df.shape[0] > 0:
                         id = df.iloc[0]['identity'].split('/')[-2].split('/')[0]

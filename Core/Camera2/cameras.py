@@ -1,5 +1,7 @@
 import os
+import threading
 from PyQt5 import QtCore, QtGui, QtWidgets
+import numpy
 import qdarkstyle
 from threading import Thread
 from collections import deque
@@ -11,6 +13,8 @@ import imutils
 import math
 import _thread
 import aiofiles
+
+
 
 ##########################  Face Detection  ###############################
 from facenet_pytorch import MTCNN, InceptionResnetV1, extract_face
@@ -35,51 +39,14 @@ from deepface.basemodels import ArcFace, Facenet512
 import pandas as pd
 
 db_path = Config.db_path
-
-def verify(faces, face):
-    try: 
-        for _face in faces:
-            result = DeepFace.verify(img1_path = _face, img2_path = face, model_name= 'Facenet512', model = Facenet512,)
-            return result[0]
-    except Exception as e:
-        return True
+collected_data_path = Config.collected_data_path
+tmp_path = 'Core/Camera2/tmp/'
 
 
-def recognize(filenames):
-    try:
-        for filename in filenames:
-            df = DeepFace.find(
-                img_path = os.path.normpath(filename),
-                model_name= 'ArcFace',
-                # distance_metric='cosine',
-                db_path = db_path,
-                enforce_detection = False,
-                detector_backend = 'mtcnn',
-                align=True,
-            )
-            os.remove(filename)
-            if df.shape[0] > 0:
-                id = df.iloc[0]['identity'].split('/')[-2].split('/')[0]
-                print("Found on " + str(id))
-            else:
-                print("Not found.")
-    except Exception as e:
-        print(e)
-    # if df.shape[0] > 0:
-    #     match = df.iloc[0].identity
-    #     print(match)
-    #     return match
-    # else:
-    #     return "Unkown"
-
-##########################  Face Recognition : pytorch  #############################
-# resnet = InceptionResnetV1(pretrained='vggface2', device=device).eval()
 
 #########################################################################
 
 def if_directory_not_exists_create(directory):
-    """Create directory if it doesn't exist"""
-
     if not os.path.exists(directory):
         os.makedirs(directory)
 
@@ -172,32 +139,27 @@ class CameraWidget(QtWidgets.QWidget):
                             if boxes is not None:
                                 for box in boxes:
                                     x1, y1, x2, y2 = box.astype(int)
-                                    dir = 'Core/Camera2/tmp/' + str(self.camera_id)
+                                    # dir = tmp_path + str(self.camera_id)
                                     
-                                    if_directory_not_exists_create(dir)
-                                    filename = dir + '/' + str(datetime.now().microsecond) + '.jpg'
-                                    cv2.imwrite(filename, frame[y1:y2, x1:x2])
+                                    # if_directory_not_exists_create(dir)
+                                    # filename = dir + '/' + str(self.get_milliseconds()) + '.jpg'
+                                    # cv2.imwrite(filename, frame[y1:y2, x1:x2])
+                                    image = numpy.array(frame[y1:y2, x1:x2])
 
-                                    if verify(self.total_faces, filename):
-                                        try:
-                                            os.remove(filename)
-                                        except OSError as e:
-                                            print ("Error code:"), e.code 
-                                    else:
-                                        self.total_faces.append(filename)
+                                    # print(filename)
+                                    if not self.verify(image):
+                                        self.total_faces.append(image)
                                         print('New face detected')
-                                        print(len(self.total_faces))
                                     
                                         
                                     cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
                         except Exception as e:
                             print(e)
 
-                        if len(self.total_faces) >= 1:
+                        if len(self.total_faces) >= 2:
                             try:
-                                _thread.start_new_thread(recognize, (self.total_faces,))
-                                time.sleep(0.1)
-                                self.total_faces.clear()
+                                self.RecognizeThread(self.total_faces)
+                                self.total_faces = []
                             except Exception as e:
                                 print(e)
 
@@ -256,11 +218,59 @@ class CameraWidget(QtWidgets.QWidget):
     def get_video_frame(self):
         return self.video_frame
 
+    def verify(self, face):
+        try: 
+            for _face in self.total_faces:
+                result = DeepFace.verify(
+                        img1_path = face,
+                        img2_path = _face,
+                        model_name= 'ArcFace',
+                        # enforce_detection=False,
+                    )
+                return result[0]
+        except Exception as e:
+            print(e)
+            return True
+
+    class RecognizeThread(threading.Thread):
+        def __init__(self, total_faces):
+            threading.Thread.__init__(self)
+            self.total_faces = total_faces
+            print(total_faces)
+        def run(self):
+            try:
+                print(self.total_faces)
+                for filename in self.total_faces:
+                    print(filename)
+                    df = DeepFace.find(
+                        img_path = os.path.normpath(filename),
+                        model_name= 'ArcFace',
+                        # distance_metric='cosine',
+                        db_path = db_path,
+                        enforce_detection = False,
+                        detector_backend = 'mtcnn',
+                        align=True,
+                    )
+
+                    os.remove(filename)
+                    self.total_faces.remove(filename)
+
+                    if df.shape[0] > 0:
+                        id = df.iloc[0]['identity'].split('/')[-2].split('/')[0]
+                        print("Found on " + str(id))
+                    else:
+                        print("Not found.")
+                
+            except Exception as e:
+                print(e)
+    
+    def get_milliseconds(self):
+        return int(round(time.time() * 1000))
+
 def exit_application():
     """Exit program event handler"""
 
     sys.exit(1)
-
 if __name__ == '__main__':
 
     # Create main application window
@@ -289,6 +299,7 @@ if __name__ == '__main__':
         # Create camera widgets
         print('Creating Camera Widgets...')
         cam = CameraWidget(screen_width//columns, screen_height//columns, stream_link=camera['source'], camera_id=camera['id'], description=camera['description'])
+        # Camera Thread for recognition
 
         # Add widgets to layout
         print('Adding widgets to layout...')

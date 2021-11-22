@@ -1,4 +1,4 @@
-<x-app-layout>
+{{-- <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             People
@@ -6,7 +6,6 @@
     </x-slot>
 
     <div class="py-12">
-
         <div class="flex justify-center items-center w-full">
             <!--actual component start-->
             <div class="flex-grow container px-5 mx-auto rounded-lg max-w-7xl sm:px-6 lg:px-8" x-data="setup()">
@@ -32,7 +31,7 @@
             </div>
             <!--actual component end-->
         </div>
-        @livewire('people')
+        @livewire('people.people')
     </div>
 
     <script>
@@ -46,4 +45,4 @@
             };
         };
     </script>
-</x-app-layout>
+</x-app-layout> --}}

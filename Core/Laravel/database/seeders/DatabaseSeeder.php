@@ -23,6 +23,15 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\User::create([
+            'name' => 'Hussam Haider',
+            'email' => 'hussam@gmail.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt('123456'),
+            'remember_token' => Str::random(10),
+            'type' => 'admin'
+        ]);
+
+        \App\Models\User::create([
             'name' => 'Abdulkareem',
             'email' => 'karm.99zo@gmail.com',
             'email_verified_at' => now(),
@@ -34,7 +43,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\Camera::create([
             'description' => 'Main Camera',
             'state' => 0,
-           ]);
+        ]);
 
         \App\Models\Person::create([
             'name' => 'Hassan Alkhalidi',

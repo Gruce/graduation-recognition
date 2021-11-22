@@ -12,29 +12,11 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-jet-nav-link>
-
-                    <x-jet-nav-link href="{{ route('trackings') }}" :active="request()->routeIs('trackings')">
-                        Trackings
-                    </x-jet-nav-link>
-
-                    <x-jet-nav-link href="{{ route('people') }}" :active="request()->routeIs('people')">
-                        People
-                    </x-jet-nav-link>
-
-                    <x-jet-nav-link href="{{ route('unkown_people') }}" :active="request()->routeIs('unkown_people')">
-                        Unknown People
-                    </x-jet-nav-link>
-
-                    <x-jet-nav-link href="{{ route('teachers') }}" :active="request()->routeIs('teachers')">
-                        Teachers
-                    </x-jet-nav-link>
-
-                    <x-jet-nav-link href="{{ route('settings') }}" :active="request()->routeIs('settings')">
-                        Settings
-                    </x-jet-nav-link>
+                    @foreach (navigation() as $item)
+                        <x-jet-nav-link href="{{ route($item['route']) }}" :active="$item['active']">
+                            {{ $item['name'] }}
+                        </x-jet-nav-link>
+                    @endforeach
                 </div>
             </div>
 

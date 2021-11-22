@@ -90,6 +90,8 @@
                                                     {{ $person->trackings->last()->created_at->diffForHumans() }}
                                                 </div>
                                             </span>
+                                        @else 
+                                            <h1>Not seen</h1>
                                         @endif
                                     </td>
                                     <td class="p-3">

@@ -14,10 +14,10 @@
                 <div x-show="activeTab!==-1">
                     <div class="container px-5 py-10 mx-auto bg-white rounded-lg max-w-7xl sm:px-6 lg:px-8">
                         <div x-show="activeTab===0">
-                            <livewire:teacher-add />
+                            @livewire('teachers.teacher-add')
                         </div>
                         <div x-show="activeTab===1">
-                            {{-- <livewire:people-search /> --}}
+                            @livewire('teachers.teacher-search')
                         </div>
                     </div>
                 </div>
@@ -25,19 +25,5 @@
             </div>
             <!--actual component end-->
         </div>
-        
-        <livewire:teachers-show />
     </div>
-
-    <script>
-        function setup() {
-            return {
-            activeTab: -1,
-            tabs: [
-                '<span class="material-icons-outlined mr-2">add</span>New Teacher',
-                '<span class="material-icons-outlined mr-2">search</span>Search',
-            ]
-            };
-        };
-    </script>
 </div>

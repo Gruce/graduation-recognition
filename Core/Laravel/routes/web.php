@@ -11,16 +11,12 @@ use App\Http\Controllers\{
 ## Livewire ##
 use App\Http\Livewire\{
     People\People,
-    Teachers,
+    Teachers\Teachers,
     Settings,
 };
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
-    Route::view('/dashboard', 'dashboard')->name('dashboard');
+    Route::view('/', 'dashboard')->name('dashboard');
 
     // Trackings
     Route::get('/trackings/{id?}/{person?}', [TrackingController::class, 'main'])->name('trackings');
@@ -39,16 +35,5 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
     Route::get('/settings', Settings::class)->name('settings');
 
-    // // // 
-    // Route::get('/people/{id?}', [PeopleController::class, 'main'])->name('people');
-
-    // // Unkown people
-    // Route::get('/peopleUnkown', [PeopleController::class, 'unkown'])->name('unkown_people');
-
-    // // Teachers
-    // Route::get('/teachers/{id?}', Teachers::class)->name('teachers');
-
-    // Settings
-    
 });
 

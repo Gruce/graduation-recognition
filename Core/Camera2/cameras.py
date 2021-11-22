@@ -57,9 +57,12 @@ def recognize(filenames):
                 detector_backend = 'mtcnn',
                 align=True,
             )
-            df.head()
             os.remove(filename)
-            return df.iloc[0].identity
+            if df.shape[0] > 0:
+                id = df.iloc[0]['identity'].split('/')[-2].split('/')[0]
+                print("Found on " + str(id))
+            else:
+                print("Not found.")
     except Exception as e:
         print(e)
     # if df.shape[0] > 0:
@@ -193,9 +196,10 @@ class CameraWidget(QtWidgets.QWidget):
                         if len(self.total_faces) >= 1:
                             try:
                                 _thread.start_new_thread(recognize, (self.total_faces,))
+                                time.sleep(0.1)
+                                self.total_faces.clear()
                             except Exception as e:
                                 print(e)
-                            self.total_faces.clear()
 
                         self.deque.append(frame)
                     else:

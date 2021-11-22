@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:graduaiton_app/data/users.dart';
 import 'package:graduaiton_app/models/myuser.dart';
-import 'package:graduaiton_app/util/utils.dart';
 import 'package:graduaiton_app/screens/admin/home_page/tables/widget/scrollable_widget.dart';
-import 'package:graduaiton_app/screens/admin/home_page/show_table/widget/text_dialog_widget.dart';
+import 'package:graduaiton_app/screens/admin/home_page/tables/widget/text_dialog_widget.dart';
+import 'package:graduaiton_app/util/utils.dart';
 
 class TrackingTable extends StatefulWidget {
   const TrackingTable({Key? key}) : super(key: key);
@@ -28,7 +28,7 @@ class _TrackingTableState extends State<TrackingTable> {
       );
 
   Widget buildDataTable() {
-    final columns = ['Person Name', 'Camera', 'Date Time','Action'];
+    final columns = ['Person Name', 'Camera', 'Date Time', 'Action'];
 
     return DataTable(
       columns: getColumns(columns),
@@ -48,14 +48,17 @@ class _TrackingTableState extends State<TrackingTable> {
   }
 
   List<DataRow> getRows(List<User> users) => users.map((User user) {
-        final cells = [user.firstName, user.lastName, user.age,user.action];
+        final cells = [user.firstName, user.lastName, user.age, user.action];
 
         return DataRow(
           cells: Utils.modelBuilder(cells, (index, cell) {
             final showEditIcon = index == 0;
 
             return DataCell(
-              Text('$cell',textAlign: TextAlign.start,),
+              Text(
+                '$cell',
+                textAlign: TextAlign.start,
+              ),
               showEditIcon: showEditIcon,
               onTap: () {
                 switch (index) {

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:graduaiton_app/data/users.dart';
 import 'package:graduaiton_app/models/myuser.dart';
-import 'package:graduaiton_app/util/utils.dart';
 import 'package:graduaiton_app/screens/admin/home_page/tables/widget/scrollable_widget.dart';
-import 'package:graduaiton_app/screens/admin/home_page/show_table/widget/text_dialog_widget.dart';
+import 'package:graduaiton_app/util/utils.dart';
 
 class UnkonwnTable extends StatefulWidget {
   @override
@@ -26,7 +25,7 @@ class _UnkonwnTableState extends State<UnkonwnTable> {
       );
 
   Widget buildDataTable() {
-    final columns = ['Id','Last Seen','Action'];
+    final columns = ['Id', 'Last Seen', 'Action'];
 
     return DataTable(
       columns: getColumns(columns),
@@ -39,7 +38,10 @@ class _UnkonwnTableState extends State<UnkonwnTable> {
       final isAction = column == columns[1];
 
       return DataColumn(
-        label: Text(column,textAlign: TextAlign.start,),
+        label: Text(
+          column,
+          textAlign: TextAlign.start,
+        ),
         numeric: isAction,
       );
     }).toList();
@@ -51,12 +53,12 @@ class _UnkonwnTableState extends State<UnkonwnTable> {
         return DataRow(
           cells: Utils.modelBuilder(cells, (index, cell) {
             return DataCell(
-              Text('$cell',textAlign: TextAlign.start,),         
+              Text(
+                '$cell',
+                textAlign: TextAlign.start,
+              ),
             );
           }),
         );
       }).toList();
-
-
-  }
-
+}

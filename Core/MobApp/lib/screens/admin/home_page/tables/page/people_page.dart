@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:graduaiton_app/data/users.dart';
 import 'package:graduaiton_app/models/myuser.dart';
-import 'package:graduaiton_app/util/utils.dart';
 import 'package:graduaiton_app/screens/admin/home_page/tables/widget/scrollable_widget.dart';
-import 'package:graduaiton_app/screens/admin/home_page/show_table/widget/text_dialog_widget.dart';
+import 'package:graduaiton_app/screens/admin/home_page/tables/widget/text_dialog_widget.dart';
+import 'package:graduaiton_app/util/utils.dart';
 
 class PeopleTable extends StatefulWidget {
   const PeopleTable({Key? key}) : super(key: key);

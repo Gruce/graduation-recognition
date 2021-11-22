@@ -28,22 +28,53 @@ device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 mtcnn = MTCNN(
     margin=14,
-    factor=0.5,
+    factor=0.3,
     keep_all=True,
     device=device
 ).eval()
 ###########################################################################
 ##########################  Face Recognition : deepface  #############################
 from deepface import DeepFace
-from deepface.basemodels import ArcFace, Facenet512
 import pandas as pd
 
 db_path = Config.db_path
 collected_data_path = Config.collected_data_path
-tmp_path = 'Core/Camera2/tmp/'
+cascade_path = Config.cascade_path + 'haarcascade_frontalface_default.xml'
 
+ArcFace = DeepFace.build_model('ArcFace')
+VGGFace = DeepFace.build_model('VGG-Face')
 
+class RecognizeThread(threading.Thread):
+    def __init__(self, camera_id, total_faces):
+        threading.Thread.__init__(self)
+        self.faces = total_faces
+        self.camera_id = camera_id
 
+    def run(self):
+        print("Faces recognizing " + str(len(self.faces)))
+        count = 0
+        try:
+            for filename in self.faces:
+                print("Recognizing face " + str(count))
+                count += 1
+                df = DeepFace.find(
+                    img_path = filename,
+                    model_name= 'ArcFace',
+                    model = ArcFace,
+                    db_path = db_path,
+                    enforce_detection = False,
+                    detector_backend = 'mtcnn',
+                    align=True,
+                )
+
+                if df.shape[0] > 0:
+                    id = df.iloc[0]['identity'].split('/')[-2].split('/')[0]
+                    print("Found on " + str(id))
+                else:
+                    print("Not found.")
+            
+        except Exception as e:
+            print(e)
 #########################################################################
 
 def if_directory_not_exists_create(directory):
@@ -105,6 +136,7 @@ class CameraWidget(QtWidgets.QWidget):
         def load_network_stream_thread():
             if self.verify_network_stream(self.camera_stream_link):
                 self.capture = cv2.VideoCapture(self.camera_stream_link)
+                self.capture.set(cv2.CAP_PROP_FPS, 1)
                 self.online = True
         self.load_stream_thread = Thread(target=load_network_stream_thread, args=())
         self.load_stream_thread.daemon = True
@@ -119,9 +151,22 @@ class CameraWidget(QtWidgets.QWidget):
         cap.release()
         return True
 
+    def detect(self, frame, type=0):
+        try:
+            if type == 0:
+                rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                boxes, _ = mtcnn.detect(rgb)
+                return boxes
+            elif type == 1:
+                cascade = cv2.CascadeClassifier(cascade_path)
+                gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+                boxes = cascade.detectMultiScale(gray, 1.2, 5)
+                return boxes
+        except Exception as e:
+            print(e)
+
     def get_frame(self):
         """Reads frame, resizes, and converts image to pixmap"""
-
 
         while True:
             try:
@@ -129,31 +174,31 @@ class CameraWidget(QtWidgets.QWidget):
                     # Read next frame from stream and insert into deque
                     status, frame = self.capture.read()
                     if status:
-                        # # # Any modifications to frame
-                        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                        # # Detect faces
-                        boxes, _ = mtcnn.detect(frame)
-                        frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
-                        # # Draw faces
-                        if boxes is not None:
-                            for box in boxes:
-                                x1, y1, x2, y2 = box.astype(int)
+                        # Any modifications to frame
+                        
+                        # type = 0 : FastMTCNN
+                        # type = 1 : HaarCascade
+                        boxes = self.detect(frame, type=0)
 
-                                image = numpy.array(frame[y1:y2, x1:x2])
-                                # print(filename)
+                        # Draw faces
+                        if boxes is not None:
+                            for (x1, y1, x2, y2) in boxes:
+                                # x1, y1, x2, y2 = box.astype(int)
+
+                                image = numpy.array(frame[int(y1):int(y2), int(x1):int(x2)])
+
                                 if not self.isFaceAdded(image):
                                     self.total_faces.append(image)
-                                    print('New face detected')
-                                
+                                    print('Camera ' + str(self.camera_id) + 'New face detected')
                                     
-                                cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
+                                cv2.rectangle(frame, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 2)
                     
-
-                        if len(self.total_faces) >= 2:
+                        if len(self.total_faces) >= 5:
                             try:
-                                print("Recognizing [1]")
-                                thread = self.RecognizeThread(self.total_faces)
+                                print('Camera ' + str(self.camera_id) + "Recognizing Thread is starting...")
+                                thread = RecognizeThread(self.camera_id, self.total_faces)
                                 thread.start()
+                                time.sleep(0.1)
                                 self.total_faces.clear()
                             except Exception as e:
                                 print(e)
@@ -217,10 +262,13 @@ class CameraWidget(QtWidgets.QWidget):
         for _face in self.total_faces:
             try:
                 result = DeepFace.verify(
-                        img1_path = face,
-                        img2_path = _face,
-                        model_name= 'ArcFace',
+                        img1_path   = face,
+                        img2_path   = _face,
+                        model_name  = 'ArcFace',
+                        model = ArcFace,
                         enforce_detection=False,
+                        detector_backend = 'opencv',
+                        align=True,
                     )
                 if result['verified']:
                     return True
@@ -228,35 +276,6 @@ class CameraWidget(QtWidgets.QWidget):
                 continue
         return False
 
-    class RecognizeThread(threading.Thread):
-        def __init__(self, total_faces):
-            threading.Thread.__init__(self)
-            self.total_faces = total_faces
-            print("Recognizing [2]")
-
-        def run(self):
-            print(len(self.total_faces))
-            try:
-                print("Recognizing [3]")
-                for filename in self.total_faces:
-                    df = DeepFace.find(
-                        img_path = filename,
-                        model_name= 'ArcFace',
-                        # distance_metric='cosine',
-                        db_path = db_path,
-                        enforce_detection = False,
-                        detector_backend = 'mtcnn',
-                        align=True,
-                    )
-
-                    if df.shape[0] > 0:
-                        id = df.iloc[0]['identity'].split('/')[-2].split('/')[0]
-                        print("Found on " + str(id))
-                    else:
-                        print("Not found.")
-                
-            except Exception as e:
-                print(e)
     
     def get_milliseconds(self):
         return int(round(time.time() * 1000))

@@ -2,9 +2,12 @@
 import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:graduaiton_app/models/user.dart';
+import 'package:graduaiton_app/screens/admin/nav_bar/add_new/Teacher_add.dart';
 import 'package:graduaiton_app/screens/admin/nav_bar/nav_bar.dart';
 import 'package:graduaiton_app/screens/admin/side_bar.dart';
 import 'package:graduaiton_app/util/utilities.dart';
+
+import 'app_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -15,6 +18,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   @override
   void initState() {
     super.initState();
@@ -24,8 +28,35 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     // var scaffoldKey = GlobalKey<ScaffoldState>();
     return Scaffold(
+      // appBar: const PreferredSize(
+      //   preferredSize: Size.fromHeight(100),
+      //   child: AppBarr(),
+      // ),
+      drawer: const SideBar(),
+      // body: Column(
+      //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //   crossAxisAlignment: CrossAxisAlignment.stretch,
+      //   children: <Widget>[
+      //     Expanded(
+      //         child: Row(
+      //       children: [
+      //         // ignore: deprecated_member_use
+      //         FlatButton(
+      //             color: Colors.deepOrange,
+      //             onPressed: () {
+      //               Navigator.of(context).push(
+      //                   MaterialPageRoute(builder: (context) => CameraAdd()));
+      //             },
+      //             child: Text(
+      //               "Test Button",
+      //               style: TextStyle(color: Colors.white, fontSize: 16),
+      //             ))
+      //       ],
+      //     ))
+      //   ],
+      // ),
       key: _scaffoldKey,
-      drawer: SideBar(),
+      // bottomNavigationBar: Nav(),
       body: Container(
         decoration: BoxDecoration(
           color: Colors.grey[200],
@@ -43,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     IconButton(
                       icon: Icon(Icons.menu),
-                     onPressed: () => _scaffoldKey.currentState!.openDrawer(),
+                     onPressed:  () => _scaffoldKey.currentState!.openDrawer(),
                     ),
                     Column(
                       children: [

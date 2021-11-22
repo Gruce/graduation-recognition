@@ -2,7 +2,10 @@
 import 'dart:io';
 import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:flutter/material.dart';
+import 'package:graduaiton_app/screens/admin/home_page/app_bar.dart';
 import 'package:graduaiton_app/screens/admin/home_page/home_screen.dart';
+
+import '../side_bar.dart';
 
 class Schedule extends StatelessWidget {
   const Schedule({Key? key}) : super(key: key);
@@ -10,24 +13,12 @@ class Schedule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(100),
+        child: AppBarr(),
+      ),
       body: CustomScrollView(
         slivers: <Widget>[
-          SliverAppBar(
-            pinned: true,
-            snap: true,
-            floating: true,
-            expandedHeight: 200,
-            backgroundColor: Color(0xff6875F5),
-            iconTheme: IconThemeData(color:Color(0xff6875F5)),
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text('Schedule'),
-              centerTitle: true,
-              background: Image.asset(
-                'bbb.png',
-                fit: BoxFit.fitWidth,
-              ),
-            ),
-          ),
           SliverFillRemaining(
               child: ListView(children: <Widget>[
             DataTable(

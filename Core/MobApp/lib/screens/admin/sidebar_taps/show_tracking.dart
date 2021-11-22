@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_const
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:graduaiton_app/screens/admin/home_page/app_bar.dart';
 
 class ShowTracking extends StatelessWidget {
   const ShowTracking({Key? key}) : super(key: key);
@@ -8,24 +9,12 @@ class ShowTracking extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(100),
+        child: AppBarr(),
+      ),
       body: CustomScrollView(
         slivers: <Widget>[
-          SliverAppBar(
-            pinned: true,
-            snap: true,
-            floating: true,
-            expandedHeight: 200,
-            backgroundColor: Color(0xff6875F5),
-            iconTheme: IconThemeData(color: Color(0xff6875F5)),
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text('ShowTracking'),
-              centerTitle: true,
-              background: Image.asset(
-                'bbb.png',
-                fit: BoxFit.fitWidth,
-              ),
-            ),
-          ),
           SliverFillRemaining(
               child: ListView(children: <Widget>[
             DataTable(

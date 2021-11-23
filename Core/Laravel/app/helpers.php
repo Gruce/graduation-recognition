@@ -29,6 +29,11 @@
                 'active' => request()->routeIs('teachers'),
             ],
             [
+                'name' => 'Students',
+                'route' => 'students',
+                'active' => request()->routeIs('settings'),
+            ],
+            [
                 'name' => 'Settings',
                 'route' => 'settings',
                 'active' => request()->routeIs('settings'),

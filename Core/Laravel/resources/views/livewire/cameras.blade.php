@@ -67,7 +67,19 @@
                   </svg>{{ count($camera->trackings) }}
                 </span>
                 <span class="text-gray-400 pl-3 mb-1 inline-flex items-center leading-none text-lg">
-                  @if ($camera->state)
+                  <span wire:click="state({{$camera->id}} , {{$camera->state}})" class="cursor-pointer relative inline-flex rounded-md shadow-sm">
+                    @if ($camera->state)
+                      <span class="flex absolute h-3 w-3 top-0 right-0 -mt-1 -mr-1">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-300 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-green-300"></span>
+                      </span>
+                    @else 
+                      <span class="flex absolute h-3 w-3 top-0 right-0 -mt-1 -mr-1">
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                      </span>
+                    @endif
+                  </span>
+                  {{-- @if ($camera->state)
                   <span class="relative inline-flex rounded-md shadow-sm">
                     <span class="flex absolute h-3 w-3 top-0 right-0 -mt-1 -mr-1">
                       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-300 opacity-75"></span>
@@ -76,12 +88,12 @@
                   </span>
 
                   @else
-                  <span class="relative inline-flex rounded-md shadow-sm">
+                  <span wire:click="state" class="cursor-pointer relative inline-flex rounded-md shadow-sm">
                     <span class="flex absolute h-3 w-3 top-0 right-0 -mt-1 -mr-1">
                       <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
                     </span>
                   </span>
-                  @endif
+                  @endif --}}
                 </span>
               </div>
             </div>

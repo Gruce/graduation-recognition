@@ -37,9 +37,6 @@ class People extends Component
             ->with('trackings')
             ->orderBy('id', 'DESC')
             ->paginate(10);
-            // ->get()->toArray();
-
-            // dd($people);
 
         return view('livewire.people.people', ['people' => $people]);
     }

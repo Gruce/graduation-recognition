@@ -3,13 +3,12 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Str;
 use App\Models\User;
 
-class DatabaseSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      *
      * @return void
      */
@@ -49,42 +48,6 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('123456'),
             'remember_token' => Str::random(10),
             'type' => 'admin'
-        ]);
-
-        \App\Models\Camera::create([
-            'description' => 'Main Camera',
-            'state' => 0,
-        ]);
-
-        \App\Models\Person::create([
-            'name' => 'Hassan Alkhalidi',
-            'user_id' => 1,
-            'training_id' => 1,
-            'type' => 2,
-        ]);
-
-        \App\Models\Person::create([
-            'name' => 'AbdulKareem Mgbl',
-            'user_id' => 2,
-            'training_id' => 1,
-            'type' => 2,
-        ]);
-
-        // Teachers
-        \App\Models\Teacher::create([
-            'user_id' => 1,
-            'person_id' => 1,
-            'speciality' => "Computer Vision",
-        ]);
-
-        $this->call([
-            // UserSeeder::class,
-            SectionSeeder::class,
-            StageSeeder::class,
-            UnitSeeder::class,
-            SubjectSeeder::class,
-            StudentSeeder::class,
-            SettingSeeder::class,
         ]);
     }
 }

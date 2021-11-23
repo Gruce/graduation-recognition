@@ -1,19 +1,17 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Teachers;
 
 use Livewire\Component;
 
-class PeopleSearch extends Component
+class TeacherSearch extends Component
 {
-    
     public $search;
     protected $queryString = ['search'];
 
     public function render()
     {
         $this->emit('search', $this->search);
-
-        return view('livewire.people-search');
+        return view('livewire.teachers.teacher-search');
     }
 }

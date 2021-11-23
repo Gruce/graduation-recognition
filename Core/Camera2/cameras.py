@@ -29,7 +29,7 @@ device = 'cuda' if torch.cuda.is_available() else 'cpu'
 mtcnn = MTCNN(
     margin=14,
     factor=0.3,
-    keep_all=True,
+    keep_all=False,
     device=device
 ).eval()
 ###########################################################################
@@ -137,6 +137,7 @@ class CameraWidget(QtWidgets.QWidget):
             if self.verify_network_stream(self.camera_stream_link):
                 self.capture = cv2.VideoCapture(self.camera_stream_link)
                 self.capture.set(cv2.CAP_PROP_FPS, 1)
+                self.fps = self.capture.get(cv2.CAP_PROP_FPS)
                 self.online = True
         self.load_stream_thread = Thread(target=load_network_stream_thread, args=())
         self.load_stream_thread.daemon = True
@@ -168,8 +169,11 @@ class CameraWidget(QtWidgets.QWidget):
     def get_frame(self):
         """Reads frame, resizes, and converts image to pixmap"""
 
+        
         while True:
             try:
+                frameId = self.capture.get(1)
+
                 if self.capture.isOpened() and self.online:
                     # Read next frame from stream and insert into deque
                     status, frame = self.capture.read()
@@ -179,26 +183,31 @@ class CameraWidget(QtWidgets.QWidget):
                         # type = 0 : FastMTCNN
                         # type = 1 : HaarCascade
                         boxes = self.detect(frame, type=0)
-
                         # Draw faces
                         if boxes is not None:
                             for (x1, y1, x2, y2) in boxes:
                                 # x1, y1, x2, y2 = box.astype(int)
 
-                                image = numpy.array(frame[int(y1):int(y2), int(x1):int(x2)])
 
-                                if not self.isFaceAdded(image):
-                                    self.total_faces.append(image)
-                                    print('Camera ' + str(self.camera_id) + 'New face detected')
+                                if (frameId % math.floor(self.fps*2) == 0):
+                                    image = numpy.array(frame[int(y1):int(y2), int(x1):int(x2)])
+                                    print("Camera " + str(self.camera_id) + " Processing...")
+                                    if not self.isFaceAdded(image):
+                                        self.total_faces.append(image)
+                                        print('Camera ' + str(self.camera_id) + ' New face detected. => ' + str(len(self.total_faces)))
+
+
+
+                               
                                     
                                 cv2.rectangle(frame, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 2)
                     
-                        if len(self.total_faces) >= 5:
+                        if len(self.total_faces) >= 10:
                             try:
-                                print('Camera ' + str(self.camera_id) + "Recognizing Thread is starting...")
-                                thread = RecognizeThread(self.camera_id, self.total_faces)
-                                thread.start()
-                                time.sleep(0.1)
+                                print('Camera ' + str(self.camera_id) + " Recognizing Thread is starting...")
+                                # thread = RecognizeThread(self.camera_id, self.total_faces)
+                                # thread.start()
+                                # time.sleep(0.1)
                                 self.total_faces.clear()
                             except Exception as e:
                                 print(e)

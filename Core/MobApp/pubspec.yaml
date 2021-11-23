@@ -41,7 +41,8 @@ dependencies:
   google_fonts: ^2.1.0
   shimmer: ^2.0.0
   simple_animations: ^4.0.1
-  calendar_timeline: ^0.7.1
+  line_icons: ^2.0.1
+  english_words: ^4.0.0
 
 dev_dependencies:
   flutter_test:

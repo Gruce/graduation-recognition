@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Subject extends Model
+class Unit extends Model
 {
     use HasFactory;
 
@@ -13,5 +13,9 @@ class Subject extends Model
 
     public function stage(){
         return $this->belongsTo(Stage::class);
+    }
+
+    public function students(){
+        return $this->hasMany(Student::class);
     }
 }

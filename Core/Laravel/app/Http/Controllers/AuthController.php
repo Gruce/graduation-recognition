@@ -7,11 +7,20 @@ use App\Http\Controllers\Controller;
 
 class AuthController extends Controller
 {
+
     /**
      * Create a new AuthController instance.
      *
      * @return void
      */
+
+    public function __invoke(Request $request){
+        $credentials = $request->only('email', 'password' );
+        if(!auth()->attempt($credentials)){
+            throw AuthenticationException();
+        }
+    }
+
     public function __construct()
     {
         $this->middleware('auth:api', ['except' => ['login']]);

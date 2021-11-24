@@ -71,13 +71,13 @@ class LoginController extends GetxController {
   void redirect(UserModel user) async {
     switch (user.type) {
       case 'admin':
-        Get.offAllNamed(Routes.adminHome);
+        Get.offAllNamed(Routes.adminMain);
         break;
       case 'teacher':
-        Get.offAllNamed(Routes.adminHome);
+        Get.offAllNamed(Routes.adminMain);
         break;
       case 'student':
-        Get.offAllNamed(Routes.adminHome);
+        Get.offAllNamed(Routes.adminMain);
         break;
       default:
     }

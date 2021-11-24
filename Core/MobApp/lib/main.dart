@@ -6,7 +6,7 @@ import 'package:graduaiton_app/screens/login_screen.dart';
 import 'package:graduaiton_app/screens/splash_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'screens/admin/home_page/home_screen.dart';
-import 'screens/admin/nav_bar/nav_bar.dart';
+import 'screens/admin/nav_bar/navbar.dart';
 
 import 'package:get/get.dart';
 

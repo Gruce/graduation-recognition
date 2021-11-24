@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graduaiton_app/data/users.dart';
 import 'package:graduaiton_app/models/myuser.dart';
-import 'package:graduaiton_app/screens/admin/home_page/tables/widget/scrollable_widget.dart';
+import 'package:graduaiton_app/screens/admin/tables_page/widget/scrollable_widget.dart';
 import 'package:graduaiton_app/util/utils.dart';
 
 class UnkonwnTable extends StatefulWidget {

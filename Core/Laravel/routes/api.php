@@ -30,6 +30,8 @@ Route::group(['middleware' => 'api','prefix' => 'auth'], function ($router) {
 Route::group(['middleware' => 'auth'], function () {
     // People
     Route::get('people', [ApiController::class, 'people']);
+    Route::post('person', [ApiController::class, 'person']);
+
     Route::get('not_trained_people', [ApiController::class, 'not_trained_people']);
     
     Route::post('people/new', [ApiController::class, 'new_person']);

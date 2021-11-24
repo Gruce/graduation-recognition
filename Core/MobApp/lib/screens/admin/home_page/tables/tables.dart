@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:graduaiton_app/screens/admin/home_page/Tables/widget/tabbar_widget.dart';
 import 'page/people_page.dart';
 import 'page/tracking_page.dart';
-import 'package:graduaiton_app/screens/admin/home_page/tables/page/people_page.dart';
-import 'package:graduaiton_app/screens/admin/home_page/tables/page/tracking_page.dart';
 import 'page/unknown_page.dart';
+import 'widget/tabbar_widget.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();

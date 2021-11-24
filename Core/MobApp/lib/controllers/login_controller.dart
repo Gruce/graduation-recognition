@@ -20,6 +20,7 @@ class LoginController {
       // Set token to shared preferences (local storage)
       String jwt = 'Bearer ' + json.decode(res.body)['access_token'];
       await prefs.setString('jwt', jwt);
+
       // Set User Details
       setUserDetails(jwt);
       // Navigate to home page

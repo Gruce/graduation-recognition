@@ -23,16 +23,14 @@ class _SearchState extends State<Search> {
     String jwt = prefs.getString('jwt').toString();
     var res = await http
         .get(Uri.parse("$api/people"), headers: {"Authorization": jwt});
-
     if (res.statusCode == 200) {
-      var responsebody = jsonDecode(res.body);
+      var responsebody = jsonDecode(res.body)['data'];
       for (int i = 0; i < responsebody.length; i++) {
-        // listsearch.add(responsebody[i]);
-        print(responsebody[i]);
+        listsearch.add(responsebody[i]);
       }
     }
 
-    print(listsearch);
+    // print(listsearch);
   }
 
   @override
@@ -45,20 +43,20 @@ class _SearchState extends State<Search> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-      margin: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+      margin: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(20)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           IconButton(
-              icon: Icon(Icons.search),
+              icon: const Icon(Icons.search),
               onPressed: () {
                 showSearch(
                     context: context, delegate: DataSearch(list: listsearch));
               }),
-          Text('Search for a person'),
+          const Text('Search for a person'),
           IconButton(icon: Icon(Icons.settings), onPressed: () {}),
         ],
       ),

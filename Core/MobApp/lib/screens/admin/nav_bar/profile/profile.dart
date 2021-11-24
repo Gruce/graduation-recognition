@@ -13,16 +13,22 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  late Future userFuture;
+
   @override
   void initState() {
-    // TODO: implement initState
-    // print(widget.id);
+    if (widget.id == null) {
+      userFuture = Utilities.getUser;
+    } else {
+      userFuture = Utilities.getUserById(widget.id);
+    }
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-     return MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.grey.shade200,
@@ -62,7 +68,7 @@ class _ProfileState extends State<Profile> {
                                   children: <Widget>[
                                     ListTile(
                                       title: FutureBuilder(
-                                        future: Utilities.getUser,
+                                        future: userFuture,
                                         builder: (context, snapshot) {
                                           if (snapshot.hasData) {
                                             UserModel user =

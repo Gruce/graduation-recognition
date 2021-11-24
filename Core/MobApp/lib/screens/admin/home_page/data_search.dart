@@ -1,11 +1,11 @@
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:graduaiton_app/screens/admin/home_page/tables/tables.dart';
 import 'package:graduaiton_app/screens/admin/nav_bar/Profile/profile.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../config.dart';
 
 class Search extends StatefulWidget {
   const Search({Key? key}) : super(key: key);
@@ -16,7 +16,7 @@ class Search extends StatefulWidget {
 
 class _SearchState extends State<Search> {
   var listsearch = [];
-  final api = dotenv.env['API'];
+  final api = Config.api;
 
   Future getData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -57,7 +57,7 @@ class _SearchState extends State<Search> {
                     context: context, delegate: DataSearch(list: listsearch));
               }),
           const Text('Search for a person'),
-          IconButton(icon: Icon(Icons.settings), onPressed: () {}),
+          IconButton(icon: const Icon(Icons.settings), onPressed: () {}),
         ],
       ),
     ));

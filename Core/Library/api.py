@@ -44,10 +44,10 @@ class Auth:
 
 
     # Tracking
-    def tracking(self, camera_id, people, image):
-        x = requests.post(api + 'tracking/new', files={
-            'image': open(os.path.normpath(image), 'rb')
-        }, data={
+    def tracking(self, camera_id, people, image=None):
+        files = {'image': open(os.path.normpath(image), 'rb')} if image else None
+
+        x = requests.post(api + 'tracking/new', files=files, data={
             'id'    : camera_id,
             'people': json.dumps(people),
         }, headers=self.headers)

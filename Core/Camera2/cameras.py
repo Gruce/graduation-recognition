@@ -14,8 +14,44 @@ import math
 import _thread
 import aiofiles
 
+###########################################################################
+##########################  Socket Server  ###############################
+# import socket
+# class SocketServer(QtCore.QThread):
+#     def __init__(self):
+#         super(SocketServer, self).__init__()
+#         self.running = True
+#         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+#         self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+#         self.sock.bind(('127.0.0.1', 8888))
+#         self.sock.listen(5)
+#         self.conn, self.addr = self.sock.accept()
+#         print('Connected by', self.addr)
+#         self.data = b''
+#         self.data_ready = False
+#         self.data_lock = threading.Lock()
+#         self.data_cond = threading.Condition(self.data_lock)
+#         self.data_cond.acquire()
+#         self.data_cond.wait()
+
+#     def run(self):
+#         while self.running:
+#             try:
+#                 print("Running...")
+#                 self.data = self.conn.recv(1024)
+#                 line = self.data.decode('UTF-8')    # convert to string (Python 3 only)
+#                 line = line.replace("\n","")   # remove newline character
+#                 print( line )    
+#                 self.data_ready = True
+#                 self.data_cond.notify()
+#             except:
+#                 pass
+#         self.sock.close()
+#         self.conn.close()
+#         self.quit()
 
 
+###########################################################################
 ##########################  Face Detection  ###############################
 from facenet_pytorch import MTCNN, InceptionResnetV1, extract_face
 from PIL import Image, ImageDraw
@@ -32,7 +68,8 @@ mtcnn = MTCNN(
     keep_all=False,
     device=device
 ).eval()
-###########################################################################
+
+######################################################################################
 ##########################  Face Recognition : deepface  #############################
 from deepface import DeepFace
 import pandas as pd
@@ -42,50 +79,38 @@ collected_data_path = Config.collected_data_path
 cascade_path = Config.cascade_path + 'haarcascade_frontalface_default.xml'
 
 ArcFace = DeepFace.build_model('ArcFace')
-VGGFace = DeepFace.build_model('VGG-Face')
 
-class RecognizeThread(threading.Thread):
-    def __init__(self, camera_id, total_faces):
-        threading.Thread.__init__(self)
-        self.faces = total_faces
-        self.camera_id = camera_id
-
-    def run(self):
-        print("Faces recognizing " + str(len(self.faces)))
-        count = 0
-        try:
-            for filename in self.faces:
-                print("Recognizing face " + str(count))
-                count += 1
-                df = DeepFace.find(
-                    img_path = filename,
-                    model_name= 'ArcFace',
-                    model = ArcFace,
-                    db_path = db_path,
-                    enforce_detection = False,
-                    detector_backend = 'mtcnn',
-                    align=True,
-                )
-
-                if df.shape[0] > 0:
-                    id = df.iloc[0]['identity'].split('/')[-2].split('/')[0]
-                    print("Found on " + str(id))
-                else:
-                    print("Not found.")
-            
-        except Exception as e:
-            print(e)
 #########################################################################
+############################ Functions ###############################
+def get_milliseconds():
+        return int(round(time.time() * 1000))
 
 def if_directory_not_exists_create(directory):
     if not os.path.exists(directory):
         os.makedirs(directory)
 
+def save_array_of_images(images, camera_id):
+    directory = collected_data_path + str(camera_id) + '/'
+    if_directory_not_exists_create(directory)
+    for i, image in enumerate(images):
+        cv2.imwrite(directory + str(get_milliseconds()) + '.jpg', image)
 
+#########################################################################
+############################ API ###############################
 from Core.Library.api import Auth
 
 auth = Auth()
 cameras = auth.cameras()
+
+# def retrieve_cameras():
+#   threading.Timer(5.0, retrieve_cameras).start()
+#   try:
+#     cameras = auth.cameras()
+#     set_cameras_on_layout()
+#   except Exception as e:
+#     print(e)
+#   print("Retrieving Cameras...")
+
 
 class CameraWidget(QtWidgets.QWidget):
     def __init__(self, width, height, description, camera_id, stream_link=0, aspect_ratio=False, parent=None, deque_size=1):
@@ -188,26 +213,19 @@ class CameraWidget(QtWidgets.QWidget):
                             for (x1, y1, x2, y2) in boxes:
                                 # x1, y1, x2, y2 = box.astype(int)
 
-
                                 if (frameId % math.floor(self.fps*2) == 0):
                                     image = numpy.array(frame[int(y1):int(y2), int(x1):int(x2)])
                                     print("Camera " + str(self.camera_id) + " Processing...")
                                     if not self.isFaceAdded(image):
                                         self.total_faces.append(image)
                                         print('Camera ' + str(self.camera_id) + ' New face detected. => ' + str(len(self.total_faces)))
-
-
-
                                
                                     
                                 cv2.rectangle(frame, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 2)
-                    
-                        if len(self.total_faces) >= 10:
+                        if (frameId % math.floor(self.fps*15) == 0) or len(self.total_faces) >= 5:
                             try:
-                                print('Camera ' + str(self.camera_id) + " Recognizing Thread is starting...")
-                                # thread = RecognizeThread(self.camera_id, self.total_faces)
-                                # thread.start()
-                                # time.sleep(0.1)
+                                print('Camera ' + str(self.camera_id) + " Saving images to collected path.")
+                                save_array_of_images(self.total_faces, self.camera_id)
                                 self.total_faces.clear()
                             except Exception as e:
                                 print(e)
@@ -286,33 +304,14 @@ class CameraWidget(QtWidgets.QWidget):
         return False
 
     
-    def get_milliseconds(self):
-        return int(round(time.time() * 1000))
+    
 
 def exit_application():
     """Exit program event handler"""
 
     sys.exit(1)
-if __name__ == '__main__':
 
-    # Create main application window
-    app = QtWidgets.QApplication([])
-    app.setStyleSheet(qdarkstyle.load_stylesheet_pyqt())
-    app.setStyle(QtWidgets.QStyleFactory.create("Cleanlooks"))
-    mw = QtWidgets.QMainWindow()
-    mw.setWindowTitle('Camera GUI')
-    # mw.setWindowFlags(QtCore.Qt.FramelessWindowHint)
-
-    cw = QtWidgets.QWidget()
-    ml = QtWidgets.QGridLayout()
-    cw.setLayout(ml)
-    mw.setCentralWidget(cw)
-    mw.showMaximized()
-
-    # Dynamically determine screen width/height
-    screen_width = QtWidgets.QApplication.desktop().screenGeometry().width()
-    screen_height = QtWidgets.QApplication.desktop().screenGeometry().height()
-
+def set_cameras_on_layout():
     cameras_count = len(cameras)
     columns = math.ceil(cameras_count/2)
     row = 0
@@ -330,6 +329,29 @@ if __name__ == '__main__':
         if (column == columns):
             row += 1
             column = 0
+
+ml = QtWidgets.QGridLayout()
+
+if __name__ == '__main__':
+
+    # Create main application window
+    app = QtWidgets.QApplication([])
+    app.setStyleSheet(qdarkstyle.load_stylesheet_pyqt())
+    app.setStyle(QtWidgets.QStyleFactory.create("Cleanlooks"))
+    mw = QtWidgets.QMainWindow()
+    mw.setWindowTitle('Camera GUI')
+    # mw.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+
+    cw = QtWidgets.QWidget()
+    cw.setLayout(ml)
+    mw.setCentralWidget(cw)
+    mw.showMaximized()
+
+    # Dynamically determine screen width/height
+    screen_width = QtWidgets.QApplication.desktop().screenGeometry().width()
+    screen_height = QtWidgets.QApplication.desktop().screenGeometry().height()
+
+    set_cameras_on_layout()
 
     print('Verifying camera credentials...')
 

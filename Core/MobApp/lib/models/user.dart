@@ -2,13 +2,15 @@ class UserModel {
   int id = 0;
   String name = '';
   String email = '';
+  String type = '';
 
-  UserModel({id, name, email});
+  UserModel({id, name, email, type});
 
   UserModel.fromJson(Map<dynamic, dynamic> json) {
     id = json['id'];
     name = json['name'];
     email = json['email'];
+    type = json['type'];
   }
 
   Map<dynamic, dynamic> toJson() {
@@ -16,6 +18,7 @@ class UserModel {
     data['id'] = id;
     data['name'] = name;
     data['email'] = email;
+    data['type'] = type;
     return data;
   }
 }

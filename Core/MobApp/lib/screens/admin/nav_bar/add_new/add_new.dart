@@ -1,7 +1,5 @@
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
-import 'package:graduaiton_app/screens/admin/home_page/app_bar.dart';
-import 'package:graduaiton_app/screens/admin/side_bar.dart';
 import 'package:graduaiton_app/screens/admin/nav_bar/absence_and_presence/absence_and_presence.dart';
 
 class AddNew extends StatefulWidget {
@@ -27,33 +25,27 @@ class _AddNewState extends State<AddNew> {
         const Color(0xffADB6F7), 2, '', '" More experience " '),
     PlaceInfo('Add New Person', const Color(0xff5665D1),
         const Color(0xff8A98FF), 3, '', '" Track more and more " '),
-        //   PlaceInfo('Add New Person', const Color(0xff5665D1),
-        // const Color(0xff8A98FF), 3, '', '" Track more and more " '),
-        //   PlaceInfo('Add New Person', const Color(0xff5665D1),
-        // const Color(0xff8A98FF), 3, '', '" Track more and more " '),
-        //   PlaceInfo('Add New Person', const Color(0xff5665D1),
-        // const Color(0xff8A98FF), 3, '', '" Track more and more " '),
+    //   PlaceInfo('Add New Person', const Color(0xff5665D1),
+    // const Color(0xff8A98FF), 3, '', '" Track more and more " '),
+    //   PlaceInfo('Add New Person', const Color(0xff5665D1),
+    // const Color(0xff8A98FF), 3, '', '" Track more and more " '),
+    //   PlaceInfo('Add New Person', const Color(0xff5665D1),
+    // const Color(0xff8A98FF), 3, '', '" Track more and more " '),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: const PreferredSize(
-        preferredSize: Size.fromHeight(100),
-        child:AppBarr(),
-      ),
-      drawer: const SideBar(),
-      body:ListView.builder(
-        itemCount: items.length,
-        itemBuilder: (context, index) {
-          return SingleChildScrollView(
-            child: Center(
+    return ListView.builder(
+      itemCount: items.length,
+      itemBuilder: (context, index) {
+        return SingleChildScrollView(
+          child: Center(
             child: Padding(
               padding: const EdgeInsets.all(20.0),
               child: GestureDetector(
                 onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => const Schedule()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const Schedule()));
                 },
                 child: Stack(
                   children: <Widget>[
@@ -160,10 +152,9 @@ class _AddNewState extends State<AddNew> {
                 ),
               ),
             ),
-            ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

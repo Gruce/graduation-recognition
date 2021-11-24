@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:graduaiton_app/data/users.dart';
 import 'package:graduaiton_app/models/myuser.dart';
-import 'package:graduaiton_app/screens/admin/home_page/tables/widget/scrollable_widget.dart';
-import 'package:graduaiton_app/screens/admin/home_page/tables/widget/text_dialog_widget.dart';
+import 'package:graduaiton_app/screens/admin/tables_page/widget/scrollable_widget.dart';
+import 'package:graduaiton_app/screens/admin/tables_page/widget/text_dialog_widget.dart';
 import 'package:graduaiton_app/util/utils.dart';
 
-class TrackingTable extends StatefulWidget {
-  const TrackingTable({Key? key}) : super(key: key);
+class PeopleTable extends StatefulWidget {
+  const PeopleTable({Key? key}) : super(key: key);
 
   @override
-  _TrackingTableState createState() => _TrackingTableState();
+  _PeopleTableState createState() => _PeopleTableState();
 }
 
-class _TrackingTableState extends State<TrackingTable> {
+class _PeopleTableState extends State<PeopleTable> {
   late List<User> users;
 
   @override
@@ -28,7 +28,7 @@ class _TrackingTableState extends State<TrackingTable> {
       );
 
   Widget buildDataTable() {
-    final columns = ['Person Name', 'Camera', 'Date Time', 'Action'];
+    final columns = ['Name', 'Last Seen', 'Data Time', 'Action'];
 
     return DataTable(
       columns: getColumns(columns),
@@ -55,10 +55,7 @@ class _TrackingTableState extends State<TrackingTable> {
             final showEditIcon = index == 0;
 
             return DataCell(
-              Text(
-                '$cell',
-                textAlign: TextAlign.start,
-              ),
+              Text('$cell'),
               showEditIcon: showEditIcon,
               onTap: () {
                 switch (index) {

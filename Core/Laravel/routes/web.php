@@ -12,6 +12,7 @@ use App\Http\Controllers\{
 ## Livewire ##
 use App\Http\Livewire\{
     People\People,
+    UnkownPeople\UnkownPeople,
     Teachers\Teachers,
     Students\Students,
     Settings,
@@ -26,7 +27,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     ## People ##
     Route::group(['prefix' => 'people'] ,function(){
         Route::get('/', People::class)->name('people');
-        Route::get('/unkown', [PeopleController::class, 'unkown'])->name('unkown_people');
+        Route::get('/unkown-people', UnkownPeople::class)->name('unkown_people');
     });
 
     ## Teachers ##

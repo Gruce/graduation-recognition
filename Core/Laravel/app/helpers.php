@@ -31,7 +31,7 @@
             [
                 'name' => 'Students',
                 'route' => 'students',
-                'active' => request()->routeIs('settings'),
+                'active' => request()->routeIs('students'),
             ],
             [
                 'name' => 'Settings',

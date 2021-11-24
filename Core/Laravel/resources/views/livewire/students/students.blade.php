@@ -4,7 +4,7 @@
             Students
         </h2>
     </x-slot>
-    {{-- @livewire('teachers.teacher-action') --}}
+    @livewire('students.student-action')
     <div class="mt-3">
         <section class="text-gray-600 body-font">
             <div class="container px-5 py-10 mx-auto bg-white rounded-lg max-w-7xl sm:px-6 lg:px-8">
@@ -77,6 +77,7 @@
                                             <div x-show="show">
                                                 <div class="text-gray-600 focus-within:text-gray-400">
                                                     <select wire:keydown.enter="save()" wire:model="students.{{ $i }}.section_id" class="py-3 block w-full text-sm text-gray-400 bg-gray-100 rounded-md px-5 focus:outline-none focus:bg-gray-50 focus:text-gray-900">
+                                                        <option value="">Please select</option>
                                                         @foreach ($sections as $section)
                                                             <option value="{{$section->id}}">{{$section->name}}</option>
                                                         @endforeach
@@ -93,6 +94,7 @@
                                             <div x-show="show">
                                                 <div class="text-gray-600 focus-within:text-gray-400">
                                                     <select wire:keydown.enter="save()" wire:model="students.{{ $i }}.stage_id" class="py-3 block w-full text-sm text-gray-400 bg-gray-100 rounded-md px-5 focus:outline-none focus:bg-gray-50 focus:text-gray-900">
+                                                        <option value="">Please select</option>
                                                         @foreach ($stages as $stage)
                                                             @if($stage->section_id == $student->section_id)
                                                                 <option value="{{$stage->id}}">{{$stage->name}}</option>
@@ -111,6 +113,7 @@
                                             <div x-show="show">
                                                 <div class="text-gray-600 focus-within:text-gray-400">
                                                     <select wire:keydown.enter="save()" wire:model="students.{{ $i }}.unit_id" class="py-3 block w-full text-sm text-gray-400 bg-gray-100 rounded-md px-5 focus:outline-none focus:bg-gray-50 focus:text-gray-900">
+                                                        <option value="">Please select</option>
                                                         @foreach ($units as $unit)
                                                             @if($unit->stage_id == $student->stage_id)
                                                                 <option value="{{$unit->id}}">{{$unit->name}}</option>
@@ -127,7 +130,7 @@
                                 </tr>
                             @empty
                                 <tr class="bg-red-100">
-                                    <td colspan="4" class="p-3 text-center">
+                                    <td colspan="6" class="p-3 text-center">
                                         No Students
                                     </td>
                                 </tr>
@@ -158,7 +161,7 @@
         return {
         activeTab: -1,
         tabs: [
-            '<span class="material-icons-outlined mr-2">add</span>New Teacher',
+            '<span class="material-icons-outlined mr-2">add</span>New Student',
             '<span class="material-icons-outlined mr-2">search</span>Search',
         ]
         };

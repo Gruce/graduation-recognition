@@ -16,6 +16,9 @@ class Students extends Component
 {
     use LivewireAlert;
     use WithPagination;
+
+    protected $listeners = ['$refresh' , 'search'];
+    // protected $paginationTheme = 'bootstrap';
     
     protected $rules = [
         'students.*.user.name' => 'required',
@@ -29,6 +32,13 @@ class Students extends Component
     public $sections;
     public $stages;
     public $units;
+    public $search;
+    
+
+    function search($text){
+        $this->search = $text;
+        $this->mount();
+    }
 
     public function save(){
         $this->validate();
@@ -41,13 +51,19 @@ class Students extends Component
     }
 
     public function mount(){
-        $this->students = Student::with(['user:id,name,email' , 'section:id,name' , 'stage' => function($q) {
+        $search = '%' . $this->search . '%';
+
+        $this->students = Student::whereHas('user' , function($q) use ($search){
+            $q->where('name' , 'LILE' , $search)->orWhere('email' , 'LIKE' , $search);
+        })->with(['user:id,name,email' , 'section:id,name' , 'stage' => function($q) {
             return $q->with('section')->get();
         } , 'unit:id,name'])->orderBy('id' , 'DESC')->get();
 
         $this->sections = Section::get(['id' , 'name']);
         $this->stages = Stage::get(['id' , 'section_id' , 'name']);
         $this->units = Unit::get(['id' , 'stage_id' , 'name']);
+
+        $this->emitTo('studentDetails', $this->sections);
 
     }
 

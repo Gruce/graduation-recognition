@@ -2,12 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:graduaiton_app/screens/admin/home_page/Tables/tables.dart';
-import 'package:graduaiton_app/screens/admin/home_page/app_bar.dart';
+import 'package:graduaiton_app/screens/admin/home_page/data_search.dart';
 import 'package:graduaiton_app/screens/admin/home_page/home_screen.dart';
+import 'package:graduaiton_app/screens/admin/home_page/search.dart';
 import 'package:graduaiton_app/screens/admin/nav_bar/add_new/add_new.dart';
-import 'package:graduaiton_app/screens/admin/sidebar_taps/schedule_page.dart';
-import 'package:graduaiton_app/screens/admin/sidebar_taps/show_tracking.dart';
+import 'package:graduaiton_app/screens/admin/nav_bar/absence_and_presence/absence_and_presence.dart';
 import '../side_bar.dart';
+import 'Profile/profile.dart';
 
 class Nav extends StatefulWidget {
   const Nav({Key? key}) : super(key: key);
@@ -23,6 +24,8 @@ class _NavState extends State<Nav> {
     const Tables(),
     const Schedule(),
     const AddNew(),
+    Profile(),
+    const Search(),
   ];
 
   void _onItemTap(int index) {
@@ -82,6 +85,26 @@ class _NavState extends State<Nav> {
             ),
             title: Text(
               'Add New',
+              style: TextStyle(color: Color(0xff6875F5)),
+            ),
+          ),
+           BottomNavigationBarItem(
+            icon: Icon(
+              Icons.people,
+              color: Color(0xff6875F5),
+            ),
+            title: Text(
+              'Profile',
+              style: TextStyle(color: Color(0xff6875F5)),
+            ),
+          ),
+           BottomNavigationBarItem(
+            icon: Icon(
+              Icons.search,
+              color: Color(0xff6875F5),
+            ),
+            title: Text(
+              'search',
               style: TextStyle(color: Color(0xff6875F5)),
             ),
           ),

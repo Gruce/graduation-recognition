@@ -20,6 +20,12 @@ class ApiController extends Controller
         ], 200);
     }
 
+    public function person(Request $req){
+        return response()->json([
+            'data' => Person::find($req->id, ['id', 'name', 'training_id', 'type'])
+        ], 200);
+    }
+
     public function not_trained_people(){
         return response()->json([
             'data' => Person::where('training_id', 0)->get(['id', 'name', 'training_id', 'type'])

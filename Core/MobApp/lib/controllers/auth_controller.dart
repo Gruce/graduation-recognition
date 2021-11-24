@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
+import 'package:graduaiton_app/config.dart';
 import 'package:graduaiton_app/main.dart';
 import 'package:graduaiton_app/models/user.dart';
 import 'package:graduaiton_app/routes/routes.dart';
@@ -11,7 +11,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController extends GetxController {
-  final api = dotenv.env['API'];
+  final api = Config.api;
   late SharedPreferences prefs;
 
   RxBool passwordVisible = false.obs;
@@ -23,7 +23,20 @@ class LoginController extends GetxController {
   void onInit() async {
     // Here you can fetch you product from server
     prefs = await SharedPreferences.getInstance();
+    // Check if user is authenticated
+    String jwt = await jwtOrEmpty();
+    if (jwt != "") {
+      redirect(await Utilities.getUser);
+      return;
+    }
     super.onInit();
+  }
+
+  Future jwtOrEmpty() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? jwt = prefs.getString('jwt');
+    if (jwt == null) return "";
+    return jwt;
   }
 
   Future login() async {
@@ -36,18 +49,7 @@ class LoginController extends GetxController {
 
       // Set User Details
       UserModel user = await setUserDetails(jwt) as UserModel;
-      switch (user.type) {
-        case 'admin':
-          Get.offAllNamed(Routes.adminHome);
-          break;
-        case 'teacher':
-          Get.offAllNamed(Routes.adminHome);
-          break;
-        case 'student':
-          Get.offAllNamed(Routes.adminHome);
-          break;
-        default:
-      }
+      redirect(user);
     } else {
       // Show error dialog
       Get.snackbar("Error", "Wrong Username or Password");
@@ -64,5 +66,20 @@ class LoginController extends GetxController {
       return user;
     }
     return Null;
+  }
+
+  void redirect(UserModel user) async {
+    switch (user.type) {
+      case 'admin':
+        Get.offAllNamed(Routes.adminHome);
+        break;
+      case 'teacher':
+        Get.offAllNamed(Routes.adminHome);
+        break;
+      case 'student':
+        Get.offAllNamed(Routes.adminHome);
+        break;
+      default:
+    }
   }
 }

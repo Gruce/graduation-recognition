@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:graduaiton_app/controllers/login_controller.dart';
+import 'package:graduaiton_app/controllers/auth_controller.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginScreen extends GetView<LoginController> {

@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:graduaiton_app/routes/routes.dart';
 import 'package:graduaiton_app/screens/login_screen.dart';
 import 'package:graduaiton_app/screens/splash_screen.dart';
@@ -12,21 +11,11 @@ import 'screens/admin/nav_bar/nav_bar.dart';
 import 'package:get/get.dart';
 
 Future main() async {
-  await dotenv.load(fileName: ".env");
-  // SharedPreferences.setMockInitialValues({});
-
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
-  Future<String> get jwtOrEmpty async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? jwt = prefs.getString('jwt');
-    if (jwt == null) return "";
-    return jwt;
-  }
 
   @override
   Widget build(BuildContext context) {

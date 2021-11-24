@@ -1,10 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:graduaiton_app/models/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
+
+import '../config.dart';
 
 class Utilities {
   static void displayDialog(context, title, text) => showDialog(
@@ -20,7 +21,7 @@ class Utilities {
   }
 
   static Future<UserModel> getUserById(id) async {
-    final api = dotenv.env['API'];
+    final api = Config.api;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String jwt = prefs.getString('jwt').toString();
 

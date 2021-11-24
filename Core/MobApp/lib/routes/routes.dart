@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:graduaiton_app/bindings/admin_bindings.dart';
-import 'package:graduaiton_app/bindings/login_binding.dart';
+import 'package:graduaiton_app/bindings/auth_binding.dart';
 import 'package:graduaiton_app/screens/admin/home_page/home_screen.dart';
 import 'package:graduaiton_app/screens/login_screen.dart';
 

@@ -1,24 +1,12 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/login_controller.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends GetView<LoginController> {
   const LoginScreen({Key? key}) : super(key: key);
-
-  @override
-  _LoginScreenState createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  late bool _passwordVisible;
-  TextEditingController email = TextEditingController();
-  TextEditingController password = TextEditingController();
-
-  void initState() {
-    _passwordVisible = false;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         // ),
                         SizedBox(height: 30),
                         TextFormField(
-                          controller: email,
+                          controller: controller.email,
                           keyboardType: TextInputType.text,
                           decoration: InputDecoration(
                             labelText: 'Email',
@@ -118,36 +106,33 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         SizedBox(height: 15),
-                        TextFormField(
-                          controller: password,
-                          keyboardType: TextInputType.text,
-                          obscureText:
-                              !_passwordVisible, //This will obscure text dynamically
-                          decoration: InputDecoration(
-                            labelText: 'Password',
-                            hintText: 'Enter your password',
-                            labelStyle:
-                                TextStyle(color: Colors.black.withOpacity(.6)),
-                            hintStyle: TextStyle(
-                                fontSize: 13.0,
-                                color: Colors.black.withOpacity(.5)),
-                            prefixIcon: Icon(
-                              Icons.lock,
-                              color: Color(0xff6875F5),
-                            ),
-                            // Here is key idea
-                            suffixIcon: IconButton(
-                              icon: Icon(
-                                _passwordVisible
-                                    ? Icons.visibility
-                                    : Icons.visibility_off,
+                        Obx(
+                          () => TextFormField(
+                            controller: controller.password,
+                            keyboardType: TextInputType.text,
+                            obscureText: !controller.passwordVisible.value,
+                            decoration: InputDecoration(
+                              labelText: 'Password',
+                              hintText: 'Enter your password',
+                              labelStyle: TextStyle(
+                                  color: Colors.black.withOpacity(.6)),
+                              hintStyle: TextStyle(
+                                  fontSize: 13.0,
+                                  color: Colors.black.withOpacity(.5)),
+                              prefixIcon: Icon(
+                                Icons.lock,
                                 color: Color(0xff6875F5),
                               ),
-                              onPressed: () {
-                                setState(() {
-                                  _passwordVisible = !_passwordVisible;
-                                });
-                              },
+                              // Here is key idea
+                              suffixIcon: IconButton(
+                                icon: controller.passwordVisible.value
+                                    ? Icon(Icons.visibility)
+                                    : Icon(Icons.visibility_off),
+                                onPressed: () {
+                                  controller.passwordVisible.value =
+                                      !controller.passwordVisible.value;
+                                },
+                              ),
                             ),
                           ),
                         ),
@@ -160,8 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             minWidth: MediaQuery.of(context).size.width,
                             padding:
                                 EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                            onPressed: () async => await LoginController()
-                                .login(context, email.text, password.text),
+                            onPressed: () async => await controller.login(),
                             child: Text(
                               "Login",
                               style: GoogleFonts.openSans(

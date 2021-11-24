@@ -15,14 +15,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'app_bar.dart';
 import 'package:http/http.dart' as http;
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class AdminHomeScreen extends StatefulWidget {
+  const AdminHomeScreen({Key? key}) : super(key: key);
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _AdminHomeScreenState createState() => _AdminHomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _AdminHomeScreenState extends State<AdminHomeScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   var listsearch = [];
   final api = dotenv.env['API'];

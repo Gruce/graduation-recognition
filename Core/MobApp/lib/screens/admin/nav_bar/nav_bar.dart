@@ -19,7 +19,7 @@ class Nav extends StatefulWidget {
 class _NavState extends State<Nav> {
   int _selectedIndex = 0;
   List<Widget> _widgetOptions = <Widget>[
-    const HomeScreen(),
+    const AdminHomeScreen(),
     const Tables(),
     const Schedule(),
     const AddNew(),

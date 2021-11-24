@@ -1,5 +1,4 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:graduaiton_app/screens/admin/home_page/tables/tables.dart';
 import 'package:graduaiton_app/screens/admin/nav_bar/Profile/profile.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
@@ -57,7 +56,7 @@ class _SearchState extends State<Search> {
                     context: context, delegate: DataSearch(list: listsearch));
               }),
           const Text('Search for a person'),
-          IconButton(icon: Icon(Icons.settings), onPressed: () {}),
+          IconButton(icon: const Icon(Icons.settings), onPressed: () {}),
         ],
       ),
     ));

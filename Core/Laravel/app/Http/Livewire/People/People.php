@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\People;
 
 use Livewire\Component;
 use App\Models\Person;
 use Livewire\WithPagination;
 
+
 class People extends Component
 {
     use WithPagination;
 
-    public $editingPerson = -1;
-
-    public $search;
-
     protected $listeners = ['reRenderParent', 'search'];
     
+    public $editingPerson = -1;
+    public $search;
+
     function search($text){
         $this->search = $text;
     }
@@ -33,11 +33,11 @@ class People extends Component
     public function render()
     {
         $people = Person::where('name', 'like', '%'.$this->search.'%')
-                        ->where('type', '!=', '-1')
-                        ->with('trackings')
-                        ->orderBy('id', 'DESC')
-                        ->paginate(10);
+            ->where('type', '!=', '-1')
+            ->with('trackings')
+            ->orderBy('id', 'DESC')
+            ->paginate(10);
 
-        return view('livewire.people', ['people' => $people]);
+        return view('livewire.people.people', ['people' => $people]);
     }
 }

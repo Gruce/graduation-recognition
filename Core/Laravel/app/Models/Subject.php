@@ -9,7 +9,9 @@ class Subject extends Model
 {
     use HasFactory;
 
-    public function section(){
-        return $this->belongsTo(Section::class);
+    protected $fillable = ['name' , 'stage_id'];
+
+    public function stage(){
+        return $this->belongsTo(Stage::class);
     }
 }

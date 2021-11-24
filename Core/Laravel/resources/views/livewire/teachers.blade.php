@@ -17,7 +17,7 @@
                             <livewire:teacher-add />
                         </div>
                         <div x-show="activeTab===1">
-                            <livewire:people-search />
+                            {{-- <livewire:people-search /> --}}
                         </div>
                     </div>
                 </div>

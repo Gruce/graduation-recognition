@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\People;
 
 use Livewire\Component;
 use App\Models\Person;
 
-class PersonEdit extends Component
-{ 
+class PeopleEdit extends Component
+{
     public Person $person;
     public $personId;
     public $personEdited;
@@ -28,9 +28,9 @@ class PersonEdit extends Component
         }
         $this->emit('reRenderParent');
     }
-
+    
     public function render()
     {
-        return view('livewire.person-edit');
+        return view('livewire.people.people-edit');
     }
 }

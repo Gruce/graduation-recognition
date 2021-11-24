@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:graduaiton_app/screens/admin/home_page/Tables/tables.dart';
 import 'package:graduaiton_app/screens/admin/home_page/data_search.dart';
 import 'package:graduaiton_app/screens/admin/home_page/home_screen.dart';
-
 import 'package:graduaiton_app/screens/admin/nav_bar/add_new/add_new.dart';
 import 'package:graduaiton_app/screens/admin/nav_bar/absence_and_presence/absence_and_presence.dart';
 import '../side_bar.dart';
@@ -20,12 +19,11 @@ class Nav extends StatefulWidget {
 class _NavState extends State<Nav> {
   int _selectedIndex = 0;
   List<Widget> _widgetOptions = <Widget>[
-    const HomeScreen(),
+    const AdminHomeScreen(),
     const Tables(),
     const Schedule(),
     const AddNew(),
     Profile(),
-    const Search(),
   ];
 
   void _onItemTap(int index) {
@@ -88,23 +86,13 @@ class _NavState extends State<Nav> {
               style: TextStyle(color: Color(0xff6875F5)),
             ),
           ),
-           BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon: Icon(
-              Icons.people,
+              Icons.person,
               color: Color(0xff6875F5),
             ),
             title: Text(
               'Profile',
-              style: TextStyle(color: Color(0xff6875F5)),
-            ),
-          ),
-           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.search,
-              color: Color(0xff6875F5),
-            ),
-            title: Text(
-              'search',
               style: TextStyle(color: Color(0xff6875F5)),
             ),
           ),

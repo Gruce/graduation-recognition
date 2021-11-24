@@ -9,11 +9,15 @@ use Livewire\Component;
 use App\Models\Camera;
 use App\Models\Person;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Http\Client\Socket\Client;
+use Http\Message\RequestFactory;
 
 class Cameras extends Component
 {
 
     use LivewireAlert;
+    
+    private RequestFactory $requestFactory;
 
     public $selectedId = null;
     public $personId = null;
@@ -26,7 +30,11 @@ class Cameras extends Component
         $msg = 'Camera ' . $camera->description . ' Turn ' ;
         $msg .= $state ? 'OFF' : 'ON' ;
         $this->alert('success', $msg);
+
+        // $request = $this->requestFactory->createRequest('GET', 'http://httplug.io');
+        $client = new Client('asd', ['remote_socket' => '127.0.0.1:8888']);
     }
+
     public function render()
     {
         $cameras = Camera::with('trackings')->get();

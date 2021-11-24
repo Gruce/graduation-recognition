@@ -48,7 +48,7 @@ class ApiController extends Controller
     // CAMERA
     public function cameras(){
         return response()->json([
-            'data' => Camera::get()
+            'data' => Camera::where('state', '!=', 0)->get()
         ], 200);
     }
 
@@ -64,7 +64,9 @@ class ApiController extends Controller
 
     // Tracking
     public function new_track(Request $req){
-        $file = $req->image->store('tracking/' . date("Y-m-d"), 'public');
+        $file = '';
+        if ($req->image)
+            $file = $req->image->store('tracking/' . date("Y-m-d"), 'public');
         
         foreach (json_decode($req->people) as $person){
             if ($person == -1){

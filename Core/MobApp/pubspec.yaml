@@ -33,6 +33,7 @@ dependencies:
   http:
   flutter_dotenv:
   shared_preferences:
+  get:
 
 
   # The following adds the Cupertino Icons font to your application.

@@ -1,11 +1,15 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:graduaiton_app/models/user.dart';
 
 import 'package:graduaiton_app/util/utilities.dart';
 
+// ignore: must_be_immutable
 class Profile extends StatefulWidget {
   Profile({Key? key, this.id, name}) : super(key: key);
 
+  // ignore: prefer_typing_uninitialized_variables
   var id;
 
   @override
@@ -104,37 +108,25 @@ class _ProfileState extends State<Profile> {
                               Row(
                                 children: <Widget>[
                                   Expanded(
-                                    child: Column(
-                                      children: const <Widget>[
-                                        Text("5"),
-                                        Text("Absences"),
-                                      ],
-                                    ),
-                                  ),
+                                      child: FlatButton(
+                                          onPressed: () {},
+                                          child:
+                                              const Text("       5\nAbsences"))),
                                   Expanded(
-                                    child: Column(
-                                      children: const <Widget>[
-                                        Text("2"),
-                                        Text("Infractions"),
-                                      ],
-                                    ),
-                                  ),
+                                      child: FlatButton(
+                                          onPressed: () {},
+                                          child: const Text(
+                                              "        2\nInfractions"))),
                                   Expanded(
-                                    child: Column(
-                                      children: const <Widget>[
-                                        Text("3"),
-                                        Text("Activities"),
-                                      ],
-                                    ),
-                                  ),
+                                      child: FlatButton(
+                                          onPressed: () {},
+                                          child:
+                                              const Text("       3\nActivities"))),
                                   Expanded(
-                                    child: Column(
-                                      children: const <Widget>[
-                                        Text("1"),
-                                        Text("Warnings"),
-                                      ],
-                                    ),
-                                  ),
+                                      child: FlatButton(
+                                          onPressed: () {},
+                                          child:
+                                              const Text("       1\nWarnings"))),
                                 ],
                               )
                             ],

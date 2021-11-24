@@ -1,5 +1,5 @@
 // ignore_for_file: file_names, unnecessary_new, prefer_const_literals_to_create_immutables, prefer_const_constructors
-import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:graduaiton_app/models/user.dart';
 import 'package:graduaiton_app/screens/admin/nav_bar/add_new/Teacher_add.dart';
@@ -74,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     IconButton(
                       icon: Icon(Icons.menu),
-                     onPressed:  () => _scaffoldKey.currentState!.openDrawer(),
+                      onPressed: () => _scaffoldKey.currentState!.openDrawer(),
                     ),
                     Column(
                       children: [
@@ -91,7 +91,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                     CircleAvatar(
-                      child: Image.asset('STLogo.png'),
                       backgroundColor: Colors.white,
                       // foregroundColor: Colors.white,
                       // child: const Text('admin'),
@@ -111,7 +110,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    IconButton(icon: Icon(Icons.search), onPressed: () {}),
+                    IconButton(
+                        icon: Icon(Icons.search),
+                        onPressed: () {
+                          showSearch(context: context,  delegate :f());
+                        }),
                     Text('Search for a person'),
                     IconButton(icon: Icon(Icons.settings), onPressed: () {}),
                   ],
@@ -123,4 +126,8 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+}
+
+f() {
+  Text("data");
 }

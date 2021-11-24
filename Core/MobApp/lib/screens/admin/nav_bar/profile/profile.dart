@@ -3,9 +3,11 @@ import 'package:graduaiton_app/models/user.dart';
 
 import 'package:graduaiton_app/util/utilities.dart';
 
+// ignore: must_be_immutable
 class Profile extends StatefulWidget {
   Profile({Key? key, this.id, name}) : super(key: key);
 
+  // ignore: prefer_typing_uninitialized_variables
   var id;
 
   @override

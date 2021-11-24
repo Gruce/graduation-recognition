@@ -16,9 +16,10 @@ class Search extends StatefulWidget {
 
 class _SearchState extends State<Search> {
   var listsearch = [];
-  final api = dotenv.env['API'];
 
   Future getData() async {
+    final api = dotenv.env['API'];
+
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String jwt = prefs.getString('jwt').toString();
     var res = await http

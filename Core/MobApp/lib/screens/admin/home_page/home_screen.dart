@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:graduaiton_app/models/user.dart';
 import 'package:graduaiton_app/screens/admin/home_page/data_search.dart';
 import 'package:graduaiton_app/screens/admin/nav_bar/add_new/Teacher_add.dart';
@@ -12,6 +11,7 @@ import 'package:graduaiton_app/screens/admin/nav_bar/profile/profile.dart';
 import 'package:graduaiton_app/screens/admin/side_bar.dart';
 import 'package:graduaiton_app/util/utilities.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../../config.dart';
 import 'app_bar.dart';
 import 'package:http/http.dart' as http;
 
@@ -25,7 +25,7 @@ class AdminHomeScreen extends StatefulWidget {
 class _AdminHomeScreenState extends State<AdminHomeScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   var listsearch = [];
-  final api = dotenv.env['API'];
+  final api = Config.api;
 
   Future getData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

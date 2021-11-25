@@ -33,6 +33,9 @@ class Students extends Component
     public $stages;
     public $units;
     public $search;
+    public $isStage = true;
+    public $isUnit = true;
+
     
 
     function search($text){
@@ -42,12 +45,19 @@ class Students extends Component
 
     public function save(){
         $this->validate();
-
-        foreach($this->students as $student){
-            $student->user->save();
-            $student->save();
+        $msg = 'Success!';
+        $alert = 'success';
+        // dd($this->isStage , $this->isUnit);
+        if($this->isStage && $this->isUnit)
+            foreach($this->students as $student){
+                    $student->user->save();
+                    $student->save();
+            }
+        else {
+            $msg = 'warning!';
+            $alert = 'warning';
         }
-        $this->alert('success', "Success!");
+        $this->alert($alert, $msg);
     }
 
     public function mount(){
@@ -55,13 +65,12 @@ class Students extends Component
 
         $this->students = Student::whereHas('user' , function($q) use ($search){
             $q->where('name' , 'LILE' , $search)->orWhere('email' , 'LIKE' , $search);
-        })->with(['user:id,name,email' , 'section:id,name' , 'stage:id,name' , 'unit:id,name'])->orderBy('id' , 'DESC')->get();
+        })->with(['user:id,name,email' , 'section:id,name' , 'stage:id,name,section_id' , 'unit:id,name,stage_id'])->orderBy('id' , 'DESC')->get();
 
         $this->sections = Section::get(['id' , 'name']);
         $this->stages = Stage::get(['id' , 'section_id' , 'name']);
         $this->units = Unit::get(['id' , 'stage_id' , 'name']);
-
-        $this->emitTo('studentDetails', $this->sections);
+        // dd($this->students->toArray()[0]);
 
     }
 

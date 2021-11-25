@@ -69,12 +69,13 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <div x-data="{ show: false }">
-                                        <td class="p-3">
-                                            <span x-show="!$parent.show" @click="show = !show" class="text-gray-500">
+                                    
+                                    <td class="p-3">
+                                        <div x-data="{ show: false }">
+                                            <span x-show="!show" @click="show = !show" class="text-gray-500">
                                                 {{ $student->section->name }}
                                             </span>
-                                            <div x-show="$parent.show">
+                                            <div x-show="show">
                                                 <div class="text-gray-600 focus-within:text-gray-400">
                                                     <select wire:keydown.enter="save()" wire:model="students.{{ $i }}.section_id" class="py-3 block w-full text-sm text-gray-400 bg-gray-100 rounded-md px-5 focus:outline-none focus:bg-gray-50 focus:text-gray-900">
                                                         <option value="">Please select</option>
@@ -84,10 +85,18 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                        </td>
-                                        <td class="p-3">
+                                        </div>
+                                    </td>
+                                    <td class="p-3">
+                                        <div x-data="{ show: false }">
                                             <span x-show="!show" @click="show = !show" class="text-gray-500">
-                                                {{ $student->stage->name }}
+                                                {{-- {{dd($student->stage->id , $student->section_id , $student->stage->section_id)}} --}}
+                                                @if($student->section_id == $student->stage->section_id)
+                                                    {{ $student->stage->name }}
+                                                @else 
+                                                    <span class="text-red-500">Please select!</span> 
+                                                    <input type="hidden" value="{{false}}" wire:model="isStage">
+                                                @endif
                                             </span>
                                             <div x-show="show">
                                                 <div class="text-gray-600 focus-within:text-gray-400">
@@ -101,15 +110,23 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                        </td>
-                                        <td class="p-3">
+                                        </div>
+                                    </td>
+                                    <td class="p-3">
+                                        <div x-data="{ show: false }">
                                             <span x-show="!show" @click="show = !show" class="text-gray-500">
-                                                {{ $student->unit->name }}
+                                                
+                                                @if($student->stage_id == $student->unit->stage_id)
+                                                    {{ $student->unit->name }} 
+                                                @else
+                                                    <span class="text-red-500">Please select!</span>
+                                                    <input type="hidden" value="{{false}}" wire:model="isUnit">
+                                                @endif
                                             </span>
                                             <div x-show="show">
                                                 <div class="text-gray-600 focus-within:text-gray-400">
                                                     <select wire:keydown.enter="save()" wire:model="students.{{ $i }}.unit_id" class="py-3 block w-full text-sm text-gray-400 bg-gray-100 rounded-md px-5 focus:outline-none focus:bg-gray-50 focus:text-gray-900">
-                                                        <option value="">Please select</option>
+                                                        <option>Please select</option>
                                                         @foreach ($units as $unit)
                                                             @if($unit->stage_id == $student->stage_id)
                                                                 <option value="{{$unit->id}}">{{$unit->name}}</option>
@@ -118,8 +135,8 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                        </td>
-                                    </div>
+                                        </div>
+                                    </td>
                                     <td>
                                         <a href="{{route('delete' , [ 'Student' , $student->id])}}" class="btn btn-sm btn-danger">Delete</a>
                                     </td>

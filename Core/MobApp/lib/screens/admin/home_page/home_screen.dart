@@ -15,6 +15,7 @@ class AdminHomeScreen extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+             
               IconButton(icon: const Icon(Icons.search), onPressed: () {}),
               const Text('Search for a person'),
               IconButton(icon: const Icon(Icons.settings), onPressed: () {}),
@@ -24,7 +25,9 @@ class AdminHomeScreen extends StatelessWidget {
         const SizedBox(
           height: 20,
         ),
+         
       ],
+
     );
   }
 }

@@ -16,16 +16,17 @@ class AdminLayoutScreen extends GetView<AdminLayoutController> {
         drawer: const AdminSidebar(),
         bottomNavigationBar: AdminBottomNavigationBar(),
         // body: child
-        body: Column(children: [
-          const AdminAppbar(),
-          Container(
-            margin: const EdgeInsets.symmetric(vertical: 30, horizontal: 10),
-            child: GetX<AdminLayoutController>(
-              init: AdminLayoutController(),
-              builder: (controller) =>
-                  controller.tabs[controller.selectedIndex.value]['screen'],
-            ),
-          ),
-        ]));
+        body: Column(
+          children: [
+            const AdminAppbar(),
+            Container(
+              margin: const EdgeInsets.only(top: 30, left: 20, right: 20),
+              child: Expanded(
+                child: Obx(() =>
+                    controller.tabs[controller.selectedIndex.value]['screen']),
+              ),
+            )
+          ],
+        ));
   }
 }

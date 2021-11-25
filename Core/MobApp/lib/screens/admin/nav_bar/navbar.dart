@@ -11,7 +11,7 @@ class AdminBottomNavigationBar extends GetWidget {
   Widget build(BuildContext context) {
     return Obx(() => BottomNavigationBar(
           currentIndex: controller.selectedIndex.value,
-          onTap: (index) => controller.selectedIndex.value = index,
+          onTap: (index) => controller.onItemTap(index),
           selectedItemColor: const Color(0xff6875F5),
           selectedFontSize: 13.0,
           showUnselectedLabels: false,

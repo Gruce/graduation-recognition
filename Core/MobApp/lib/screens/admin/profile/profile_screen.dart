@@ -3,26 +3,17 @@ import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/admin_profile_controller.dart';
 import 'package:graduaiton_app/models/user.dart';
 
-class AdminProfileScreen extends GetView<AdminProfileController> {
-  const AdminProfileScreen({Key? key}) : super(key: key);
+class AdminProfileScreen extends GetView {
+  AdminProfileScreen({Key? key}) : super(key: key);
+
+  @override
+  AdminProfileController controller = Get.put(AdminProfileController());
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-        child: Stack(
+    return Column(
       children: <Widget>[
-        const SizedBox(
-          height: 250,
-          width: double.infinity,
-          child: Image(
-            image: AssetImage(
-              "STLogo.png",
-            ),
-            fit: BoxFit.cover,
-          ),
-        ),
         Container(
-          margin: const EdgeInsets.fromLTRB(15, 200, 15, 15),
           child: Column(
             children: <Widget>[
               Stack(
@@ -79,37 +70,22 @@ class AdminProfileScreen extends GetView<AdminProfileController> {
                         Row(
                           children: <Widget>[
                             Expanded(
-                              child: Column(
-                                children: const <Widget>[
-                                  Text("5"),
-                                  Text("Absences"),
-                                ],
-                              ),
-                            ),
+                                child: FlatButton(
+                                    onPressed: () {},
+                                    child: const Text("       5\nAbsences"))),
                             Expanded(
-                              child: Column(
-                                children: const <Widget>[
-                                  Text("2"),
-                                  Text("Infractions"),
-                                ],
-                              ),
-                            ),
+                                child: FlatButton(
+                                    onPressed: () {},
+                                    child:
+                                        const Text("        2\nInfractions"))),
                             Expanded(
-                              child: Column(
-                                children: const <Widget>[
-                                  Text("3"),
-                                  Text("Activities"),
-                                ],
-                              ),
-                            ),
+                                child: FlatButton(
+                                    onPressed: () {},
+                                    child: const Text("       3\nActivities"))),
                             Expanded(
-                              child: Column(
-                                children: const <Widget>[
-                                  Text("1"),
-                                  Text("Warnings"),
-                                ],
-                              ),
-                            ),
+                                child: FlatButton(
+                                    onPressed: () {},
+                                    child: const Text("       1\nWarnings"))),
                           ],
                         )
                       ],
@@ -200,6 +176,6 @@ class AdminProfileScreen extends GetView<AdminProfileController> {
           ),
         )
       ],
-    ));
+    );
   }
 }

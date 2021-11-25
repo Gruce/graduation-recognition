@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/admin_layout_controller.dart';
 
+// ignore: must_be_immutable
 class AdminBottomNavigationBar extends StatelessWidget {
   AdminBottomNavigationBar({Key? key}) : super(key: key);
 

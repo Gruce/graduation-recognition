@@ -1,8 +1,11 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:graduaiton_app/models/user.dart';
 
 import 'package:graduaiton_app/util/utilities.dart';
 
+// ignore: must_be_immutable
 class Profile extends StatefulWidget {
   Profile({Key? key, this.id}) : super(key: key);
 

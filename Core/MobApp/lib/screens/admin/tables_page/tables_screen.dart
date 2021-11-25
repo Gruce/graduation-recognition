@@ -10,21 +10,17 @@ class AdminTablesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return TabBarWidget(
+      title: 'Tables',
+      tabs: const [
+        Tab(icon: Icon(Icons.art_track), text: 'Tracking'),
+        Tab(icon: Icon(Icons.people), text: 'People'),
+        Tab(icon: Icon(Icons.device_unknown), text: 'Unknown'),
+      ],
       children: [
-        TabBarWidget(
-          title: 'Tables',
-          tabs: const [
-            Tab(icon: Icon(Icons.art_track), text: 'Tracking'),
-            Tab(icon: Icon(Icons.people), text: 'People'),
-            Tab(icon: Icon(Icons.device_unknown), text: 'Unknown'),
-          ],
-          children: [
-            const TrackingTable(),
-            const PeopleTable(),
-            UnkonwnTable(),
-          ],
-        )
+        const TrackingTable(),
+        const PeopleTable(),
+        UnkonwnTable(),
       ],
     );
   }

@@ -22,8 +22,8 @@ class AdminLayoutScreen extends GetView<AdminLayoutController> {
             margin: const EdgeInsets.symmetric(vertical: 30, horizontal: 10),
             child: GetX<AdminLayoutController>(
               init: AdminLayoutController(),
-              builder: (controller) => controller.widgetOptions
-                  .elementAt(controller.selectedIndex.value),
+              builder: (controller) =>
+                  controller.tabs[controller.selectedIndex.value]['screen'],
             ),
           ),
         ]));

@@ -66,12 +66,26 @@ class Auth:
         if res.status_code == 200:
             return res.json()["data"]
 
+    @staticmethod
+    def if_directory_not_exists_create(directory):
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+        
     # New Person
-    def new_person(self, people):
-        x = requests.post(api + 'person/new', files={
-            'image': open('tmp/camera_' + '.jpg', 'rb')
-        }, data={
-            'people': json.dumps(people),
+    def new_person(self, name, total_faces, _type):        
+        resp = requests.post(api + 'people/new', data={
+            'name': name,
+            'type': _type
         }, headers=self.headers)
-        print("Tracked Uploaded.")
+
+
+        person_id = resp.json()['id']
+        directory = 'Core/Laravel/storage/app/public/db/'
+
+        self.if_directory_not_exists_create(directory + str(person_id))
+
+        for (index, face) in enumerate(total_faces):
+            cv2.imwrite(directory + str(person_id) + '/' + str(index) + '.jpg', face)
+
+        os.remove(os.path.normpath(directory + 'representations_arcface.pkl')) if os.path.exists(directory + 'representations_arcface.pkl') else None
 

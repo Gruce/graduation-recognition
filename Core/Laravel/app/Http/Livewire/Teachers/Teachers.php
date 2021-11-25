@@ -10,6 +10,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\{
     Teacher,
+    Person
 };
 
 class Teachers extends Component

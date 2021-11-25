@@ -35,13 +35,13 @@ class ApiController extends Controller
     public function new_person(Request $req){
         $user = new Person;
 
-        $user->name = $request->name;
-        $user->training_id = $request->training_id;
-        $user->type = $request->type;
+        $user->name = $req->name;
+        $user->training_id = 1;
+        $user->type = $req->type;
 
         $user->save();
 
-        return response()->json(['data' => 'Success.'], 200);
+        return response()->json(['id' => $user->id], 200);
     }
 
 

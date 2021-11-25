@@ -5,9 +5,9 @@ from imutils import face_utils
 import numpy as np
 
 
-from ..Library.api import Auth
-from ..Library.utilities import Utilities
-from ..Library.config import Config
+from Core.Library.api import Auth
+from Core.Library.utilities import Utilities
+from Core.Library.config import Config
 
 
 # Auth to API

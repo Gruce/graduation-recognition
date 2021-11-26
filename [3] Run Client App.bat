@@ -7,6 +7,6 @@
 
 ECHO Socket Client App Starting...
 
-python -m Core.Camera.clientApp
+python -m Core.Camera.cameras
 
 pause

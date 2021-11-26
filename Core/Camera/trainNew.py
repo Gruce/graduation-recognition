@@ -42,7 +42,7 @@ db_path = Config.db_path
 
 total_faces = []
 
-fontpath = normpath("Core/Camera2/JannaBold.ttf")
+fontpath = normpath("Core/Camera/JannaBold.ttf")
 
 #########################################################################
 ############################ Functions ###############################

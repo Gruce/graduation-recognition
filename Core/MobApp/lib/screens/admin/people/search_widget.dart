@@ -8,17 +8,13 @@ class SearchWidget extends GetWidget<SearchController> {
   @override
   Widget build(BuildContext context) {
     return Container(
-    
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(20)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           const Icon(Icons.search),
-          const TextField(
-            
-            ),
-          
+          const TextField(),
           IconButton(icon: const Icon(Icons.settings), onPressed: () {}),
         ],
       ),

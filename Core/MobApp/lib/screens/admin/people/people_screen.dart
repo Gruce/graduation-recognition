@@ -9,27 +9,26 @@ class AdminPeopleScreen extends GetView {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+    return Expanded(
         child: Column(
-          children: [
-            // Search Container
-            const SearchWidget(),
-            const SizedBox(height: 20),
-            ListView.builder(
-              shrinkWrap: true,
-              physics: const ScrollPhysics(),
-              scrollDirection: Axis.vertical,
-              itemCount: 5,
-              itemBuilder: (context, index) {
-                return PersonWidget(
-                    name: "Hassan",
-                    type: "Student",
-                    camera: "Main Camera",
-                    time: "3 hours ago");
-              },
-            ),
-          ],
-        ));
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        const SearchWidget(),
+        const SizedBox(height: 20),
+        Expanded(
+          child: ListView.builder(
+            shrinkWrap: true,
+            itemCount: 5,
+            itemBuilder: (context, index) {
+              return PersonWidget(
+                  name: "Hassan",
+                  type: "Student",
+                  camera: "Main Camera",
+                  time: "3 hours ago");
+            },
+          ),
+        ),
+      ],
+    ));
   }
 }

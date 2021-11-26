@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:graduaiton_app/models/user.dart';
+import 'package:graduaiton_app/util/utilities.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AdminProfileController extends GetxController {
@@ -18,4 +19,16 @@ class AdminProfileController extends GetxController {
     Map data = json.decode(prefs.getString('user') ?? '');
     return UserModel.fromJson(data);
   }
+
+  Future<UserModel> getUserById(id) async {
+    var res = await Utilities.httpPost("person", {"id": id.toString()});
+    UserModel user = UserModel();
+    if (res.statusCode == 200) {
+      Map data = jsonDecode(res.body)['data'];
+      user = UserModel.fromJson(data);
+    }
+    return user;
+  }
+
+
 }

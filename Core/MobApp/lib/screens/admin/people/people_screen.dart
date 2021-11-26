@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/admin_people_controller.dart';
+import 'package:graduaiton_app/routes/routes.dart';
 import 'package:graduaiton_app/screens/admin/people/search_widget.dart';
 
 import '../layout.dart';
@@ -31,12 +32,16 @@ class AdminPeopleScreen extends GetView<AdminPeopleController> {
                   ListView.builder(
                 itemCount: controller.filteredPeople.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return PersonWidget(
+                  return GestureDetector(
+                      onTap: () => Get.toNamed(Routes.adminProfile, arguments: controller.filteredPeople[index].id),
+                      child:
+                      PersonWidget(
                       key: ObjectKey(controller.filteredPeople[index].id),
                       name: controller.filteredPeople[index].name,
                       type: controller.filteredPeople[index].type,
                       camera: "camera",
-                      time: "time");
+                      time: "time")
+                  );
                 },
               )
               : const SizedBox(width: double.infinity, child: Text('Not Found', style: TextStyle(fontSize: 24)))

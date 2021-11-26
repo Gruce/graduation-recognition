@@ -8,13 +8,16 @@ import '../layout.dart';
 class AdminProfileScreen extends GetView {
   AdminProfileScreen({Key? key}) : super(key: key);
 
+  final id = Get.arguments;
+
   @override
   AdminProfileController controller = Get.put(AdminProfileController());
 
   @override
   Widget build(BuildContext context) {
     return AdminLayoutScreen(
-        child: Column(
+        child: Expanded(
+            child: Column(
           children: <Widget>[
             Container(
               child: Column(
@@ -38,7 +41,7 @@ class AdminProfileScreen extends GetView {
                                 children: <Widget>[
                                   ListTile(
                                     title: FutureBuilder(
-                                      future: controller.getUser,
+                                      future: id == Null ? controller.getUser : controller.getUserById(id) ,
                                       builder: (context, snapshot) {
                                         if (snapshot.hasData) {
                                           UserModel user =
@@ -179,7 +182,7 @@ class AdminProfileScreen extends GetView {
               ),
             )
           ],
-        )
+        ))
     );
   }
 }

@@ -37,4 +37,21 @@ class Utilities {
 
     return user;
   }
+
+  static Future httpPost(String path, var data) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final api = Config.api;
+    var res = await http.post(Uri.parse("$api/$path"),
+        body: data,
+        headers: {"Authorization": prefs.getString('jwt').toString()});
+    return res;
+  }
+
+  static Future httpGet(String path) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final api = Config.api;
+    var res = await http.get(Uri.parse("$api/$path"),
+        headers: {"Authorization": prefs.getString('jwt').toString()});
+    return res;
+  }
 }

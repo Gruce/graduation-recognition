@@ -14,7 +14,7 @@ class AdminPeopleScreen extends GetView {
           children: [
             // Search Container
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+              // padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(20)),
               child: Row(

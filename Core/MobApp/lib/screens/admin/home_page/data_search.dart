@@ -29,8 +29,6 @@ class _SearchState extends State<Search> {
         listsearch.add(responsebody[i]);
       }
     }
-
-    // print(listsearch);
   }
 
   @override

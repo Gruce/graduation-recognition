@@ -11,15 +11,28 @@ class PersonWidget extends GetWidget {
       : super(key: key);
 
   String name;
-  String type;
+  int type;
   String camera;
   String time;
 
   @override
   Widget build(BuildContext context) {
+    var typeText = "";
+    switch (type){
+      case 0:
+        typeText = "Visitor";
+        break;
+      case 1:
+        typeText = "Student";
+        break;
+      case 2:
+        typeText = "Employer";
+        break;
+    }
+
     return Card(
-      elevation: 12,
-      shadowColor: Colors.black12,
+      elevation: 0,
+      // shadowColor: Colors.black12,
       color: Colors.transparent,
       margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 6.0),
       child: Container(
@@ -38,7 +51,7 @@ class PersonWidget extends GetWidget {
                   name,
                   style: const TextStyle(fontSize: 18),
                 ),
-                Text(type, style: const TextStyle(fontSize: 14))
+                Text(typeText, style: const TextStyle(fontSize: 14))
               ],
             ),
           ),

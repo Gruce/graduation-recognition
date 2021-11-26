@@ -11,9 +11,9 @@ import 'package:graduaiton_app/screens/login_screen.dart';
 class Routes {
   static const login = '/';
   static const adminMain = '/admin/';
-  static const adminTables = '/admin/tables';
-  static const adminProfile = '/admin/profile';
-  static const adminPeople = '/admin/people';
+  static const adminTables = '/admin/tables/';
+  static const adminProfile = '/admin/profile/';
+  static const adminPeople = '/admin/people/';
 
   static final routes = [
     // Auth Routes
@@ -23,8 +23,8 @@ class Routes {
     // Admin Routes
     GetPage(
         name: adminMain,
-        page: () => const AdminLayoutScreen(),
-        binding: AdminLayoutBinding()),
+        page: () => const AdminHomeScreen(),
+        binding: AdminHomeBinding()),
 
     GetPage(
         name: adminTables,

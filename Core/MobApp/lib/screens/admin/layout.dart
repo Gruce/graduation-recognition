@@ -4,29 +4,30 @@ import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:graduaiton_app/controllers/admin_layout_controller.dart';
 import 'home_page/appbar.dart';
 import 'nav_bar/navbar.dart';
-import 'sidebar.dart';
+import 'sidebar/sidebar_screen.dart';
 
 class AdminLayoutScreen extends GetView<AdminLayoutController> {
-  const AdminLayoutScreen({Key? key}) : super(key: key);
+  const AdminLayoutScreen({Key? key, required this.child}) : super(key: key);
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.grey[200],
-        drawer: const AdminSidebar(),
-        bottomNavigationBar: AdminBottomNavigationBar(),
-        // body: child
-        body: Column(
-          children: [
-            const AdminAppbar(),
-            Container(
-              margin: const EdgeInsets.only(top: 30, left: 20, right: 20),
-              child: Expanded(
-                child: Obx(() =>
-                    controller.tabs[controller.selectedIndex.value]['screen']),
-              ),
-            )
-          ],
-        ));
+      resizeToAvoidBottomInset: false,
+      backgroundColor: Colors.grey[200],
+      drawer: AdminSidebarScreen(),
+      bottomNavigationBar: AdminBottomNavigationBar(),
+      // body: child
+      body: SafeArea(child: ListView(
+        children: [
+          const AdminAppbar(),
+           Container(
+              height: MediaQuery.of(context).size.height,
+              margin: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+              child: child,
+           )
+        ],
+      ),)
+    );
   }
 }

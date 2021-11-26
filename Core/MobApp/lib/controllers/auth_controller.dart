@@ -26,8 +26,18 @@ class LoginController extends GetxController {
     // Check if user is authenticated
     String jwt = await jwtOrEmpty();
     if (jwt != "") {
-      redirect(await Utilities.getUser);
-      return;
+      var res = await http.post(Uri.parse("$api/auth/refresh"),
+          headers: {"Authorization": jwt});
+      try {
+        if (res.statusCode == 200) {
+          String jwt = 'Bearer ' + json.decode(res.body)['access_token'];
+          await prefs.setString('jwt', jwt);
+          redirect(await Utilities.getUser);
+          return;
+        }
+      } on FormatException catch (e) {
+        print('JWT Error!');
+      }
     }
     super.onInit();
   }

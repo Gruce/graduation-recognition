@@ -1,24 +1,10 @@
-class MaterialSearchDelegate extends PlatformSearchDelegate {
+import 'package:flutter/material.dart';
+
+class AdminHomeScreen extends StatelessWidget {
+  const AdminHomeScreen({Key? key}) : super(key: key);
+
   @override
-  Widget buildScaffold(Widget body, BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: buildLeading(context),
-        title: TextField(
-          controller: queryTextController,
-          focusNode: focusNode,
-          textInputAction: TextInputAction.search,
-          onSubmitted: (String _) {
-            showResults(context);
-          },
-          decoration: InputDecoration(hintText: searchFieldLabel),
-        ),
-        actions: buildActions(context),
-      ),
-      body: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 300),
-        child: body,
-      ),
-    );
+  Widget build(BuildContext context) {
+    return Container();
   }
 }

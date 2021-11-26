@@ -26,7 +26,6 @@ class AdminPeopleController extends GetxController {
     }
     filteredpeople = people;
   }
-
   void search(text) {
     if (text.isEmpty) {
       filteredpeople = people;

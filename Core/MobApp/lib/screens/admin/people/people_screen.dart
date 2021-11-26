@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:graduaiton_app/controllers/admin_people_controller.dart';
+import 'package:graduaiton_app/screens/admin/home_page/data_search.dart';
 import 'package:graduaiton_app/screens/admin/people/search_widget.dart';
 
 import 'person_widget.dart';
 
-class AdminPeopleScreen extends GetView<AdminPeopleController> {
+class AdminPeopleScreen extends GetView {
   const AdminPeopleScreen({Key? key}) : super(key: key);
 
   @override
@@ -17,19 +17,19 @@ class AdminPeopleScreen extends GetView<AdminPeopleController> {
             // Search Container
             SearchWidget(),
             const SizedBox(height: 20),
-            Obx(() => ListView.builder(
-                  shrinkWrap: true,
-                  physics: const ScrollPhysics(),
-                  scrollDirection: Axis.vertical,
-                  itemCount: controller.filteredpeople.length,
-                  itemBuilder: (context, i) {
-                    return PersonWidget(
-                        name: controller.filteredpeople[i].name,
-                        type: controller.filteredpeople[i].type,
-                        camera: "Main Camera",
-                        time: "3 hours ago");
-                  },
-                ))
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const ScrollPhysics(),
+              scrollDirection: Axis.vertical,
+              itemCount: 5,
+              itemBuilder: (context, index) {
+                return PersonWidget(
+                    name: "Hassan",
+                    type: "Student",
+                    camera: "Main Camera",
+                    time: "3 hours ago");
+              },
+            ),
           ],
         ));
   }

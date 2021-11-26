@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:graduaiton_app/screens/admin/people/search_controller.dart';
+import 'package:graduaiton_app/controllers/admin_people_controller.dart';
 
-class SearchWidget extends GetView<SearchController> {
-  const SearchWidget({Key? key}) : super(key: key);
+class SearchWidget extends GetView {
+  SearchWidget({Key? key}) : super(key: key);
+
+  @override
+  AdminPeopleController controller = Get.put(AdminPeopleController());
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-    
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(1),
         border: Border.all(
@@ -19,10 +20,9 @@ class SearchWidget extends GetView<SearchController> {
         ),
         borderRadius: BorderRadius.circular(20.0),
       ),
-     
       child: Row(
-        children: const <Widget>[
-          Padding(
+        children: <Widget>[
+          const Padding(
             padding: EdgeInsets.only(left: 8),
             child: Icon(
               Icons.search,
@@ -30,10 +30,11 @@ class SearchWidget extends GetView<SearchController> {
               size: 20,
             ),
           ),
-            Expanded(
+          Expanded(
             child: TextField(
+              onChanged: (value) => controller.search(value),
               keyboardType: TextInputType.text,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: InputBorder.none,
                 hintText: "Search by Name",
                 hintStyle: TextStyle(color: Colors.grey),
@@ -41,7 +42,7 @@ class SearchWidget extends GetView<SearchController> {
                     EdgeInsets.symmetric(vertical: 8, horizontal: 8),
                 isDense: true,
               ),
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 14.0,
                 color: Colors.black,
               ),

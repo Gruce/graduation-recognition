@@ -30,7 +30,7 @@ class SearchWidget extends GetView<SearchController> {
               size: 20,
             ),
           ),
-           Expanded(
+            Expanded(
             child: TextField(
               keyboardType: TextInputType.text,
               decoration: InputDecoration(

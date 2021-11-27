@@ -39,7 +39,6 @@ class AdminPeopleController extends GetxController {
     filteredPeople.assignAll(people);
     update();
   }
-
   void search(text) {
     if (text.isEmpty) {
       filteredPeople.assignAll(people);

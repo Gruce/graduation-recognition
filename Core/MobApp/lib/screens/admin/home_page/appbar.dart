@@ -15,7 +15,7 @@ class AdminAppbar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             IconButton(
-                icon: const Icon(Icons.menu),
+                icon: const Icon(Icons.menu,color: Color(0xff6875F5),),
                 onPressed: () => {Scaffold.of(context).openDrawer()}),
             Column(
               children: [

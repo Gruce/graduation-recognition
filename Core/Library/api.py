@@ -4,7 +4,7 @@ import requests
 from requests.api import head
 import cv2
 
-api = 'http://127.0.0.1:8000/api/'
+api = 'http://192.168.99.249:8000/api/'
 email = 'gruceing@gmail.com'
 password = '123456'
 
@@ -81,7 +81,7 @@ class Auth:
 
         person_id = resp.json()['id']
         directory = 'Core/Laravel/storage/app/public/db/'
-
+        print(person_id)
         self.if_directory_not_exists_create(directory + str(person_id))
 
         for (index, face) in enumerate(total_faces):

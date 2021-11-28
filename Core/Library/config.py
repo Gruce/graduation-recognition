@@ -1,7 +1,7 @@
 class Config:
     # def __init__(self):
     ## Socket ##
-    host = '127.0.0.1'
+    host = '192.168.99.249'
     port = 1233
 
     ## Camera ##

@@ -33,7 +33,7 @@ class AdminPeopleScreen extends GetView<AdminPeopleController> {
                 itemCount: controller.filteredPeople.length,
                 itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
-                      onTap: () => Get.toNamed(Routes.adminProfile, arguments: controller.filteredPeople[index].id),
+                      onTap: () => Get.toNamed(Routes.personProfile, arguments: controller.filteredPeople[index].id),
                       child:
                       PersonWidget(
                       key: ObjectKey(controller.filteredPeople[index].id),

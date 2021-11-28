@@ -85,6 +85,8 @@ class Auth:
         self.if_directory_not_exists_create(directory + str(person_id))
 
         for (index, face) in enumerate(total_faces):
+            # if(face is not None):
+            print(face)
             cv2.imwrite(directory + str(person_id) + '/' + str(index) + '.jpg', face)
 
         os.remove(os.path.normpath(directory + 'representations_arcface.pkl')) if os.path.exists(directory + 'representations_arcface.pkl') else None

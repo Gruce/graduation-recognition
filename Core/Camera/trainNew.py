@@ -53,12 +53,6 @@ def if_directory_not_exists_create(directory):
     if not os.path.exists(directory):
         os.makedirs(directory)
 
-def save_array_of_images(images, camera_id):
-    directory = collected_data_path + str(camera_id) + '/'
-    if_directory_not_exists_create(directory)
-    for i, image in enumerate(images):
-        cv2.imwrite(directory + str(get_milliseconds()) + '.jpg', image)
-
 def list_cameras():
     index = 0
     arr = []
@@ -168,8 +162,9 @@ class CameraWidget(QtWidgets.QWidget):
                                 image = numpy.array(frame[int(y1):int(y2), int(x1):int(x2)])
 
                                 if len(total_faces) <= 5:
-                                    total_faces.append(image)
-                                    self.statueLabel.setText("Captures: " + str(len(total_faces)))
+                                    if image.any():
+                                        total_faces.append(image)
+                                        self.statueLabel.setText("Captures: " + str(len(total_faces)))
                                 else:
                                     self.statueLabel.setText("Done! Now press Train Person button.")
 

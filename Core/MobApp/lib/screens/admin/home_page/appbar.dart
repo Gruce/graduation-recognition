@@ -27,6 +27,7 @@ class AdminAppbar extends StatelessWidget {
                       color: Color(0xff6875F5),
                     ),
                     Text('CsIT'),
+                   
                   ],
                 ),
               ],

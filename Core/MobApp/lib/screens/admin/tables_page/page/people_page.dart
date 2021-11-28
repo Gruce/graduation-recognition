@@ -23,11 +23,11 @@ class _PeopleTableState extends State<PeopleTable> {
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        body: ScrollableWidget(child: buildDataTable()),
-      );
+  Widget build(BuildContext context) =>
+      Scaffold(body: ScrollableWidget(child: buildDataTable()));
 
   Widget buildDataTable() {
+   
     final columns = ['Name', 'Last Seen', 'Data Time', 'Action'];
 
     return DataTable(

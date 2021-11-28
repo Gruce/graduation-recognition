@@ -21,7 +21,7 @@ class Utilities {
   }
 
   static Future<UserModel> getUserById(id) async {
-    final api = Config.api;
+    final api = await Config.api;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String jwt = prefs.getString('jwt').toString();
 
@@ -40,7 +40,7 @@ class Utilities {
 
   static Future httpPost(String path, var data) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    final api = Config.api;
+    final api = await Config.api;
     var res = await http.post(Uri.parse("$api/$path"),
         body: data,
         headers: {"Authorization": prefs.getString('jwt').toString()});
@@ -49,7 +49,7 @@ class Utilities {
 
   static Future httpGet(String path) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    final api = Config.api;
+    final api = await Config.api;
     var res = await http.get(Uri.parse("$api/$path"),
         headers: {"Authorization": prefs.getString('jwt').toString()});
     return res;

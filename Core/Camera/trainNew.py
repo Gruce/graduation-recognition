@@ -121,6 +121,7 @@ class CameraWidget(QtWidgets.QWidget):
 
     def refresh(self):
         total_faces.clear()
+        self.statueLabel.setText("Waiting for a face...")
         self.update()
     
     def changeSource(self):
@@ -282,7 +283,7 @@ if __name__ == '__main__':
     name = QtWidgets.QLabel('Name')
     name.setFont(QtGui.QFont('Arial', 20))
 
-    statueLabel = QtWidgets.QLabel('Statue: ')
+    statueLabel = QtWidgets.QLabel('Waiting for a face...')
     statueLabel.setFont(QtGui.QFont('Arial', 20))
     repeatButton = QtWidgets.QPushButton('Repeat', )
     font = repeatButton.font()

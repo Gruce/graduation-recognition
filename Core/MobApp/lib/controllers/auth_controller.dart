@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/config.dart';
-import 'package:graduaiton_app/main.dart';
 import 'package:graduaiton_app/models/user.dart';
 import 'package:graduaiton_app/routes/routes.dart';
 import 'package:graduaiton_app/util/utilities.dart';
@@ -11,7 +10,6 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController extends GetxController {
-  final api = Config.api;
   late SharedPreferences prefs;
 
   RxBool passwordVisible = false.obs;
@@ -21,6 +19,7 @@ class LoginController extends GetxController {
 
   @override
   void onInit() async {
+    final api = await Config.api;
     // Here you can fetch you product from server
     prefs = await SharedPreferences.getInstance();
     // Check if user is authenticated
@@ -51,6 +50,7 @@ class LoginController extends GetxController {
 
   Future login() async {
     // GET JWT
+    final api = await Config.api;
     var res = await http.post(Uri.parse("$api/auth/login"),
         body: {"email": email.text, "password": password.text});
     if (res.statusCode == 200) {
@@ -67,6 +67,7 @@ class LoginController extends GetxController {
   }
 
   Future setUserDetails(String jwt) async {
+    final api = await Config.api;
     var res = await http
         .post(Uri.parse("$api/auth/me"), headers: {"Authorization": jwt});
     if (res.statusCode == 200) {

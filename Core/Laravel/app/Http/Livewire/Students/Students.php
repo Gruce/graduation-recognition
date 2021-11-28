@@ -64,7 +64,7 @@ class Students extends Component
         $search = '%' . $this->search . '%';
 
         $this->students = Student::whereHas('user' , function($q) use ($search){
-            $q->where('name' , 'LILE' , $search)->orWhere('email' , 'LIKE' , $search);
+            $q->where('name' , 'LIKE' , $search)->orWhere('email' , 'LIKE' , $search);
         })->with(['user:id,name,email' , 'section:id,name' , 'stage:id,name,section_id' , 'unit:id,name,stage_id'])->orderBy('id' , 'DESC')->get();
 
         $this->sections = Section::get(['id' , 'name']);

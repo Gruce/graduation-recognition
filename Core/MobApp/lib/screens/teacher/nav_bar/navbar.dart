@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:graduaiton_app/controllers/Admin/admin_layout_controller.dart';
+import 'package:graduaiton_app/controllers/Teacher/teacher_layout_controller.dart';
 
 
-class AdminBottomNavigationBar extends GetWidget {
-  AdminBottomNavigationBar({Key? key}) : super(key: key);
+class TeacherBottomNavigationBar extends GetWidget {
+  TeacherBottomNavigationBar({Key? key}) : super(key: key);
 
-  AdminLayoutController controller = Get.put(AdminLayoutController());
+  TeacherLayoutController controller = Get.put(TeacherLayoutController());
 
   @override
   Widget build(BuildContext context) {

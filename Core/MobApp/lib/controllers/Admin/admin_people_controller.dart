@@ -5,7 +5,8 @@ import 'package:graduaiton_app/models/person.dart';
 import 'package:graduaiton_app/util/utilities.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
-import '../config.dart';
+import '../../config.dart';
+
 
 class AdminPeopleController extends GetxController {
   late SharedPreferences prefs;

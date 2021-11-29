@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AdminProfileController extends GetxController {
   late SharedPreferences prefs;
 
+  @override
   void onInit() async {
     prefs = await SharedPreferences.getInstance();
 

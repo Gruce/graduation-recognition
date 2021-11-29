@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:graduaiton_app/controllers/Admin/admin_profile_controller.dart';
-import 'package:graduaiton_app/models/person.dart';
+import 'package:graduaiton_app/controllers/Teacher/teacher_profile_controller.dart';
 import 'package:graduaiton_app/models/user.dart';
 
 import '../layout.dart';
 
-class AdminProfileScreen extends GetView {
-  AdminProfileScreen({Key? key}) : super(key: key);
+class TeacherProfileScreen extends GetView {
+  TeacherProfileScreen({Key? key}) : super(key: key);
 
   @override
-  AdminProfileController controller = Get.put(AdminProfileController());
+  TeacherProfileController controller = Get.put(TeacherProfileController());
 
   @override
   Widget build(BuildContext context) {
     var typeText = "";
 
-    return AdminLayoutScreen(
+    return TeachLayoutScreen(
         child: SingleChildScrollView(
           child:Column(
           children: <Widget>[

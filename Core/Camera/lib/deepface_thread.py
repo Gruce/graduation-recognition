@@ -11,8 +11,8 @@ from pathlib import Path
 import pandas as pd
 
 
-from ..Library.utilities import Utilities
-from ..Library.config import Config
+from Core.Camera.lib.utilities import Utilities
+from Core.Camera.lib.config import Config
 
 ArcFace = DeepFace.build_model('ArcFace')
 

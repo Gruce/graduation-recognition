@@ -3,7 +3,7 @@ import os
 import requests
 from requests.api import head
 import cv2
-from Core.Library.config import Config
+from Core.Camera.lib.config import Config
 
 api = 'http://' + Config.host + ':8000/api/'
 email = Config.admin_email

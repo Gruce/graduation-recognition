@@ -1,6 +1,5 @@
 import os
 from posixpath import normpath
-import threading
 from PyQt5 import QtCore, QtGui, QtWidgets
 import numpy
 import qdarkstyle
@@ -11,9 +10,6 @@ import time
 import sys
 import cv2
 import imutils
-import math
-import _thread
-import aiofiles
 from PIL import ImageFont
 import arabic_reshaper
 from bidi.algorithm import get_display
@@ -21,12 +17,11 @@ from bidi.algorithm import get_display
 
 ###########################################################################
 ##########################  Face Detection  ###############################
-from facenet_pytorch import MTCNN, InceptionResnetV1, extract_face
-from PIL import Image, ImageDraw
 import torch
-import glob
+from facenet_pytorch import MTCNN
+from PIL import Image, ImageDraw
 
-from Core.Library.config import Config
+from Core.Camera.lib.config import Config
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
@@ -67,7 +62,7 @@ def list_cameras():
     return arr
 #########################################################################
 ############################ API ###############################
-from Core.Library.api import Auth
+from Core.Camera.lib.api import Auth
 
 auth = Auth()
 

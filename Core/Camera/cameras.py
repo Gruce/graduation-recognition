@@ -20,7 +20,7 @@ from PIL import Image, ImageDraw
 import torch
 import glob
 
-from Core.Library.config import Config
+from Core.Camera.lib.config import Config
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
@@ -33,7 +33,7 @@ mtcnn = MTCNN(
 
 ######################################################################################
 ##########################  Face Recognition : deepface  #############################
-from Core.Library.deepface_thread import DeepFaceThread
+from Core.Camera.lib.deepface_thread import DeepFaceThread
 from deepface import DeepFace
 import pandas as pd
 
@@ -66,7 +66,7 @@ def save_array_of_images(images, camera_id):
 
 #########################################################################
 ############################ API ###############################
-from Core.Library.api import Auth
+from Core.Camera.lib.api import Auth
 
 auth = Auth()
 cameras = auth.cameras()

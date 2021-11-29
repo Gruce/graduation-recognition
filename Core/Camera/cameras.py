@@ -11,44 +11,6 @@ import sys
 import cv2
 import imutils
 import math
-import _thread
-import aiofiles
-
-###########################################################################
-##########################  Socket Server  ###############################
-# import socket
-# class SocketServer(QtCore.QThread):
-#     def __init__(self):
-#         super(SocketServer, self).__init__()
-#         self.running = True
-#         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-#         self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-#         self.sock.bind(('127.0.0.1', 8888))
-#         self.sock.listen(5)
-#         self.conn, self.addr = self.sock.accept()
-#         print('Connected by', self.addr)
-#         self.data = b''
-#         self.data_ready = False
-#         self.data_lock = threading.Lock()
-#         self.data_cond = threading.Condition(self.data_lock)
-#         self.data_cond.acquire()
-#         self.data_cond.wait()
-
-#     def run(self):
-#         while self.running:
-#             try:
-#                 print("Running...")
-#                 self.data = self.conn.recv(1024)
-#                 line = self.data.decode('UTF-8')    # convert to string (Python 3 only)
-#                 line = line.replace("\n","")   # remove newline character
-#                 print( line )    
-#                 self.data_ready = True
-#                 self.data_cond.notify()
-#             except:
-#                 pass
-#         self.sock.close()
-#         self.conn.close()
-#         self.quit()
 
 
 ###########################################################################
@@ -71,6 +33,7 @@ mtcnn = MTCNN(
 
 ######################################################################################
 ##########################  Face Recognition : deepface  #############################
+from Core.Library.deepface_thread import DeepFaceThread
 from deepface import DeepFace
 import pandas as pd
 
@@ -89,6 +52,12 @@ def if_directory_not_exists_create(directory):
     if not os.path.exists(directory):
         os.makedirs(directory)
 
+def get_directories_in_directory(dir):
+    return [os.path.join(dir, f) for f in os.listdir(dir) if not f.startswith('.')]
+
+def get_files_in_directory(dir):
+    return [os.path.join(dir, f) for f in os.listdir(dir) if not f.startswith('.')]
+
 def save_array_of_images(images, camera_id):
     directory = collected_data_path + str(camera_id) + '/'
     if_directory_not_exists_create(directory)
@@ -102,16 +71,39 @@ from Core.Library.api import Auth
 auth = Auth()
 cameras = auth.cameras()
 
-# def retrieve_cameras():
-#   threading.Timer(5.0, retrieve_cameras).start()
-#   try:
-#     cameras = auth.cameras()
-#     set_cameras_on_layout()
-#   except Exception as e:
-#     print(e)
-#   print("Retrieving Cameras...")
+people = auth.people()
+if (len(people) <= 0):
+    print("\n There is no people. Please add person in Laravel Web App.")
+    sys.exit()
+
+# RECOGNITION Class
+class Recognition(threading.Thread):
+    def __init__(self):
+        threading.Thread.__init__(self)
+        self.threads = []
+
+    def run(self):
+        print("Recognition thread is started.")
+        while (True):
+            for camera in get_directories_in_directory(collected_data_path):
+                if (len(get_files_in_directory(os.path.normpath(camera))) > 0):
+                    try:
+                        camera_id = camera.replace(collected_data_path, '')
+                        print("[Recognition] Camera " + camera_id + " starting...")
+                        camera_thread = DeepFaceThread(camera_id, auth, people, collected_data_path)
+                        camera_thread.start()
+                        self.threads.append(camera_thread)
+                    except Exception as e:
+                        print (e)
+
+            # Wait till they finish their job
+            for t in self.threads:
+                t.join()
+
+            count = 1
 
 
+# CAMERA Class
 class CameraWidget(QtWidgets.QWidget):
     def __init__(self, width, height, description, camera_id, stream_link=0, aspect_ratio=False, parent=None, deque_size=1):
         super(CameraWidget, self).__init__(parent)
@@ -153,7 +145,7 @@ class CameraWidget(QtWidgets.QWidget):
         self.timer.timeout.connect(self.set_frame)
         self.timer.start(0.5)
 
-        print('Started camera: {}'.format(self.camera_stream_link))
+        print('[Detection] Camera: {} started.'.format(self.camera_stream_link))
 
     def load_network_stream(self):
         """Verifies stream link and open new stream if valid"""
@@ -213,22 +205,26 @@ class CameraWidget(QtWidgets.QWidget):
                             for (x1, y1, x2, y2) in boxes:
                                 # x1, y1, x2, y2 = box.astype(int)
 
-                                if (frameId % math.floor(self.fps*2) == 0):
+                                if (frameId % math.floor(self.fps) == 0):
                                     image = numpy.array(frame[int(y1):int(y2), int(x1):int(x2)])
-                                    print("Camera " + str(self.camera_id) + " Processing...")
-                                    if not self.isFaceAdded(image):
-                                        self.total_faces.append(image)
-                                        print('Camera ' + str(self.camera_id) + ' New face detected. => ' + str(len(self.total_faces)))
+                                    if image.any():
+                                        print("[Detection] Camera " + str(self.camera_id) + " Collecting facing")
+                                        if self.isFaceAdded(image):
+                                            print('[Detection] Camera ' + str(self.camera_id) + ' No new Faces')
+                                        else:
+                                            self.total_faces.append(image)
+                                            print('[Detection] Camera ' + str(self.camera_id) + ' New face detected. Total faces collected: ' + str(len(self.total_faces)))
                                
                                     
                                 cv2.rectangle(frame, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 2)
-                        if (frameId % math.floor(self.fps*5) == 0) or len(self.total_faces) >= 5:
-                            try:
-                                print('Camera ' + str(self.camera_id) + " Saving images to collected path.")
-                                save_array_of_images(self.total_faces, self.camera_id)
-                                self.total_faces.clear()
-                            except Exception as e:
-                                print(e)
+                        if (frameId % math.floor(self.fps*3) == 0) or len(self.total_faces) >= 5:
+                            if len(self.total_faces) >= 1:
+                                try:
+                                    print('[Detection] Camera ' + str(self.camera_id) + " Saving collected faces images to collected path.")
+                                    save_array_of_images(self.total_faces, self.camera_id)
+                                    self.total_faces.clear()
+                                except Exception as e:
+                                    print(e)
 
                         self.deque.append(frame)
                     else:
@@ -353,9 +349,10 @@ if __name__ == '__main__':
 
     set_cameras_on_layout()
 
-    print('Verifying camera credentials...')
-
     mw.show()
+
+    recognition = Recognition()
+    recognition.start()
 
     QtWidgets.QShortcut(QtGui.QKeySequence('Ctrl+Q'), mw, exit_application)
 

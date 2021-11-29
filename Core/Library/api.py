@@ -3,10 +3,11 @@ import os
 import requests
 from requests.api import head
 import cv2
+from Core.Library.config import Config
 
-api = 'http://192.168.99.249:8000/api/'
-email = 'gruceing@gmail.com'
-password = '123456'
+api = 'http://' + Config.host + ':8000/api/'
+email = Config.admin_email
+password = Config.admin_password
 
 
 class Auth:

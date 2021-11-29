@@ -4,6 +4,9 @@ class Config:
     host = '192.168.99.249'
     port = 1233
 
+    admin_email = 'gruceing@gmail.com'
+    admin_password = '123456'
+
     ## Camera ##
     collected_data_path = 'Core/Laravel/storage/app/public/collected/' # Collected images path from cameras
 

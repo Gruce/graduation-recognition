@@ -34,7 +34,7 @@ class DeepFaceThread(threading.Thread):
 
     def run(self):
         try:
-            print("Hey I am thread of the camera number ((" + str(self.camera_id) + ")). I am starting :)")
+            print("[Recognition] Camera " + str(self.camera_id) + " started.")
 
             start = time.perf_counter()
             counter = 1
@@ -42,7 +42,7 @@ class DeepFaceThread(threading.Thread):
             images = DeepFaceThread.get_images_in_dir(os.path.join(self.collected_path, str(self.camera_id)))
 
             for index, image in enumerate(images):
-                print('Camera', self.camera_id, '=>', 'image number', counter)
+                print('[Recognition] Camera ' + str(self.camera_id) + ' - ', 'Image', counter)
                 image_path = image
                 df = DeepFace.find(
                     img_path = os.path.normpath(image),
@@ -61,14 +61,14 @@ class DeepFaceThread(threading.Thread):
                     person = Utilities.search_id(id, self.people)
                     if (person):
                         self.auth.tracking(self.camera_id, [person['id']])
-                        print('Camera', self.camera_id, '=>', "Found:", str(counter), ",", id)
+                        print('[Recognition] Camera ' + str(self.camera_id) + ' - ' + " Person found: " + str(counter) + ", id = " + id)
                     else:
                         self.auth.tracking(self.camera_id, [-1], os.path.normpath(images[index]))
-                        print('Camera', self.camera_id, '=>', "!!Not in database:", str(counter))
+                        print('[Recognition] Camera ' + str(self.camera_id) + ' - ' + " Not found in the database: " + str(counter))
 
 
                 except:
-                    print('Camera ', self.camera_id, ' => ', "!!Not Found: " + str(counter))
+                    print('[Recognition] Camera ' + str(self.camera_id) + ' - ' + " Not found in the database: " + str(counter))
                     self.auth.tracking(self.camera_id, [-1], os.path.normpath(images[index]))
 
                 # Remove Images
@@ -79,7 +79,7 @@ class DeepFaceThread(threading.Thread):
 
                 counter += 1
             end = time.perf_counter()
-            print('Camera', str(self.camera_id), f' Finished in {round(end-start, 2)} second(s)')
+            print('[Recognition] Camera ' + str(self.camera_id), f' Finished in {round(end-start, 2)} second(s)')
         except Exception as e:
             print(e)
     

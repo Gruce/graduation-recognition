@@ -13,21 +13,24 @@ class AdminLayoutScreen extends GetView<AdminLayoutController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.grey[200],
-      drawer: AdminSidebarScreen(),
-      bottomNavigationBar: AdminBottomNavigationBar(),
-      // body: child
-      body: SafeArea(child: ListView(
-        children: [
-          const AdminAppbar(),
-           Container(
-              height: MediaQuery.of(context).size.height,
-              margin: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-              child: child,
-           )
-        ],
-      ),)
-    );
+        resizeToAvoidBottomInset: false,
+        backgroundColor: Colors.grey[200],
+        drawer: AdminSidebarScreen(),
+        appBar: const PreferredSize(
+            preferredSize: Size.fromHeight(100), child: AdminAppbar()),
+        bottomNavigationBar: AdminBottomNavigationBar(),
+        // body: child
+        body: SafeArea(
+          child: ListView(
+            children: [
+              Container(
+                height: MediaQuery.of(context).size.height,
+                margin:
+                    const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+                child: child,
+              )
+            ],
+          ),
+        ));
   }
 }

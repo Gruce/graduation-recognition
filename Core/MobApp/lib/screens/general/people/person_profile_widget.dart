@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:graduaiton_app/controllers/admin_profile_controller.dart';
+
 import 'package:graduaiton_app/models/person.dart';
 import 'package:graduaiton_app/models/user.dart';
 

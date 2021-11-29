@@ -5,14 +5,14 @@ import 'package:graduaiton_app/screens/admin/tables_page/widget/scrollable_widge
 import 'package:graduaiton_app/screens/admin/tables_page/widget/text_dialog_widget.dart';
 import 'package:graduaiton_app/util/utils.dart';
 
-class PeopleTable extends StatefulWidget {
-  const PeopleTable({Key? key}) : super(key: key);
+class TrackingTable extends StatefulWidget {
+  const TrackingTable({Key? key}) : super(key: key);
 
   @override
-  _PeopleTableState createState() => _PeopleTableState();
+  _TrackingTableState createState() => _TrackingTableState();
 }
 
-class _PeopleTableState extends State<PeopleTable> {
+class _TrackingTableState extends State<TrackingTable> {
   late List<User> users;
 
   @override
@@ -23,12 +23,12 @@ class _PeopleTableState extends State<PeopleTable> {
   }
 
   @override
-  Widget build(BuildContext context) =>
-      Scaffold(body: ScrollableWidget(child: buildDataTable()));
+  Widget build(BuildContext context) => Scaffold(
+        body: ScrollableWidget(child: buildDataTable()),
+      );
 
   Widget buildDataTable() {
-   
-    final columns = ['Name', 'Last Seen', 'Data Time', 'Action'];
+    final columns = ['Person Name', 'Camera', 'Date Time', 'Action'];
 
     return DataTable(
       columns: getColumns(columns),
@@ -55,7 +55,10 @@ class _PeopleTableState extends State<PeopleTable> {
             final showEditIcon = index == 0;
 
             return DataCell(
-              Text('$cell'),
+              Text(
+                '$cell',
+                textAlign: TextAlign.start,
+              ),
               showEditIcon: showEditIcon,
               onTap: () {
                 switch (index) {

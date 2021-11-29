@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:graduaiton_app/controllers/admin_layout_controller.dart';
+import 'package:graduaiton_app/controllers/Admin/admin_layout_controller.dart';
+
 
 class AdminSidebarController extends GetxController {
   final List<Map<dynamic, dynamic>> tabs = [

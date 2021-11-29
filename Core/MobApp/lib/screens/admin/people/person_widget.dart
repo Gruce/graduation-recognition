@@ -18,7 +18,7 @@ class PersonWidget extends GetWidget {
   @override
   Widget build(BuildContext context) {
     var typeText = "";
-    switch (type){
+    switch (type) {
       case 0:
         typeText = "Visitor";
         break;
@@ -51,34 +51,79 @@ class PersonWidget extends GetWidget {
                   name,
                   style: const TextStyle(fontSize: 18),
                 ),
-                Text(typeText, style: const TextStyle(fontSize: 14))
+                Container(
+                    padding: const EdgeInsets.all(5.0),
+                    decoration: BoxDecoration(
+                      color: const Color.fromRGBO(235, 235, 235, .8),
+                      border: Border.all(
+                        color: const Color.fromRGBO(235, 235, 235, .8),
+                        width: 2.0,
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(
+                              5.0) //                 <--- border radius here
+                          ),
+                    ),
+                    child: Text(
+                      typeText,
+                      style: const TextStyle(fontSize: 14,),
+
+                    )
+                    )
               ],
             ),
           ),
           subtitle: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Row(
-                children: [
-                  const Icon(
-                    Icons.photo_camera_outlined,
-                    size: 14,
+              Container(
+                padding: const EdgeInsets.all(5.0),
+                decoration: BoxDecoration(
+                  color: const Color.fromRGBO(235, 235, 235, .8),
+                  border: Border.all(
+                    color: const Color.fromRGBO(235, 235, 235, .8),
+                    width: 2.0,
                   ),
-                  const SizedBox(width: 5),
-                  Text(camera, style: const TextStyle(fontSize: 10))
-                ],
+                  borderRadius: BorderRadius.all(Radius.circular(
+                          5.0) //                 <--- border radius here
+                      ),
+                ),
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.photo_camera_outlined,
+                      size: 14,
+                    ),
+                    const SizedBox(width: 5),
+                    Text(camera, style: const TextStyle(fontSize: 10,fontWeight: FontWeight.bold))
+                  ],
+                ),
               ),
               const SizedBox(width: 15),
-              Row(
-                children: [
-                  const Icon(
+              Container(
+                padding: const EdgeInsets.all(5.0),
+                decoration: BoxDecoration(
+                  color: const Color.fromRGBO(235, 235, 235, .8),
+                  border: Border.all(
+                    color: const Color.fromRGBO(235, 235, 235, .8),
+                    width: 2.0,
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(
+                          5.0)
+                      ),
+                ),
+                child: Row(
+                  children: [
+                     const Icon(
                     Icons.schedule,
                     size: 14,
                   ),
                   const SizedBox(width: 5),
-                  Text(time, style: const TextStyle(fontSize: 10))
-                ],
+                  Text(time, style: const TextStyle(fontSize: 10,fontWeight: FontWeight.bold))
+                  ],
+                ),
               ),
+             
+              
             ],
           ),
           // trailing: const Icon(Icons.keyboard_arrow_right, size: 30.0)

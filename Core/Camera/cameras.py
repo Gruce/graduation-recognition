@@ -222,7 +222,7 @@ class CameraWidget(QtWidgets.QWidget):
                                
                                     
                                 cv2.rectangle(frame, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 2)
-                        if (frameId % math.floor(self.fps*15) == 0) or len(self.total_faces) >= 5:
+                        if (frameId % math.floor(self.fps*5) == 0) or len(self.total_faces) >= 5:
                             try:
                                 print('Camera ' + str(self.camera_id) + " Saving images to collected path.")
                                 save_array_of_images(self.total_faces, self.camera_id)

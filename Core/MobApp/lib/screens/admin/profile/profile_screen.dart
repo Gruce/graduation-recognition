@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/admin_profile_controller.dart';
+import 'package:graduaiton_app/models/person.dart';
 import 'package:graduaiton_app/models/user.dart';
 
 import '../layout.dart';
@@ -8,16 +9,16 @@ import '../layout.dart';
 class AdminProfileScreen extends GetView {
   AdminProfileScreen({Key? key}) : super(key: key);
 
-  final id = Get.arguments;
-
   @override
   AdminProfileController controller = Get.put(AdminProfileController());
 
   @override
   Widget build(BuildContext context) {
+    var typeText = "";
+
     return AdminLayoutScreen(
-        child: Expanded(
-            child: Column(
+        child: SingleChildScrollView(
+          child:Column(
           children: <Widget>[
             Container(
               child: Column(
@@ -41,7 +42,7 @@ class AdminProfileScreen extends GetView {
                                 children: <Widget>[
                                   ListTile(
                                     title: FutureBuilder(
-                                      future: id == Null ? controller.getUser : controller.getUserById(id) ,
+                                      future: controller.getUser,
                                       builder: (context, snapshot) {
                                         if (snapshot.hasData) {
                                           UserModel user =
@@ -64,7 +65,7 @@ class AdminProfileScreen extends GetView {
                                   ),
                                   const ListTile(
                                     contentPadding: EdgeInsets.all(0),
-                                    title: Text("Student"),
+                                    title: Text("Administrator"),
                                     //You can add Subtitle here
                                   ),
                                 ],

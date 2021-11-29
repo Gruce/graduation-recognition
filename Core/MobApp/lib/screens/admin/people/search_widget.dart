@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/admin_people_controller.dart';
 
+// ignore: must_be_immutable
 class SearchWidget extends GetView {
   SearchWidget({Key? key}) : super(key: key);
 

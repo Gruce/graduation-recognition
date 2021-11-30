@@ -42,3 +42,15 @@
 
         return $array;
     }
+
+    function settings(){
+        $array = [
+            [
+                'name' => 'Subjects',
+                'route' => 'subjects',
+                'active' => request()->routeIs('subjects'),
+            ],
+        ];
+
+        return $array ;
+    }

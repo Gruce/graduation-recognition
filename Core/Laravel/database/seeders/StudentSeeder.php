@@ -17,15 +17,15 @@ class StudentSeeder extends Seeder
         Student::create([
             'user_id' => 2,
             'section_id' => 1,
-            'stage_id' => 3,
-            'unit_id' => 5,
+            'stage_id' => 4,
+            'unit_id' => 1,
         ]);
 
         Student::create([
             'user_id' => 3,
             'section_id' => 2,
-            'stage_id' => 4,
-            'unit_id' => 8,
+            'stage_id' => 8,
+            'unit_id' => 3,
         ]);
 
     }

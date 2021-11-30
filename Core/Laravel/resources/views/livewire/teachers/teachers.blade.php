@@ -22,6 +22,7 @@
                                 <th class="p-3">#</th>
                                 <th class="p-3 text-left">Name</th>
                                 <th class="p-3 text-left">Speciality</th>
+                                <th class="p-3 text-left">Subjects</th>
                                 <th class="p-3 text-left">Link Trained Person</th>
                                 <th class="p-3 text-left">Actions </th>
                             </tr>
@@ -79,6 +80,32 @@
                                                     <input wire:keydown.enter="save()" wire:model="teachers.{{ $i }}.speciality"
                                                         class="py-3 block w-full text-sm text-gray-400 bg-gray-100 rounded-md px-5 focus:outline-none focus:bg-gray-50 focus:text-gray-900"
                                                         placeholder="{{ $teacher->speciality }}" autocomplete="off">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-3">
+                                        <div x-data="{ show: false }">
+                                            <span x-show="!show" @click="show = !show" class="text-gray-500">
+                                                @forelse ($teacher->subjects as $subject)
+                                                    {{ $subject->name }} 
+                                                    @if(!$loop->last)
+                                                        |
+                                                    @endif                                           
+                                                @empty
+                                                    لا يوجد مواد
+                                                @endforelse
+                                            </span>
+                                            <div x-show="show">
+                                                <div class="text-gray-600 focus-within:text-gray-400">
+                                                    @foreach ($subjects as $subject)
+                                                        @if($subject->section_id == $teacher->section_id)
+                                                            <input class="form-check-input" type="checkbox" value="" id="subject-{{$subject->id}}" wire:model="subjectID.{{$subject->id}}">
+                                                            <label class="form-check-label" for="subject-{{$subject->id}}">
+                                                                {{ $subject->name}}
+                                                            </label>
+                                                        @endif
+                                                    @endforeach
                                                 </div>
                                             </div>
                                         </div>

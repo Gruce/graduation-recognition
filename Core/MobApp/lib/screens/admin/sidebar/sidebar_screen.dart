@@ -16,7 +16,6 @@ class AdminSidebarScreen extends GetWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Drawer(
         child: SafeArea(
             child: Container(
@@ -72,11 +71,10 @@ class AdminSidebarScreen extends GetWidget {
                           indent: 22,
                           endIndent: 32,
                         ),
-
                         ListView.builder(
                             itemCount: controller.tabs.length,
                             shrinkWrap: true,
-                                  itemBuilder: (context, i) => Card(
+                            itemBuilder: (context, i) => Card(
                                   elevation: 0,
                                   color: const Color(0xff6875F5),
                                   child: ListTile(
@@ -93,11 +91,29 @@ class AdminSidebarScreen extends GetWidget {
                                       color: Colors.white,
                                     ),
                                     selected: true,
-                                    onTap: () => {
-                                      controller.onItemTap(i)
-                                    },
+                                    onTap: () => {controller.onItemTap(i)},
                                   ),
-                                ))
+                                )),
+                        Card(
+                          elevation: 0,
+                          color: const Color(0xff6875F5),
+                          child: ListTile(
+                            title: Text(
+                              "Logout",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 19,
+                                fontWeight: FontWeight.w300,
+                              ),
+                            ),
+                            leading: Icon(
+                              Icons.logout,
+                              color: Colors.white,
+                            ),
+                            selected: true,
+                            onTap: () => controller.logOut(),
+                          ),
+                        )
                       ])),
                 ]))));
   }

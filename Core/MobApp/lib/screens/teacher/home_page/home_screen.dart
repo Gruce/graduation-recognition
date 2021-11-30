@@ -7,8 +7,11 @@ class TeacherHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const TeachLayoutScreen(
-      child: Text('Fuck uuuuuuuuuuuuuuuu'),
+    return TeachLayoutScreen(
+      child: Container(
+        child: const Text('Fuck uuuuuuuuuuuuuuuu'),
+        color: Colors.red,
+      ),
     );
   }
 }

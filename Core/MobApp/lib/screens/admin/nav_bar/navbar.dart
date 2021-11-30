@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/Admin/admin_layout_controller.dart';
 
-
 class AdminBottomNavigationBar extends GetWidget {
   AdminBottomNavigationBar({Key? key}) : super(key: key);
 
+  @override
   AdminLayoutController controller = Get.put(AdminLayoutController());
 
   @override

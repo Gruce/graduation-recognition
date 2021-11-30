@@ -10,17 +10,18 @@ class AdminLayoutController extends GetxController {
     {"title": "Profile", "icon": Icons.person, "route": '/admin/profile/'},
   ].obs;
 
-  void tabIndex(String route){
+  void tabIndex(String route) {
     for (var i = 0; i < tabs.length; i++) {
       if (tabs[i]['route'] == route) {
         selectedIndex.value = i;
-            print(i);
-      };
+      }
     }
   }
 
   void onItemTap(int index) {
-    selectedIndex.value = index;
-    Get.toNamed(tabs[index]['route']);
+    if (selectedIndex.value != index) {
+      selectedIndex.value = index;
+      Get.toNamed(tabs[index]['route']);
+    }
   }
 }

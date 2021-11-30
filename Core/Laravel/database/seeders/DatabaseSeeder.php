@@ -70,13 +70,6 @@ class DatabaseSeeder extends Seeder
             'type' => 2,
         ]);
 
-        // Teachers
-        \App\Models\Teacher::create([
-            'user_id' => 1,
-            'person_id' => 1,
-            'speciality' => "Computer Vision",
-        ]);
-
         $this->call([
             // UserSeeder::class,
             SectionSeeder::class,
@@ -85,6 +78,7 @@ class DatabaseSeeder extends Seeder
             SubjectSeeder::class,
             StudentSeeder::class,
             SettingSeeder::class,
+            TeacherSeeder::class,
         ]);
     }
 }

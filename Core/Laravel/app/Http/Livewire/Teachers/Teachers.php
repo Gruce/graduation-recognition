@@ -10,7 +10,9 @@ use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\{
     Teacher,
-    Person
+    Person,
+    Subject,
+    Section,
 };
 
 class Teachers extends Component
@@ -24,10 +26,14 @@ class Teachers extends Component
         'teachers.*.user.name' => 'required',
         'teachers.*.user.email' => 'required',
         'teachers.*.speciality' => 'required',
+        'teachers.*.section_id' => 'required',
     ];
 
     public $teachers;
     public $search;
+    public $subjects;
+    public $sections;
+    public $subjectID = [];
 
     private function paginate($items, $perPage = 5, $page = null, $options = [])
     {
@@ -66,12 +72,31 @@ class Teachers extends Component
 
     public function mount(){
         $search = '%' . $this->search . '%';
-        $this->teachers = Teacher::whereHas('user' , function($q) use ($search){
+        $this->teachers = Teacher::with('subjects:id,name')->whereHas('user' , function($q) use ($search){
             $q->where('name' , 'LIKE' , $search)->orWhere('email' , 'LIKE' , $search);
         })
-        // ->with('user:id,name,email')
+        ->with(['user:id,name,email' , 'section:id,name'])
         ->orderBy('id', 'DESC')
-        ->get();
+        ->get(['id','user_id' , 'person_id' , 'section_id' , 'speciality']);
+
+        $this->subjects = Subject::get(['id' , 'section_id' , 'name']);
+
+
+        foreach($this->teachers as $teacher){
+            $ids = [];
+            foreach($teacher->subjects as $subject){
+                $ids += [$subject->id => true];
+            }
+            $this->subjectID += [$teacher->id => $ids];
+        }
+
+        $this->sections = Section::get(['id' , 'name']);
+        // foreach($this->teachers->subjects as $subject)
+        //     dd($subject);
+        
+        //     dd($this->subjectsID);
+
+        // dd($this->teachers->toArray());
 
         // $this->teachers = $this->paginate($this->teachers->toArray() , 2);
 

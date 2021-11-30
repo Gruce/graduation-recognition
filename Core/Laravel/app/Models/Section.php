@@ -9,7 +9,7 @@ class Section extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name' , 'type'];
 
     public function subjects(){
         return $this->hasMany(Subject::class);
@@ -21,5 +21,9 @@ class Section extends Model
 
     public function students(){
         return $this->hasMany(Student::class);
+    }
+
+    public function teachers(){
+        return $this->hasMany(Teacher::class);
     }
 }

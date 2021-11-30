@@ -21,6 +21,7 @@
                             <tr>
                                 <th class="p-3">#</th>
                                 <th class="p-3 text-left">Name</th>
+                                <th class="p-3 text-left">Section</th>
                                 <th class="p-3 text-left">Speciality</th>
                                 <th class="p-3 text-left">Subjects</th>
                                 <th class="p-3 text-left">Link Trained Person</th>
@@ -73,6 +74,23 @@
                                     <td class="p-3">
                                         <div x-data="{ show: false }">
                                             <span x-show="!show" @click="show = !show" class="text-gray-500">
+                                                {{ $teacher->section->name }}
+                                            </span>
+                                            <div x-show="show">
+                                                <div class="text-gray-600 focus-within:text-gray-400">
+                                                    <select wire:keydown.enter="save()" wire:model="teachers.{{ $i }}.section_id" class="py-3 block w-full text-sm text-gray-400 bg-gray-100 rounded-md px-5 focus:outline-none focus:bg-gray-50 focus:text-gray-900">
+                                                        <option value="">Please select</option>
+                                                        @foreach ($sections as $section)
+                                                            <option value="{{$section->id}}">{{$section->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-3">
+                                        <div x-data="{ show: false }">
+                                            <span x-show="!show" @click="show = !show" class="text-gray-500">
                                                 {{ $teacher->speciality }}
                                             </span>
                                             <div x-show="show">
@@ -96,7 +114,7 @@
                                                     لا يوجد مواد
                                                 @endforelse
                                             </span>
-                                            <div x-show="show">
+                                            {{-- <div x-show="show">
                                                 <div class="text-gray-600 focus-within:text-gray-400">
                                                     @foreach ($subjects as $subject)
                                                         @if($subject->section_id == $teacher->section_id)
@@ -107,7 +125,7 @@
                                                         @endif
                                                     @endforeach
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </td>
                                     <td class="p-3">

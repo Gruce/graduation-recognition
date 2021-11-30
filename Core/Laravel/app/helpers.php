@@ -46,6 +46,16 @@
     function settings(){
         $array = [
             [
+                'name' => 'Sections',
+                'route' => 'sections',
+                'active' => request()->routeIs('sections'),
+            ],
+            [
+                'name' => 'Stages',
+                'route' => 'stages',
+                'active' => request()->routeIs('stages'),
+            ],
+            [
                 'name' => 'Subjects',
                 'route' => 'subjects',
                 'active' => request()->routeIs('subjects'),

@@ -17,7 +17,7 @@ class Subjects extends Component
     use LivewireAlert;
     use WithPagination;
 
-    // protected $listeners = ['$refresh' , 'search'];
+    protected $listeners = ['$refresh' , 'search'];
 
     protected $rules = [
         'subjects.*.name' => 'required',
@@ -28,6 +28,7 @@ class Subjects extends Component
     public $subjects;
     public $sections;
     public $stages;
+    public $search;
 
     public function save(){
         $this->validate();
@@ -40,10 +41,15 @@ class Subjects extends Component
         $this->alert($alert, $msg);
     }
 
-    public function mount(){
-        // $search = '%' . $this->search . '%';
+    function search($text){
+        $this->search = $text;
+        $this->mount();
+    }
 
-        $this->subjects = Subject::withCount('teachers')->with(['section:id,name','stage:id,name,section_id'])->get(
+    public function mount(){
+        $search = '%' . $this->search . '%';
+
+        $this->subjects = Subject::where('name' , 'LIKE' , $search)->withCount('teachers')->with(['section:id,name','stage:id,name,section_id'])->get(
             [
                 'id',
                 'name',

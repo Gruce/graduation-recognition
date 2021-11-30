@@ -107,7 +107,7 @@
                                 </tr>
                             @empty
                                 <tr class="bg-red-100">
-                                    <td colspan="4" class="p-3 text-center">
+                                    <td colspan="6" class="p-3 text-center">
                                         No Subjects
                                     </td>
                                 </tr>
@@ -138,7 +138,7 @@
         return {
         activeTab: -1,
         tabs: [
-            '<span class="material-icons-outlined mr-2">add</span>New Teacher',
+            '<span class="material-icons-outlined mr-2">add</span>New Subject',
             '<span class="material-icons-outlined mr-2">search</span>Search',
         ]
         };

@@ -20,17 +20,37 @@ class StageSeeder extends Seeder
         ]);
 
         Stage::create([
+            'name' => 'Second Stage',
+            'section_id' => 1,
+        ]);
+
+        Stage::create([
+            'name' => 'Third Stage',
+            'section_id' => 1,
+        ]);
+
+        Stage::create([
+            'name' => 'Forth Stage',
+            'section_id' => 1,
+        ]);
+
+        Stage::create([
             'name' => 'First Stage',
             'section_id' => 2,
         ]);
 
         Stage::create([
             'name' => 'Second Stage',
-            'section_id' => 1,
+            'section_id' => 2,
         ]);
 
         Stage::create([
-            'name' => 'Second Stage',
+            'name' => 'Third Stage',
+            'section_id' => 2,
+        ]);
+
+        Stage::create([
+            'name' => 'Forth Stage',
             'section_id' => 2,
         ]);
     }

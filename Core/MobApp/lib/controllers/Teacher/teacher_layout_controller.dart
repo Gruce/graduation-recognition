@@ -9,12 +9,11 @@ class TeacherLayoutController extends GetxController {
     {"title": "Profile", "icon": Icons.person, "route": '/teacher/profile/'},
   ].obs;
 
-  void tabIndex(String route){
+  void tabIndex(String route) {
     for (var i = 0; i < tabs.length; i++) {
       if (tabs[i]['route'] == route) {
         selectedIndex.value = i;
-            print(i);
-      };
+      }
     }
   }
 

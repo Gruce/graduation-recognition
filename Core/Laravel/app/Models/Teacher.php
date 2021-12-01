@@ -9,11 +9,21 @@ class Teacher extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['user_id' , 'section_id' , 'person_id'];
+
     public function user(){
         return $this->belongsTo(User::class);
     }
 
     public function person(){
         return $this->belongsTo(Person::class);
+    }
+
+    public function section(){
+        return $this->belongsTo(Section::class);
+    }
+
+    public function subjects(){
+        return $this->belongsToMany(Subject::class)->withTimestamps();
     }
 }

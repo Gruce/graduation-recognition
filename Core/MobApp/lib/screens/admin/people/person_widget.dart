@@ -36,9 +36,10 @@ class PersonWidget extends GetWidget {
       color: Colors.transparent,
       margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 6.0),
       child: Container(
+        padding: const EdgeInsets.all(14.0),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            color: const Color.fromRGBO(255, 255, 255, .8)),
+            color: const Color.fromRGBO(255, 255, 255, 1)),
         child: ListTile(
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 25.0, vertical: 10.0),
@@ -59,16 +60,16 @@ class PersonWidget extends GetWidget {
                         color: const Color.fromRGBO(235, 235, 235, .8),
                         width: 2.0,
                       ),
-                      borderRadius: BorderRadius.all(Radius.circular(
+                      borderRadius: const BorderRadius.all(Radius.circular(
                               5.0) //                 <--- border radius here
                           ),
                     ),
                     child: Text(
                       typeText,
-                      style: const TextStyle(fontSize: 14,),
-
-                    )
-                    )
+                      style: const TextStyle(
+                        fontSize: 14,
+                      ),
+                    ))
               ],
             ),
           ),
@@ -94,7 +95,9 @@ class PersonWidget extends GetWidget {
                       size: 14,
                     ),
                     const SizedBox(width: 5),
-                    Text(camera, style: const TextStyle(fontSize: 10,fontWeight: FontWeight.bold))
+                    Text(camera,
+                        style: const TextStyle(
+                            fontSize: 10, fontWeight: FontWeight.bold))
                   ],
                 ),
               ),
@@ -107,23 +110,21 @@ class PersonWidget extends GetWidget {
                     color: const Color.fromRGBO(235, 235, 235, .8),
                     width: 2.0,
                   ),
-                  borderRadius: BorderRadius.all(Radius.circular(
-                          5.0)
-                      ),
+                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
                 ),
                 child: Row(
                   children: [
-                     const Icon(
-                    Icons.schedule,
-                    size: 14,
-                  ),
-                  const SizedBox(width: 5),
-                  Text(time, style: const TextStyle(fontSize: 10,fontWeight: FontWeight.bold))
+                    const Icon(
+                      Icons.schedule,
+                      size: 14,
+                    ),
+                    const SizedBox(width: 5),
+                    Text(time,
+                        style: const TextStyle(
+                            fontSize: 10, fontWeight: FontWeight.bold))
                   ],
                 ),
               ),
-             
-              
             ],
           ),
           // trailing: const Icon(Icons.keyboard_arrow_right, size: 30.0)

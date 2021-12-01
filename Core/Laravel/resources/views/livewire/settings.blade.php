@@ -1,10 +1,24 @@
+
 <div>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Settings
-        </h2>
+        <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex">
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            @foreach (settings() as $item)
+                                <x-jet-nav-link href="{{ route($item['route']) }}" :active="$item['active']">
+                                    {{ $item['name'] }}
+                                </x-jet-nav-link>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
     </x-slot>
 
+    
     <div class="py-12">
         <div class="container px-5 py-10 mx-auto bg-white rounded-lg max-w-5xl sm:px-6 lg:px-8">
             <form wire:submit.prevent="save">
@@ -27,4 +41,21 @@
             </form>
         </div>
     </div>
+
 </div>
+
+
+
+<script>
+    function setup() {
+        return {
+        activeTab: -1,
+        tabs: [
+            '<span class="material-icons-outlined mr-2">add</span>New Student',
+            '<span class="material-icons-outlined mr-2">search</span>Search',
+        ]
+        };
+    };
+
+</script>
+

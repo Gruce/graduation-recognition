@@ -2,31 +2,28 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:graduaiton_app/config.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart' as http;
+import 'package:graduaiton_app/models/camera.dart';
+import 'package:graduaiton_app/util/utilities.dart';
 
 class AdminHomeController extends GetxController {
-  var listsearch = [];
-  late SharedPreferences prefs;
+  RxList cameras = <CameraModel>[].obs;
 
   final api = Config.api;
 
   @override
   void onInit() async {
-    prefs = await SharedPreferences.getInstance();
-    getData();
+    getCameras();
     super.onInit();
   }
 
-  Future getData() async {
-    String jwt = prefs.getString('jwt').toString();
-    var res = await http
-        .get(Uri.parse("$api/people"), headers: {"Authorization": jwt});
+  void getCameras() async {
+    var res = await Utilities.httpGet('cameras');
     if (res.statusCode == 200) {
-      var responsebody = jsonDecode(res.body)['data'];
-      for (int i = 0; i < responsebody.length; i++) {
-        listsearch.add(responsebody[i]);
+      List response = json.decode(res.body)['data'];
+      for (var element in response) {
+        cameras.add(CameraModel.fromJson(element));
       }
     }
+    update();
   }
 }

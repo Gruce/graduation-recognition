@@ -15,7 +15,10 @@ class AdminAppbar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             IconButton(
-                icon: const Icon(Icons.menu,color: Color(0xff6875F5),),
+                icon: const Icon(
+                  Icons.menu,
+                  color: Color(0xff6875F5),
+                ),
                 onPressed: () => {Scaffold.of(context).openDrawer()}),
             Column(
               children: [
@@ -27,15 +30,14 @@ class AdminAppbar extends StatelessWidget {
                       color: Color(0xff6875F5),
                     ),
                     Text('CsIT'),
-                   
                   ],
                 ),
               ],
             ),
-            CircleAvatar(
-              child: Image.asset('STLogo.png'),
-              backgroundColor: Colors.grey[200],
-            ),
+            // CircleAvatar(
+            //   child: Image.asset('STLogo.png'),
+            //   backgroundColor: Colors.grey[200],
+            // ),
           ],
         ),
       ),

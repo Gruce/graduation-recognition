@@ -42,8 +42,8 @@ class AdminPeopleScreen extends GetView<AdminPeopleController> {
                                         controller.filteredPeople[index].id),
                                     name: controller.filteredPeople[index].name,
                                     type: controller.filteredPeople[index].type,
-                                    camera: "camera",
-                                    time: "time"));
+                                    camera: "Camera",
+                                    time: "Time"));
                           },
                         )
                       : SizedBox(

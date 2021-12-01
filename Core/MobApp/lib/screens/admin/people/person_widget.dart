@@ -50,7 +50,7 @@ class PersonWidget extends GetWidget {
               children: [
                 Text(
                   name,
-                  style: const TextStyle(fontSize: 18),
+                  style: const TextStyle(fontSize: 18,color: Color(0xff6875F5)),
                 ),
                 Container(
                     padding: const EdgeInsets.all(5.0),
@@ -84,7 +84,7 @@ class PersonWidget extends GetWidget {
                     color: const Color.fromRGBO(235, 235, 235, .8),
                     width: 2.0,
                   ),
-                  borderRadius: BorderRadius.all(Radius.circular(
+                  borderRadius: const BorderRadius.all(Radius.circular(
                           5.0) //                 <--- border radius here
                       ),
                 ),
@@ -110,7 +110,7 @@ class PersonWidget extends GetWidget {
                     color: const Color.fromRGBO(235, 235, 235, .8),
                     width: 2.0,
                   ),
-                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                  borderRadius: const BorderRadius.all(Radius.circular(5.0)),
                 ),
                 child: Row(
                   children: [

@@ -109,12 +109,12 @@ class AdminProfileScreen extends GetView {
                         ),
                       ],
                       borderRadius: BorderRadius.circular(10),
-                      image: const DecorationImage(
-                        image: AssetImage(
-                          "me.png",
-                        ),
-                        fit: BoxFit.cover,
-                      ),
+                      // image: const DecorationImage(
+                      //   image: AssetImage(
+                      //     "me.png",
+                      //   ),
+                      //   fit: BoxFit.cover,
+                      // ),
                     ),
                   ),
                 ],

@@ -32,10 +32,10 @@ class AdminAppbar extends StatelessWidget {
                 ),
               ],
             ),
-            // CircleAvatar(
-            //   child: Image.asset('STLogo.png'),
-            //   backgroundColor: Colors.white,
-            // ),
+            CircleAvatar(
+              child: Image.asset('STLogo.png'),
+              backgroundColor: Colors.grey[200],
+            ),
           ],
         ),
       ),

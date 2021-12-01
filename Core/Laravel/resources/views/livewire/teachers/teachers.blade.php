@@ -4,7 +4,7 @@
             Teachers
         </h2>
     </x-slot>
-    @livewire('teachers.teacher-action')
+    @livewire('actions' , ['folder' => 'teachers' , 'file' => 'teacher-add' , 'search' => 'Teacher name or email'])
     <div class="mt-3">
         <section class="text-gray-600 body-font">
             <div class="container px-5 py-10 mx-auto bg-white rounded-lg max-w-7xl sm:px-6 lg:px-8">

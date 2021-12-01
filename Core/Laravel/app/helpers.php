@@ -56,6 +56,11 @@
                 'active' => request()->routeIs('stages'),
             ],
             [
+                'name' => 'Units',
+                'route' => 'units',
+                'active' => request()->routeIs('units'),
+            ],
+            [
                 'name' => 'Subjects',
                 'route' => 'subjects',
                 'active' => request()->routeIs('subjects'),

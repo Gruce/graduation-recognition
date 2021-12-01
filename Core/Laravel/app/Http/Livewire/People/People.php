@@ -32,7 +32,7 @@ class People extends Component
 
     public function render()
     {
-        $people = Person::where('name', 'like', '%'.$this->search.'%')
+        $people = Person::where('name', 'LIKE', '%'.$this->search.'%')
             ->where('type', '!=', '-1')
             ->with('trackings')
             ->orderBy('id', 'DESC')

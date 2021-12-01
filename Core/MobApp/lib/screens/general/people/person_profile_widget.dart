@@ -67,22 +67,22 @@ class PersonProfileWidget extends GetView<PersonProfileController> {
                                           child: FlatButton(
                                               onPressed: () {},
                                               child: const Text(
-                                                  "       5\nAbsences"))),
+                                                  "        5\nAbsences",style: TextStyle(color:Color(0xff6875F5))))),
                                       Expanded(
                                           child: FlatButton(
                                               onPressed: () {},
                                               child: const Text(
-                                                  "        2\nInfractions"))),
+                                                  "        2\nInfractions",style: TextStyle(color:Color(0xff6875F5))))),
                                       Expanded(
                                           child: FlatButton(
                                               onPressed: () {},
                                               child: const Text(
-                                                  "       3\nActivities"))),
+                                                  "        3\nActivities",style: TextStyle(color:Color(0xff6875F5))))),
                                       Expanded(
                                           child: FlatButton(
                                               onPressed: () {},
                                               child: const Text(
-                                                  "       1\nWarnings"))),
+                                                  "        1\nWarnings",style: TextStyle(color:Color(0xff6875F5))))),
                                     ],
                                   )
                                 ],
@@ -122,49 +122,49 @@ class PersonProfileWidget extends GetView<PersonProfileController> {
                           child: Column(
                             children: const <Widget>[
                               ListTile(
-                                title: Text("Person Information"),
+                                title: Text("Person Information",style: TextStyle(color:Color(0xff6875F5)),),
                               ),
                               Divider(),
                               ListTile(
                                 title: Text("Email"),
                                 subtitle: Text("karm.99zo@gmail.com"),
-                                leading: Icon(Icons.email),
+                                leading: Icon(Icons.email,color:Color(0xff6875F5)),
                               ),
                               ListTile(
                                 title: Text("Phone Number"),
                                 subtitle: Text("07701111111"),
-                                leading: Icon(Icons.phone),
+                                leading: Icon(Icons.phone,color:Color(0xff6875F5)),
                               ),
                               ListTile(
                                 title: Text("About"),
                                 subtitle: Text(
                                     "Abdulkareem mgbel farhan al-khalifa.\nbla bla bla bla bla bla bla bla bla bla bla."),
-                                leading: Icon(Icons.format_align_center),
+                                leading: Icon(Icons.format_align_center,color:Color(0xff6875F5)),
                               ),
                               ListTile(
                                 title: Text("Living Location"),
                                 subtitle: Text("AL-Hartha - Basra"),
-                                leading: Icon(Icons.location_city),
+                                leading: Icon(Icons.location_city,color:Color(0xff6875F5)),
                               ),
                               ListTile(
                                 title: Text("Joined Date"),
                                 subtitle: Text("11 November 2018"),
-                                leading: Icon(Icons.calendar_view_day),
+                                leading: Icon(Icons.calendar_view_day,color:Color(0xff6875F5)),
                               ),
                               ListTile(
                                 title: Text("graduation Date"),
                                 subtitle: Text("6 Jul 2022"),
-                                leading: Icon(Icons.calendar_view_month),
+                                leading: Icon(Icons.calendar_view_month,color:Color(0xff6875F5)),
                               ),
                               ListTile(
                                 title: Text("Department"),
                                 subtitle: Text("Computer Sicnce"),
-                                leading: Icon(Icons.computer),
+                                leading: Icon(Icons.computer,color:Color(0xff6875F5)),
                               ),
                               ListTile(
                                 title: Text("Study type"),
                                 subtitle: Text("Evening"),
-                                leading: Icon(Icons.event),
+                                leading: Icon(Icons.event,color:Color(0xff6875F5)),
                               ),
                             ],
                           ),

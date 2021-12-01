@@ -1,8 +1,9 @@
+// TODO Implement this library.import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class PersonWidget extends GetWidget {
-  PersonWidget(
+class StudentWidget extends GetWidget {
+  StudentWidget(
       {Key? key,
       required this.name,
       required this.type,

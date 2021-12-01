@@ -129,39 +129,39 @@ class AdminProfileScreen extends GetView {
                   child: Column(
                     children: const <Widget>[
                       ListTile(
-                        title: Text("Person Information"),
+                        title: Text("Person Information",style: TextStyle(color:Color(0xff6875F5))),
                       ),
                       Divider(),
                       ListTile(
                         title: Text("Job title"),
                         subtitle: Text("Head of Computer Sicnce"),
-                        leading: Icon(Icons.title),
+                        leading: Icon(Icons.title,color:Color(0xff6875F5)),
                       ),
                       ListTile(
                         title: Text("Email"),
                         subtitle: Text("karm.99zo@gmail.com"),
-                        leading: Icon(Icons.email),
+                        leading: Icon(Icons.email,color:Color(0xff6875F5)),
                       ),
                       ListTile(
                         title: Text("Phone Number"),
                         subtitle: Text("07701111111"),
-                        leading: Icon(Icons.phone),
+                        leading: Icon(Icons.phone,color:Color(0xff6875F5)),
                       ),
                       ListTile(
                         title: Text("About"),
                         subtitle: Text(
                             "Abdulkareem mgbel farhan al-khalifa.\nbla bla bla bla bla bla bla bla bla bla bla."),
-                        leading: Icon(Icons.format_align_center),
+                        leading: Icon(Icons.format_align_center,color:Color(0xff6875F5)),
                       ),
                       ListTile(
                         title: Text("Living Location"),
                         subtitle: Text("AL-Hartha - Basra"),
-                        leading: Icon(Icons.location_city),
+                        leading: Icon(Icons.location_city,color:Color(0xff6875F5)),
                       ),
                       ListTile(
                         title: Text("Joined College"),
                         subtitle: Text("11 November 2018"),
-                        leading: Icon(Icons.calendar_view_day),
+                        leading: Icon(Icons.calendar_view_day,color:Color(0xff6875F5)),
                       ),
 
                       // ListTile(

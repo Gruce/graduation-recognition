@@ -34,6 +34,29 @@ class LoginController extends GetxController {
           redirect(await Utilities.getUser);
           return;
         }
+        
+      } on FormatException catch (e) {
+        print('JWT Error!');
+      }
+    }
+    super.onInit();
+  }
+  void logout() async {
+    final api = await Config.api;
+    // Here you can fetch you product from server
+    prefs = await SharedPreferences.getInstance();
+    // Check if user is authenticated
+    String jwt = await jwtOrEmpty();
+    if (jwt != "") {
+      var res = await http.post(Uri.parse("$api/auth/refresh"),
+          headers: {"Authorization": jwt});
+      try {
+        if (res.statusCode == 200) {
+          await prefs.setString('jwt', '');
+          redirect(await Utilities.getUser);
+          return;
+        }
+        
       } on FormatException catch (e) {
         print('JWT Error!');
       }

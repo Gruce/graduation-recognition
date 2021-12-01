@@ -19,6 +19,10 @@ class Section extends Model
         return $this->hasMany(Stage::class);
     }
 
+    public function units(){
+        return $this->hasMany(Stage::class);
+    }
+
     public function students(){
         return $this->hasMany(Student::class);
     }

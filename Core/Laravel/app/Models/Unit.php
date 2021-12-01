@@ -9,10 +9,14 @@ class Unit extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name' , 'stage_id'];
+    protected $fillable = ['name' , 'section_id' , 'stage_id'];
 
     public function stage(){
         return $this->belongsTo(Stage::class);
+    }
+
+    public function section(){
+        return $this->belongsTo(Section::class);
     }
 
     public function students(){

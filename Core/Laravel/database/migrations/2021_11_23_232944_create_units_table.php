@@ -15,6 +15,7 @@ class CreateUnitsTable extends Migration
     {
         Schema::create('units', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('section_id')->nullable()->constrained('sections')->onDelete('cascade');
             $table->foreignId('stage_id')->nullable()->constrained('stages')->onDelete('cascade');
             $table->string('name');
             $table->timestamps();

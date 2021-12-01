@@ -11,7 +11,7 @@ import sys
 import cv2
 import imutils
 import math
-
+from termcolor import cprint
 
 ###########################################################################
 ##########################  Face Detection  ###############################
@@ -73,24 +73,26 @@ cameras = auth.cameras()
 
 people = auth.people()
 if (len(people) <= 0):
-    print("\n There is no people. Please add person in Laravel Web App.")
+    cprint("\n There is no people. Please add person in Laravel Web App.", 'red')
     sys.exit()
 
 # RECOGNITION Class
 class Recognition(threading.Thread):
-    def __init__(self):
+    def __init__(self, statueLabel=None):
         threading.Thread.__init__(self)
         self.threads = []
+        self.statueLabel = statueLabel
 
     def run(self):
-        print("Recognition thread is started.")
+        cprint("Recognition thread is started.", 'blue')
         while (True):
             for camera in get_directories_in_directory(collected_data_path):
                 if (len(get_files_in_directory(os.path.normpath(camera))) > 0):
                     try:
                         camera_id = camera.replace(collected_data_path, '')
-                        print("[Recognition] Camera " + camera_id + " starting...")
-                        camera_thread = DeepFaceThread(camera_id, auth, people, collected_data_path)
+                        cprint("[Recognition] Camera " + camera_id + " starting...", 'blue')
+                        camera_thread = DeepFaceThread(camera_id, auth, people, collected_data_path, self.statueLabel)
+                        # camera_thread.daemon = True
                         camera_thread.start()
                         self.threads.append(camera_thread)
                     except Exception as e:
@@ -145,7 +147,7 @@ class CameraWidget(QtWidgets.QWidget):
         self.timer.timeout.connect(self.set_frame)
         self.timer.start(0.5)
 
-        print('[Detection] Camera: {} started.'.format(self.camera_stream_link))
+        cprint('[Detection] Camera: {} started.'.format(self.camera_stream_link), 'green')
 
     def load_network_stream(self):
         """Verifies stream link and open new stream if valid"""
@@ -205,22 +207,22 @@ class CameraWidget(QtWidgets.QWidget):
                             for (x1, y1, x2, y2) in boxes:
                                 # x1, y1, x2, y2 = box.astype(int)
 
-                                if (frameId % math.floor(self.fps) == 0):
+                                if (frameId % math.floor(self.fps)*2 == 0):
                                     image = numpy.array(frame[int(y1):int(y2), int(x1):int(x2)])
                                     if image.any():
-                                        print("[Detection] Camera " + str(self.camera_id) + " Collecting facing")
+                                        cprint("[Detection] Camera " + str(self.camera_id) + " Collecting facing", 'green')
                                         if self.isFaceAdded(image):
-                                            print('[Detection] Camera ' + str(self.camera_id) + ' No new Faces')
+                                            cprint('[Detection] Camera ' + str(self.camera_id) + ' No new Faces', 'green')
                                         else:
                                             self.total_faces.append(image)
-                                            print('[Detection] Camera ' + str(self.camera_id) + ' New face detected. Total faces collected: ' + str(len(self.total_faces)))
+                                            cprint('[Detection] Camera ' + str(self.camera_id) + ' New face detected. Total faces collected: ' + str(len(self.total_faces)), 'green')
                                
                                     
                                 cv2.rectangle(frame, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 2)
-                        if (frameId % math.floor(self.fps*3) == 0) or len(self.total_faces) >= 5:
+                        if (frameId % math.floor(self.fps*4) == 0) or len(self.total_faces) >= 5:
                             if len(self.total_faces) >= 1:
                                 try:
-                                    print('[Detection] Camera ' + str(self.camera_id) + " Saving collected faces images to collected path.")
+                                    cprint('[Detection] Camera ' + str(self.camera_id) + " Saving collected faces images to collected path.", 'green')
                                     save_array_of_images(self.total_faces, self.camera_id)
                                     self.total_faces.clear()
                                 except Exception as e:
@@ -232,7 +234,7 @@ class CameraWidget(QtWidgets.QWidget):
                         self.online = False
                 else:
                     # Attempt to reconnect
-                    print('attempting to reconnect', self.camera_stream_link)
+                    cprint('attempting to reconnect' + str(self.camera_stream_link), 'green')
                     self.load_network_stream()
                     self.spin(2)
                 self.spin(.001)
@@ -300,31 +302,33 @@ class CameraWidget(QtWidgets.QWidget):
         return False
 
     
-    
+
+def restart_application():
+    os.execl(sys.executable, os.path.abspath(__file__), *sys.argv)     
 
 def exit_application():
     """Exit program event handler"""
 
     sys.exit(1)
 
-def set_cameras_on_layout():
+
+row = 1
+def set_cameras_on_layout(row):
     cameras_count = len(cameras)
     columns = math.ceil(cameras_count/2)
-    row = 0
     column = 0
     for (index, camera) in enumerate(cameras):
         # Create camera widgets
-        print('Creating Camera Widgets...')
         cam = CameraWidget(screen_width//columns, screen_height//columns, stream_link=camera['source'], camera_id=camera['id'], description=camera['description'])
         # Camera Thread for recognition
 
         # Add widgets to layout
-        print('Adding widgets to layout...')
         ml.addWidget(cam.get_video_frame(), row, column, 1, 1)
         column += 1
-        if (column == columns):
+        if (column >= cameras_count/2):
             row += 1
             column = 0
+
 
 ml = QtWidgets.QGridLayout()
 
@@ -343,18 +347,28 @@ if __name__ == '__main__':
     mw.setCentralWidget(cw)
     mw.showMaximized()
 
+
     # Dynamically determine screen width/height
     screen_width = QtWidgets.QApplication.desktop().screenGeometry().width()
     screen_height = QtWidgets.QApplication.desktop().screenGeometry().height()
 
-    set_cameras_on_layout()
+    set_cameras_on_layout(row)
+    
+    statueLabel = QtWidgets.QLabel('No face recognized yet.')
+    statueLabel.setFont(QtGui.QFont('Arial', 20))
+
+    ml.addWidget(statueLabel, row+2, 0, 1, 2)
+
 
     mw.show()
 
-    recognition = Recognition()
+    recognition = Recognition(statueLabel)
+    recognition.daemon = True
     recognition.start()
 
     QtWidgets.QShortcut(QtGui.QKeySequence('Ctrl+Q'), mw, exit_application)
 
     if(sys.flags.interactive != 1) or not hasattr(QtCore, 'PYQT_VERSION'):
         QtWidgets.QApplication.instance().exec_()
+
+    restart_application()

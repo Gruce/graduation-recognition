@@ -3,9 +3,15 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ApiController;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\{
+    PeopleController,
+    TrackingController,
+};
+use App\Http\Controllers\{
+    AuthController,
+    ApiController,
+    Controller,
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +35,7 @@ Route::group(['middleware' => 'api','prefix' => 'auth'], function ($router) {
 
 Route::group(['middleware' => 'auth'], function () {
     // People
-    Route::get('people', [ApiController::class, 'people']);
+    Route::get('people', [PeopleController::class, 'people']);
     Route::post('person', [ApiController::class, 'person']);
 
     Route::get('not_trained_people', [ApiController::class, 'not_trained_people']);
@@ -41,7 +47,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('cameras/state', [ApiController::class, 'camera_state']);
 
     // Trackings
-    Route::post('tracking/new', [ApiController::class, 'new_track']);
+    Route::post('tracking/new', [TrackingController::class, 'new_track']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

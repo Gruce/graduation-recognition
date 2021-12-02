@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCamerasTable extends Migration
+class CreateHallsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateCamerasTable extends Migration
      */
     public function up()
     {
-        Schema::create('cameras', function (Blueprint $table) {
+        Schema::create('halls', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('hall_id')->nullable()->constrained('halls')->onDelete('cascade');
-            $table->string("description");
-            $table->integer("state")->default(0);
-            $table->string("source")->default(0);
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateCamerasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cameras');
+        Schema::dropIfExists('halls');
     }
 }

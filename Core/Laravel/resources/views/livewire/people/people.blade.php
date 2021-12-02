@@ -4,7 +4,7 @@
             People
         </h2>
     </x-slot>
-    @livewire('people.people-action')
+    @livewire('actions' , ['folder' => 'people' , 'file' => 'people-add' , 'search' => 'People name'])
     <div class="mt-3">
         <section class="text-gray-600 body-font">
             <div class="container px-5 py-10 mx-auto bg-white rounded-lg max-w-7xl sm:px-6 lg:px-8">

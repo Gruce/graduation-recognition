@@ -319,7 +319,7 @@ def set_cameras_on_layout(row):
     column = 0
     for (index, camera) in enumerate(cameras):
         # Create camera widgets
-        cam = CameraWidget(screen_width//columns, screen_height//columns, stream_link=camera['source'], camera_id=camera['id'], description=camera['description'])
+        cam = CameraWidget(screen_width//columns, (screen_height-100)//columns, stream_link=camera['source'], camera_id=camera['id'], description=camera['description'])
         # Camera Thread for recognition
 
         # Add widgets to layout

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Tracking extends Model
 {
     use HasFactory;
+    use \Staudenmeir\EloquentEagerLimit\HasEagerLimit;
     protected $fillable = ['person_id' , 'camera_id' , 'last_seen' , 'image_path'];
 
     public $timestamps = true;

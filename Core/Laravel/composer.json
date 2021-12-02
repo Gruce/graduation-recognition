@@ -17,6 +17,7 @@
         "livewire/livewire": "^2.7",
         "php-http/message": "^1.12",
         "php-http/socket-client": "^2.1",
+        "staudenmeir/eloquent-eager-limit": "^1.0",
         "symfony/process": "^5.3",
         "tymon/jwt-auth": "^1.0"
     },

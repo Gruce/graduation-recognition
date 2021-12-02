@@ -34,15 +34,20 @@ dependencies:
   shared_preferences:
   get:
   video_player:
+  
     
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   google_fonts: ^2.1.0
-  shimmer: ^2.0.0
+  
   simple_animations: ^4.0.1
   line_icons: ^2.0.1
-  english_words: ^4.0.0
+  
+  date_picker_timeline: ^1.2.3
+  shimmer: ^2.0.0
+  syncfusion_flutter_calendar: ^19.3.56
+  table_calendar: ^3.0.3
 
 dev_dependencies:
   flutter_test:
@@ -69,7 +74,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
-    - assets/bb.png
+    
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -14,7 +14,7 @@ class TeachLayoutScreen extends GetView<TeacherLayoutController> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.white,
       drawer: TeacherSidebarScreen(),
       bottomNavigationBar: TeacherBottomNavigationBar(),
       // body: child

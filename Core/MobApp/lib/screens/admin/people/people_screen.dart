@@ -16,7 +16,11 @@ class AdminPeopleScreen extends GetView<AdminPeopleController> {
         title: 'People',
         child: Column(
           children: [
+           
+            const SizedBox(height: 10),
+
             // Search Container
+            
             SearchWidget(),
             const SizedBox(height: 10),
 

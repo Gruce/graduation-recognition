@@ -68,7 +68,7 @@ class Routes {
       // Teacher Routes
     GetPage(
         name: teacherMain,
-        page: () => const TeacherHomeScreen(),
+        page: () =>  const TeacherHomeScreen(),
         binding: TeacherHomeBinding()),
 
     GetPage(

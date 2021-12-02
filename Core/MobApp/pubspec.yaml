@@ -48,7 +48,7 @@ dependencies:
   shimmer: ^2.0.0
   syncfusion_flutter_calendar: ^19.3.56
   table_calendar: ^3.0.3
-
+  intl: 
 dev_dependencies:
   flutter_test:
     sdk: flutter

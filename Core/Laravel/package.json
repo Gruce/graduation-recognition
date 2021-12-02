@@ -23,6 +23,8 @@
     },
     "dependencies": {
         "@popperjs/core": "^2.10.2",
+        "@tensorflow-models/blazeface": "0.0.7",
+        "@tensorflow/tfjs": "^3.11.0",
         "alpine": "^0.2.1",
         "alpine-magic-helpers": "^1.2.2",
         "bootstrap": "^5.1.3",

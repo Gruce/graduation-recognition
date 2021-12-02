@@ -147,12 +147,15 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{route('delete' , [ 'Teacher' , $teacher->id])}}" class="btn btn-sm btn-danger">Delete</a>
+                                        <a href="{{route('delete' , [ 'Teacher' , $teacher->id])}}" class="text-red-500">
+                                            <i class="material-icons text-base">delete</i>
+                                        </a>
+                                        
                                     </td>
                                 </tr>
                             @empty
                                 <tr class="bg-red-100">
-                                    <td colspan="4" class="p-3 text-center">
+                                    <td colspan="7" class="p-3 text-center">
                                         No Teachers
                                     </td>
                                 </tr>

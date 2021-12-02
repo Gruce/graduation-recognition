@@ -1718,8 +1718,8 @@ i {
 .table tr {
   border-radius: 20px;
 }
-tr td:nth-child(n+6),
-tr th:nth-child(n+6) {
+tr td:last-child,
+tr th:last-child {
   border-radius: 0 .625rem .625rem 0;
 }
 tr td:nth-child(1),

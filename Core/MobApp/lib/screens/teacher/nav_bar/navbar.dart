@@ -3,9 +3,11 @@ import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/Teacher/teacher_layout_controller.dart';
 
 
+// ignore: must_be_immutable
 class TeacherBottomNavigationBar extends GetWidget {
   TeacherBottomNavigationBar({Key? key}) : super(key: key);
 
+  @override
   TeacherLayoutController controller = Get.put(TeacherLayoutController());
 
   @override

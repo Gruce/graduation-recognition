@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 from cv2 import countNonZero, threshold
 from pathlib import Path
 import pandas as pd
+from termcolor import cprint
 
 
 from Core.Camera.lib.utilities import Utilities
@@ -20,12 +21,13 @@ ArcFace = DeepFace.build_model('ArcFace')
 class DeepFaceThread(threading.Thread):
     db_path = Config.db_path
     
-    def __init__(self, camera_id, auth, people, collected_path):
+    def __init__(self, camera_id, auth, people, collected_path, statueLabel=None):
         threading.Thread.__init__(self)
         self.camera_id = camera_id
         self.auth = auth
         self.people = people
         self.collected_path = collected_path
+        self.statueLabel = statueLabel
 
     @staticmethod
     def get_images_in_dir(dir):
@@ -34,7 +36,7 @@ class DeepFaceThread(threading.Thread):
 
     def run(self):
         try:
-            print("[Recognition] Camera " + str(self.camera_id) + " started.")
+            cprint("[Recognition] Camera " + str(self.camera_id) + " started.", 'blue')
 
             start = time.perf_counter()
             counter = 1
@@ -42,7 +44,7 @@ class DeepFaceThread(threading.Thread):
             images = DeepFaceThread.get_images_in_dir(os.path.join(self.collected_path, str(self.camera_id)))
 
             for index, image in enumerate(images):
-                print('[Recognition] Camera ' + str(self.camera_id) + ' - ', 'Image', counter)
+                cprint('[Recognition] Camera ' + str(self.camera_id) + ' - ' + 'Image' + str(counter), 'blue')
                 image_path = image
                 df = DeepFace.find(
                     img_path = os.path.normpath(image),
@@ -60,16 +62,19 @@ class DeepFaceThread(threading.Thread):
                     id = Path(str(df.iloc[0].identity)).parts[-2] 
                     person = Utilities.search_id(id, self.people)
                     if (person):
-                        self.auth.tracking(self.camera_id, [person['id']])
-                        print('[Recognition] Camera ' + str(self.camera_id) + ' - ' + " Person found: " + str(counter) + ", id = " + id)
+                        name = self.auth.tracking(self.camera_id, [person['id']])
+                        cprint('[Recognition] Camera ' + str(self.camera_id) + ' - ' + " Person found: " + str(counter) + ", id = " + str(id), 'blue')
+
+                        self.statueLabel.setText('[Recognition] Camera ' + str(self.camera_id) + ' - ' + " Person found: " + str(name))
+
                     else:
-                        self.auth.tracking(self.camera_id, [-1], os.path.normpath(images[index]))
-                        print('[Recognition] Camera ' + str(self.camera_id) + ' - ' + " Not found in the database: " + str(counter))
+                        # self.auth.tracking(self.camera_id, [-1], os.path.normpath(images[index]))
+                        cprint('[Recognition] Camera ' + str(self.camera_id) + ' - ' + " Not found in the database: " + str(counter), 'red')
 
 
                 except:
-                    print('[Recognition] Camera ' + str(self.camera_id) + ' - ' + " Not found in the database: " + str(counter))
-                    self.auth.tracking(self.camera_id, [-1], os.path.normpath(images[index]))
+                    cprint('[Recognition] Camera ' + str(self.camera_id) + ' - ' + " Not found in the database: " + str(counter), 'red')
+                    # self.auth.tracking(self.camera_id, [-1], os.path.normpath(images[index]))
 
                 # Remove Images
                 my_dir = os.path.normpath(os.path.join(self.collected_path, str(self.camera_id)))
@@ -79,7 +84,7 @@ class DeepFaceThread(threading.Thread):
 
                 counter += 1
             end = time.perf_counter()
-            print('[Recognition] Camera ' + str(self.camera_id), f' Finished in {round(end-start, 2)} second(s)')
+            cprint('[Recognition] Camera ' + str(self.camera_id) + ' Finished in ' + str(round(end-start, 2)) + 'second(s)', 'blue')
         except Exception as e:
             print(e)
     

@@ -4,6 +4,7 @@ import requests
 from requests.api import head
 import cv2
 from Core.Camera.lib.config import Config
+from termcolor import cprint
 
 api = 'http://' + Config.host + ':8000/api/'
 email = Config.admin_email
@@ -52,7 +53,18 @@ class Auth:
             'id'    : camera_id,
             'people': json.dumps(people),
         }, headers=self.headers)
-        print("Tracked Uploaded.")
+
+        if x.status_code == 200:
+            cprint("Tracked Uploaded.", 'blue')
+            name = x.json()['data']
+            cprint('[Found, Camera ' + str(camera_id) + '] ' + name, 'cyan')
+
+            if "Unkown" in name:
+                directory = 'Core/Laravel/storage/app/public/db/'
+                os.remove(os.path.normpath(directory + 'representations_arcface.pkl')) if os.path.exists(directory + 'representations_arcface.pkl') else None
+            
+            return name
+
 
 
     # People

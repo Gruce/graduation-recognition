@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Person;
 use App\Models\Camera;
 use App\Models\Tracking;
+use App\Models\Setting;
 
 class ApiController extends Controller
 {
@@ -95,5 +96,21 @@ class ApiController extends Controller
         }
         
         return response()->json(['data' => $name], 200);
+    }
+
+    public function app_restart(Request $req){
+        $key = $req->key == 'app_restart' ? 'app_restart' : false ;
+        $data = 'Key Not Active';
+        $rsp = 401;
+        if($key){
+            $x = Setting::where('key' , $key)->first();
+            $value = $x->value == '0' ? '1' : '0';
+            $x->update(['value' => $value]);
+            $data = 'Success';
+            $rsp = 200;
+        } 
+
+        return response()->json(['data' => $data], $rsp);
+
     }
 }

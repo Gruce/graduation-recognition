@@ -65,6 +65,7 @@ class ApiController extends Controller
     // Tracking
     public function new_track(Request $req){
         $file = '';
+        $name = '';
         if ($req->image)
             $file = $req->image->store('tracking/' . date("Y-m-d"), 'public');
         
@@ -78,8 +79,12 @@ class ApiController extends Controller
                 $user->name = 'Unkown ' . $user->id;
                 $user->save();
                 $person = $user->id;
-                
+
+                $name = Person::find($person)->name;
+
                 $file = $req->image->store('db/' . $user->id, 'public');
+            } else {
+                $name = Person::find($person)->name;
             }
 
             $track              = new Tracking;
@@ -89,6 +94,6 @@ class ApiController extends Controller
             $track->save();
         }
         
-        return response()->json(['data' => 'Success.'], 200);
+        return response()->json(['data' => $name], 200);
     }
 }

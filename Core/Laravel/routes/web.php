@@ -17,6 +17,7 @@ use App\Http\Livewire\{
     Students\Students,
     Subjects\Subjects,
     Stages\Stages,
+    Units\Units,
     Sections\Sections,
     Settings,
 };
@@ -51,6 +52,11 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     ## Stages ## 
     Route::group(['prefix' => 'stages'] ,function(){
         Route::get('/', Stages::class)->name('stages');
+    });
+
+    ## Units ## 
+    Route::group(['prefix' => 'units'] ,function(){
+        Route::get('/', Units::class)->name('units');
     });
 
     ## Subjects ##

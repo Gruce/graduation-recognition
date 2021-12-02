@@ -18,6 +18,8 @@ class SettingSeeder extends Seeder
             'title' => 'Stages Count',
             'key'   => 'stages',
             'value' => '4'
-        ]);
+        ]); 
+    
+        // add reset program //
     }
 }

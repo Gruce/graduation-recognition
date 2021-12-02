@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Http\Livewire\Students;
+namespace App\Http\Livewire;
 
 use Livewire\Component;
 
-class StudentSearch extends Component
+class Search extends Component
 {
     public $search;
+    public $parameters;
     protected $queryString = ['search'];
 
     public function render()
     {
         $this->emit('search', $this->search);
-        return view('livewire.students.student-search');
+        return view('livewire.search');
     }
 }

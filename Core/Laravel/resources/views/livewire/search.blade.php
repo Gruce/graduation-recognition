@@ -9,6 +9,6 @@
         </span>
         <input wire:model="search" type="search" name="q"
             class="py-3 block w-full text-sm text-gray-400 bg-gray-100 rounded-md pl-10 focus:outline-none focus:bg-gray-50 focus:text-gray-900"
-            placeholder="Search by subject name..." autocomplete="off">
+            placeholder="Search by {{$parameters}}..." autocomplete="off">
     </div>
 </div>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUnitsTable extends Migration
+class CreateHallsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateUnitsTable extends Migration
      */
     public function up()
     {
-        Schema::create('units', function (Blueprint $table) {
+        Schema::create('halls', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('section_id')->nullable()->constrained('sections')->onDelete('cascade');
-            $table->foreignId('stage_id')->nullable()->constrained('stages')->onDelete('cascade');
             $table->string('name');
             $table->timestamps();
         });
@@ -29,6 +27,6 @@ class CreateUnitsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('units');
+        Schema::dropIfExists('halls');
     }
 }

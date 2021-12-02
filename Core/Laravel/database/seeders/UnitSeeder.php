@@ -16,31 +16,37 @@ class UnitSeeder extends Seeder
     {
         Unit::create([
             'name' => 'A',
+            'section_id' => 1,
             'stage_id' => 4,
         ]);
 
         Unit::create([
             'name' => 'B',
+            'section_id' => 1,
             'stage_id' => 4,
         ]);
 
         Unit::create([
             'name' => 'A',
+            'section_id' => 2,
             'stage_id' => 8,
         ]);
 
         Unit::create([
             'name' => 'B',
+            'section_id' => 2,
             'stage_id' => 8,
         ]);
 
         Unit::create([
             'name' => 'A',
+            'section_id' => 1,
             'stage_id' => 3,
         ]);
 
         Unit::create([
             'name' => 'B',
+            'section_id' => 1,
             'stage_id' => 3,
         ]);
     }

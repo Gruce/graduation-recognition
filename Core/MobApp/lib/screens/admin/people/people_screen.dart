@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/Admin/admin_people_controller.dart';
+
 import 'package:graduaiton_app/routes/routes.dart';
 import 'package:graduaiton_app/screens/admin/people/search_widget.dart';
 
@@ -41,8 +42,8 @@ class AdminPeopleScreen extends GetView<AdminPeopleController> {
                                         controller.filteredPeople[index].id),
                                     name: controller.filteredPeople[index].name,
                                     type: controller.filteredPeople[index].type,
-                                    camera: "Camera",
-                                    time: "Time"));
+                                    camera: "camera",
+                                    time: "time"));
                           },
                         )
                       : SizedBox(

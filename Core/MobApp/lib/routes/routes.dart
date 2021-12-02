@@ -66,6 +66,11 @@ class Routes {
         page: () =>  const AdminPeopleScreen(),
         binding: AdminProfileBinding()),
 
+        GetPage(
+        name: adminStudents,
+        page: () =>  const AdminStudentsScreen(),
+        binding: AdminProfileBinding()),
+
     
       // Teacher Routes
     GetPage(

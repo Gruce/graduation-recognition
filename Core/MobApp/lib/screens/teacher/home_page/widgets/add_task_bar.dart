@@ -38,7 +38,9 @@ class _AddTaskPageState extends State<AddTaskPage> {
     return Scaffold(
       appBar: _appBar(context),
       body: Container(
-        padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
+        color: Colors.grey,
+        padding:
+            const EdgeInsets.only(left: 20, right: 20, bottom: 10, top: 10),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

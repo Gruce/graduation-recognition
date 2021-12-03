@@ -1,5 +1,3 @@
-import 'package:flutter/src/widgets/framework.dart';
-
 class CameraModel {
   int id = 0;
   String description = '';

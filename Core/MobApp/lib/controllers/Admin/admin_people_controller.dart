@@ -7,7 +7,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import '../../config.dart';
 
-
 class AdminPeopleController extends GetxController {
   late SharedPreferences prefs;
   RxList people = <PersonModel>[].obs;
@@ -27,7 +26,7 @@ class AdminPeopleController extends GetxController {
     super.dispose();
   }
 
-  void fetch() async{
+  void fetch() async {
     var res = await Utilities.httpGet('people');
     if (res.statusCode == 200) {
       List response = json.decode(res.body)['data'];
@@ -38,6 +37,7 @@ class AdminPeopleController extends GetxController {
     filteredPeople.assignAll(people);
     update();
   }
+
   void search(text) {
     if (text.isEmpty) {
       filteredPeople.assignAll(people);

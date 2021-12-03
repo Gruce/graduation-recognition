@@ -34,13 +34,13 @@ class LoginController extends GetxController {
           redirect(await Utilities.getUser);
           return;
         }
-        
       } on FormatException catch (e) {
         print('JWT Error!');
       }
     }
     super.onInit();
   }
+
   void logout() async {
     final api = await Config.api;
     // Here you can fetch you product from server
@@ -56,7 +56,6 @@ class LoginController extends GetxController {
           redirect(await Utilities.getUser);
           return;
         }
-        
       } on FormatException catch (e) {
         print('JWT Error!');
       }
@@ -104,13 +103,13 @@ class LoginController extends GetxController {
 
   void redirect(UserModel user) async {
     switch (user.type) {
-      case 'admin':
+      case 1:
         Get.offAllNamed(Routes.adminMain);
         break;
-      case 'teacher':
+      case 2:
         Get.offAllNamed(Routes.teacherMain);
         break;
-      case 'student':
+      case 3:
         Get.offAllNamed(Routes.adminMain);
         break;
       default:

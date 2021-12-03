@@ -38,7 +38,7 @@ Route::group(['middleware' => 'api','prefix' => 'auth'], function ($router) {
 Route::group(['middleware' => 'auth'], function () {
     ## People ##
     Route::group(['prefix' => 'people'] ,function(){
-        Route::get('/', [PeopleController::class, 'people']);
+        Route::get('', [PeopleController::class, 'people']);
     });
 
     ## Students ##

@@ -5,7 +5,7 @@ class PersonModel {
   String name = '';
   int trainingId = 1;
   int type = 0;
-  TrackingModel trackings = TrackingModel();
+  TrackingModel? trackings = TrackingModel();
 
   PersonModel({id, name, trainingId, type, trackings});
 

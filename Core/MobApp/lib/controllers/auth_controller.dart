@@ -34,13 +34,13 @@ class LoginController extends GetxController {
           redirect(await Utilities.getUser);
           return;
         }
-        
       } on FormatException catch (e) {
         print('JWT Error!');
       }
     }
     super.onInit();
   }
+
   void logout() async {
     final api = await Config.api;
     // Here you can fetch you product from server
@@ -56,7 +56,6 @@ class LoginController extends GetxController {
           redirect(await Utilities.getUser);
           return;
         }
-        
       } on FormatException catch (e) {
         print('JWT Error!');
       }

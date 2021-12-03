@@ -1,23 +1,5 @@
 
 <div>
-    <x-slot name="header">
-        <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-between h-16">
-                    <div class="flex">
-                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                            @foreach (settings() as $item)
-                                <x-jet-nav-link href="{{ route($item['route']) }}" :active="$item['active']">
-                                    {{ $item['name'] }}
-                                </x-jet-nav-link>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </x-slot>
-
     
     <div class="py-12">
         <div class="container px-5 py-10 mx-auto bg-white rounded-lg max-w-5xl sm:px-6 lg:px-8">

@@ -23,6 +23,7 @@ class Settings extends Component
         $this->settings = Setting::all();
     }
     public function render(){
-        return view('livewire.settings')->layout('layouts.app');
+        return view('livewire.settings')->extends('settings-menu')->layout('layouts.app');
+        
     }
 }

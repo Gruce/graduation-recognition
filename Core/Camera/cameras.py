@@ -1,4 +1,5 @@
 import os
+import subprocess
 import threading
 from PyQt5 import QtCore, QtGui, QtWidgets
 import numpy
@@ -275,6 +276,7 @@ class CameraWidget(QtWidgets.QWidget):
             # Camera id
             cv2.putText(self.frame, "Camera " + str(self.camera_id), (self.screen_width-200,40), cv2.FONT_HERSHEY_SIMPLEX, 1.2, (255,255,255), lineType=cv2.LINE_AA)
 
+            
             # Convert to pixmap and set to video frame
             self.img = QtGui.QImage(self.frame, self.frame.shape[1], self.frame.shape[0], QtGui.QImage.Format_RGB888).rgbSwapped()
             self.pix = QtGui.QPixmap.fromImage(self.img)
@@ -304,12 +306,22 @@ class CameraWidget(QtWidgets.QWidget):
     
 
 def restart_application():
-    os.execl(sys.executable, os.path.abspath(__file__), *sys.argv)     
+    os.startfile(__file__)
+    sys.exit()
+    # exit_application()  
 
 def exit_application():
     """Exit program event handler"""
 
     sys.exit(1)
+
+def isMustRestart():
+    """Checks if application must restart"""
+    if auth.isMustRestart():
+        auth.setMustRestart()
+        time.sleep(0.5)
+        restart_application()
+
 
 
 row = 1
@@ -324,6 +336,7 @@ def set_cameras_on_layout(row):
 
         # Add widgets to layout
         ml.addWidget(cam.get_video_frame(), row, column, 1, 1)
+
         column += 1
         if (column >= cameras_count/2):
             row += 1
@@ -334,6 +347,9 @@ ml = QtWidgets.QGridLayout()
 
 if __name__ == '__main__':
 
+    threading.Timer(5.0, isMustRestart).start()
+
+
     # Create main application window
     app = QtWidgets.QApplication([])
     app.setStyleSheet(qdarkstyle.load_stylesheet_pyqt())
@@ -341,6 +357,7 @@ if __name__ == '__main__':
     mw = QtWidgets.QMainWindow()
     mw.setWindowTitle('Camera GUI')
     # mw.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+
 
     cw = QtWidgets.QWidget()
     cw.setLayout(ml)
@@ -370,5 +387,3 @@ if __name__ == '__main__':
 
     if(sys.flags.interactive != 1) or not hasattr(QtCore, 'PYQT_VERSION'):
         QtWidgets.QApplication.instance().exec_()
-
-    restart_application()

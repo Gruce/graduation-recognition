@@ -23,7 +23,7 @@ class SettingSeeder extends Seeder
         Setting::create([
             'title' => 'App Restart',
             'key'   => 'app_restart',
-            'value' => '1'
+            'value' => '0'
         ]); 
     }
 }

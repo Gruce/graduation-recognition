@@ -46,7 +46,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('cameras', [ApiController::class, 'cameras']);
     Route::post('cameras/state', [ApiController::class, 'camera_state']);
 
-    Route::post('app_restart', [ApiController::class, 'app_restart']);
+    Route::get('app/getStatue', [ApiController::class, 'get_statue']);
+    Route::post('app/setStatue', [ApiController::class, 'set_statue']);
 
     // Trackings
     Route::post('tracking/new', [TrackingController::class, 'new_track']);

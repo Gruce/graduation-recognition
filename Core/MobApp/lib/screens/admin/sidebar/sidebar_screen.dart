@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:graduaiton_app/models/user.dart';
 import 'package:graduaiton_app/screens/admin/nav_bar/add_new/Teacher_add.dart';
 import 'package:graduaiton_app/screens/admin/nav_bar/absence_and_presence/absence_and_presence.dart';
+import 'package:graduaiton_app/screens/admin/profile/profile_screen.dart';
 import 'package:graduaiton_app/screens/admin/sidebar/sidebar_controller.dart';
 import 'package:graduaiton_app/util/utilities.dart';
 
@@ -46,7 +47,10 @@ class AdminSidebarScreen extends GetWidget {
                               }
                             },
                           ),
-                          onTap: () {},
+                         onTap: () {
+  Navigator.push(context,
+      MaterialPageRoute(builder: (context) => AdminProfileScreen()));
+},
                           subtitle: Text(
                             "Lucturer",
                             style: TextStyle(
@@ -54,15 +58,15 @@ class AdminSidebarScreen extends GetWidget {
                               fontSize: 14,
                             ),
                           ),
-                          // leading: CircleAvatar(
-                          //   child: Image.asset('STLogo.png'),
-                          //   backgroundColor: Colors.white,
-                          //   // child: Icon(
-                          //   //   Icons.perm_identity,
-                          //   //   color: Colors.white,
-                          //   // ),
-                          //   radius: 17,
-                          // ),
+                          leading: CircleAvatar(
+                            child: Image.asset('STLogo.png'),
+                            backgroundColor:Colors.white,
+                            // child: Icon(
+                            //   Icons.perm_identity,
+                            //   color: Colors.white,
+                            // ),
+                            radius: 20,
+                          ),
                         ),
                         Divider(
                           height: 50,

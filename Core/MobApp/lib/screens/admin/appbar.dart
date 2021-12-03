@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graduaiton_app/screens/admin/profile/profile_screen.dart';
 
 class AdminAppbar extends StatelessWidget {
   const AdminAppbar({Key? key, required this.title}) : super(key: key);
@@ -38,11 +39,16 @@ class AdminAppbar extends StatelessWidget {
                 ),
               ],
             ),
-            CircleAvatar(
+            GestureDetector(onTap: () {
+  Navigator.push(context,
+      MaterialPageRoute(builder: (context) => AdminProfileScreen()));
+},
+              child: CircleAvatar(
               child: Image.asset('STLogo.png'),
+              
               backgroundColor: Colors.white,
             ),
-          ],
+            ),],
         ),
       ),
     ]);

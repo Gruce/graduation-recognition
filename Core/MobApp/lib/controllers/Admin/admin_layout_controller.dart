@@ -6,9 +6,8 @@ class AdminLayoutController extends GetxController {
 
   final List<Map<dynamic, dynamic>> tabs = [
     {"title": "Home", "icon": Icons.home, "route": '/admin/'},
-    {"title": "People", "icon": Icons.people, "route": '/admin/people/'},
-    {"title": "Students", "icon": Icons.grade_outlined, "route": '/admin/students/'},
-    {"title": "Profile", "icon": Icons.person, "route": '/admin/profile/'},
+    {"title": "People", "icon": Icons.groups, "route": '/admin/people/'},
+    {"title": "Students", "icon": Icons.people, "route": '/admin/students/'},
 
   ].obs;
 

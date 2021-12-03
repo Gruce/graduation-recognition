@@ -27,6 +27,8 @@ class Teachers extends Component
         'teachers.*.user.email' => 'required',
         'teachers.*.speciality' => 'required',
         'teachers.*.section_id' => 'required',
+        'teachers.*.subjects.*.id' => 'required',
+        'teachers.*.subjects.*.name' => 'required',
     ];
 
     public $teachers;
@@ -55,10 +57,17 @@ class Teachers extends Component
         }
     }
 
+    public function changeSubject($t_index, $subject1){
+        
+
+    }
+
     public function save(){
         $this->validate();
 
         foreach($this->teachers as $teacher){
+            $subjectsIds = array_filter($teacher->subjects->pluck('id')->toArray());
+            $teacher->subjects()->sync($subjectsIds);
             $teacher->user->save();
             $teacher->save();
         }
@@ -83,6 +92,8 @@ class Teachers extends Component
 
 
         foreach($this->teachers as $teacher){
+
+
             $ids = [];
             foreach($teacher->subjects as $subject){
                 $ids += [$subject->id => true];

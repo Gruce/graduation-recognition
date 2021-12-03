@@ -5,8 +5,6 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\{
     PeopleController,
-    StudentController,
-    CameraController,
     TrackingController,
 };
 use App\Http\Controllers\{
@@ -36,34 +34,23 @@ Route::group(['middleware' => 'api','prefix' => 'auth'], function ($router) {
 });
 
 Route::group(['middleware' => 'auth'], function () {
-    ## People ##
-    Route::group(['prefix' => 'people'] ,function(){
-        Route::get('/', [PeopleController::class, 'people']);
-    });
-
-    ## Students ##
-    Route::group(['prefix' => 'students'] ,function(){
-        Route::get('/', [StudentController::class, 'students']);
-    });
-
-    ## Cameras ##
-    Route::group(['prefix' => 'cameras'] ,function(){
-        Route::get('/', [CameraController::class , 'cameras']);
-        Route::post('/state', [CameraController::class, 'camera_state']);
-    });
-
-    ## Trackings ##
-    Route::group(['prefix' => 'tracking'] ,function(){
-        Route::post('/new', [TrackingController::class, 'new_track']);
-    });
-
-
-
+    // People
+    Route::get('people', [PeopleController::class, 'people']);
     Route::post('person', [ApiController::class, 'person']);
-    Route::get('not_trained_people', [ApiController::class, 'not_trained_people']);
-    Route::post('people/new', [ApiController::class, 'new_person']);
-    Route::post('app_restart', [ApiController::class, 'app_restart']);
 
+    Route::get('not_trained_people', [ApiController::class, 'not_trained_people']);
+    
+    Route::post('people/new', [ApiController::class, 'new_person']);
+
+    // Cameras
+    Route::get('cameras', [ApiController::class, 'cameras']);
+    Route::post('cameras/state', [ApiController::class, 'camera_state']);
+
+    Route::get('app/getStatue', [ApiController::class, 'get_statue']);
+    Route::post('app/setStatue', [ApiController::class, 'set_statue']);
+
+    // Trackings
+    Route::post('tracking/new', [TrackingController::class, 'new_track']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

@@ -103,7 +103,7 @@
                                     </td>
                                     <td>
                                         <button>ADD TEACHER</button>
-                                        <a href="{{route('delete' , [ 'Subject' , $subject->id])}}" >Delete</a>
+                                        <a href="{{route('delete' , [ 'Subject' , $subject->id])}}" class="text-red-500"><i class="material-icons text-base">delete</i></a>
                                     </td>
                                 </tr>
                             @empty

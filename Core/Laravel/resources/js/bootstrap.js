@@ -30,3 +30,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 
 const Swal = window.Swal = require('sweetalert2');
+
+const blazeface = window.blazeface = require('@tensorflow-models/blazeface');
+

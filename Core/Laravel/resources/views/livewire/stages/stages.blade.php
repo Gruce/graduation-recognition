@@ -100,7 +100,7 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <a href="{{route('delete' , [ 'Stage' , $stage->id])}}" >Delete</a>
+                                        <a href="{{route('delete' , [ 'Stage' , $stage->id])}}" class="text-red-500"><i class="material-icons text-base">delete</i></a>
                                     </td>
                                 </tr>
                             @empty

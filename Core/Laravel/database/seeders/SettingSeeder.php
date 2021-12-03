@@ -19,7 +19,11 @@ class SettingSeeder extends Seeder
             'key'   => 'stages',
             'value' => '4'
         ]); 
-    
-        // add reset program //
+
+        Setting::create([
+            'title' => 'App Restart',
+            'key'   => 'app_restart',
+            'value' => '1'
+        ]); 
     }
 }

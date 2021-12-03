@@ -138,7 +138,7 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <a href="{{route('delete' , [ 'Student' , $student->id])}}" class="btn btn-sm btn-danger">Delete</a>
+                                        <a href="{{route('delete' , [ 'Student' , $student->id])}}" class="text-red-500"><i class="material-icons text-base">delete</i></a>
                                     </td>
                                 </tr>
                             @empty

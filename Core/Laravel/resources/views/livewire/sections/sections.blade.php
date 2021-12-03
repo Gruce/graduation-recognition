@@ -90,7 +90,7 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <a href="{{route('delete' , [ 'Section' , $section->id])}}" >Delete</a>
+                                        <a href="{{route('delete' , [ 'Section' , $section->id])}}" class="text-red-500"><i class="material-icons text-base">delete</i></a>
                                     </td>
                                 </tr>
                             @empty

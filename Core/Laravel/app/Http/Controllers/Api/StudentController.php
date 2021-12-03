@@ -11,7 +11,7 @@ class StudentController extends Controller
     public function students(){
         $students = Student::with(
             [
-                'user:id,name,email',
+                'user:id,name,email,type',
                 'section:id,name',
                 'stage:id,name,section_id',
                 'unit:id,name,stage_id,section_id'

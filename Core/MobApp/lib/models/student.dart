@@ -1,50 +1,42 @@
-import 'package:graduaiton_app/models/tracking.dart';
+// ignore_for_file: non_constant_identifier_names
+
+import 'user.dart';
 
 class StudentModel {
   int id = 0;
-  int userId = 0;
-  int sectionId = 0;
-  int stageId = 0;
-  int unitId = 0;
-  String name = '';
-  int trainingId = 1;
-  int type = 0;
-  TrackingModel trackings = TrackingModel();
+  int user_id = 0;
+  int section_id = 0;
+  int stage_id = 0;
+  int unit_id = 0;
+  UserModel user = UserModel();
+  
 
   StudentModel(
       {id,
-      userId,
-      sectionId,
-      stageId,
-      unitId,
-      name,
-      trainingId,
-      type,
-      trackings});
+      user_id,
+      section_id,
+      stage_id,
+      unit_id,
+      user,
+});
 
   StudentModel.fromJson(Map<dynamic, dynamic> json) {
     id = json['id'];
-    userId = json['user_id'];
-    sectionId = json['section_id'];
-    stageId = json['stage_id'];
-    unitId = json['unit_id'];
-    name = json['name'];
-    trainingId = json['training_id'];
-    type = json['type'];
-    trackings = TrackingModel.fromJson(json['trackings'][0]);
+    user_id = json['user_id'];
+    section_id = json['section_id'];
+    stage_id = json['stage_id'];
+    unit_id = json['unit_id'];
+    user  = UserModel.fromJson(json['user']);
   }
 
   Map<dynamic, dynamic> toJson() {
     final Map<dynamic, dynamic> data = <dynamic, dynamic>{};
     data['id'] = id;
-    data['user_id'] = userId;
-    data['section_id'] = sectionId;
-    data['stage_id'] = stageId;
-    data['unit_id'] = unitId;
-    data['name'] = name;
-    data['training_id'] = trainingId;
-    data['type'] = type;
-    data['trackings'] = trackings;
+    data['user_id'] = user_id;
+    data['section_id'] = section_id;
+    data['stage_id'] = stage_id;
+    data['unit_id'] = unit_id;
+    data['user'] = user;
     return data;
   }
 }

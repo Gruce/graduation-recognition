@@ -31,6 +31,7 @@ class AdminPeopleController extends GetxController {
     var res = await Utilities.httpGet('people');
     if (res.statusCode == 200) {
       List response = json.decode(res.body)['data'];
+      print(res.body);
       for (var element in response) {
         people.add(PersonModel.fromJson(element));
       }

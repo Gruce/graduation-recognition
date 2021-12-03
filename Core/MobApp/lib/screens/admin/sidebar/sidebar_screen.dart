@@ -47,10 +47,13 @@ class AdminSidebarScreen extends GetWidget {
                               }
                             },
                           ),
-                         onTap: () {
-  Navigator.push(context,
-      MaterialPageRoute(builder: (context) => AdminProfileScreen()));
-},
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        AdminProfileScreen()));
+                          },
                           subtitle: Text(
                             "Lucturer",
                             style: TextStyle(
@@ -60,11 +63,7 @@ class AdminSidebarScreen extends GetWidget {
                           ),
                           leading: CircleAvatar(
                             child: Image.asset('STLogo.png'),
-                            backgroundColor:Colors.white,
-                            // child: Icon(
-                            //   Icons.perm_identity,
-                            //   color: Colors.white,
-                            // ),
+                            backgroundColor: Colors.white,
                             radius: 20,
                           ),
                         ),

@@ -39,16 +39,19 @@ class AdminAppbar extends StatelessWidget {
                 ),
               ],
             ),
-            GestureDetector(onTap: () {
-  Navigator.push(context,
-      MaterialPageRoute(builder: (context) => AdminProfileScreen()));
-},
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => AdminProfileScreen()));
+              },
               child: CircleAvatar(
-              child: Image.asset('STLogo.png'),
-              
-              backgroundColor: Colors.white,
+                child: Image.asset('STLogo.png'),
+                backgroundColor: Colors.white,
+              ),
             ),
-            ),],
+          ],
         ),
       ),
     ]);

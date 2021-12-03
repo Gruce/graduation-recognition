@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/Admin/admin_people_controller.dart';
+import 'package:graduaiton_app/controllers/Admin/admin_students_controller.dart';
 
 import 'package:graduaiton_app/routes/routes.dart';
 import 'package:graduaiton_app/screens/admin/people/person_widget.dart';
+import 'package:graduaiton_app/screens/admin/students/student_widget.dart';
 import 'package:graduaiton_app/screens/admin/students/students_search_widget.dart';
 import '../layout.dart';
 import 'dropdown_widget/section_dropdown_widget.dart';
 import 'dropdown_widget/stage_dropdown_widget.dart';
 import 'dropdown_widget/unit_dropdown_widget.dart';
 
-class AdminStudentsScreen extends GetView<AdminPeopleController> {
+class AdminStudentsScreen extends GetView<AdminStudentsController> {
   const AdminStudentsScreen({Key? key}) : super(key: key);
 
   @override
@@ -65,22 +67,24 @@ class AdminStudentsScreen extends GetView<AdminPeopleController> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: const Color.fromRGBO(255, 255, 255, .5)),
-              child: GetBuilder<AdminPeopleController>(
-                  builder: (_) => controller.filteredPeople.isNotEmpty
+              child: GetBuilder<AdminStudentsController>(
+                  builder: (_) => controller.filteredStudents.isNotEmpty
                       ? ListView.builder(
-                          itemCount: controller.filteredPeople.length,
+                          itemCount: controller.filteredStudents.length,
                           itemBuilder: (BuildContext context, int index) {
                             return GestureDetector(
                                 onTap: () => Get.toNamed(Routes.personProfile,
                                     arguments:
-                                        controller.filteredPeople[index].id),
-                                child: PersonWidget(
+                                        controller.filteredStudents[index].id),
+                                child: StudentWidget(
                                     key: ObjectKey(
-                                        controller.filteredPeople[index].id),
-                                    name: controller.filteredPeople[index].name,
-                                    type: controller.filteredPeople[index].type,
+                                        controller.filteredStudents[index].id),
+                                    name: controller.filteredStudents[index].name,
+                                    type: controller.filteredStudents[index].type,
                                     camera: "Camera",
-                                    time: "Time"));
+                                    time: "Time",
+                                    userId: controller.filteredStudents[index].userId,
+                                     ));
                           },
                         )
                       : SizedBox(

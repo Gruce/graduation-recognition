@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class PersonWidget extends GetWidget {
-  PersonWidget(
+class StudentWidget extends GetWidget {
+  StudentWidget(
       {Key? key,
+      required this.userId,
       required this.name,
       required this.type,
       required this.camera,
       required this.time})
       : super(key: key);
-
+  int userId;
   String name;
   int type;
   String camera;
@@ -19,15 +20,9 @@ class PersonWidget extends GetWidget {
   Widget build(BuildContext context) {
     var typeText = "";
     switch (type) {
-      case 0:
-        typeText = "Visitor";
-        break;
       case 1:
         typeText = "Student";
-        break;
-      case 2:
-        typeText = "Employer";
-        break;
+        break;   
     }
 
     return Card(

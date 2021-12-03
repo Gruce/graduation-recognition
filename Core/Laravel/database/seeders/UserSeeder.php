@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use Str;
 
 class UserSeeder extends Seeder
 {
@@ -20,25 +21,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => bcrypt('123456'),
             'remember_token' => Str::random(10),
-            'type' => 'admin'
-        ]);
-
-        User::create([
-            'name' => 'Hussam Haider',
-            'email' => 'hussam@gmail.com',
-            'email_verified_at' => now(),
-            'password' => bcrypt('123456'),
-            'remember_token' => Str::random(10),
-            'type' => 'admin'
-        ]);
-
-        User::create([
-            'name' => 'Hassan Kadhim',
-            'email' => 'hassan@gmail.com',
-            'email_verified_at' => now(),
-            'password' => bcrypt('123456'),
-            'remember_token' => Str::random(10),
-            'type' => 'admin'
+            'type' => 1,
         ]);
 
         User::create([
@@ -47,7 +30,34 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => bcrypt('123456'),
             'remember_token' => Str::random(10),
-            'type' => 'admin'
+            'type' => 1,
+        ]);
+
+        User::create([
+            'name' => 'Hussam Haider',
+            'email' => 'hussam@gmail.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt('123456'),
+            'remember_token' => Str::random(10),
+            'type' => 3,
+        ]);
+
+        User::create([
+            'name' => 'Hassan Kadhim',
+            'email' => 'hassan@gmail.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt('123456'),
+            'remember_token' => Str::random(10),
+            'type' => 3,
+        ]);
+
+        User::create([
+            'name' => 'Stev',
+            'email' => 'stev@gmail.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt('123456'),
+            'remember_token' => Str::random(10),
+            'type' => 2,
         ]);
     }
 }

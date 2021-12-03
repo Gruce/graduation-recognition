@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\{
     PeopleController,
+    StudentController,
     CameraController,
     TrackingController,
 };
@@ -40,6 +41,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/', [PeopleController::class, 'people']);
     });
 
+    ## Students ##
+    Route::group(['prefix' => 'students'] ,function(){
+        Route::get('/', [StudentController::class, 'students']);
+    });
+
     ## Cameras ##
     Route::group(['prefix' => 'cameras'] ,function(){
         Route::get('/', [CameraController::class , 'cameras']);
@@ -50,6 +56,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'tracking'] ,function(){
         Route::post('/new', [TrackingController::class, 'new_track']);
     });
+
+
 
     Route::post('person', [ApiController::class, 'person']);
     Route::get('not_trained_people', [ApiController::class, 'not_trained_people']);

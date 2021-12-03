@@ -10,10 +10,13 @@ class Camera extends Model
     use HasFactory;
     public $timestamps = true;
 
-    protected $fillable = ['state', 'description'];
+    protected $fillable = ['state', 'description' , 'hall_id'];
 
-    public function trackings()
-    {
+    public function trackings(){
         return $this->hasMany(Tracking::class);
+    }
+
+    public function hall(){
+        return $this->belongsTo(Hall::class);
     }
 }

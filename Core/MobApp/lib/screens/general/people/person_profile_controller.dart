@@ -26,8 +26,8 @@ class PersonProfileController extends GetxController {
     return person;
   }
 
-  String personType(var type){
-    switch (type){
+  String personType(var type) {
+    switch (type) {
       case 0:
         return "Visitor";
       case 1:
@@ -37,6 +37,4 @@ class PersonProfileController extends GetxController {
     }
     return "Unknown";
   }
-
-
 }

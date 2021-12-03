@@ -34,6 +34,11 @@
                 'active' => request()->routeIs('students'),
             ],
             [
+                'name' => 'Train New',
+                'route' => 'trainNew',
+                'active' => request()->routeIs('trainNew'),
+            ],
+            [
                 'name' => 'Settings',
                 'route' => 'settings',
                 'active' => request()->routeIs('settings'),
@@ -54,6 +59,11 @@
                 'name' => 'Stages',
                 'route' => 'stages',
                 'active' => request()->routeIs('stages'),
+            ],
+            [
+                'name' => 'Units',
+                'route' => 'units',
+                'active' => request()->routeIs('units'),
             ],
             [
                 'name' => 'Subjects',

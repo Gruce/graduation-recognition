@@ -4,7 +4,7 @@
             Students
         </h2>
     </x-slot>
-    @livewire('students.student-action')
+    @livewire('actions' , ['folder' => 'students' , 'file' => 'student-add' , 'search' => 'Student name or email'])
     <div class="mt-3">
         <section class="text-gray-600 body-font">
             <div class="container px-5 py-10 mx-auto bg-white rounded-lg max-w-7xl sm:px-6 lg:px-8">
@@ -138,7 +138,7 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <a href="{{route('delete' , [ 'Student' , $student->id])}}" class="btn btn-sm btn-danger">Delete</a>
+                                        <a href="{{route('delete' , [ 'Student' , $student->id])}}" class="text-red-500"><i class="material-icons text-base">delete</i></a>
                                     </td>
                                 </tr>
                             @empty

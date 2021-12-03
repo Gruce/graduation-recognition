@@ -2,8 +2,7 @@ import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/Teacher/teacher_home_controller.dart';
 import 'package:graduaiton_app/controllers/Teacher/teacher_layout_controller.dart';
 import 'package:graduaiton_app/controllers/Teacher/teacher_profile_controller.dart';
-import 'package:graduaiton_app/screens/teacher/home_page/schedule_teacher.dart';
-import 'package:graduaiton_app/screens/teacher/tables_page/tables_screen.dart';
+// import 'package:graduaiton_app/screens/teacher/tables_page/tables_screen.dart';
 
 class TeacherLayoutBinding extends Bindings {
   @override
@@ -19,23 +18,17 @@ class TeacherHomeBinding extends Bindings {
   }
 }
 
-class TeacherTablesBinding extends Bindings {
-  @override
-  void dependencies() {
-    Get.lazyPut(() => TeacherTablesScreen());
-  }
-}
+// class TeacherTablesBinding extends Bindings {
+//   @override
+//   void dependencies() {
+//     Get.lazyPut(() => TeacherTablesScreen());
+//   }
+// }
 
 class TeacherProfileBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut(() => TeacherProfileController());
-  }
-}
-class TeacherScheduleBinding extends Bindings {
-  @override
-  void dependencies() {
-    Get.lazyPut(() => TeacherScheduleScreen());
   }
 }
 

@@ -8,6 +8,11 @@ module.exports = {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
     ],
+    variants: {
+        extend: {
+            opacity: ['disabled'],
+        }
+    },
     darkMode: 'media',
     theme: {
         // extend: {

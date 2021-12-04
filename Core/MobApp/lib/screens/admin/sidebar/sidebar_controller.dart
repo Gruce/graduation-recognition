@@ -6,8 +6,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AdminSidebarController extends GetxController {
   final List<Map<dynamic, dynamic>> tabs = [
-    {"title": "People", "icon": Icons.people, "route": '/admin/people/'},
-    {"title": "Tables", "icon": Icons.table_chart, "route": '/admin/tables/'},
+    {"title": "People", "icon": Icons.groups_sharp, "route": '/admin/people/'},
+    {"title": "Students", "icon": Icons.people_sharp, "route": '/admin/students/'},
   ];
 
   void onItemTap(int index) {

@@ -4,7 +4,8 @@
             Subjects
         </h2>
     </x-slot>
-    @livewire('subjects.subject-action')
+    @livewire('actions' , ['folder' => 'subjects' , 'file' => 'subject-add' , 'search' => 'Subject name'])
+    {{-- @livewire('subjects.subject-action') --}}
     <div class="mt-3">
         <section class="text-gray-600 body-font">
             <div class="container px-5 py-10 mx-auto bg-white rounded-lg max-w-7xl sm:px-6 lg:px-8">
@@ -102,7 +103,7 @@
                                     </td>
                                     <td>
                                         <button>ADD TEACHER</button>
-                                        <a href="{{route('delete' , [ 'Subject' , $subject->id])}}" >Delete</a>
+                                        <a href="{{route('delete' , [ 'Subject' , $subject->id])}}" class="text-red-500"><i class="material-icons text-base">delete</i></a>
                                     </td>
                                 </tr>
                             @empty

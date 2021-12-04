@@ -7,14 +7,15 @@ import 'package:graduaiton_app/screens/admin/home_page/home_screen.dart';
 import 'package:graduaiton_app/screens/admin/layout.dart';
 import 'package:graduaiton_app/screens/admin/people/people_screen.dart';
 import 'package:graduaiton_app/screens/admin/profile/profile_screen.dart';
-import 'package:graduaiton_app/screens/admin/tables_page/tables_screen.dart';
+import 'package:graduaiton_app/screens/admin/students/students_screen.dart';
+// import 'package:graduaiton_app/screens/admin/tables_page/tables_screen.dart';
 import 'package:graduaiton_app/screens/general/people/person_profile_widget.dart';
 import 'package:graduaiton_app/screens/login_screen.dart';
 import 'package:graduaiton_app/screens/teacher/home_page/home_screen.dart';
 import 'package:graduaiton_app/screens/teacher/home_page/schedule_teacher.dart';
 import 'package:graduaiton_app/screens/teacher/layout.dart';
 import 'package:graduaiton_app/screens/teacher/profile/profile_screen.dart';
-import 'package:graduaiton_app/screens/teacher/tables_page/tables_screen.dart';
+// import 'package:graduaiton_app/screens/teacher/tables_page/tables_screen.dart';
 
 class Routes {
   static const login = '/';
@@ -24,9 +25,9 @@ class Routes {
 
   //Admin Routes
   static const adminMain = '/admin/';
-  static const adminTables = '/admin/tables/';
   static const adminProfile = '/admin/profile/';
   static const adminPeople = '/admin/people/';
+  static const adminStudents = '/admin/students/';
 
   //Teach Routes
   static const teacherMain = '/teacher/';
@@ -51,10 +52,10 @@ class Routes {
         page: () => const AdminHomeScreen(),
         binding: AdminHomeBinding()),
 
-    GetPage(
-        name: adminTables,
-        page: () => const AdminTablesScreen(),
-        binding: AdminTablesBinding()),
+    // GetPage(
+    //     name: adminTables,
+    //     page: () => const AdminTablesScreen(),
+    //     binding: AdminTablesBinding()),
 
     GetPage(
         name: adminProfile,
@@ -63,7 +64,12 @@ class Routes {
 
     GetPage(
         name: adminPeople,
-        page: () => AdminPeopleScreen(),
+        page: () =>  const AdminPeopleScreen(),
+        binding: AdminProfileBinding()),
+
+        GetPage(
+        name: adminStudents,
+        page: () =>  const AdminStudentsScreen(),
         binding: AdminProfileBinding()),
 
     // Teacher Routes
@@ -72,10 +78,10 @@ class Routes {
         page: () => const TeacherHomeScreen(),
         binding: TeacherHomeBinding()),
 
-    GetPage(
-        name: teachTables,
-        page: () => const TeacherTablesScreen(),
-        binding: TeacherTablesBinding()),
+    // GetPage(
+    //     name: teachTables,
+    //     page: () => const TeacherTablesScreen(),
+    //     binding: TeacherTablesBinding()),
 
     GetPage(
         name: teachSchedule,

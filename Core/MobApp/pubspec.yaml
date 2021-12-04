@@ -43,7 +43,7 @@ dependencies:
   
   simple_animations: ^4.0.1
   line_icons: ^2.0.1
-  
+  jiffy:
   date_picker_timeline: ^1.2.3
   shimmer: ^2.0.0
   syncfusion_flutter_calendar: ^19.3.56

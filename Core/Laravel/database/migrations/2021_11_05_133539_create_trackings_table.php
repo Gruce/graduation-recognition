@@ -15,17 +15,11 @@ class CreateTrackingsTable extends Migration
     {
         Schema::create('trackings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('person_id')->nullable();
-            $table->unsignedBigInteger('camera_id');
+            $table->foreignId('person_id')->nullable()->constrained('people')->onDelete('cascade');
+            $table->foreignId('camera_id')->nullable()->constrained('cameras')->onDelete('cascade');
+            $table->dateTime('seen')->default(now());
             $table->string('image_path');
             $table->timestamps();
-
-            $table->foreign('person_id')
-                ->references('id')
-                ->on('people');
-            $table->foreign('camera_id')
-                ->references('id')
-                ->on('cameras');
         });
     }
 

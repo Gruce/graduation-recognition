@@ -64,6 +64,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('people/new', [ApiController::class, 'new_person']);
     Route::post('app_restart', [ApiController::class, 'app_restart']);
 
+
+
+    Route::get('sections', [ApiController::class, 'sections']);
+
+
+    Route::get('stages', [ApiController::class, 'stages']);
+
+
+    Route::get('units', [ApiController::class, 'units']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

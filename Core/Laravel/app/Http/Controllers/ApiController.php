@@ -10,6 +10,10 @@ use App\Models\Person;
 use App\Models\Camera;
 use App\Models\Tracking;
 use App\Models\Setting;
+use App\Models\Stage;
+use App\Models\Unit;
+use App\Models\Section;
+
 
 class ApiController extends Controller
 {
@@ -51,5 +55,24 @@ class ApiController extends Controller
 
         return response()->json(['data' => $data], $rsp);
 
+    }
+
+    public function sections(){
+        return response()->json([
+            'data' => Section::get(['id','name'])
+        ], 200);
+    }
+
+
+    public function stages(){
+        return response()->json([
+            'data' => Stage::with('section:id,name')->get(['id','name','section_id'])
+        ], 200);
+    }
+
+    public function units(){
+        return response()->json([
+            'data' => Unit::with(['section:id,name','stage:id,name,section_id'])->get(['id','name','section_id','stage_id'])
+        ], 200);
     }
 }

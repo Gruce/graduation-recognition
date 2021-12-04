@@ -7,7 +7,9 @@ import 'package:graduaiton_app/screens/admin/students/students_search_widget.dar
 import '../layout.dart';
 import 'dropdown_widget/section_dropdown_widget.dart';
 import 'dropdown_widget/stage_dropdown_widget.dart';
+import 'dropdown_widget/test.dart';
 import 'dropdown_widget/unit_dropdown_widget.dart';
+import 'section_dropdown_widget.dart';
 
 class AdminStudentsScreen extends GetView<AdminStudentsController> {
   const AdminStudentsScreen({Key? key}) : super(key: key);
@@ -19,44 +21,37 @@ class AdminStudentsScreen extends GetView<AdminStudentsController> {
         child: Column(
           children: [
             // Search Container
-            StudentsSearchWidget(),
+            // StudentsSearchWidget(),
+            SectionsDropDownWidget(),
             // DropDownWidget(),
             const SizedBox(height: 20),
-            Container(
-              width: 300.0,
-               decoration: BoxDecoration(
-        color: Colors.white.withOpacity(1),
-        border: Border.all(
-          color: Colors.white.withOpacity(1),
-          width: 1.0,
-        ),
-        borderRadius: BorderRadius.circular(20.0),
-      ),
-              // color: Colors.blue[300],
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+      //       Container(
+      //         width: 200.0,
+      //          decoration: BoxDecoration(
+      //   color: Colors.white.withOpacity(1),
+      //   border: Border.all(
+      //     color: Colors.white.withOpacity(1),
+      //     width: 1.0,
+      //   ),
+      //   borderRadius: BorderRadius.circular(20.0),
+      // ),
+      //         // color: Colors.blue[300],
+      //         child: Row(
+      //             mainAxisAlignment: MainAxisAlignment.center,
                   
-                  children: const [
-                    SectionDropDown(),
-                    SizedBox(width: 20,),
-                    //  SectionDropDown(),
-                    StageDropDown(),
-                    SizedBox(width: 20,),
-                    //  SectionDropDown(),
-                    UnitDropDown(),
-                  ]),
-            ),
+      //             children: const [
+                      
+      //               SectionDropDown(),
+      //               SizedBox(width: 20,),
+      //               //  SectionDropDown(),
+      //               StageDropDown(),
+      //               SizedBox(width: 20,),
+      //               //  SectionDropDown(),
+      //               UnitDropDown(),
+      //             ]),
+      //       ),
 
             const SizedBox(height: 20),
-            // Expanded(
-            //     child: Container(
-            //   padding:
-            //       const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-            //   decoration: BoxDecoration(
-            //       borderRadius: BorderRadius.circular(20),
-            //       color: const Color.fromRGBO(255, 255, 255, .5)),
-            //   child: const DropDownWidget(),
-            // )),
             Expanded(
                 child: Container(
               padding:
@@ -92,7 +87,8 @@ class AdminStudentsScreen extends GetView<AdminStudentsController> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 10.0, vertical: 5.0),
                               child: const Text('Not Found',
-                                  style: TextStyle(fontSize: 24))))),
+                                  style: TextStyle(fontSize: 24))))
+                                  ),
             ))
           ],
         ));

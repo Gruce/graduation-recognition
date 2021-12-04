@@ -12,7 +12,6 @@ import 'package:graduaiton_app/screens/admin/students/students_screen.dart';
 import 'package:graduaiton_app/screens/general/people/person_profile_widget.dart';
 import 'package:graduaiton_app/screens/login_screen.dart';
 import 'package:graduaiton_app/screens/teacher/home_page/home_screen.dart';
-import 'package:graduaiton_app/screens/teacher/home_page/schedule_teacher.dart';
 import 'package:graduaiton_app/screens/teacher/layout.dart';
 import 'package:graduaiton_app/screens/teacher/profile/profile_screen.dart';
 // import 'package:graduaiton_app/screens/teacher/tables_page/tables_screen.dart';
@@ -29,7 +28,7 @@ class Routes {
   static const adminPeople = '/admin/people/';
   static const adminStudents = '/admin/students/';
 
-  //Teach Routes
+   //Teach Routes
   static const teacherMain = '/teacher/';
   static const teachTables = '/teacher/tables/';
   static const teachSchedule = '/teacher/schedule/';
@@ -72,7 +71,8 @@ class Routes {
         page: () =>  const AdminStudentsScreen(),
         binding: AdminProfileBinding()),
 
-    // Teacher Routes
+    
+      // Teacher Routes
     GetPage(
         name: teacherMain,
         page: () => const TeacherHomeScreen(),
@@ -84,13 +84,10 @@ class Routes {
     //     binding: TeacherTablesBinding()),
 
     GetPage(
-        name: teachSchedule,
-        page: () =>  TeacherScheduleScreen(),
-        binding: TeacherScheduleBinding()),
-
-    GetPage(
         name: teachProfile,
         page: () => TeacherProfileScreen(),
         binding: TeacherProfileBinding()),
+
+   
   ];
 }

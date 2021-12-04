@@ -32,11 +32,5 @@ class TeacherProfileBinding extends Bindings {
     Get.lazyPut(() => TeacherProfileController());
   }
 }
-class TeacherScheduleBinding extends Bindings {
-  @override
-  void dependencies() {
-    Get.lazyPut(() => TeacherScheduleScreen());
-  }
-}
 
 

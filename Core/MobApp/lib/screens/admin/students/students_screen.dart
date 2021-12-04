@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:graduaiton_app/controllers/Admin/admin_people_controller.dart';
 import 'package:graduaiton_app/controllers/Admin/admin_students_controller.dart';
-
 import 'package:graduaiton_app/routes/routes.dart';
-import 'package:graduaiton_app/screens/admin/people/person_widget.dart';
 import 'package:graduaiton_app/screens/admin/students/student_widget.dart';
 import 'package:graduaiton_app/screens/admin/students/students_search_widget.dart';
 import '../layout.dart';
@@ -79,11 +76,13 @@ class AdminStudentsScreen extends GetView<AdminStudentsController> {
                                 child: StudentWidget(
                                     key: ObjectKey(
                                         controller.filteredStudents[index].id),
-                                    name: controller.filteredStudents[index].name,
-                                    type: controller.filteredStudents[index].type,
+                                    name: controller.filteredStudents[index].user.name,
+                                    section_name:controller.filteredStudents[index].section.name,
+                                    stage_name:controller.filteredStudents[index].stage.name,
+                                    unit_name:controller.filteredStudents[index].unit.name,
                                     camera: "Camera",
                                     time: "Time",
-                                    userId: controller.filteredStudents[index].userId,
+                                    user_id: controller.filteredStudents[index].user_id,
                                      ));
                           },
                         )

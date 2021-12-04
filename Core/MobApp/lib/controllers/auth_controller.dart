@@ -110,7 +110,7 @@ class LoginController extends GetxController {
         Get.offAllNamed(Routes.teacherMain);
         break;
       case 3:
-        Get.offAllNamed(Routes.adminMain);
+        Get.offAllNamed(Routes.adminStudents);
         break;
       default:
     }

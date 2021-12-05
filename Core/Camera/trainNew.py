@@ -21,7 +21,7 @@ import torch
 from facenet_pytorch import MTCNN
 from PIL import Image, ImageDraw
 
-from Core.Camera.lib.config import Config
+from lib.config import Config
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 

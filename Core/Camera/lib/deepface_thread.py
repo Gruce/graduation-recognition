@@ -12,8 +12,8 @@ import pandas as pd
 from termcolor import cprint
 
 
-from Core.Camera.lib.utilities import Utilities
-from Core.Camera.lib.config import Config
+from lib.utilities import Utilities
+from lib.config import Config
 
 ArcFace = DeepFace.build_model('ArcFace')
 

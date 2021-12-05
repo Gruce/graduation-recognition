@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AdminAppbar extends StatelessWidget {
-  const AdminAppbar({Key? key, required this.title}) : super(key: key);
+class TeacherAppbar extends StatelessWidget {
+  const TeacherAppbar({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -9,17 +9,9 @@ class AdminAppbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(children: [
       Container(
+        
         padding: const EdgeInsets.all(5),
-        decoration: BoxDecoration(
-          // border: Border.all(
-          //   color: const Color(0xFFdddddd),
-          //   style: BorderStyle.solid,
-          //   width: 1.0,
-          // ),
-          color: Colors.transparent,
-          borderRadius: BorderRadius.circular(30.0),
-        ),
-        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        margin: const EdgeInsets.symmetric(vertical: 20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

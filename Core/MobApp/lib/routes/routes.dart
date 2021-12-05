@@ -4,15 +4,15 @@ import 'package:graduaiton_app/bindings/auth_binding.dart';
 import 'package:graduaiton_app/bindings/general_bindings.dart';
 import 'package:graduaiton_app/bindings/teacher_bindings.dart';
 import 'package:graduaiton_app/screens/admin/home_page/home_screen.dart';
-import 'package:graduaiton_app/screens/admin/layout.dart';
 import 'package:graduaiton_app/screens/admin/people/people_screen.dart';
 import 'package:graduaiton_app/screens/admin/profile/profile_screen.dart';
 import 'package:graduaiton_app/screens/admin/students/students_screen.dart';
 // import 'package:graduaiton_app/screens/admin/tables_page/tables_screen.dart';
 import 'package:graduaiton_app/screens/general/people/person_profile_widget.dart';
 import 'package:graduaiton_app/screens/login_screen.dart';
+import 'package:graduaiton_app/screens/teacher/attendance/attendance_student.dart';
 import 'package:graduaiton_app/screens/teacher/home_page/home_screen.dart';
-import 'package:graduaiton_app/screens/teacher/layout.dart';
+import 'package:graduaiton_app/screens/teacher/home_page/schedule_teacher.dart';
 import 'package:graduaiton_app/screens/teacher/profile/profile_screen.dart';
 // import 'package:graduaiton_app/screens/teacher/tables_page/tables_screen.dart';
 
@@ -30,6 +30,9 @@ class Routes {
 
    //Teach Routes
   static const teacherMain = '/teacher/';
+  static const teachTables = '/teacher/tables/';
+  static const teachSchedule = '/teacher/schedule/';
+  static const attendanceStudents = '/teacher/attendance/';
   static const teachProfile = '/teacher/profile/';
 
   static final routes = [
@@ -76,10 +79,15 @@ class Routes {
         page: () => const TeacherHomeScreen(),
         binding: TeacherHomeBinding()),
 
-    // GetPage(
-    //     name: teachTables,
-    //     page: () => const TeacherTablesScreen(),
-    //     binding: TeacherTablesBinding()),
+    GetPage(
+        name: attendanceStudents,
+        page: () => const AttendanceStudentsScreen(),
+        binding: AttendanceStudensBinding()),
+
+  GetPage(
+        name: teachSchedule,
+        page: () => const TeacherScheduleScreen(),
+        binding: TeacherScheduleScrBinding()),
 
     GetPage(
         name: teachProfile,

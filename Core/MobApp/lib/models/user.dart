@@ -2,7 +2,7 @@ class UserModel {
   int id = 0;
   String name = '';
   String email = '';
-  int type = 0;
+  String type = '';
 
   UserModel({id, name, email, type});
 

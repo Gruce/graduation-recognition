@@ -13,7 +13,6 @@ class TrackingController extends Controller
 {
     public function new_track(Request $req){
         $file = '';
-        $name = '';
 
         if ($req->image)
             $file = $req->image->store('tracking/' . date("Y-m-d"), 'public');
@@ -21,7 +20,7 @@ class TrackingController extends Controller
         foreach (json_decode($req->people) as $person){
             if ($person == -1){
                 $user = new Person;
-                $name = $user->name = '';
+                $user->name = '';
                 $user->training_id = 1;
                 $user->type = -1;
                 $user->save();
@@ -33,12 +32,12 @@ class TrackingController extends Controller
             }
 
             $track              = new Tracking;
-            $name = $track->person_id   = $person;
+            $track->person_id   = $person;
             $track->camera_id   = $req->id;
             $track->image_path  = $file;
             $track->save();
         }
         
-        return response()->json(['data' => 'Success.' , 'name' => $name], 200);
+        return response()->json(['data' => 'Success.'], 200);
     }
 }

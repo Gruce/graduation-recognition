@@ -15,10 +15,7 @@ class TrackingModel {
     camera_id = json['camera_id'];
     person_id = json['person_id'];
     seen = Jiffy(json['seen']).fromNow();
-      if (!json['camera'].isEmpty){
-        camera = CameraModel.fromJson(json['camera']);
-      }
-    
+    camera = CameraModel.fromJson(json['camera']);
   }
 
   Map<dynamic, dynamic> toJson() {

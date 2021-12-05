@@ -13,7 +13,7 @@ class PeopleController extends Controller
     public function people(){
         $people = Person::where('training_id', '!=', 0)->with(['trackings' => function($q){
             return $q->with('camera:id,description,source')->select('id' , 'person_id' , 'camera_id' , 'seen')->latest()->take(1);
-        }])->get(
+        } , 'user:id,email'])->get(
             [
                 'id',
                 'user_id',

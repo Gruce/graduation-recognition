@@ -42,10 +42,14 @@ dependencies:
   shimmer: ^2.0.0
   simple_animations: ^4.0.1
   line_icons: ^2.0.1
+  jiffy:
+  date_picker_timeline: ^1.2.3
+  syncfusion_flutter_calendar: ^19.3.56
+  table_calendar: ^3.0.3
+  intl: 
   english_words: ^4.0.0 
   video_player_web: ^2.0.4
-  jiffy: 
-
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -71,7 +75,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
-    - assets/bb.png
+    
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

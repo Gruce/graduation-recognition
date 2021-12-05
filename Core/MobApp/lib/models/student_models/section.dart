@@ -1,24 +1,20 @@
-class UserModel {
+// ignore_for_file: non_constant_identifier_names
+
+class SectionModel {
   int id = 0;
   String name = '';
-  String email = '';
-  int type = 0;
 
-  UserModel({id, name, email, type});
+  SectionModel({id, name});
 
-  UserModel.fromJson(Map<dynamic, dynamic> json) {
+  SectionModel.fromJson(Map<dynamic, dynamic> json) {
     id = json['id'];
     name = json['name'];
-    email = json['email'];
-    type = json['type'];
   }
 
   Map<dynamic, dynamic> toJson() {
     final Map<dynamic, dynamic> data = <dynamic, dynamic>{};
     data['id'] = id;
     data['name'] = name;
-    data['email'] = email;
-    data['type'] = type;
     return data;
   }
 }

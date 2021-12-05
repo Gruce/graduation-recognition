@@ -18,7 +18,7 @@ class CreatePeopleTable extends Migration
             $table->string("name")->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->integer('training_id')->default(0);
-            $table->integer('type')->default(0);
+            $table->integer('type')->default(0); // 0 => v || 1 => student || 2 => emp  
             $table->timestamps();
 
             $table->foreign('user_id')

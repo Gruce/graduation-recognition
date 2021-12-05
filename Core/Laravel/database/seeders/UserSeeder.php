@@ -59,5 +59,14 @@ class UserSeeder extends Seeder
             'remember_token' => Str::random(10),
             'type' => 2,
         ]);
+
+        User::create([
+            'name' => 'Hassan Hazim',
+            'email' => 'hazim@gmail.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt('123456'),
+            'remember_token' => Str::random(10),
+            'type' => 2,
+        ]);
     }
 }

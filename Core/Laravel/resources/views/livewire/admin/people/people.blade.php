@@ -104,7 +104,7 @@
                                 @if ($person->id == $editingPerson)
                                     <td colspan="6">
                                         {{-- @livewire('people.people-edit', ['personId' => $editingPerson], key("{{now()}}")) --}}
-                                        <livewire:people.people-edit :personId="$editingPerson" key="{{ now() }}" />
+                                        <livewire:admin.people.people-edit :personId="$editingPerson" key="{{ now() }}" />
                                     </td>
                                 @endif
                                 @empty

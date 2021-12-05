@@ -26,4 +26,8 @@ class Teacher extends Model
     public function subjects(){
         return $this->belongsToMany(Subject::class)->withTimestamps();
     }
+
+    public function units(){
+        return $this->belongsToMany(Unit::class)->withTimestamps();
+    }
 }

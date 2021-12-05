@@ -114,18 +114,23 @@
                                                     لا يوجد مواد
                                                 @endforelse
                                             </span>
-                                            {{-- <div x-show="show">
+                                            <div x-show="show">
                                                 <div class="text-gray-600 focus-within:text-gray-400">
-                                                    @foreach ($subjects as $subject)
+                                                    @foreach ($teacher->subjects->merge($subjects)->unique() as $key => $subject)
                                                         @if($subject->section_id == $teacher->section_id)
-                                                            <input class="form-check-input" type="checkbox" value="" id="subject-{{$subject->id}}" wire:model="subjectID.{{$subject->id}}">
-                                                            <label class="form-check-label" for="subject-{{$subject->id}}">
+                                                            <input class="form-check-input" type="checkbox" id="teachers.{{ $i }}.subjects.{{ $key }}.name" 
+                                                            
+                                                            {{-- wire:model="teachers.{{ $i }}.subjects.{{ $key }}.id"  --}}
+                                                            
+                                                            wire:change="changeSubject({{$i}}, {{$subject->id}})">
+
+                                                            <label class="form-check-label" for="teachers.{{ $i }}.subjects.{{ $key }}.name">
                                                                 {{ $subject->name}}
                                                             </label>
                                                         @endif
                                                     @endforeach
                                                 </div>
-                                            </div> --}}
+                                            </div>
                                         </div>
                                     </td>
                                     <td class="p-3">

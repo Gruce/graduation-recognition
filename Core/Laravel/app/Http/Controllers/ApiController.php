@@ -98,19 +98,14 @@ class ApiController extends Controller
         return response()->json(['data' => $name], 200);
     }
 
-    public function app_restart(Request $req){
-        $key = $req->key == 'app_restart' ? 'app_restart' : false ;
-        $data = 'Key Not Active';
-        $rsp = 401;
-        if($key){
-            $x = Setting::where('key' , $key)->first();
-            $value = $x->value == '0' ? '1' : '0';
-            $x->update(['value' => $value]);
-            $data = 'Success';
-            $rsp = 200;
-        } 
+    public function get_statue(){
+        $x = Setting::where('key' , 'app_restart')->first();
+        return response()->json(['data' => $x->value], 200);
+    }
 
-        return response()->json(['data' => $data], $rsp);
-
+    public function set_statue(){
+        $x = Setting::where('key' , 'app_restart')->first();
+        $x->update(['value' => '0']);
+        return response()->json(['data' => 'Success'], 200);
     }
 }

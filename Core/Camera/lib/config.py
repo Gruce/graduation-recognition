@@ -1,7 +1,7 @@
 class Config:
     # def __init__(self):
     ## Socket ##
-    host = '192.168.99.249'
+    host = '192.168.1.100'
     port = 1233
 
     admin_email = 'gruceing@gmail.com'

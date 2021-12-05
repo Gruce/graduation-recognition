@@ -6,42 +6,42 @@
             [
                 'name' => 'Dashboard',
                 'route' => 'dashboard',
-                'active' => request()->routeIs('dashboard'),
+                'active' => isRoute('dashboard'),
             ],
             [
                 'name' => 'Trackings',
                 'route' => 'trackings',
-                'active' => request()->routeIs('trackings'),
+                'active' => isRoute('trackings'),
             ],
             [
                 'name' => 'People',
                 'route' => 'people',
-                'active' => request()->routeIs('people'),
+                'active' => isRoute('people'),
             ],
             [
                 'name' => 'Unkown People',
                 'route' => 'unkown_people',
-                'active' => request()->routeIs('unkown_people'),
+                'active' => isRoute('unkown_people'),
             ],
             [
                 'name' => 'Teachers',
                 'route' => 'teachers',
-                'active' => request()->routeIs('teachers'),
+                'active' => isRoute('teachers'),
             ],
             [
                 'name' => 'Students',
                 'route' => 'students',
-                'active' => request()->routeIs('students'),
+                'active' => isRoute('students'),
             ],
             [
                 'name' => 'Train New',
                 'route' => 'trainNew',
-                'active' => request()->routeIs('trainNew'),
+                'active' => isRoute('trainNew'),
             ],
             [
                 'name' => 'Settings',
                 'route' => 'settings',
-                'active' => request()->routeIs('settings'),
+                'active' => isRoute('settings'),
             ],
         ];
 
@@ -53,24 +53,29 @@
             [
                 'name' => 'Sections',
                 'route' => 'sections',
-                'active' => request()->routeIs('sections'),
+                'active' => isRoute('sections'),
             ],
             [
                 'name' => 'Stages',
                 'route' => 'stages',
-                'active' => request()->routeIs('stages'),
+                'active' => isRoute('stages'),
             ],
             [
                 'name' => 'Units',
                 'route' => 'units',
-                'active' => request()->routeIs('units'),
+                'active' => isRoute('units'),
             ],
             [
                 'name' => 'Subjects',
                 'route' => 'subjects',
-                'active' => request()->routeIs('subjects'),
+                'active' => isRoute('subjects'),
             ],
         ];
 
         return $array ;
+    }
+
+
+    function isRoute($route){
+        return str_contains(Route::getCurrentRoute()->getPrefix(), $route);
     }

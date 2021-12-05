@@ -104,3 +104,16 @@ class Auth:
 
         os.remove(os.path.normpath(directory + 'representations_arcface.pkl')) if os.path.exists(directory + 'representations_arcface.pkl') else None
 
+
+    # Application Settings
+    def isMustRestart(self):
+        res = requests.get(api + 'app/getStatue', headers=self.headers)
+        if res.status_code == 200:
+            if res.json()["data"] == '0':
+                return False
+            else:
+                return True
+        return False
+
+    def setMustRestart(self):
+        requests.get(api + 'app/setStatue', headers=self.headers)

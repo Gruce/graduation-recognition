@@ -2,11 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/Teacher/teacher_home_controller.dart';
+import 'package:graduaiton_app/models/user.dart';
+import 'package:graduaiton_app/screens/teacher/notification/notification_screen.dart';
 import 'package:graduaiton_app/screens/teacher/profile/profile_screen.dart';
+import 'package:graduaiton_app/util/utilities.dart';
 
 class ComponentHomeScreen extends GetView<TeacherHomeController> {
   ComponentHomeScreen({Key? key}) : super(key: key);
- 
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -30,7 +33,8 @@ class ComponentHomeScreen extends GetView<TeacherHomeController> {
                             color: Colors.grey.withOpacity(0.2),
                             spreadRadius: 5,
                             blurRadius: 7,
-                            offset: const Offset(0, 1), // changes position of shadow
+                            offset: const Offset(
+                                0, 1), // changes position of shadow
                           ),
                         ],
                       ),
@@ -50,8 +54,7 @@ class ComponentHomeScreen extends GetView<TeacherHomeController> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10.0),
                           image: const DecorationImage(
-                            
-                            image: AssetImage("assets/teacher.png"),
+                            image: AssetImage("assets/teacher.jpg"),
                           )),
                     ),
                   )),
@@ -64,13 +67,25 @@ class ComponentHomeScreen extends GetView<TeacherHomeController> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          "Dr.Hassan Hazim",
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold),
-                        ),
+                        FutureBuilder(
+                            future: Utilities.getUser,
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                UserModel user = snapshot.data as UserModel;
+                                print(user);
+                                return Text(
+                                  user.name,
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
+                                );
+                              }else {
+                                return Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                            }),
                         Text(
                           "Computer Vison",
                           style: TextStyle(
@@ -101,6 +116,7 @@ class ComponentHomeScreen extends GetView<TeacherHomeController> {
         GridView.count(
           crossAxisCount: 2,
           crossAxisSpacing: 10,
+          childAspectRatio: 1.4,
           physics:
               const NeverScrollableScrollPhysics(), // to disable GridView's scrolling
           shrinkWrap: true, // You won't see infinite size error
@@ -330,7 +346,7 @@ class ComponentHomeScreen extends GetView<TeacherHomeController> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => TeacherProfileScreen()),
+                      builder: (context) => TeacherNotification()),
                 );
               },
               child: Container(

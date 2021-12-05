@@ -38,7 +38,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
     return Scaffold(
       appBar: _appBar(context),
       body: Container(
-        color: Colors.grey,
+       color: Colors.white,
         padding:
             const EdgeInsets.only(left: 20, right: 20, bottom: 10, top: 10),
         child: SingleChildScrollView(
@@ -287,6 +287,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
     } else if (isStartTime == true) {
       setState(() {
         _startTime = _formatedTime;
+        
       });
     } else if (isStartTime == false) {
       setState(() {

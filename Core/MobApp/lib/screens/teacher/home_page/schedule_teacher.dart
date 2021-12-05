@@ -24,6 +24,7 @@ class _TeacherScheduleScreenState extends State<TeacherScheduleScreen> {
 
   Widget build(BuildContext context) {
     return TeachLayoutScreen(
+      title: 'add Task',
       child: Column(
         children: [
           _addTaskBar(),
@@ -83,7 +84,7 @@ class _TeacherScheduleScreenState extends State<TeacherScheduleScreen> {
               ],
             ),
           ),
-          MyButton(label: "+ Add Schdule", onTap: () => Get.to(AddTaskPage())),
+          MyButton(label: "+ Add Task", onTap: () => Get.to(AddTaskPage())),
         ],
       ),
     );

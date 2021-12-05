@@ -18,7 +18,7 @@ class AdminStudentsScreen extends GetView<AdminStudentsController> {
           children: [
             // Search Container
             // StudentsSearchWidget(),
-            SectionsDropDownWidget(),
+            // SectionsDropDownWidget(),
             // DropDownWidget(),
             const SizedBox(height: 20),
       //       Container(

@@ -21,7 +21,8 @@ class SectionsDropDownWidget extends GetView {
         borderRadius: BorderRadius.circular(20.0),
       ),
       child: Row(
-        children: <Widget>[          
+        children: <Widget>[       
+          const Text("select section"),
           Obx(() => Expanded(
             child: 
               controller.sections.isNotEmpty ?
@@ -34,8 +35,8 @@ class SectionsDropDownWidget extends GetView {
                 // Array list of items
                 items: controller.sections.asMap().keys.map((int index) {
                   return DropdownMenuItem(
-                    value: index,
-                    child: Text(controller.sections[index].name.toString(),
+                    value: controller.sections[0].value.toString(),
+                    child: Text(controller.sections[0].name.toString(),
                         style: const TextStyle(color: Color(0xff6875F5))),
                   );
                 }).toList(),

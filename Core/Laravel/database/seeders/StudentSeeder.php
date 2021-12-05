@@ -28,5 +28,12 @@ class StudentSeeder extends Seeder
             'unit_id' => 3,
         ]);
 
+        Student::create([
+            'user_id' => 5,
+            'section_id' => 1,
+            'stage_id' => 4,
+            'unit_id' => 2,
+        ]);
+
     }
 }

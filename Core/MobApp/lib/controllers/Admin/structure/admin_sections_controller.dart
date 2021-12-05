@@ -29,10 +29,6 @@ class AdminSectionsController extends GetxController {
 
   void fetch() async {
     var res = await Utilities.httpGet('sections');
-    print("--------------------------------------------");
-    print(res.body);
-    print("--------------------------------------------");
-    
     if (res.statusCode == 200) {
       List response = json.decode(res.body)['data'];
       for (var element in response) {

@@ -35,8 +35,8 @@ class SectionsDropDownWidget extends GetView {
                 // Array list of items
                 items: controller.sections.asMap().keys.map((int index) {
                   return DropdownMenuItem(
-                    value: controller.sections[0].value.toString(),
-                    child: Text(controller.sections[0].name.toString(),
+                    value: index,
+                    child: Text(controller.sections[index].name.toString(),
                         style: const TextStyle(color: Color(0xff6875F5))),
                   );
                 }).toList(),

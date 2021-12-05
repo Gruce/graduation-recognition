@@ -5,7 +5,7 @@ class PersonModel {
   String name = '';
   int trainingId = 1;
   int type = 0;
-  TrackingModel trackings = TrackingModel();
+  TrackingModel? trackings = TrackingModel();
 
   PersonModel({id, name, trainingId, type, trackings});
 
@@ -14,7 +14,9 @@ class PersonModel {
     name = json['name'];
     trainingId = json['training_id'];
     type = json['type'];
-    trackings = TrackingModel.fromJson(json['trackings'][0]);
+    if (!json['trackings'].isEmpty) {
+      trackings = TrackingModel.fromJson(json['trackings'][0]);
+    }
   }
 
   Map<dynamic, dynamic> toJson() {

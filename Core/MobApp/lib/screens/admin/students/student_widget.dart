@@ -1,35 +1,29 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class PersonWidget extends GetWidget {
-  PersonWidget(
-      {Key? key,
-      required this.name,
-      required this.type,
-      required this.camera,
-      required this.time})
-      : super(key: key);
-
+class StudentWidget extends GetWidget {
+  StudentWidget({
+    Key? key,
+    required this.user_id,
+    required this.name,
+    required this.section_name,
+    required this.stage_name,
+    required this.unit_name,
+    required this.camera,
+    required this.time,
+  }) : super(key: key);
+  int user_id;
   String name;
-  int type;
+  String section_name;
+  String stage_name;
+  String unit_name;
   String camera;
   String time;
 
   @override
   Widget build(BuildContext context) {
-    var typeText = "";
-    switch (type) {
-      case 0:
-        typeText = "Visitor";
-        break;
-      case 1:
-        typeText = "Student";
-        break;
-      case 2:
-        typeText = "Employer";
-        break;
-    }
-
     return Card(
       elevation: 0,
       // shadowColor: Colors.black12,
@@ -50,7 +44,8 @@ class PersonWidget extends GetWidget {
               children: [
                 Text(
                   name,
-                  style: const TextStyle(fontSize: 18,color: Color(0xff6875F5)),
+                  style:
+                      const TextStyle(fontSize: 18, color: Color(0xff6875F5)),
                 ),
                 Container(
                     padding: const EdgeInsets.all(5.0),
@@ -65,9 +60,45 @@ class PersonWidget extends GetWidget {
                           ),
                     ),
                     child: Text(
-                      typeText,
+                      section_name,
                       style: const TextStyle(
-                        fontSize: 14,
+                        fontSize: 12,
+                      ),
+                    )),
+                Container(
+                    padding: const EdgeInsets.all(5.0),
+                    decoration: BoxDecoration(
+                      color: const Color.fromRGBO(235, 235, 235, .8),
+                      border: Border.all(
+                        color: const Color.fromRGBO(235, 235, 235, .8),
+                        width: 2.0,
+                      ),
+                      borderRadius: const BorderRadius.all(Radius.circular(
+                              5.0) //                 <--- border radius here
+                          ),
+                    ),
+                    child: Text(
+                      stage_name,
+                      style: const TextStyle(
+                        fontSize: 12,
+                      ),
+                    )),
+                Container(
+                    padding: const EdgeInsets.all(5.0),
+                    decoration: BoxDecoration(
+                      color: const Color.fromRGBO(235, 235, 235, .8),
+                      border: Border.all(
+                        color: const Color.fromRGBO(235, 235, 235, .8),
+                        width: 2.0,
+                      ),
+                      borderRadius: const BorderRadius.all(Radius.circular(
+                              5.0) //                 <--- border radius here
+                          ),
+                    ),
+                    child: Text(
+                      unit_name,
+                      style: const TextStyle(
+                        fontSize: 12,
                       ),
                     ))
               ],

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use Str;
 
 class UserSeeder extends Seeder
 {
@@ -20,7 +21,16 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => bcrypt('123456'),
             'remember_token' => Str::random(10),
-            'type' => 'admin'
+            'type' => 1,
+        ]);
+
+        User::create([
+            'name' => 'Abdulkareem Mgbel',
+            'email' => 'krm@gmail.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt('123456'),
+            'remember_token' => Str::random(10),
+            'type' => 1,
         ]);
 
         User::create([
@@ -29,7 +39,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => bcrypt('123456'),
             'remember_token' => Str::random(10),
-            'type' => 'admin'
+            'type' => 3,
         ]);
 
         User::create([
@@ -38,16 +48,16 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => bcrypt('123456'),
             'remember_token' => Str::random(10),
-            'type' => 'admin'
+            'type' => 3,
         ]);
 
         User::create([
-            'name' => 'Abdulkareem',
-            'email' => 'karm.99zo@gmail.com',
+            'name' => 'Stev',
+            'email' => 'stev@gmail.com',
             'email_verified_at' => now(),
             'password' => bcrypt('123456'),
             'remember_token' => Str::random(10),
-            'type' => 'admin'
+            'type' => 2,
         ]);
     }
 }

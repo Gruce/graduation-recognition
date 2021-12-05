@@ -20,7 +20,8 @@ class SectionsDropDownWidget extends GetView {
         borderRadius: BorderRadius.circular(20.0),
       ),
       child: Row(
-        children: <Widget>[          
+        children: <Widget>[       
+          const Text("select section"),
           Obx(() => Expanded(
             child: 
               controller.sections.isNotEmpty ?

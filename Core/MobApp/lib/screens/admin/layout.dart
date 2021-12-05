@@ -19,10 +19,10 @@ class AdminLayoutScreen extends GetView<AdminLayoutController> {
         backgroundColor: Colors.grey[200],
         drawer: AdminSidebarScreen(),
         appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(100),
-            child: AdminAppbar(
+            preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 0.15),
+            child: SafeArea(child: AdminAppbar(
               title: title,
-            )),
+            ))),
         bottomNavigationBar: AdminBottomNavigationBar(),
         // body: child
         body: SafeArea(

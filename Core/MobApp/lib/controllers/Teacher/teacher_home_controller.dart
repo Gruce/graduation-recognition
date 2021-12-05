@@ -6,6 +6,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 class TeacherHomeController extends GetxController {
+  RxBool isLectureStarted = false.obs;
+
   var listsearch = [];
   late SharedPreferences prefs;
 
@@ -28,5 +30,9 @@ class TeacherHomeController extends GetxController {
         listsearch.add(responsebody[i]);
       }
     }
+  }
+
+  void startLecture(){
+    isLectureStarted.value = !isLectureStarted.value;
   }
 }

@@ -23,7 +23,9 @@ class TeacherLayoutController extends GetxController {
   }
 
   void onItemTap(int index) {
-    selectedIndex.value = index;
-    Get.toNamed(tabs[index]['route']);
+    if (selectedIndex.value != index) {
+      selectedIndex.value = index;
+      Get.toNamed(tabs[index]['route']);
+    }
   }
 }

@@ -11,7 +11,6 @@ class TeacherAppbar extends StatelessWidget {
       Container(
         
         padding: const EdgeInsets.all(5),
-        margin: const EdgeInsets.symmetric(vertical: 20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

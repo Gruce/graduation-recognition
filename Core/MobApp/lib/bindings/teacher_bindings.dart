@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/Admin/admin_people_controller.dart';
+import 'package:graduaiton_app/controllers/Teacher/attendance_students.dart';
 import 'package:graduaiton_app/controllers/Teacher/teacher_home_controller.dart';
 import 'package:graduaiton_app/controllers/Teacher/teacher_layout_controller.dart';
 import 'package:graduaiton_app/controllers/Teacher/teacher_profile_controller.dart';
@@ -27,10 +28,10 @@ class TeacherHomeBinding extends Bindings {
 //     Get.lazyPut(() => TeacherTablesScreen());
 //   }
 // }
-class AttendanceStudensBinding extends Bindings {
+class AttendanceStudentsBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => AdminPeopleController());
+    Get.lazyPut(() => AttendanceStudentsController());
   }
 }
 class TeacherProfileBinding extends Bindings {

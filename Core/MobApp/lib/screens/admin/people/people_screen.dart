@@ -7,8 +7,11 @@ import 'package:graduaiton_app/screens/admin/people/search_widget.dart';
 import '../layout.dart';
 import 'person_widget.dart';
 
-class AdminPeopleScreen extends GetView<AdminPeopleController> {
-  const AdminPeopleScreen({Key? key}) : super(key: key);
+class AdminPeopleScreen extends GetView {
+  AdminPeopleScreen({Key? key}) : super(key: key);
+
+  @override
+  AdminPeopleController controller = Get.put(AdminPeopleController());
 
   @override
   Widget build(BuildContext context) {

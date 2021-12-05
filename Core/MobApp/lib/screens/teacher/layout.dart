@@ -18,10 +18,10 @@ class TeacherLayoutScreen extends GetView<TeacherLayoutController> {
         backgroundColor: Colors.white,
         drawer: TeacherSidebarScreen(),
         appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(74),
-            child: TeacherAppbar(
+            preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 0.15),
+            child: SafeArea(child: TeacherAppbar(
               title: title,
-            )),
+            ))),
         bottomNavigationBar: TeacherBottomNavigationBar(),
         // body: child
         body: SafeArea(
@@ -29,7 +29,7 @@ class TeacherLayoutScreen extends GetView<TeacherLayoutController> {
             children: [
               Container(
                 height: MediaQuery.of(context).size.height,
-                margin: const EdgeInsets.symmetric(vertical: 3, horizontal: 20),
+                margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 20),
                 child: child,
               )
             ],

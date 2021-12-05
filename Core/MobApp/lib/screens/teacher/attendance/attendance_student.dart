@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:graduaiton_app/controllers/Admin/admin_students_controller.dart';
 import 'package:graduaiton_app/controllers/Teacher/attendance_students.dart';
 import 'package:graduaiton_app/routes/routes.dart';
 import 'package:graduaiton_app/screens/admin/students/student_widget.dart';
@@ -8,8 +7,11 @@ import 'package:graduaiton_app/screens/admin/students/student_widget.dart';
 import '../layout.dart';
 
 
-class AttendanceStudentsScreen extends GetView<AttendanceStudentsController> {
-  const AttendanceStudentsScreen({Key? key}) : super(key: key);
+class AttendanceStudentsScreen extends GetView {
+  AttendanceStudentsScreen({Key? key}) : super(key: key);
+
+  @override
+  AttendanceStudentsController controller = Get.put(AttendanceStudentsController());
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +58,7 @@ class AttendanceStudentsScreen extends GetView<AttendanceStudentsController> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: const Color.fromRGBO(255, 255, 255, .5)),
-              child: GetBuilder<AdminStudentsController>(
+              child: GetBuilder<AttendanceStudentsController>(
                   builder: (_) => controller.filteredStudents.isNotEmpty
                       ? ListView.builder(
                           itemCount: controller.filteredStudents.length,

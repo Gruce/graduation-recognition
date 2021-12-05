@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/Teacher/teacher_home_controller.dart';
 import 'package:graduaiton_app/models/user.dart';
+import 'package:graduaiton_app/screens/teacher/home_page/widgets/button.dart';
 import 'package:graduaiton_app/screens/teacher/notification/notification_screen.dart';
 import 'package:graduaiton_app/screens/teacher/profile/profile_screen.dart';
 import 'package:graduaiton_app/util/utilities.dart';
@@ -14,6 +15,8 @@ class ComponentHomeScreen extends GetView<TeacherHomeController> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        MyButton(label: "Stop Lecture", onTap: controller.startLecture),
+
         SizedBox(
           height: 230,
           child: Stack(
@@ -28,15 +31,6 @@ class ComponentHomeScreen extends GetView<TeacherHomeController> {
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(0.0),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.2),
-                            spreadRadius: 5,
-                            blurRadius: 7,
-                            offset: const Offset(
-                                0, 1), // changes position of shadow
-                          ),
-                        ],
                       ),
                     ),
                   )),
@@ -44,7 +38,7 @@ class ComponentHomeScreen extends GetView<TeacherHomeController> {
                   top: 0,
                   left: 20,
                   child: Card(
-                    elevation: 10.0,
+                    elevation: 0.0,
                     shadowColor: Colors.grey.withOpacity(0.5),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15.0)),

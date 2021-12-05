@@ -64,7 +64,7 @@ class Routes {
 
     GetPage(
         name: adminPeople,
-        page: () =>  const AdminPeopleScreen(),
+        page: () =>  AdminPeopleScreen(),
         binding: AdminProfileBinding()),
 
         GetPage(
@@ -76,13 +76,13 @@ class Routes {
       // Teacher Routes
     GetPage(
         name: teacherMain,
-        page: () => const TeacherHomeScreen(),
+        page: () => TeacherHomeScreen(),
         binding: TeacherHomeBinding()),
 
     GetPage(
         name: attendanceStudents,
-        page: () => const AttendanceStudentsScreen(),
-        binding: AttendanceStudensBinding()),
+        page: () => AttendanceStudentsScreen(),
+        binding: AttendanceStudentsBinding()),
 
   GetPage(
         name: teachSchedule,

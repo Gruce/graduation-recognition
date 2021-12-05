@@ -5,11 +5,7 @@ import 'package:graduaiton_app/routes/routes.dart';
 import 'package:graduaiton_app/screens/admin/students/student_widget.dart';
 import 'package:graduaiton_app/screens/admin/students/students_search_widget.dart';
 import '../layout.dart';
-import 'dropdown_widget/section_dropdown_widget.dart';
-import 'dropdown_widget/stage_dropdown_widget.dart';
-import 'dropdown_widget/test.dart';
-import 'dropdown_widget/unit_dropdown_widget.dart';
-import 'section_dropdown_widget.dart';
+import 'dropdown_widgets/section_dropdown_widget.dart';
 
 class AdminStudentsScreen extends GetView<AdminStudentsController> {
   const AdminStudentsScreen({Key? key}) : super(key: key);

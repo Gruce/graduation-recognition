@@ -10,7 +10,7 @@ import 'package:graduaiton_app/screens/admin/students/students_screen.dart';
 // import 'package:graduaiton_app/screens/admin/tables_page/tables_screen.dart';
 import 'package:graduaiton_app/screens/general/people/person_profile_widget.dart';
 import 'package:graduaiton_app/screens/login_screen.dart';
-import 'package:graduaiton_app/screens/teacher/attendance_student/students/attendance_students_screen.dart';
+import 'package:graduaiton_app/screens/teacher/attendance/attendance_student.dart';
 import 'package:graduaiton_app/screens/teacher/home_page/home_screen.dart';
 import 'package:graduaiton_app/screens/teacher/home_page/schedule_teacher.dart';
 import 'package:graduaiton_app/screens/teacher/profile/profile_screen.dart';
@@ -79,10 +79,10 @@ class Routes {
         page: () => const TeacherHomeScreen(),
         binding: TeacherHomeBinding()),
 
-    // GetPage(
-    //     name: attendanceStudents,
-    //     page: () => const AttendanceStudentsScreen(),
-    //     binding: AttendanceStudensBinding()),
+    GetPage(
+        name: attendanceStudents,
+        page: () => const AttendanceStudentsScreen(),
+        binding: AttendanceStudensBinding()),
 
   GetPage(
         name: teachSchedule,

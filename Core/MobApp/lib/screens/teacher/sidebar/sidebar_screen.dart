@@ -95,7 +95,27 @@ class TeacherSidebarScreen extends GetWidget {
                                       controller.onItemTap(i)
                                     },
                                   ),
-                                ))
+                                )),
+                                Card(
+                          elevation: 0,
+                          color: const Color(0xff6875F5),
+                          child: ListTile(
+                            title: Text(
+                              "Logout",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 19,
+                                fontWeight: FontWeight.w300,
+                              ),
+                            ),
+                            leading: Icon(
+                              Icons.logout,
+                              color: Colors.white,
+                            ),
+                            selected: true,
+                            onTap: () => controller.logOut(),
+                          ),
+                        )
                       ])),
                 ]))));
   }

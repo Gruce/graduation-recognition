@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/Admin/admin_students_controller.dart';
+import 'package:graduaiton_app/controllers/Teacher/attendance_students.dart';
 import 'package:graduaiton_app/routes/routes.dart';
 import 'package:graduaiton_app/screens/admin/students/student_widget.dart';
-import 'package:graduaiton_app/screens/admin/students/students_search_widget.dart';
-import '../layout.dart';
-import 'dropdown_widgets/section_dropdown_widget.dart';
 
-class AdminStudentsScreen extends GetView<AdminStudentsController> {
-  const AdminStudentsScreen({Key? key}) : super(key: key);
+import '../layout.dart';
+
+
+class AttendanceStudentsScreen extends GetView<AttendanceStudentsController> {
+  const AttendanceStudentsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return AdminLayoutScreen(
+    return TeacherLayoutScreen(
         title: 'Students',
         child: Column(
           children: [
             // Search Container
             // StudentsSearchWidget(),
-            SectionsDropDownWidget(),
+        
             // DropDownWidget(),
             const SizedBox(height: 20),
       //       Container(

@@ -26,15 +26,11 @@ class AdminLayoutScreen extends GetView<AdminLayoutController> {
         bottomNavigationBar: AdminBottomNavigationBar(),
         // body: child
         body: SafeArea(
-          child: ListView(
-            children: [
-              Container(
+              child: Container(
                 height: MediaQuery.of(context).size.height,
                 margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 20),
                 child: child,
               )
-            ],
-          ),
         ));
   }
 }

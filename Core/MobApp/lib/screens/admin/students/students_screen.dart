@@ -7,8 +7,11 @@ import 'package:graduaiton_app/screens/admin/students/students_search_widget.dar
 import '../layout.dart';
 import 'dropdown_widgets/section_dropdown_widget.dart';
 
-class AdminStudentsScreen extends GetView<AdminStudentsController> {
-  const AdminStudentsScreen({Key? key}) : super(key: key);
+class AdminStudentsScreen extends GetView {
+  AdminStudentsScreen({Key? key}) : super(key: key);
+
+  @override
+  AdminStudentsController controller = Get.put(AdminStudentsController());
 
   @override
   Widget build(BuildContext context) {

@@ -5,11 +5,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\{
     PeopleController,
-<<<<<<< HEAD
     TeacherController,
     StudentController,
-=======
->>>>>>> parent of fdfbc88 (update)
     CameraController,
     TrackingController,
 };
@@ -51,12 +48,17 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/state', [CameraController::class, 'camera_state']);
     });
 
+    ## Students ##
+    Route::group(['prefix' => 'students'] ,function(){
+        Route::get('/', [StudentController::class, 'students']);
+    });
+    
+
     ## Trackings ##
     Route::group(['prefix' => 'tracking'] ,function(){
         Route::post('/new', [TrackingController::class, 'new_track']);
     });
 
-<<<<<<< HEAD
 
     ## Teachers ##
     Route::group(['prefix' => 'teacher'] ,function(){
@@ -66,8 +68,6 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
-=======
->>>>>>> parent of fdfbc88 (update)
     Route::post('person', [ApiController::class, 'person']);
     Route::get('not_trained_people', [ApiController::class, 'not_trained_people']);
     Route::post('people/new', [ApiController::class, 'new_person']);

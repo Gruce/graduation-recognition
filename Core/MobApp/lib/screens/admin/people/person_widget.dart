@@ -19,13 +19,13 @@ class PersonWidget extends GetWidget {
   Widget build(BuildContext context) {
     var typeText = "";
     switch (type) {
-      case 0:
+      case 1:
         typeText = "Visitor";
         break;
-      case 1:
+      case 2:
         typeText = "Student";
         break;
-      case 2:
+      case 3:
         typeText = "Employer";
         break;
     }
@@ -36,7 +36,7 @@ class PersonWidget extends GetWidget {
       color: Colors.transparent,
       margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 6.0),
       child: Container(
-        padding: const EdgeInsets.all(14.0),
+        padding: const EdgeInsets.all(5.0),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             color: const Color.fromRGBO(255, 255, 255, 1)),
@@ -95,7 +95,7 @@ class PersonWidget extends GetWidget {
                       size: 14,
                     ),
                     const SizedBox(width: 5),
-                    Text(camera,
+                    Text(camera.isNotEmpty ? camera : "No camera",
                         style: const TextStyle(
                             fontSize: 10, fontWeight: FontWeight.bold))
                   ],
@@ -119,7 +119,7 @@ class PersonWidget extends GetWidget {
                       size: 14,
                     ),
                     const SizedBox(width: 5),
-                    Text(time,
+                    Text(time.isNotEmpty ? time : "Not seen yet",
                         style: const TextStyle(
                             fontSize: 10, fontWeight: FontWeight.bold))
                   ],

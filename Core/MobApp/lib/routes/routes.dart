@@ -69,7 +69,7 @@ class Routes {
 
         GetPage(
         name: adminStudents,
-        page: () =>  const AdminStudentsScreen(),
+        page: () =>  AdminStudentsScreen(),
         binding: AdminProfileBinding()),
 
     

@@ -10,7 +10,6 @@
                             x-html="tab"></li>
                     </template>
                 </ul>
-
                 <div x-show="activeTab!==-1">
                     <div class="container px-5 py-10 mx-auto bg-white rounded-lg max-w-7xl sm:px-6 lg:px-8">
                         <div x-show="activeTab===0">

@@ -21,37 +21,10 @@ class SectionsDropDownWidget extends GetView {
         borderRadius: BorderRadius.circular(20.0),
       ),
       child: Row(
-        children: <Widget>[
-          // const Padding(
-          //   padding: EdgeInsets.only(left: 8),
-          //   child: Icon(
-          //     Icons.search,
-          //     color: Colors.grey,
-          //     size: 20,
-          //   ),
-          // ),
-          // Expanded(
-          //   child: TextField(
-          //     onChanged: (value) => controller.search(value),
-          //     keyboardType: TextInputType.text,
-          //     decoration: const InputDecoration(
-          //       border: InputBorder.none,
-          //       hintText: "Search by Name",
-          //       hintStyle: TextStyle(color: Colors.grey),
-          //       contentPadding:
-          //           EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-          //       isDense: true,
-          //     ),
-          //     style: const TextStyle(
-          //       fontSize: 16.0,
-          //       color: Colors.black,
-          //     ),
-          //   ),
-          // ),
+        children: <Widget>[          
           Obx(() => Expanded(
             child: 
               controller.sections.isNotEmpty ?
-            
               DropdownButton(
                 // Initial Value
                 value: controller.sections[controller.sectionSelectedIndex.value],
@@ -59,7 +32,7 @@ class SectionsDropDownWidget extends GetView {
                 icon: const Icon(Icons.keyboard_arrow_down),
 
                 // Array list of items
-                items: controller.sections.asMap().keys.toList().map((int index) {
+                items: controller.sections.asMap().keys.map((int index) {
                   return DropdownMenuItem(
                     value: index,
                     child: Text(controller.sections[index].name.toString(),

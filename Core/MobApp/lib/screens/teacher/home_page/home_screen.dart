@@ -10,7 +10,7 @@ class TeacherHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TeachLayoutScreen(
+    return TeacherLayoutScreen(
       title: 'Home',
       child: ComponentHomeScreen(),
     );

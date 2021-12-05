@@ -23,7 +23,7 @@ class _TeacherScheduleScreenState extends State<TeacherScheduleScreen> {
   }
 
   Widget build(BuildContext context) {
-    return TeachLayoutScreen(
+    return TeacherLayoutScreen(
       title: 'add Task',
       child: Column(
         children: [

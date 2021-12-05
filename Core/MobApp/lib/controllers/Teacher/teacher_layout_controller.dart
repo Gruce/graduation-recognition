@@ -11,7 +11,7 @@ class TeacherLayoutController extends GetxController {
       "icon": Icons.schedule,
       "route": '/teacher/schedule/'
     },
-    {"title": "Profile", "icon": Icons.person, "route": '/teacher/profile/'},
+    {"title": "Attendance", "icon": Icons.group, "route": '/teacher/attendance/'},
   ].obs;
 
   void tabIndex(String route) {

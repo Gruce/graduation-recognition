@@ -39,7 +39,7 @@ class _TeacherNotificationState extends State<TeacherNotification> {
   late String _btn3SelectedVal;
   @override
   Widget build(BuildContext context) {
-    return TeachLayoutScreen(
+    return TeacherLayoutScreen(
         title: 'Notification',
         child: Column(
           children: [

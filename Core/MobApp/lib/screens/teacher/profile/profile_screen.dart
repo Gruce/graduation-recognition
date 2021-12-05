@@ -15,7 +15,7 @@ class TeacherProfileScreen extends GetView {
   Widget build(BuildContext context) {
     var typeText = "";
 
-    return TeachLayoutScreen(
+    return TeacherLayoutScreen(
         title: 'Profile',
         child: SingleChildScrollView(
             child: Column(

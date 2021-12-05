@@ -6,8 +6,8 @@ import 'home_page/appbar.dart';
 import 'nav_bar/navbar.dart';
 import 'sidebar/sidebar_screen.dart';
 
-class TeachLayoutScreen extends GetView<TeacherLayoutController> {
-  const TeachLayoutScreen({Key? key, required this.title, required this.child})
+class TeacherLayoutScreen extends GetView<TeacherLayoutController> {
+  const TeacherLayoutScreen({Key? key, required this.title, required this.child})
       : super(key: key);
   final Widget child;
   final String title;

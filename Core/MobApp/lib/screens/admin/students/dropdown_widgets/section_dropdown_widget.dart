@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:graduaiton_app/controllers/Admin/structure/admin_sections_controller.dart';
-import 'package:graduaiton_app/models/student_models/section.dart';
 
 // ignore: must_be_immutable
 class SectionsDropDownWidget extends GetView {

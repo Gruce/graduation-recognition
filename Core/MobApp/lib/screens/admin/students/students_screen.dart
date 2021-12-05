@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:graduaiton_app/controllers/Admin/admin_students_controller.dart';
+
 import 'package:graduaiton_app/routes/routes.dart';
-import 'package:graduaiton_app/screens/admin/students/student_widget.dart';
+
 import 'package:graduaiton_app/screens/admin/students/students_search_widget.dart';
 import '../layout.dart';
 import 'dropdown_widgets/section_dropdown_widget.dart';

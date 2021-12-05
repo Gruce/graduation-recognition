@@ -79,10 +79,10 @@ class Routes {
         page: () => const TeacherHomeScreen(),
         binding: TeacherHomeBinding()),
 
-    GetPage(
-        name: attendanceStudents,
-        page: () => const AttendanceStudentsScreen(),
-        binding: AttendanceStudensBinding()),
+    // GetPage(
+    //     name: attendanceStudents,
+    //     page: () => const AttendanceStudentsScreen(),
+    //     binding: AttendanceStudensBinding()),
 
   GetPage(
         name: teachSchedule,

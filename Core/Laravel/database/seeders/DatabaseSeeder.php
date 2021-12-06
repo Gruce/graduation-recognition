@@ -19,11 +19,7 @@ class DatabaseSeeder extends Seeder
             'description' => 'Main Camera',
             'state' => 1,
         ]);
-<<<<<<< Updated upstream
-        
-=======
-
->>>>>>> Stashed changes
+                  
         $this->call([
 
             UserSeeder::class,

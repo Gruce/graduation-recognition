@@ -17,74 +17,99 @@ class TeacherUnitsScreen extends GetView {
     return TeacherLayoutScreen(
         title: 'Units',
         child: SingleChildScrollView(
-            child: Column(
-          children: <Widget>[
-            GestureDetector(
-              onTap: () => {},
-              child: Card(
-                elevation: 0,
-                clipBehavior: Clip.antiAlias,
-                child: Container(
-                  padding: const EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                    color: const Color(0xffd4d8ff),
-                    borderRadius:BorderRadius.circular(20),
-                  ),
-                    child:
-                Column(
-                  children: [
-                    ListTile(
-                      title: Container(
-                        margin: const EdgeInsets.only(bottom: 15),
-                          child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.all(7.5),
-                                  margin: const EdgeInsets.only(right: 5),
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Color(0xff6875F5),
-                                  ),
-                                  child: const Text('A', style: TextStyle(color: Colors.white),),
-                                ),
-                                const Text('Fourth Stage'),
-                              ]),
-                          const Text('Subject Title'),
-                        ],
-                      )),
-                      subtitle: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            '50 Students',
-                            style: TextStyle(color: Colors.black.withOpacity(0.6)),
-                          ),
-                          Text(
-                            '1 Hour to begin',
-                            style: TextStyle(color: Colors.black.withOpacity(0.6)),
-                          ),
+            child: GetBuilder<TeacherUnitsController>(
+                builder: (_) => controller.units.isNotEmpty
+                    ? ListView.builder(
+                        itemCount: controller.units.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return GestureDetector(
+                            onTap: () => {},
+                            child: Card(
+                                elevation: 0,
+                                clipBehavior: Clip.antiAlias,
+                                child: Container(
+                                    padding: const EdgeInsets.all(15),
+                                    decoration: BoxDecoration(
+                                      color: const Color(0xffd4d8ff),
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    child: Column(
+                                      children: [
+                                        ListTile(
+                                            title: Container(
+                                                margin: const EdgeInsets.only(
+                                                    bottom: 15),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Row(children: [
+                                                      Container(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(7.5),
+                                                        margin: const EdgeInsets
+                                                            .only(right: 5),
+                                                        decoration:
+                                                            const BoxDecoration(
+                                                          shape:
+                                                              BoxShape.circle,
+                                                          color:
+                                                              Color(0xff6875F5),
+                                                        ),
+                                                        child: const Text(
+                                                          'A',
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white),
+                                                        ),
+                                                      ),
+                                                      const Text(
+                                                          'Fourth Stage'),
+                                                    ]),
+                                                    const Text('Subject Title'),
+                                                  ],
+                                                )),
+                                            subtitle: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  '50 Students',
+                                                  style: TextStyle(
+                                                      color: Colors.black
+                                                          .withOpacity(0.6)),
+                                                ),
+                                                Text(
+                                                  '1 Hour to begin',
+                                                  style: TextStyle(
+                                                      color: Colors.black
+                                                          .withOpacity(0.6)),
+                                                ),
 
-                          // Container(
-                          //   padding: const EdgeInsets.all(5),
-                          //   margin: const EdgeInsets.only(right: 5),
-                          //   decoration: BoxDecoration(
-                          //     borderRadius: BorderRadius.all(Radius.circular(10)),
-                          //     color: const Color(0xffcccccc),
-                          //   ),
-                          //   child: Icon(Icons.arrow_right_alt_rounded),
-                          // ),
-                        ],
-                      )
-                      
-                    ),
-                  ],
-                ))
-              ),
-            )
-          ],
-        )));
+                                                // Container(
+                                                //   padding: const EdgeInsets.all(5),
+                                                //   margin: const EdgeInsets.only(right: 5),
+                                                //   decoration: BoxDecoration(
+                                                //     borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                //     color: const Color(0xffcccccc),
+                                                //   ),
+                                                //   child: Icon(Icons.arrow_right_alt_rounded),
+                                                // ),
+                                              ],
+                                            )),
+                                      ],
+                                    ))),
+                          );
+                        })
+                    : SizedBox(
+                        width: double.infinity,
+                        child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10.0, vertical: 5.0),
+                            child: const Text('Not Found',
+                                style: TextStyle(fontSize: 24)))))));
   }
 }

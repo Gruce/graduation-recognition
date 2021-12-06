@@ -15,9 +15,9 @@ class TeacherUnitsController extends GetxController {
   }
 
   void fetch() async {
-    var res = await Utilities.httpGet('people');
+    var res = await Utilities.httpGet('teacher/units');
     if (res.statusCode == 200) {
-      List response = json.decode(res.body)['data'];
+      List response = json.decode(res.body)['data'][0]['units'];
       for (var element in response) {
         units.add(UnitModel.fromJson(element));
       }

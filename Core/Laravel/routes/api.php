@@ -42,16 +42,17 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('', [PeopleController::class, 'people']);
     });
 
-    ## Students ##
-    Route::group(['prefix' => 'students'] ,function(){
-        Route::get('/', [StudentController::class, 'students']);
-    });
-
     ## Cameras ##
     Route::group(['prefix' => 'cameras'] ,function(){
         Route::get('/', [CameraController::class , 'cameras']);
         Route::post('/state', [CameraController::class, 'camera_state']);
     });
+
+    ## Students ##
+    Route::group(['prefix' => 'students'] ,function(){
+        Route::get('/', [StudentController::class, 'students']);
+    });
+    
 
     ## Trackings ##
     Route::group(['prefix' => 'tracking'] ,function(){

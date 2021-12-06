@@ -7,8 +7,11 @@ import 'package:graduaiton_app/screens/admin/people/search_widget.dart';
 import '../layout.dart';
 import 'person_widget.dart';
 
-class AdminPeopleScreen extends GetView<AdminPeopleController> {
-  const AdminPeopleScreen({Key? key}) : super(key: key);
+class AdminPeopleScreen extends GetView {
+  AdminPeopleScreen({Key? key}) : super(key: key);
+
+  @override
+  AdminPeopleController controller = Get.put(AdminPeopleController());
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +20,7 @@ class AdminPeopleScreen extends GetView<AdminPeopleController> {
         child: Column(
           children: [
             // Search Container
+
             SearchWidget(),
             const SizedBox(height: 10),
 
@@ -41,10 +45,11 @@ class AdminPeopleScreen extends GetView<AdminPeopleController> {
                                         controller.filteredPeople[index].id),
                                     name: controller.filteredPeople[index].name,
                                     type: controller.filteredPeople[index].type,
-                                    camera: controller.filteredPeople[index]
-                                        .trackings.camera.description,
+                                    camera: controller
+                                        .filteredPeople[index].trackings.camera.description,
                                     time: controller
-                                        .filteredPeople[index].trackings.seen));
+                                        .filteredPeople[index].trackings.seen,
+                                    typeString: controller.filteredPeople[index].typeString));
                           },
                         )
                       : SizedBox(

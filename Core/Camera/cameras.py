@@ -18,11 +18,8 @@ from termcolor import cprint
 ##########################  Face Detection  ###############################
 from facenet_pytorch import MTCNN, InceptionResnetV1, extract_face
 from PIL import Image, ImageDraw
-import torch
-import glob
-
 from Core.Camera.lib.config import Config
-
+import torch
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 mtcnn = MTCNN(
@@ -306,9 +303,11 @@ class CameraWidget(QtWidgets.QWidget):
     
 
 def restart_application():
-    os.startfile(__file__)
-    sys.exit()
-    # exit_application()  
+    cmd = 'python -m Core.Camera.cameras'
+    os.system(cmd)
+    time.sleep(0.2)
+    quit()
+   
 
 def exit_application():
     """Exit program event handler"""

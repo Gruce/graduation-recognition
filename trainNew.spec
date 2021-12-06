@@ -4,10 +4,10 @@
 block_cipher = None
 
 
-a = Analysis(['Core\\Camera\\trainNew.py'],
-             pathex=['C:/Users/Hassan K. AlKhalidi/AppData/Local/Programs/Python/Python39/lib/site-packages/cv2/'],
+a = Analysis(['D:/graduation-web/Core/Camera/trainNew.py'],
+             pathex=['C:/Users/Hassan K. AlKhalidi/AppData/Local/Programs/Python/Python39/Lib/site-packages'],
              binaries=[],
-             datas=[],
+             datas=[('C:/Users/Hassan K. AlKhalidi/AppData/Local/Programs/Python/Python39/Lib/site-packages/torch', 'torch/')],
              hiddenimports=[],
              hookspath=[],
              hooksconfig={},
@@ -17,6 +17,12 @@ a = Analysis(['Core\\Camera\\trainNew.py'],
              win_private_assemblies=False,
              cipher=block_cipher,
              noarchive=False)
+
+for d in a.datas:
+    if '_C.cp37-win_amd64.pyd' in d[0]:
+        a.datas.remove(d)
+        break
+        
 pyz = PYZ(a.pure, a.zipped_data,
              cipher=block_cipher)
 
@@ -25,7 +31,7 @@ exe = EXE(pyz,
           a.binaries,
           a.zipfiles,
           a.datas,  
-          [],
+          [('v', None, 'OPTION')],
           name='trainNew',
           debug=False,
           bootloader_ignore_signals=False,

@@ -7,8 +7,11 @@ import 'package:graduaiton_app/screens/admin/students/students_search_widget.dar
 import '../layout.dart';
 import 'dropdown_widgets/section_dropdown_widget.dart';
 
-class AdminStudentsScreen extends GetView<AdminStudentsController> {
-  const AdminStudentsScreen({Key? key}) : super(key: key);
+class AdminStudentsScreen extends GetView {
+  AdminStudentsScreen({Key? key}) : super(key: key);
+
+  @override
+  AdminStudentsController controller = Get.put(AdminStudentsController());
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +20,8 @@ class AdminStudentsScreen extends GetView<AdminStudentsController> {
         child: Column(
           children: [
             // Search Container
-            // StudentsSearchWidget(),
+            StudentsSearchWidget(),
+            const SizedBox(height: 10),
             SectionsDropDownWidget(),
             // DropDownWidget(),
             const SizedBox(height: 20),

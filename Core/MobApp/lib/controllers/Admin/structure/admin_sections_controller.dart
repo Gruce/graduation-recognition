@@ -1,24 +1,26 @@
 import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/models/student_models/section.dart';
+import 'package:graduaiton_app/models/student_models/student.dart';
 import 'package:graduaiton_app/util/utilities.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import '../../../config.dart';
+import '../admin_students_controller.dart';
 
 class AdminSectionsController extends GetxController {
   late SharedPreferences prefs;
   RxList sections = <SectionModel>[].obs;
   RxInt sectionSelectedIndex = 0.obs;
 
-  // List sections = ['Section', 'CS', 'IT'];
-
+  AdminStudentsController studentController =
+      Get.put(AdminStudentsController());
 
   final api = Config.api;
 
   @override
   void onInit() async {
-    fetch();
+    fetchSections();
     super.onInit();
   }
 
@@ -27,32 +29,31 @@ class AdminSectionsController extends GetxController {
     super.dispose();
   }
 
-  void fetch() async {
+  void fetchSections() async {
     var res = await Utilities.httpGet('sections');
-    print("--------------------------------------------");
-    print(res.body);
-    print("--------------------------------------------");
-    
     if (res.statusCode == 200) {
       List response = json.decode(res.body)['data'];
+      sections.add(SectionModel.fromJson({"id": -1, "name": "All Sections"}));
       for (var element in response) {
         sections.add(SectionModel.fromJson(element));
-        print(element);
       }
     }
     update();
   }
 
-  void section(text) {
-    if (text.isEmpty) {
-      sections.assignAll(sections);
+  void filterBySection(index) {
+    sectionSelectedIndex.value = index;
+    SectionModel section = sections[index];
+
+    if (section.id == -1) {
+      studentController.filteredStudents.assignAll(studentController.students);
     } else {
-      sections.assignAll(sections
-          .where((section) =>
-              section.name.toLowerCase().contains(text.toLowerCase()))
-          .toList());
+      studentController.filteredStudents.assignAll(studentController.students
+          .where((student) => student.section_id == section.id));
     }
+
+    studentController.update();
+
     update();
   }
 }
-

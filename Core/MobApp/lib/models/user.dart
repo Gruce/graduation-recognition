@@ -3,6 +3,7 @@ class UserModel {
   String name = '';
   String email = '';
   int type = 0;
+  String typeString = '';
 
   UserModel({id, name, email, type});
 
@@ -11,6 +12,7 @@ class UserModel {
     name = json['name'];
     email = json['email'];
     type = json['type'];
+    typeString = getTypeString(type);
   }
 
   Map<dynamic, dynamic> toJson() {
@@ -20,5 +22,17 @@ class UserModel {
     data['email'] = email;
     data['type'] = type;
     return data;
+  }
+
+  String getTypeString(int type){
+    switch (type){
+      case 1:
+        return "Admin";
+      case 2:
+        return "Lecturer";
+      case 3:
+        return "Student";
+    }
+    return "Unknown";
   }
 }

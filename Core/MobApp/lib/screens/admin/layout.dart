@@ -19,22 +19,18 @@ class AdminLayoutScreen extends GetView<AdminLayoutController> {
         backgroundColor: Colors.grey[200],
         drawer: AdminSidebarScreen(),
         appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(100),
-            child: AdminAppbar(
+            preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 0.15),
+            child: SafeArea(child: AdminAppbar(
               title: title,
-            )),
+            ))),
         bottomNavigationBar: AdminBottomNavigationBar(),
         // body: child
-        body: SafeArea(
-          child: ListView(
-            children: [
-              Container(
-                height: MediaQuery.of(context).size.height,
-                margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 20),
-                child: child,
-              )
-            ],
-          ),
-        ));
+        body:
+            Container(
+              height: double.infinity,
+              margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 20),
+              child: child,
+            )
+        );
   }
 }

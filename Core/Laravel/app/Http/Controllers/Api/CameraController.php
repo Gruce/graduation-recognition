@@ -22,4 +22,5 @@ class CameraController extends Controller
 
         return response()->json(['data' => 'Success.'], 200);
     }
+    //
 }

@@ -7,36 +7,25 @@ class PersonWidget extends GetWidget {
       required this.name,
       required this.type,
       required this.camera,
-      required this.time})
+      required this.time,
+      required this.typeString})
       : super(key: key);
 
   String name;
   int type;
   String camera;
   String time;
+  String typeString;
 
   @override
   Widget build(BuildContext context) {
-    var typeText = "";
-    switch (type) {
-      case 0:
-        typeText = "Visitor";
-        break;
-      case 1:
-        typeText = "Student";
-        break;
-      case 2:
-        typeText = "Employer";
-        break;
-    }
-
     return Card(
       elevation: 0,
       // shadowColor: Colors.black12,
       color: Colors.transparent,
       margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 6.0),
       child: Container(
-        padding: const EdgeInsets.all(14.0),
+        padding: const EdgeInsets.all(5.0),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             color: const Color.fromRGBO(255, 255, 255, 1)),
@@ -65,7 +54,7 @@ class PersonWidget extends GetWidget {
                           ),
                     ),
                     child: Text(
-                      typeText,
+                      typeString,
                       style: const TextStyle(
                         fontSize: 14,
                       ),
@@ -95,7 +84,7 @@ class PersonWidget extends GetWidget {
                       size: 14,
                     ),
                     const SizedBox(width: 5),
-                    Text(camera,
+                    Text(camera.isNotEmpty ? camera : "No camera",
                         style: const TextStyle(
                             fontSize: 10, fontWeight: FontWeight.bold))
                   ],
@@ -119,7 +108,7 @@ class PersonWidget extends GetWidget {
                       size: 14,
                     ),
                     const SizedBox(width: 5),
-                    Text(time,
+                    Text(time.isNotEmpty ? time : "Not seen yet",
                         style: const TextStyle(
                             fontSize: 10, fontWeight: FontWeight.bold))
                   ],

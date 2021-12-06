@@ -18,7 +18,7 @@ class AdminSectionsController extends GetxController {
 
   @override
   void onInit() async {
-    fetch();
+    fetchSections();
     super.onInit();
   }
 
@@ -27,13 +27,12 @@ class AdminSectionsController extends GetxController {
     super.dispose();
   }
 
-  void fetch() async {
+  void fetchSections() async {
     var res = await Utilities.httpGet('sections');
     if (res.statusCode == 200) {
       List response = json.decode(res.body)['data'];
       for (var element in response) {
         sections.add(SectionModel.fromJson(element));
-        print(element);
       }
     }
     update();

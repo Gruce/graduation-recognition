@@ -27,8 +27,21 @@ class ApiController extends Controller
     }
 
     public function person(Request $req){
+        $person = Person::with('trackings.camera')->find($req->id);
+
+        $images = [];
+        $image = '';
+        
+        foreach (glob(Storage::disk('public')->path('db/' . $person->id) . '/*.png') as $filename) {
+            $filename = str_replace(Storage::disk('public')->path('db/' . $person->id) . '/', '', $filename);
+            array_push($images, Storage::disk('public')->url('db/' . $person->id . '/' . $filename));
+        }
+        if (count($images) > 0)
+            $image = $images[0];
+
         return response()->json([
-            'data' => Person::find($req->id, ['id', 'name', 'training_id', 'type'])
+            'data' => $person,
+            'image' => $image
         ], 200);
     }
 
@@ -112,5 +125,22 @@ class ApiController extends Controller
         $x = Setting::where('key' , 'app_restart')->first();
         $x->update(['value' => '0']);
         return response()->json(['data' => 'Success'], 200);
+    }
+
+
+    public function sections(){
+        return response()->json([
+            'data' => Section::get(['id','name'])
+        ], 200);
+    }
+    public function stages(){
+        return response()->json([
+            'data' => Stage::with('section:id,name')->get(['id','name','section_id'])
+        ], 200);
+    }
+    public function units(){
+        return response()->json([
+            'data' => Unit::with(['section:id,name','stage:id,name,section_id'])->get(['id','name','section_id','stage_id'])
+        ], 200);
     }
 }

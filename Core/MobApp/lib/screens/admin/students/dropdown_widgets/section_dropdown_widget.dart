@@ -21,13 +21,13 @@ class SectionsDropDownWidget extends GetView {
       ),
       child: Row(
         children: <Widget>[       
-          const Text("select section"),
+          const Text("Section "),
           Obx(() => Expanded(
             child: 
               controller.sections.isNotEmpty ?
               DropdownButton(
                 // Initial Value
-                value: controller.sections[controller.sectionSelectedIndex.value],
+                value: controller.sectionSelectedIndex.value,
                 // Down Arrow Icon
                 icon: const Icon(Icons.keyboard_arrow_down),
 
@@ -35,15 +35,15 @@ class SectionsDropDownWidget extends GetView {
                 items: controller.sections.asMap().keys.map((int index) {
                   return DropdownMenuItem(
                     value: index,
-                    child: Text(controller.sections[index].name.toString(),
+                    child: Text(controller.sections[index].name,
                         style: const TextStyle(color: Color(0xff6875F5))),
                   );
                 }).toList(),
                   
                 // After selecting the desired option,it will
                 // change button value to selected value
-                onChanged: (Object? section) => {
-                  controller.sectionSelectedIndex.value = int.parse(section.toString())
+                onChanged: (Object? index) => {
+                  controller.sectionSelectedIndex.value = int.parse(index.toString())
                 },
               ) : const Text("Loading")
           ))

@@ -20,8 +20,9 @@ class AdminStudentsScreen extends GetView {
         child: Column(
           children: [
             // Search Container
-            // StudentsSearchWidget(),
-            // SectionsDropDownWidget(),
+            StudentsSearchWidget(),
+            const SizedBox(height: 10),
+            SectionsDropDownWidget(),
             // DropDownWidget(),
             const SizedBox(height: 20),
       //       Container(

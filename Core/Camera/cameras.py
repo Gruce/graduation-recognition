@@ -18,7 +18,7 @@ from termcolor import cprint
 ##########################  Face Detection  ###############################
 from facenet_pytorch import MTCNN, InceptionResnetV1, extract_face
 from PIL import Image, ImageDraw
-from lib.config import Config
+from Core.Camera.lib.config import Config
 import torch
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
@@ -31,7 +31,7 @@ mtcnn = MTCNN(
 
 ######################################################################################
 ##########################  Face Recognition : deepface  #############################
-from lib.deepface_thread import DeepFaceThread
+from Core.Camera.lib.deepface_thread import DeepFaceThread
 from deepface import DeepFace
 import pandas as pd
 
@@ -64,7 +64,7 @@ def save_array_of_images(images, camera_id):
 
 #########################################################################
 ############################ API ###############################
-from lib.api import Auth
+from Core.Camera.lib.api import Auth
 
 auth = Auth()
 cameras = auth.cameras()

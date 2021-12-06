@@ -19,13 +19,13 @@ class PersonWidget extends GetWidget {
   Widget build(BuildContext context) {
     var typeText = "";
     switch (type) {
-      case 0:
+      case 1:
         typeText = "Visitor";
         break;
-      case 1:
+      case 2:
         typeText = "Student";
         break;
-      case 2:
+      case 3:
         typeText = "Employer";
         break;
     }

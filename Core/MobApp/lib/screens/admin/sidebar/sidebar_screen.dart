@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/models/user.dart';
+import 'package:graduaiton_app/routes/routes.dart';
 import 'package:graduaiton_app/screens/admin/nav_bar/add_new/Teacher_add.dart';
 import 'package:graduaiton_app/screens/admin/nav_bar/absence_and_presence/absence_and_presence.dart';
 import 'package:graduaiton_app/screens/admin/profile/profile_screen.dart';
@@ -27,46 +28,32 @@ class AdminSidebarScreen extends GetWidget {
                       padding: const EdgeInsets.all(10),
                       color: const Color(0xff6875F5),
                       child: Column(children: <Widget>[
-                        ListTile(
-                          title: FutureBuilder(
-                            future: Utilities.getUser,
-                            builder: (context, snapshot) {
-                              if (snapshot.hasData) {
-                                UserModel user = snapshot.data as UserModel;
-                                return Text(
-                                  user.name,
+                        controller.user.name.isNotEmpty
+                            ? ListTile(
+                                title: Text(
+                                  controller.user.name,
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 22,
                                       fontWeight: FontWeight.w800),
-                                );
-                              } else {
-                                return Center(
-                                  child: CircularProgressIndicator(),
-                                );
-                              }
-                            },
-                          ),
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        AdminProfileScreen()));
-                          },
-                          subtitle: Text(
-                            "Lucturer",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-                            ),
-                          ),
-                          leading: CircleAvatar(
-                            child: Image.asset('STLogo.png'),
-                            backgroundColor: Colors.white,
-                            radius: 20,
-                          ),
-                        ),
+                                ),
+                                onTap: () => Get.toNamed(Routes.adminProfile, arguments: controller.user),
+                                subtitle: Text(
+                                  controller.user.typeString,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                                leading: CircleAvatar(
+                                  child: Image(image: AssetImage('assets/STLogo.png')),
+                                  backgroundColor: Colors.white,
+                                  radius: 20,
+                                ),
+                              )
+                            : const Center(
+                                child: CircularProgressIndicator(),
+                              ),
                         Divider(
                           height: 50,
                           thickness: 0.6,

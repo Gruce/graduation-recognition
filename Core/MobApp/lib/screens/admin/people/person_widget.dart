@@ -7,29 +7,18 @@ class PersonWidget extends GetWidget {
       required this.name,
       required this.type,
       required this.camera,
-      required this.time})
+      required this.time,
+      required this.typeString})
       : super(key: key);
 
   String name;
   int type;
   String camera;
   String time;
+  String typeString;
 
   @override
   Widget build(BuildContext context) {
-    var typeText = "";
-    switch (type) {
-      case 1:
-        typeText = "Visitor";
-        break;
-      case 2:
-        typeText = "Student";
-        break;
-      case 3:
-        typeText = "Employer";
-        break;
-    }
-
     return Card(
       elevation: 0,
       // shadowColor: Colors.black12,
@@ -65,7 +54,7 @@ class PersonWidget extends GetWidget {
                           ),
                     ),
                     child: Text(
-                      typeText,
+                      typeString,
                       style: const TextStyle(
                         fontSize: 14,
                       ),

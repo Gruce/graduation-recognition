@@ -20,6 +20,7 @@ class AdminPeopleScreen extends GetView {
         child: Column(
           children: [
             // Search Container
+
             SearchWidget(),
             const SizedBox(height: 10),
 
@@ -47,7 +48,8 @@ class AdminPeopleScreen extends GetView {
                                     camera: controller
                                         .filteredPeople[index].trackings.camera.description,
                                     time: controller
-                                        .filteredPeople[index].trackings.seen));
+                                        .filteredPeople[index].trackings.seen,
+                                    typeString: controller.filteredPeople[index].typeString));
                           },
                         )
                       : SizedBox(

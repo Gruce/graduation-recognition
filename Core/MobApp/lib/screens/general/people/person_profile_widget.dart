@@ -99,7 +99,7 @@ class PersonProfileWidget extends GetView {
                               image: DecorationImage(
                                 image: controller.imageURL.value.isNotEmpty ?
                                 NetworkImage(controller.imageURL.value) :
-                                NetworkImage('http://www.familylore.org/images/2/25/UnknownPerson.png'),
+                                const NetworkImage('http://www.familylore.org/images/2/25/UnknownPerson.png'),
                                 fit: BoxFit.cover,
                               ),
                             ),

@@ -63,7 +63,8 @@ Route::group(['middleware' => 'auth'], function () {
     ## Teachers ##
     Route::group(['prefix' => 'teacher'] ,function(){
         Route::get('/my-students', [TeacherController::class, 'my_students']);
-        Route::get('/info', [TeacherController::class, 'info']);
+        // Route::get('/info', [TeacherController::class, 'info']);
+        Route::get('/units', [TeacherController::class, 'units']);
     });
     
 

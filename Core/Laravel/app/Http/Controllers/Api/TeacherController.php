@@ -29,8 +29,8 @@ class TeacherController extends Controller
                 'user:id,name,email',
                 'section:id,name',
                 'stages:id,section_id,name',
-                'units' => function($units){
-                    return $units->with(['section:id,name' , 'stage:id,name'])->get();
+                'units' => function($unit){
+                    return $unit->with(['section:id,name' , 'stage:id,name'])->get();
                 },
                 'subjects' => function($subject){
                     return $subject->with(['section:id,name' , 'stage:id,name'])->get();

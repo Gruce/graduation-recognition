@@ -45,11 +45,8 @@ class TeacherController extends Controller
         $units = auth()->user()->teacher()->with(
             [
                 'units' => function($unit){
-                    return $unit->with(['section:id,name' , 'stage:id,section_id,name'])->get();
+                    return $unit->with(['section:id,name' , 'stage:id,section_id,name'])->withCount('students')->get();
                 },
-                'subjects' => function($subject){
-                    return $subject->with('stage:id,name')->get();
-                }
             ]
         )->get(['id' , 'user_id' , 'section_id' , 'speciality']);
 

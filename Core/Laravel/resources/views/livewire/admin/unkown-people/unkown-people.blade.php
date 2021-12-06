@@ -28,87 +28,76 @@
                         </thead>
                         <tbody>
                             @forelse($peopel as $i => $person)
-                                <tr class="bg-gray-50" wire:key="person-field-{{ $person->id }}">
-                                    <td class="p-3 text-center">
-                                        {{ $loop->iteration }}
-                                    </td>
-                                    <td class="p-3">
-                                        <div class="flex align-items-center">
-                                            <div class="ml-3">
-                                                <div x-data="{ show: false }">
-                                                    <span x-show="!show" @click="show = !show"
-                                                        class="font-bold text-gray-500">
-                                                        {{ $person->name }}
-                                                    </span>
-                                                    {{-- <div x-show="show">
-                                                        <div class="text-gray-600 focus-within:text-gray-400">
-                                                            <input wire:keydown.enter="save()" wire:model="teachers.{{ $i }}.user.name"
-                                                                class="p-0 block w-full text-sm text-gray-400 bg-gray-100 rounded-md focus:outline-none focus:bg-gray-50 focus:text-gray-900"
-                                                                placeholder="{{ $teacher->user->name }}"
-                                                                autocomplete="off">
-                                                        </div>
-                                                    </div> --}}
-                                                </div>
-
-                                                {{-- <div x-data="{ show: false }">
-                                                    <span x-show="!show" @click="show = !show" class="text-gray-500">
-                                                        {{ $teacher->user->email }}
-                                                    </span>
-                                                    <div x-show="show">
-                                                        <div class="mt-1 text-gray-600 focus-within:text-gray-400">
-                                                            <input wire:keydown.enter="save()" type="email"
-                                                                wire:model="teachers.{{ $i }}.user.email"
-                                                                class="py-3 block w-full text-sm text-gray-400 bg-gray-100 rounded-md px-5 focus:outline-none focus:bg-gray-50 focus:text-gray-900"
-                                                                placeholder="{{ $teacher->user->email }}"
-                                                                autocomplete="off">
-                                                        </div>
+                            <tr class="bg-gray-50" wire:key="person-field-{{ $person->id }}">
+                                <td class="p-3 text-center">
+                                    {{ $loop->iteration }}
+                                </td>
+                                <td class="p-3">
+                                    <div class="flex align-items-center">
+                                        <div class="ml-3">
+                                            <div x-data="{ show: false }">
+                                                <span x-show="!show" @click="show = !show" class="font-bold text-gray-500">
+                                                    {{ $person->name }}
+                                                </span>
+                                                {{-- <div x-show="show">
+                                                    <div class="text-gray-600 focus-within:text-gray-400">
+                                                        <input wire:keydown.enter="save()" wire:model="teachers.{{ $i }}.user.name" class="p-0 block w-full text-sm text-gray-400 bg-gray-100 rounded-md focus:outline-none focus:bg-gray-50 focus:text-gray-900" placeholder="{{ $teacher->user->name }}" autocomplete="off">
                                                     </div>
                                                 </div> --}}
                                             </div>
-                                        </div>
-                                    </td>
-                                    {{-- <td class="p-3">
-                                        <div x-data="{ show: false }">
-                                            <span x-show="!show" @click="show = !show" class="text-gray-500">
-                                                {{ $teacher->speciality }}
-                                            </span>
-                                            <div x-show="show">
-                                                <div class="text-gray-600 focus-within:text-gray-400">
-                                                    <input wire:keydown.enter="save()" wire:model="teachers.{{ $i }}.speciality"
-                                                        class="py-3 block w-full text-sm text-gray-400 bg-gray-100 rounded-md px-5 focus:outline-none focus:bg-gray-50 focus:text-gray-900"
-                                                        placeholder="{{ $teacher->speciality }}" autocomplete="off">
+
+                                            {{-- <div x-data="{ show: false }">
+                                                <span x-show="!show" @click="show = !show" class="text-gray-500">
+                                                    {{ $teacher->user->email }}
+                                                </span>
+                                                <div x-show="show">
+                                                    <div class="mt-1 text-gray-600 focus-within:text-gray-400">
+                                                        <input wire:keydown.enter="save()" type="email" wire:model="teachers.{{ $i }}.user.email" class="py-3 block w-full text-sm text-gray-400 bg-gray-100 rounded-md px-5 focus:outline-none focus:bg-gray-50 focus:text-gray-900" placeholder="{{ $teacher->user->email }}" autocomplete="off">
+                                                    </div>
                                                 </div>
+                                            </div> --}}
+                                        </div>
+                                    </div>
+                                </td>
+                                {{-- <td class="p-3">
+                                    <div x-data="{ show: false }">
+                                        <span x-show="!show" @click="show = !show" class="text-gray-500">
+                                            {{ $teacher->speciality }}
+                                        </span>
+                                        <div x-show="show">
+                                            <div class="text-gray-600 focus-within:text-gray-400">
+                                                <input wire:keydown.enter="save()" wire:model="teachers.{{ $i }}.speciality" class="py-3 block w-full text-sm text-gray-400 bg-gray-100 rounded-md px-5 focus:outline-none focus:bg-gray-50 focus:text-gray-900" placeholder="{{ $teacher->speciality }}" autocomplete="off">
                                             </div>
                                         </div>
-                                    </td> --}}
-                                    {{-- <td class="p-3">
-                                        @if ($teacher->person)
-                                            <div class="flex text-blue-600">
-                                                <span class="material-icons-outlined mr-3">
-                                                    link
-                                                </span>
-                                                Linked
-                                            </div>
-                                        @else
-                                            <div wire:click="link({{ $teacher->id }})"
-                                                class="flex text-red-600 cursor-pointer">
-                                                <span class="material-icons-outlined mr-1">
-                                                    link
-                                                </span>
-                                                Not linked
-                                            </div>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <a href="{{route('delete' , [ 'Teacher' , $teacher->id])}}" class="btn btn-sm btn-danger">Delete</a>
-                                    </td> --}}
-                                </tr>
+                                    </div>
+                                </td> --}}
+                                {{-- <td class="p-3">
+                                    @if ($teacher->person)
+                                    <div class="flex text-blue-600">
+                                        <span class="material-icons-outlined mr-3">
+                                            link
+                                        </span>
+                                        Linked
+                                    </div>
+                                    @else
+                                    <div wire:click="link({{ $teacher->id }})" class="flex text-red-600 cursor-pointer">
+                                        <span class="material-icons-outlined mr-1">
+                                            link
+                                        </span>
+                                        Not linked
+                                    </div>
+                                    @endif
+                                </td>
+                                <td>
+                                    <a href="{{route('delete' , [ 'Teacher' , $teacher->id])}}" class="btn btn-sm btn-danger">Delete</a>
+                                </td> --}}
+                            </tr>
                             @empty
-                                <tr class="bg-red-100">
-                                    <td colspan="5" class="p-3 text-center">
-                                        No People
-                                    </td>
-                                </tr>
+                            <tr class="bg-red-100">
+                                <td colspan="5" class="p-3 text-center">
+                                    No People
+                                </td>
+                            </tr>
                             @endforelse
 
                         </tbody>
@@ -120,9 +109,8 @@
 
     </div>
 
-    <div class="absolute bottom-0 left-0 m-3">
-        <button wire:click="save"
-            class="flex items-center text-white px-4 w-auto h-12 bg-blue-600 rounded hover:bg-blue-800 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none">
+    <div class="fixed bottom-0 left-0 m-3">
+        <button wire:click="save" class="flex items-center text-white px-4 w-auto h-12 bg-blue-600 rounded hover:bg-blue-800 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none">
             <span class="material-icons-outlined mr-3">
                 save
             </span>

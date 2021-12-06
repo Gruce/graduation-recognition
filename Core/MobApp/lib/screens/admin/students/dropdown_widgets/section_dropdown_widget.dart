@@ -23,30 +23,30 @@ class SectionsDropDownWidget extends GetView {
         children: <Widget>[
           const Text("Section "),
           Obx(() => Expanded(
-              child:
-              controller.sections.isNotEmpty ?
-              DropdownButton(
-                // Initial Value
-                value: controller.sectionSelectedIndex.value,
-                // Down Arrow Icon
-                icon: const Icon(Icons.keyboard_arrow_down),
+              child: controller.sections.isNotEmpty
+                  ? DropdownButton(
+                      // Initial Value
+                      value: controller.sectionSelectedIndex.value,
+                      // Down Arrow Icon
+                      icon: const Icon(Icons.keyboard_arrow_down),
 
-                // Array list of items
-                items: controller.sections.asMap().keys.map((int index) {
-                  return DropdownMenuItem(
-                    value: index,
-                    child: Text(controller.sections[index].name,
-                        style: const TextStyle(color: Color(0xff6875F5))),
-                  );
-                }).toList(),
+                      // Array list of items
+                      items: controller.sections.asMap().keys.map((int index) {
+                        return DropdownMenuItem(
+                          value: index,
+                          child: Text(controller.sections[index].name,
+                              style: const TextStyle(color: Color(0xff6875F5))),
+                        );
+                      }).toList(),
 
-                // After selecting the desired option,it will
-                // change button value to selected value
-                onChanged: (Object? index) => {
-                  controller.sectionSelectedIndex.value = int.parse(index.toString())
-                },
-              ) : const Text("Loading")
-          ))
+                      // After selecting the desired option,it will
+                      // change button value to selected value
+                      onChanged: (Object? index) => {
+                        controller.sectionSelectedIndex.value =
+                            int.parse(index.toString())
+                      },
+                    )
+                  : const Text("Loading")))
         ],
       ),
     );

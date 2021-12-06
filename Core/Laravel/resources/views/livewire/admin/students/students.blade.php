@@ -28,125 +28,117 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse($students  as $i => $student )
-                                <tr class="bg-gray-50" wire:key="student-field-{{ $student->id }}">
-                                    <td class="p-3 text-center">
-                                        {{ $loop->iteration }}
-                                    </td>
-                                    <td class="p-3">
-                                        <div class="flex align-items-center">
-                                            {{-- <img class="rounded-full h-12 w-12  object-cover" src="{{asset('storage/db/' . $teacher->user->id . '/1.jpg')}}" alt="unsplash image"> --}}
-                                            <div class="ml-3">
-                                                <div x-data="{ show: false }">
-                                                    <span x-show="!show" @click="show = !show"
-                                                        class="font-bold text-gray-500">
-                                                        {{ $student->user->name }}
-                                                    </span>
-                                                    <div x-show="show">
-                                                        <div class="text-gray-600 focus-within:text-gray-400">
-                                                            <input wire:keydown.enter="save()" wire:model="students.{{ $i }}.user.name"
-                                                                class="p-0 block w-full text-sm text-gray-400 bg-gray-100 rounded-md focus:outline-none focus:bg-gray-50 focus:text-gray-900"
-                                                                placeholder="{{ $student->user->name }}"
-                                                                autocomplete="off">
-                                                        </div>
+                            @forelse($students as $i => $student )
+                            <tr class="bg-gray-50" wire:key="student-field-{{ $student->id }}">
+                                <td class="p-3 text-center">
+                                    {{ $loop->iteration }}
+                                </td>
+                                <td class="p-3">
+                                    <div class="flex align-items-center">
+                                        {{-- <img class="rounded-full h-12 w-12  object-cover" src="{{asset('storage/db/' . $teacher->user->id . '/1.jpg')}}" alt="unsplash image"> --}}
+                                        <div class="ml-3">
+                                            <div x-data="{ show: false }">
+                                                <span x-show="!show" @click="show = !show" class="font-bold text-gray-500">
+                                                    {{ $student->user->name }}
+                                                </span>
+                                                <div x-show="show">
+                                                    <div class="text-gray-600 focus-within:text-gray-400">
+                                                        <input wire:keydown.enter="save()" wire:model="students.{{ $i }}.user.name" class="p-0 block w-full text-sm text-gray-400 bg-gray-100 rounded-md focus:outline-none focus:bg-gray-50 focus:text-gray-900" placeholder="{{ $student->user->name }}" autocomplete="off">
                                                     </div>
                                                 </div>
+                                            </div>
 
-                                                <div x-data="{ show: false }">
-                                                    <span x-show="!show" @click="show = !show" class="text-gray-500">
-                                                        {{ $student->user->email }}
-                                                    </span>
-                                                    <div x-show="show">
-                                                        <div class="mt-1 text-gray-600 focus-within:text-gray-400">
-                                                            <input wire:keydown.enter="save()" type="email"
-                                                                wire:model="students.{{ $i }}.user.email"
-                                                                class="py-3 block w-full text-sm text-gray-400 bg-gray-100 rounded-md px-5 focus:outline-none focus:bg-gray-50 focus:text-gray-900"
-                                                                placeholder="{{ $student->user->email }}"
-                                                                autocomplete="off">
-                                                        </div>
+                                            <div x-data="{ show: false }">
+                                                <span x-show="!show" @click="show = !show" class="text-gray-500">
+                                                    {{ $student->user->email }}
+                                                </span>
+                                                <div x-show="show">
+                                                    <div class="mt-1 text-gray-600 focus-within:text-gray-400">
+                                                        <input wire:keydown.enter="save()" type="email" wire:model="students.{{ $i }}.user.email" class="py-3 block w-full text-sm text-gray-400 bg-gray-100 rounded-md px-5 focus:outline-none focus:bg-gray-50 focus:text-gray-900" placeholder="{{ $student->user->email }}" autocomplete="off">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </td>
-                                    
-                                    <td class="p-3">
-                                        <div x-data="{ show: false }">
-                                            <span x-show="!show" @click="show = !show" class="text-gray-500">
-                                                {{ $student->section->name }}
-                                            </span>
-                                            <div x-show="show">
-                                                <div class="text-gray-600 focus-within:text-gray-400">
-                                                    <select wire:keydown.enter="save()" wire:model="students.{{ $i }}.section_id" class="py-3 block w-full text-sm text-gray-400 bg-gray-100 rounded-md px-5 focus:outline-none focus:bg-gray-50 focus:text-gray-900">
-                                                        <option value="">Please select</option>
-                                                        @foreach ($sections as $section)
-                                                            <option value="{{$section->id}}">{{$section->name}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
+                                    </div>
+                                </td>
+
+                                <td class="p-3">
+                                    <div x-data="{ show: false }">
+                                        <span x-show="!show" @click="show = !show" class="text-gray-500">
+                                            {{ $student->section->name }}
+                                        </span>
+                                        <div x-show="show">
+                                            <div class="text-gray-600 focus-within:text-gray-400">
+                                                <select wire:keydown.enter="save()" wire:model="students.{{ $i }}.section_id" class="py-3 block w-full text-sm text-gray-400 bg-gray-100 rounded-md px-5 focus:outline-none focus:bg-gray-50 focus:text-gray-900">
+                                                    <option value="">Please select</option>
+                                                    @foreach ($sections as $section)
+                                                    <option value="{{$section->id}}">{{$section->name}}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
-                                    </td>
-                                    <td class="p-3">
-                                        <div x-data="{ show: false }">
-                                            <span x-show="!show" @click="show = !show" class="text-gray-500">
-                                                {{-- {{dd($student->stage->id , $student->section_id , $student->stage->section_id)}} --}}
-                                                @if($student->section_id == $student->stage->section_id)
-                                                    {{ $student->stage->name }}
-                                                @else 
-                                                    <span class="text-red-500">Please select!</span> 
-                                                    <input type="hidden" value="{{false}}" wire:model="isStage">
-                                                @endif
-                                            </span>
-                                            <div x-show="show">
-                                                <div class="text-gray-600 focus-within:text-gray-400">
-                                                    <select wire:keydown.enter="save()" wire:model="students.{{ $i }}.stage_id" class="py-3 block w-full text-sm text-gray-400 bg-gray-100 rounded-md px-5 focus:outline-none focus:bg-gray-50 focus:text-gray-900">
-                                                        <option value="">Please select</option>
-                                                        @foreach ($stages as $stage)
-                                                            @if($stage->section_id == $student->section_id)
-                                                                <option value="{{$stage->id}}">{{$stage->name}}</option>
-                                                            @endif
-                                                        @endforeach
-                                                    </select>
-                                                </div>
+                                    </div>
+                                </td>
+                                <td class="p-3">
+                                    <div x-data="{ show: false }">
+                                        <span x-show="!show" @click="show = !show" class="text-gray-500">
+                                            {{-- {{dd($student->stage->id , $student->section_id , $student->stage->section_id)}} --}}
+                                            @if($student->section_id == $student->stage->section_id)
+                                            {{ $student->stage->name }}
+                                            @else
+                                            <span class="text-red-500">Please select!</span>
+                                            <input type="hidden" value="{{false}}" wire:model="isStage">
+                                            @endif
+                                        </span>
+                                        <div x-show="show">
+                                            <div class="text-gray-600 focus-within:text-gray-400">
+                                                <select wire:keydown.enter="save()" wire:model="students.{{ $i }}.stage_id" class="py-3 block w-full text-sm text-gray-400 bg-gray-100 rounded-md px-5 focus:outline-none focus:bg-gray-50 focus:text-gray-900">
+                                                    <option value="">Please select</option>
+                                                    @foreach ($stages as $stage)
+                                                    @if($stage->section_id == $student->section_id)
+                                                    <option value="{{$stage->id}}">{{$stage->name}}</option>
+                                                    @endif
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
-                                    </td>
-                                    <td class="p-3">
-                                        <div x-data="{ show: false }">
-                                            <span x-show="!show" @click="show = !show" class="text-gray-500">
-                                                
-                                                @if($student->stage_id == $student->unit->stage_id)
-                                                    {{ $student->unit->name }} 
-                                                @else
-                                                    <span class="text-red-500">Please select!</span>
-                                                    <input type="hidden" value="{{false}}" wire:model="isUnit">
-                                                @endif
-                                            </span>
-                                            <div x-show="show">
-                                                <div class="text-gray-600 focus-within:text-gray-400">
-                                                    <select wire:keydown.enter="save()" wire:model="students.{{ $i }}.unit_id" class="py-3 block w-full text-sm text-gray-400 bg-gray-100 rounded-md px-5 focus:outline-none focus:bg-gray-50 focus:text-gray-900">
-                                                        <option>Please select</option>
-                                                        @foreach ($units as $unit)
-                                                            @if($unit->stage_id == $student->stage_id)
-                                                                <option value="{{$unit->id}}">{{$unit->name}}</option>
-                                                            @endif
-                                                        @endforeach
-                                                    </select>
-                                                </div>
+                                    </div>
+                                </td>
+                                <td class="p-3">
+                                    <div x-data="{ show: false }">
+                                        <span x-show="!show" @click="show = !show" class="text-gray-500">
+
+                                            @if($student->stage_id == $student->unit->stage_id)
+                                            {{ $student->unit->name }}
+                                            @else
+                                            <span class="text-red-500">Please select!</span>
+                                            <input type="hidden" value="{{false}}" wire:model="isUnit">
+                                            @endif
+                                        </span>
+                                        <div x-show="show">
+                                            <div class="text-gray-600 focus-within:text-gray-400">
+                                                <select wire:keydown.enter="save()" wire:model="students.{{ $i }}.unit_id" class="py-3 block w-full text-sm text-gray-400 bg-gray-100 rounded-md px-5 focus:outline-none focus:bg-gray-50 focus:text-gray-900">
+                                                    <option>Please select</option>
+                                                    @foreach ($units as $unit)
+                                                    @if($unit->stage_id == $student->stage_id)
+                                                    <option value="{{$unit->id}}">{{$unit->name}}</option>
+                                                    @endif
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
-                                    </td>
-                                    <td>
-                                        <a href="{{route('delete' , [ 'Student' , $student->id])}}" class="text-red-500"><i class="material-icons text-base">delete</i></a>
-                                    </td>
-                                </tr>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href="{{route('delete' , [ 'Student' , $student->id])}}" class="text-red-500"><i class="material-icons text-base">delete</i></a>
+                                </td>
+                            </tr>
                             @empty
-                                <tr class="bg-red-100">
-                                    <td colspan="6" class="p-3 text-center">
-                                        No Students
-                                    </td>
-                                </tr>
+                            <tr class="bg-red-100">
+                                <td colspan="6" class="p-3 text-center">
+                                    No Students
+                                </td>
+                            </tr>
                             @endforelse
 
                         </tbody>
@@ -158,9 +150,8 @@
 
     </div>
 
-    <div class="absolute bottom-0 left-0 m-3">
-        <button wire:click="save"
-            class="flex items-center text-white px-4 w-auto h-12 bg-blue-600 rounded hover:bg-blue-800 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none">
+    <div class="fixed bottom-0 left-0 m-3">
+        <button wire:click="save" class="flex items-center text-white px-4 w-auto h-12 bg-blue-600 rounded hover:bg-blue-800 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none">
             <span class="material-icons-outlined mr-3">
                 save
             </span>

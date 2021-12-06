@@ -20,10 +20,10 @@ class SectionsDropDownWidget extends GetView {
         borderRadius: BorderRadius.circular(20.0),
       ),
       child: Row(
-        children: <Widget>[       
+        children: <Widget>[
           const Text("Section "),
           Obx(() => Expanded(
-            child: 
+              child:
               controller.sections.isNotEmpty ?
               DropdownButton(
                 // Initial Value
@@ -39,7 +39,7 @@ class SectionsDropDownWidget extends GetView {
                         style: const TextStyle(color: Color(0xff6875F5))),
                   );
                 }).toList(),
-                  
+
                 // After selecting the desired option,it will
                 // change button value to selected value
                 onChanged: (Object? index) => {

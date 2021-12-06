@@ -31,74 +31,70 @@
                         </thead>
                         <tbody>
                             @forelse($sections as $i => $section)
-                                <tr class="bg-gray-50" wire:key="section-field-{{ $section->id }}">
-                                    <td class="p-3 text-center">
-                                        {{ $loop->iteration }}
-                                    </td>
-                                    <td class="p-3">
-                                        <div class="flex align-items-center">
-                                            <div class="ml-3">
-                                                <div x-data="{ show: false }">
-                                                    <span x-show="!show" @click="show = !show"
-                                                        class="font-bold text-gray-500">
-                                                        {{ $section->name }}
-                                                    </span>
-                                                    <div x-show="show">
-                                                        <div class="text-gray-600 focus-within:text-gray-400">
-                                                            <input wire:keydown.enter="save()" wire:model="sections.{{ $i }}.name"
-                                                                class="p-0 block w-full text-sm text-gray-400 bg-gray-100 rounded-md focus:outline-none focus:bg-gray-50 focus:text-gray-900"
-                                                                placeholder="{{ $section->name }}"
-                                                                autocomplete="off">
-                                                        </div>
+                            <tr class="bg-gray-50" wire:key="section-field-{{ $section->id }}">
+                                <td class="p-3 text-center">
+                                    {{ $loop->iteration }}
+                                </td>
+                                <td class="p-3">
+                                    <div class="flex align-items-center">
+                                        <div class="ml-3">
+                                            <div x-data="{ show: false }">
+                                                <span x-show="!show" @click="show = !show" class="font-bold text-gray-500">
+                                                    {{ $section->name }}
+                                                </span>
+                                                <div x-show="show">
+                                                    <div class="text-gray-600 focus-within:text-gray-400">
+                                                        <input wire:keydown.enter="save()" wire:model="sections.{{ $i }}.name" class="p-0 block w-full text-sm text-gray-400 bg-gray-100 rounded-md focus:outline-none focus:bg-gray-50 focus:text-gray-900" placeholder="{{ $section->name }}" autocomplete="off">
                                                     </div>
                                                 </div>
+                                            </div>
                                         </div>
-                                    </td>
-                                    <td class="p-3">
-                                        <div>
-                                            <span class="text-gray-500">
-                                                {{ $section->stages_count }}
-                                            </span>
-                                        </div>
-                                    </td>
-                                    <td class="p-3">
-                                        <div>
-                                            <span class="text-gray-500">
-                                                {{ $section->units_count }}
-                                            </span>
-                                        </div>
-                                    </td>
-                                    <td class="p-3">
-                                        <div>
-                                            <span class="text-gray-500">
-                                                {{ $section->subjects_count }}
-                                            </span>
-                                        </div>
-                                    </td>
-                                    <td class="p-3">
-                                        <div>
-                                            <span class="text-gray-500">
-                                                {{ $section->teachers_count }}
-                                            </span>
-                                        </div>
-                                    </td>
-                                    <td class="p-3">
-                                        <div>
-                                            <span class="text-gray-500">
-                                                {{ $section->students_count }}
-                                            </span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a href="{{route('delete' , [ 'Section' , $section->id])}}" class="text-red-500"><i class="material-icons text-base">delete</i></a>
-                                    </td>
-                                </tr>
+                                </td>
+                                <td class="p-3">
+                                    <div>
+                                        <span class="text-gray-500">
+                                            {{ $section->stages_count }}
+                                        </span>
+                                    </div>
+                                </td>
+                                <td class="p-3">
+                                    <div>
+                                        <span class="text-gray-500">
+                                            {{ $section->units_count }}
+                                        </span>
+                                    </div>
+                                </td>
+                                <td class="p-3">
+                                    <div>
+                                        <span class="text-gray-500">
+                                            {{ $section->subjects_count }}
+                                        </span>
+                                    </div>
+                                </td>
+                                <td class="p-3">
+                                    <div>
+                                        <span class="text-gray-500">
+                                            {{ $section->teachers_count }}
+                                        </span>
+                                    </div>
+                                </td>
+                                <td class="p-3">
+                                    <div>
+                                        <span class="text-gray-500">
+                                            {{ $section->students_count }}
+                                        </span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href="{{route('delete' , [ 'Section' , $section->id])}}" class="text-red-500"><i class="material-icons text-base">delete</i></a>
+                                </td>
+                            </tr>
                             @empty
-                                <tr class="bg-red-100">
-                                    <td colspan="8" class="p-3 text-center">
-                                        No Sections
-                                    </td>
-                                </tr>
+                            <tr class="bg-red-100">
+                                <td colspan="8" class="p-3 text-center">
+                                    No Sections
+                                </td>
+                            </tr>
                             @endforelse
 
                         </tbody>
@@ -110,9 +106,8 @@
 
     </div>
 
-    <div class="absolute bottom-0 left-0 m-3">
-        <button wire:click="save"
-            class="flex items-center text-white px-4 w-auto h-12 bg-blue-600 rounded hover:bg-blue-800 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none">
+    <div class="fixed bottom-0 left-0 m-3">
+        <button wire:click="save" class="flex items-center text-white px-4 w-auto h-12 bg-blue-600 rounded hover:bg-blue-800 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none">
             <span class="material-icons-outlined mr-3">
                 save
             </span>

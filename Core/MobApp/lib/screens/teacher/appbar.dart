@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:graduaiton_app/routes/routes.dart';
 
 class TeacherAppbar extends StatelessWidget {
   const TeacherAppbar({Key? key, required this.title}) : super(key: key);
@@ -29,10 +32,13 @@ class TeacherAppbar extends StatelessWidget {
                 ),
               ],
             ),
-            // CircleAvatar(
-            //   child: Image.asset('STLogo.png'),
-            //   backgroundColor: Colors.white,
-            // ),
+            GestureDetector(
+              onTap: () => Get.toNamed(Routes.teachProfile),
+              child: CircleAvatar(
+                child: Image.asset('assets/STLogo.png'),
+                backgroundColor: Colors.white,
+              ),
+            ),
           ],
         ),
       ),

@@ -7,14 +7,12 @@ import 'package:graduaiton_app/screens/admin/home_page/home_screen.dart';
 import 'package:graduaiton_app/screens/admin/people/people_screen.dart';
 import 'package:graduaiton_app/screens/admin/profile/profile_screen.dart';
 import 'package:graduaiton_app/screens/admin/students/students_screen.dart';
-// import 'package:graduaiton_app/screens/admin/tables_page/tables_screen.dart';
 import 'package:graduaiton_app/screens/general/people/person_profile_widget.dart';
 import 'package:graduaiton_app/screens/login_screen.dart';
-import 'package:graduaiton_app/screens/teacher/attendance/attendance_student.dart';
 import 'package:graduaiton_app/screens/teacher/home_page/home_screen.dart';
 import 'package:graduaiton_app/screens/teacher/home_page/schedule_teacher.dart';
 import 'package:graduaiton_app/screens/teacher/profile/profile_screen.dart';
-// import 'package:graduaiton_app/screens/teacher/tables_page/tables_screen.dart';
+import 'package:graduaiton_app/screens/teacher/units/units_screen.dart';
 
 class Routes {
   static const login = '/';
@@ -32,7 +30,7 @@ class Routes {
   static const teacherMain = '/teacher/';
   static const teachTables = '/teacher/tables/';
   static const teachSchedule = '/teacher/schedule/';
-  static const attendanceStudents = '/teacher/attendance/';
+  static const teachUnits = '/teacher/units/';
   static const teachProfile = '/teacher/profile/';
 
   static final routes = [
@@ -79,10 +77,6 @@ class Routes {
         page: () => TeacherHomeScreen(),
         binding: TeacherHomeBinding()),
 
-    GetPage(
-        name: attendanceStudents,
-        page: () => AttendanceStudentsScreen(),
-        binding: AttendanceStudentsBinding()),
 
   GetPage(
         name: teachSchedule,
@@ -94,6 +88,11 @@ class Routes {
         page: () => TeacherProfileScreen(),
         binding: TeacherProfileBinding()),
 
-   
+    GetPage(
+        name: teachUnits,
+        page: () => TeacherUnitsScreen(),
+        binding: TeacherUnitsBinding()),
+
+
   ];
 }

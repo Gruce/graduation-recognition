@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/Admin/structure/admin_sections_controller.dart';
-
 // ignore: must_be_immutable
 class SectionsDropDownWidget extends GetView {
   SectionsDropDownWidget({Key? key}) : super(key: key);
   @override
   AdminSectionsController controller = Get.put(AdminSectionsController());
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,31 +22,33 @@ class SectionsDropDownWidget extends GetView {
       child: Row(
         children: <Widget>[
           const Text("Section "),
-          Obx(() => Expanded(
-              child: controller.sections.isNotEmpty
-                  ? DropdownButton(
-                      // Initial Value
-                      value: controller.sectionSelectedIndex.value,
-                      // Down Arrow Icon
-                      icon: const Icon(Icons.keyboard_arrow_down),
-
-                      // Array list of items
-                      items: controller.sections.asMap().keys.map((int index) {
-                        return DropdownMenuItem(
-                          value: index,
-                          child: Text(controller.sections[index].name,
-                              style: const TextStyle(color: Color(0xff6875F5))),
-                        );
-                      }).toList(),
-
-                      // After selecting the desired option,it will
-                      // change button value to selected value
-                      onChanged: (Object? index) => {
-                        controller.sectionSelectedIndex.value =
-                            int.parse(index.toString())
-                      },
-                    )
-                  : const Text("Loading")))
+          Obx(() =>
+              Expanded(
+                  child: controller.sections.isNotEmpty
+                      ? DropdownButton(
+                    // Initial Value
+                    value: controller.sectionSelectedIndex.value,
+                    // Down Arrow Icon
+                    icon: const Icon(Icons.keyboard_arrow_down),
+                    // Array list of items
+                    items: controller.sections
+                        .asMap()
+                        .keys
+                        .map((int index) {
+                      return DropdownMenuItem(
+                        value: index,
+                        child: Text(controller.sections[index].name,
+                            style: const TextStyle(color: Color(0xff6875F5))),
+                      );
+                    }).toList(),
+                    // After selecting the desired option,it will
+                    // change button value to selected value
+                    onChanged: (Object? index) =>
+                    {
+                      controller.filterBySection(int.parse(index.toString()))
+                    },
+                  )
+                      : const Text("Loading")))
         ],
       ),
     );

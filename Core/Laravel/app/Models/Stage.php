@@ -26,4 +26,8 @@ class Stage extends Model
     public function students(){
         return $this->hasMany(Student::class);
     }
+
+    public function teachers(){
+        return $this->belongsToMany(Teacher::class)->withTimestamps();
+    }
 }

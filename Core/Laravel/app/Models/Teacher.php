@@ -23,6 +23,10 @@ class Teacher extends Model
         return $this->belongsTo(Section::class);
     }
 
+    public function stages(){
+        return $this->belongsToMany(Stage::class)->withTimestamps();
+    }
+
     public function subjects(){
         return $this->belongsToMany(Subject::class)->withTimestamps();
     }

@@ -79,7 +79,7 @@ class TeacherUnitsScreen extends GetView {
                                                 .spaceBetween,
                                             children: [
                                               Text(
-                                                '50 Students',
+                                                controller.units[index].students_count.toString(),
                                                 style: TextStyle(
                                                     color: Colors.black
                                                         .withOpacity(0.6)),

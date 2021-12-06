@@ -23,21 +23,36 @@ class TeacherController extends Controller
         return response()->json(['data' => $students]);
     }
 
-    public function info(){
-        $info = auth()->user()->teacher()->with(
+    // public function info(){
+    //     $info = auth()->user()->teacher()->with(
+    //         [
+    //             'user:id,name,email',
+    //             'section:id,name',
+    //             'stages:id,section_id,name',
+    //             'units' => function($unit){
+    //                 return $unit->with(['section:id,name' , 'stage:id,name'])->get();
+    //             },
+    //             'subjects' => function($subject){
+    //                 return $subject->with(['section:id,name' , 'stage:id,name'])->get();
+    //             },
+    //         ]
+    //         )->get(['id' , 'user_id' , 'section_id' , 'speciality']);
+
+    //     return response()->json(['data' => $info]);
+    // }
+
+    public function units(){
+        $units = auth()->user()->teacher()->with(
             [
-                'user:id,name,email',
-                'section:id,name',
-                'stages:id,section_id,name',
-                'units' => function($units){
-                    return $units->with(['section:id,name' , 'stage:id,name'])->get();
+                'units' => function($unit){
+                    return $unit->with(['section:id,name' , 'stage:id,section_id,name'])->get();
                 },
                 'subjects' => function($subject){
-                    return $subject->with(['section:id,name' , 'stage:id,name'])->get();
-                },
+                    return $subject->with('stage:id,name')->get();
+                }
             ]
-            )->get(['id' , 'user_id' , 'section_id']);
+        )->get(['id' , 'user_id' , 'section_id' , 'speciality']);
 
-        return response()->json(['data' => $info]);
+        return response()->json(['data' => $units]);
     }
 }

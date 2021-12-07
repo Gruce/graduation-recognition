@@ -16,6 +16,7 @@ class TeacherSeeder extends Seeder
     {
         // Teachers
 
+        // ID 1
         $data = [
             'user_id' => 1,
             'person_id' => 1,
@@ -26,9 +27,9 @@ class TeacherSeeder extends Seeder
         $teacher = Teacher::create($data);
         $subjects_id = [1,3];
         $teacher->subjects()->attach($subjects_id);
-        $stages_id = [4];
+        $stages_id = [1,4];
         $teacher->stages()->attach($stages_id);
-        $units_id = [1,2];
+        $units_id = [1,2,7,8];
         $teacher->units()->attach($units_id);
 
         $data = [
@@ -39,11 +40,11 @@ class TeacherSeeder extends Seeder
         ];
 
         $teacher = Teacher::create($data);
-        $subjects_id = [4];
+        $subjects_id = [4,5];
         $teacher->subjects()->attach($subjects_id);
-        $stages_id = [4];
+        $stages_id = [8];
         $teacher->stages()->attach($stages_id);
-        $units_id = [4];
+        $units_id = [15,16];
         $teacher->units()->attach($units_id);
 
     }

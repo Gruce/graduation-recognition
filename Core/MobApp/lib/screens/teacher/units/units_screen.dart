@@ -32,7 +32,7 @@ class TeacherUnitsScreen extends GetView {
                               child: Container(
                                   padding: const EdgeInsets.all(15),
                                   decoration: BoxDecoration(
-                                    color: const Color(0xffd4d8ff),
+                                    color:  controller.units[index].name=='A'? Color(0xffd4d8ff):Color(0xffFBEDEE),
                                     borderRadius: BorderRadius.circular(20),
                                   ),
                                   child: Column(
@@ -54,11 +54,11 @@ class TeacherUnitsScreen extends GetView {
                                                       margin: const EdgeInsets
                                                           .only(right: 5),
                                                       decoration:
-                                                      const BoxDecoration(
+                                                       BoxDecoration(
                                                         shape:
                                                         BoxShape.circle,
-                                                        color:
-                                                        Color(0xff6875F5),
+                                                        color:controller.units[index].name=='A'? Color(0xff6875F5):Color(0xffDEBEC0),
+                                                       
                                                       ),
                                                       child: Text(
                                                         controller.units[index].name,
@@ -79,7 +79,7 @@ class TeacherUnitsScreen extends GetView {
                                                 .spaceBetween,
                                             children: [
                                               Text(
-                                                '50 Students',
+                                                controller.units[index].students_count.toString(),
                                                 style: TextStyle(
                                                     color: Colors.black
                                                         .withOpacity(0.6)),

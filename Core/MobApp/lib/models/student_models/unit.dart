@@ -8,6 +8,7 @@ class UnitModel {
   String name = '';
   int stage_id = 0;
   int section_id = 0;
+  int students_count = 1;
   SectionModel section = SectionModel();
   StageModel stage = StageModel();
 
@@ -18,6 +19,7 @@ class UnitModel {
     name = json['name'];
     stage_id = json['stage_id'];
     section_id = json['section_id'];
+    students_count = json['students_count'];
 
     if (!json['section'].isEmpty) {
       section = SectionModel.fromJson(json['section']);
@@ -34,6 +36,7 @@ class UnitModel {
     data['name'] = name;
     data['stage_id'] = stage_id;
     data['section_id'] = section_id;
+    data['students_count'] = students_count;
     return data;
   }
 }

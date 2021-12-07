@@ -52,4 +52,31 @@ class TeacherController extends Controller
 
         return response()->json(['data' => $units]);
     }
+
+    public function unit_student($id){
+        $students = auth()->user()->teacher()->with(
+            [
+                'units' => function($unit) use ($id){
+                    return $unit->with(
+                        [
+                            'students' => function($student){
+                                return $student->with(
+                                    [
+                                        'user:id,name,email',
+                                        'section:id,name',
+                                        'stage:id,name'
+                                    ]
+                                )->get();
+                            }
+                        ]
+                    )->find($id);
+                }
+            ]
+        )->get(['id' , 'user_id' , 'section_id' , 'speciality']);
+
+        if(empty($students->toArray()[0]['units']))
+            return response()->json(['data' => "You Don't have this unit ! "], 400);
+        
+        return response()->json(['data' => $students]);
+    }
 }

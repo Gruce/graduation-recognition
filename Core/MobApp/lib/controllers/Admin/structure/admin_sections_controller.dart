@@ -25,6 +25,7 @@ class AdminSectionsController extends GetxController {
   }
 
   @override
+  // ignore: unnecessary_overrides
   void dispose() {
     super.dispose();
   }

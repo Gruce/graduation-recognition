@@ -43,8 +43,15 @@ class PersonSeeder extends Seeder
         ]);
 
         Person::create([
+            'name' => 'Hassan Hazim',
+            'user_id' => 5,
+            'training_id' => 1,
+            'type' => 2,
+        ]);
+
+        Person::create([
             'name' => 'Stev',
-            'user_id' => 4,
+            'user_id' => 6,
             'training_id' => 1,
             'type' => 2,
         ]);

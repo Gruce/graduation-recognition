@@ -15,6 +15,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        // id = 1 
         User::create([
             'name' => 'Hassan Alkhalidi',
             'email' => 'gruceing@gmail.com',
@@ -24,40 +25,54 @@ class UserSeeder extends Seeder
             'type' => 1
         ]);
 
+        // id = 2
         User::create([
             'name' => 'Hussam Haider',
             'email' => 'hussam@gmail.com',
             'email_verified_at' => now(),
             'password' => bcrypt('123456'),
             'remember_token' => Str::random(10),
-            'type' => 1
+            'type' => 3
         ]);
 
+        // id = 3
         User::create([
             'name' => 'Hassan Kadhim',
             'email' => 'hassan@gmail.com',
             'email_verified_at' => now(),
             'password' => bcrypt('123456'),
             'remember_token' => Str::random(10),
-            'type' => 1
+            'type' => 3
         ]);
 
+        // id = 4
         User::create([
             'name' => 'Abdulkareem',
-            'email' => 'karm.99zo@gmail.com',
+            'email' => 'krm@gmail.com',
             'email_verified_at' => now(),
             'password' => bcrypt('123456'),
             'remember_token' => Str::random(10),
             'type' => 1
         ]);
 
+        // id = 5
         User::create([
             'name' => 'Hassan Hazim',
             'email' => 'hazim@gmail.com',
             'email_verified_at' => now(),
             'password' => bcrypt('123456'),
             'remember_token' => Str::random(10),
-            'type' => 3,
+            'type' => 2,
+        ]);
+
+        // id = 6
+        User::create([
+            'name' => 'stev',
+            'email' => 'stev@gmail.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt('123456'),
+            'remember_token' => Str::random(10),
+            'type' => 2,
         ]);
     }
 }

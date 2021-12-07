@@ -13,6 +13,7 @@ class CameraModel {
     description = json['description'];
     state = json['state'];
     source = json['source'];
+
   }
 
   Map<dynamic, dynamic> toJson() {

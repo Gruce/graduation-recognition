@@ -1,18 +1,31 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'package:graduaiton_app/models/student_models/section.dart';
+import 'package:graduaiton_app/models/student_models/stage.dart';
+
 class UnitModel {
   int id = 0;
   String name = '';
   int stage_id = 0;
   int section_id = 0;
+  SectionModel section = SectionModel();
+  StageModel stage = StageModel();
 
-  UnitModel({id, name, stage_id, section_id});
+  UnitModel({id, name, stage_id, section_id, SectionModel, StageModel});
 
   UnitModel.fromJson(Map<dynamic, dynamic> json) {
     id = json['id'];
     name = json['name'];
     stage_id = json['stage_id'];
     section_id = json['section_id'];
+
+    if (!json['section'].isEmpty) {
+      section = SectionModel.fromJson(json['section']);
+    }
+
+    if (!json['stage'].isEmpty) {
+      stage = StageModel.fromJson(json['stage']);
+    }
   }
 
   Map<dynamic, dynamic> toJson() {

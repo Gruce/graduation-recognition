@@ -16,6 +16,7 @@ class PersonModel {
     trainingId = json['training_id'];
     type = json['type'];
     typeString = getTypeString(type);
+
     if (!json['trackings'].isEmpty) {
       trackings = TrackingModel.fromJson(json['trackings'][0]);
     }

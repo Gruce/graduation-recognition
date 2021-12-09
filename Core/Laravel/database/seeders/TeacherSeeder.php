@@ -47,5 +47,20 @@ class TeacherSeeder extends Seeder
         $units_id = [15,16];
         $teacher->units()->attach($units_id);
 
+        $data = [
+            'user_id' => 6,
+            'person_id' => 6,
+            'section_id' => 1,
+            'speciality' => 'HTML',
+        ];
+
+        $teacher = Teacher::create($data);
+        $subjects_id = [1];
+        $teacher->subjects()->attach($subjects_id);
+        $stages_id = [1];
+        $teacher->stages()->attach($stages_id);
+        $units_id = [1,2];
+        $teacher->units()->attach($units_id);
+
     }
 }

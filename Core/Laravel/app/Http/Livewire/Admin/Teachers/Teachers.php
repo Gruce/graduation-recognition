@@ -81,10 +81,17 @@ class Teachers extends Component
 
     public function mount(){
         $search = '%' . $this->search . '%';
-        $this->teachers = Teacher::with('subjects:id,name')->whereHas('user' , function($q) use ($search){
+        $this->teachers = Teacher::with(
+            [
+                'user:id,name,email',
+                'section:id,name',
+                'stages:id,name,section_id',
+                'units:id,name,stage_id,section_id',
+                'subjects:id,name'
+            ]
+        )->whereHas('user' , function($q) use ($search){
             $q->where('name' , 'LIKE' , $search)->orWhere('email' , 'LIKE' , $search);
         })
-        ->with(['user:id,name,email' , 'section:id,name'])
         ->orderBy('id', 'DESC')
         ->get(['id','user_id' , 'person_id' , 'section_id' , 'speciality']);
 
@@ -102,6 +109,8 @@ class Teachers extends Component
         }
 
         $this->sections = Section::get(['id' , 'name']);
+
+        // dd($this->teachers->toArray());
         // foreach($this->teachers->subjects as $subject)
         //     dd($subject);
         

@@ -35,7 +35,7 @@ class StudentSeeder extends Seeder
 
         foreach(Unit::get() as $item){
             for($i = 1 ; $i <= 2 ; $i++){
-                $name = str_random(8);
+                $name = $item->section_id . '_' . $item->stage_id . '_'. $item->id . '_' .str_random(4);
                 $user = User::create([
                     'name' => $name,
                     'email' => $name . '@gmail.com',

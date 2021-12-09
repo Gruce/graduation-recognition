@@ -18,6 +18,8 @@ class AdminSectionsController extends GetxController {
       Get.put(AdminStudentsController());
   AdminStagesController stageController = Get.put(AdminStagesController());
 
+  AdminStagesController stageController = Get.put(AdminStagesController());
+
   final api = Config.api;
 
   @override
@@ -54,7 +56,7 @@ class AdminSectionsController extends GetxController {
       studentController.filteredStudents.assignAll(studentController.students
           .where((student) => student.section_id == section.id));
     }
-
+    stageController.getSectionId(sectionSelectedIndex);
     studentController.update();
 
     update();

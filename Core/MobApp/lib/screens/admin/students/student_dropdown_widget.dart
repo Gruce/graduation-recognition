@@ -5,17 +5,17 @@ import 'package:graduaiton_app/controllers/Admin/structure/admin_stages_controll
 import 'package:graduaiton_app/controllers/Admin/structure/admin_units_controller.dart';
 
 // ignore: must_be_immutable
-class SectionsDropDownWidget extends GetView {
-  SectionsDropDownWidget({Key? key}) : super(key: key);
+class StudentsDropDownWidget extends GetView {
+  StudentsDropDownWidget({Key? key}) : super(key: key);
   @override
   AdminSectionsController controller = Get.put(AdminSectionsController());
   AdminStagesController controllerr = Get.put(AdminStagesController());
-  AdminUnitsController controllerrr = Get.put(AdminUnitsController());
+  AdminUnitsController controlleerr = Get.put(AdminUnitsController());
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(1),
         border: Border.all(
@@ -77,17 +77,17 @@ class SectionsDropDownWidget extends GetView {
                   : const Text("Loading"))),
 
           Obx(() => Expanded(
-              child: controllerrr.units.isNotEmpty
+              child: controlleerr.units.isNotEmpty
                   ? DropdownButton(
                       // Initial Value
-                      value: controllerrr.unitSelectedIndex.value,
+                      value: controlleerr.unitSelectedIndex.value,
                       // Down Arrow Icon
                       icon: const Icon(Icons.keyboard_arrow_down),
                       // Array list of items
-                      items: controllerrr.units.asMap().keys.map((int index) {
+                      items: controlleerr.units.asMap().keys.map((int index) {
                         return DropdownMenuItem(
                           value: index,
-                          child: Text(controllerrr.units[index].name,
+                          child: Text(controlleerr.units[index].name,
                               style: const TextStyle(
                                   color: Color(0xff6875F5), fontSize: 12.3)),
                         );
@@ -95,10 +95,10 @@ class SectionsDropDownWidget extends GetView {
                       // After selecting the desired option,it will
                       // change button value to selected value
                       onChanged: (Object? index) => {
-                        controllerrr.filterByUnit(int.parse(index.toString()))
+                        controlleerr.filterByUnit(int.parse(index.toString()))
                       },
                     )
-                  : const Text("Loading")))
+                  : const Text("Loading"))),
         ],
       ),
     );

@@ -12,7 +12,7 @@ import '../admin_students_controller.dart';
 
 class AdminUnitsController extends GetxController {
   late SharedPreferences prefs;
-  RxList units = <StageModel>[].obs;
+  RxList units = <UnitModel>[].obs;
   RxInt unitSelectedIndex = 0.obs;
 
   AdminStudentsController studentController =
@@ -39,7 +39,6 @@ class AdminUnitsController extends GetxController {
       units.add(UnitModel.fromJson({"id": -1, "name": "All Units"}));
       for (var element in response) {
         units.add(UnitModel.fromJson(element));
-        print(element);
       }
     }
     update();

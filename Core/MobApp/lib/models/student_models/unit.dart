@@ -41,17 +41,29 @@
 //   }
 // }
 // ignore_for_file: non_constant_identifier_names
+import 'section.dart';
+import 'stage.dart';
+
 class UnitModel {
   int id = 0;
   String name = '';
   int unit_id = 0;
+  int section_id = 0;
+  int stage_id = 0;
+  // SectionModel section = SectionModel();
+  // StageModel stage = StageModel();
 
-  UnitModel({id, name, unit_id});
+  UnitModel({id, name, unit_id , section_id, stage_id});
 
   UnitModel.fromJson(Map<dynamic, dynamic> json) {
     id = json['id'];
     name = json['name'];
     unit_id = json['unit_id'];
+    section_id = json['section_id'];
+    stage_id = json['stage_id'];
+    // section = SectionModel.fromJson(json['section']);  
+    // stage = StageModel.fromJson(json['stage']);
+    
     // if (!json['trackings'].isEmpty) {
     //   trackings = TrackingModel.fromJson(json['trackings'][0]);
     // }
@@ -62,6 +74,10 @@ class UnitModel {
     data['id'] = id;
     data['name'] = name;
     data['unit_id'] = unit_id;
+    data['section_id'] = section_id;
+    data['stage_id'] = stage_id;
+    // data['section'] = section;
+    // data['stage'] = stage;
     return data;
   }
 }

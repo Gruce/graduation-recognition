@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import '../../../config.dart';
 import '../admin_students_controller.dart';
+import 'admin_stages_controller.dart';
 
 class AdminSectionsController extends GetxController {
   late SharedPreferences prefs;
@@ -15,6 +16,8 @@ class AdminSectionsController extends GetxController {
 
   AdminStudentsController studentController =
       Get.put(AdminStudentsController());
+
+  AdminStagesController stageController = Get.put(AdminStagesController());
 
   final api = Config.api;
 
@@ -52,7 +55,7 @@ class AdminSectionsController extends GetxController {
       studentController.filteredStudents.assignAll(studentController.students
           .where((student) => student.section_id == section.id));
     }
-
+    stageController.getSectionId(sectionSelectedIndex);
     studentController.update();
 
     update();

@@ -8,14 +8,20 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import '../../../config.dart';
 import '../admin_students_controller.dart';
+import 'admin_sections_controller.dart';
 
 class AdminStagesController extends GetxController {
   late SharedPreferences prefs;
   RxList stages = <StageModel>[].obs;
+  RxList filteredStages = <StageModel>[].obs;
   RxInt stageSelectedIndex = 0.obs;
+  RxInt sectionId = 0.obs;
 
   AdminStudentsController studentController =
       Get.put(AdminStudentsController());
+
+  // AdminSectionsController sectionController =
+  //     Get.put(AdminSectionsController());
 
   final api = Config.api;
 
@@ -28,11 +34,24 @@ class AdminStagesController extends GetxController {
   @override
   // ignore: unnecessary_overrides
   void dispose() {
+    // filteredStages.assignAll(stages);
     super.dispose();
+  }
+
+  void getSectionId(var id) {
+    print(id.value);
+
+    // if (id.value > 0) {
+    //   filteredStages.assignAll(studentController.students
+    //       .where((stage) => stage.section_id == id.value));
+    //   filteredStages.assignAll(stages);
+    //   update();
+    // }
   }
 
   void fetchStages() async {
     var res = await Utilities.httpGet('stages');
+
     if (res.statusCode == 200) {
       List response = json.decode(res.body)['data'];
       stages.add(StageModel.fromJson({"id": -1, "name": "All Stages"}));
@@ -46,7 +65,7 @@ class AdminStagesController extends GetxController {
   void filterByStage(index) {
     stageSelectedIndex.value = index;
     StageModel stage = stages[index];
-
+    // print(sectionController.sectionSelectedIndex);
     if (stage.id == -1) {
       studentController.filteredStudents.assignAll(studentController.students);
     } else {

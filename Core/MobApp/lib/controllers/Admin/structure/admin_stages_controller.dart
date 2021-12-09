@@ -15,13 +15,9 @@ class AdminStagesController extends GetxController {
   RxList stages = <StageModel>[].obs;
   RxList filteredStages = <StageModel>[].obs;
   RxInt stageSelectedIndex = 0.obs;
-  RxInt sectionId = 0.obs;
 
   AdminStudentsController studentController =
       Get.put(AdminStudentsController());
-
-  // AdminSectionsController sectionController =
-  //     Get.put(AdminSectionsController());
 
   final api = Config.api;
 

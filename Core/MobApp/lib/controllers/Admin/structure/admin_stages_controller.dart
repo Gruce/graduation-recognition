@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import '../../../config.dart';
 import '../admin_students_controller.dart';
+import 'admin_sections_controller.dart';
 
 class AdminStagesController extends GetxController {
   late SharedPreferences prefs;

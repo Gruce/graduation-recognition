@@ -77,15 +77,15 @@ class TeacherController extends Controller
 
         if(empty($students->toArray()[0]['units']))
             return response()->json(['data' => "You Don't have this unit ! "], 400);
-        
+
         return response()->json(['data' => $students]);
     }
-    
+
     public function send_task(Request $req){
         $teacher = auth()->user()->teacher()->first();
-        
+
         $validator = Validator::make($req->all(), [
-            'file' => 'file|mimes:jpeg,png,jpg,pdf|max:10000' 
+            'file' => 'file|mimes:jpeg,png,jpg,pdf|max:10000'
         ]);
 
         if ($validator->fails()){
@@ -98,7 +98,7 @@ class TeacherController extends Controller
             $req->file->storeAs('task\\' . $teacher->id, $file_path);
             $file_path = 'task\\' . $teacher->id . '\\' . $file_path;
         }
-        
+
 
         $data = [
             'title' => $req->title,
@@ -106,7 +106,7 @@ class TeacherController extends Controller
             'file_path' => $file_path,
             'to' => $req->to,
             'ids' => implode(',' , $req->ids),
-            // 'ids' => $req->ids, // post man // 
+            // 'ids' => $req->ids, // post man //
         ];
         $task = $teacher->tasks()->create($data);
 
@@ -122,7 +122,7 @@ class TeacherController extends Controller
                 $msg = 'error';
             } break;
         }
-        // when use postman 
+        //  when use postman
 
         return response()->json(['data' => $msg], $rsp);
     }

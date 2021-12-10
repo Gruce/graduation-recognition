@@ -60,10 +60,10 @@ class StudentsDropDownWidget extends GetView {
                       // Down Arrow Icon
                       icon: const Icon(Icons.keyboard_arrow_down),
                       // Array list of items
-                      items: controllerr.stages.asMap().keys.map((int index) {
+                      items: controllerr.filteredStages.asMap().keys.map((int index) {
                         return DropdownMenuItem(
                           value: index,
-                          child: Text(controllerr.stages[index].name,
+                          child: Text(controllerr.filteredStages[index].name,
                               style: const TextStyle(
                                   color: Color(0xff6875F5), fontSize: 12.3)),
                         );

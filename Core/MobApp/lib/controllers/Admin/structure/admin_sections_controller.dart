@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/models/student_models/section.dart';
+import 'package:graduaiton_app/models/student_models/stage.dart';
 import 'package:graduaiton_app/models/student_models/student.dart';
 import 'package:graduaiton_app/util/utilities.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -23,6 +24,8 @@ class AdminSectionsController extends GetxController {
   @override
   void onInit() async {
     fetchSections();
+
+      // stageController.stages[sectionSelectedIndex.value];
     super.onInit();
   }
 
@@ -46,15 +49,27 @@ class AdminSectionsController extends GetxController {
 
   void filterBySection(index) {
     sectionSelectedIndex.value = index;
+    // print( sectionSelectedIndex.value);
     SectionModel section = sections[index];
 
-    if (section.id == -1) {
-      studentController.filteredStudents.assignAll(studentController.students);
-    } else {
-      studentController.filteredStudents.assignAll(studentController.students
-          .where((student) => student.section_id == section.id));
+    stageController.filterBySection(section.id);
+    for (StageModel s in stageController.filteredStages){
     }
-    stageController.getSectionId(sectionSelectedIndex);
+
+
+    
+    // if (section.id == stageController.stageSectionId.value) {
+    //   print(true);
+    //    stageController.filteredStages.assignAll(stageController.stages);
+    //   studentController.filteredStudents.assignAll(studentController.students);
+    // } else {
+    //   print(false);
+    //   studentController.filteredStudents.assignAll(studentController.students
+    //       .where((student) => student.section_id == section.id));
+    // }
+    // // stageController.getSectionId(sectionSelectedIndex);
+    stageController.update();
+
     studentController.update();
 
     update();

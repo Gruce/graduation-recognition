@@ -30,4 +30,8 @@ class Section extends Model
     public function teachers(){
         return $this->hasMany(Teacher::class);
     }
+
+    public function tasks(){
+        return $this->belongsToMany(Task::class)->withTimestamps();
+    }
 }

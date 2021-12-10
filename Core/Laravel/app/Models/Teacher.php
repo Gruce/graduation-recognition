@@ -34,4 +34,8 @@ class Teacher extends Model
     public function units(){
         return $this->belongsToMany(Unit::class)->withTimestamps();
     }
+
+    public function tasks(){
+        return $this->hasMany(Task::class);
+    }
 }

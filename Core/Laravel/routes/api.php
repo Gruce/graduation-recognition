@@ -66,6 +66,7 @@ Route::group(['middleware' => 'auth'], function () {
         // Route::get('/info', [TeacherController::class, 'info']);
         Route::get('/units', [TeacherController::class, 'units']);
         Route::get('/unit/{id}', [TeacherController::class, 'unit_student']);
+        Route::post('/send-task' , [TeacherController::class, 'send_task']);
     });
     
 

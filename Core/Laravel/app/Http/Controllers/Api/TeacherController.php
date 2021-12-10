@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TeacherController extends Controller
 {
@@ -78,5 +79,51 @@ class TeacherController extends Controller
             return response()->json(['data' => "You Don't have this unit ! "], 400);
         
         return response()->json(['data' => $students]);
+    }
+    
+    public function send_task(Request $req){
+        $teacher = auth()->user()->teacher()->first();
+        
+        $validator = Validator::make($req->all(), [
+            'file' => 'file|mimes:jpeg,png,jpg,pdf|max:10000' 
+        ]);
+
+        if ($validator->fails()){
+            return response()->json(['data' => $validator->errors()], 400);
+        }
+
+        $file_path = '';
+        if(!empty($req->file)){
+            $file_path =  $req->title . '_' . time() . '.' . $req->file->extension();
+            $req->file->storeAs('task\\' . $teacher->id, $file_path);
+            $file_path = 'task\\' . $teacher->id . '\\' . $file_path;
+        }
+        
+
+        $data = [
+            'title' => $req->title,
+            'body' => $req->body,
+            'file_path' => $file_path,
+            'to' => $req->to,
+            'ids' => implode(',' , $req->ids),
+            // 'ids' => $req->ids, // post man // 
+        ];
+        $task = $teacher->tasks()->create($data);
+
+        $rsp = 200 ;
+        $msg = 'Done';
+        switch ($req->to) {
+            case 1: $task->units()->attach($req->ids); break;
+            case 2: $task->stages()->attach($req->ids); break;
+            case 3: $task->sections()->attach($req->ids); break;
+            case 4: $task->students()->attach($req->ids); break;
+            default:{
+                $rsp = 400 ;
+                $msg = 'error';
+            } break;
+        }
+        // when use postman 
+
+        return response()->json(['data' => $msg], $rsp);
     }
 }

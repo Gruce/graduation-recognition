@@ -49,6 +49,30 @@
                 ];
             } break;
             
+            case 2:{
+                $array = [
+                    [
+                        'name' => 'Dashboard',
+                        'route' => 'dashboard',
+                        'active' => isRoute('dashboard'),
+                    ],
+                    [
+                        'name' => 'Students',
+                        'route' => 'teacher_students',
+                        'active' => isRoute('teacher_students'),
+                    ],
+                    [
+                        'name' => 'Units',
+                        'route' => 'teacher_unit',
+                        'active' => isRoute('teacher_unit'),
+                    ],
+                    [
+                        'name' => 'Task',
+                        'route' => 'teacher_task',
+                        'active' => isRoute('teacher_task'),
+                    ],
+                ];
+            }
             default:
                 # code...
                 break;

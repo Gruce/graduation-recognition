@@ -1,14 +1,18 @@
+// ignore_for_file: unused_local_variable
+
 import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/models/student_models/section.dart';
 import 'package:graduaiton_app/models/student_models/stage.dart';
 import 'package:graduaiton_app/models/student_models/student.dart';
+import 'package:graduaiton_app/models/student_models/unit.dart';
 import 'package:graduaiton_app/util/utilities.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import '../../../config.dart';
 import '../admin_students_controller.dart';
 import 'admin_stages_controller.dart';
+import 'admin_units_controller.dart';
 
 class AdminSectionsController extends GetxController {
   late SharedPreferences prefs;
@@ -18,14 +22,13 @@ class AdminSectionsController extends GetxController {
   AdminStudentsController studentController =
       Get.put(AdminStudentsController());
   AdminStagesController stageController = Get.put(AdminStagesController());
+    AdminUnitsController unitController = Get.put(AdminUnitsController());
 
   final api = Config.api;
 
   @override
   void onInit() async {
     fetchSections();
-
-      // stageController.stages[sectionSelectedIndex.value];
     super.onInit();
   }
 
@@ -51,27 +54,18 @@ class AdminSectionsController extends GetxController {
     sectionSelectedIndex.value = index;
     // print( sectionSelectedIndex.value);
     SectionModel section = sections[index];
+    StageModel stage = stageController.stages[index];
 
+    for (StageModel s in stageController.filteredStages) {}
     stageController.filterBySection(section.id);
-    for (StageModel s in stageController.filteredStages){
-    }
 
+    for (UnitModel u in unitController.filteredUnits) {}
+    unitController.filterByStage(stage.id);
 
     
-    // if (section.id == stageController.stageSectionId.value) {
-    //   print(true);
-    //    stageController.filteredStages.assignAll(stageController.stages);
-    //   studentController.filteredStudents.assignAll(studentController.students);
-    // } else {
-    //   print(false);
-    //   studentController.filteredStudents.assignAll(studentController.students
-    //       .where((student) => student.section_id == section.id));
-    // }
-    // // stageController.getSectionId(sectionSelectedIndex);
     stageController.update();
-
+    unitController.update();
     studentController.update();
-
     update();
   }
 }

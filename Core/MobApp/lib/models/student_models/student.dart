@@ -21,28 +21,27 @@ class StudentModel {
     section_id,
     stage_id,
     unit_id,
-    user,
-    section,
-    stage,
-    unit,
   });
 
-  StudentModel.fromJson(Map<dynamic, dynamic> json) {
+  StudentModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     user_id = json['user_id'];
     section_id = json['section_id'];
     stage_id = json['stage_id'];
     unit_id = json['unit_id'];
-    if (!json['user'].isEmpty) {
+    if (json.containsKey('user')) {
+      print("Contains User");
       user = UserModel.fromJson(json['user']);
+    } else {
+      print("Not contains");
     }
-    if (!json['section'].isEmpty) {
+    if (json.containsKey('section')) {
       section = SectionModel.fromJson(json['section']);
     }
-    if (!json['section'].isEmpty) {
+    if (json.containsKey('stage')) {
       stage = StageModel.fromJson(json['stage']);
     }
-    if (!json['section'].isEmpty) {
+    if (json.containsKey('unit')) {
       unit = UnitModel.fromJson(json['unit']);
     }
   }
@@ -54,10 +53,6 @@ class StudentModel {
     data['section_id'] = section_id;
     data['stage_id'] = stage_id;
     data['unit_id'] = unit_id;
-    data['user'] = user;
-    data['section'] = section;
-    data['stage'] = stage;
-    data['unit'] = unit;
     return data;
   }
 }

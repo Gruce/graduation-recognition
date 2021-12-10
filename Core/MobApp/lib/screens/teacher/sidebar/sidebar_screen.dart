@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/models/user.dart';
+import 'package:graduaiton_app/screens/teacher/notification/notification_screen.dart';
 import 'package:graduaiton_app/screens/teacher/sidebar/sidebar_controller.dart';
 import 'package:graduaiton_app/util/utilities.dart';
 
@@ -92,7 +93,10 @@ class TeacherSidebarScreen extends GetWidget {
                                     ),
                                     selected: true,
                                     onTap: () => {
-                                      controller.onItemTap(i)
+                                      Navigator.push(
+                                                context,
+                                    MaterialPageRoute(builder: (context) => TeacherNotification()),
+                                                          )
                                     },
                                   ),
                                 )),

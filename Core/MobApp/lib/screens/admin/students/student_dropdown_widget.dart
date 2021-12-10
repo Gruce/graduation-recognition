@@ -71,7 +71,7 @@ class StudentsDropDownWidget extends GetView {
                       // After selecting the desired option,it will
                       // change button value to selected value
                       onChanged: (Object? index) => {
-                        controllerr.filterByStage(int.parse(index.toString()))
+                        controllerr.filterByStage(int.parse(index.toString()),)
                       },
                     )
                   : const Text("Loading"))),

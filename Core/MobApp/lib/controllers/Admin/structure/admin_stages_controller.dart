@@ -68,7 +68,7 @@ class AdminStagesController extends GetxController {
       studentController.filteredStudents.assignAll(studentController.students
           .where((student) => student.stage_id == stage.id));
     }
-
+    filteredStages.assignAll(stages);
     studentController.update();
 
     update();

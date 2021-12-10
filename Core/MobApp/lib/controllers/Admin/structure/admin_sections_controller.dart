@@ -16,7 +16,6 @@ class AdminSectionsController extends GetxController {
 
   AdminStudentsController studentController =
       Get.put(AdminStudentsController());
-
   AdminStagesController stageController = Get.put(AdminStagesController());
 
   final api = Config.api;

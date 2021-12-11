@@ -81,19 +81,19 @@ class TeacherController extends Controller
         return response()->json(['data' => $students]);
     }
     
-    public function send_task(Request $req){
+    public static function send_task(Request $req){
+
         $teacher = auth()->user()->teacher()->first();
-        
-        $validator = Validator::make($req->all(), [
-            'file' => 'file|mimes:jpeg,png,jpg,pdf|max:10000' 
-        ]);
 
-        if ($validator->fails()){
-            return response()->json(['data' => $validator->errors()], 400);
-        }
-
-        $file_path = '';
+        $file_path = null;
         if(!empty($req->file)){
+            $validator = Validator::make($req->all(), [
+                'file' => 'file|mimes:jpeg,png,jpg,pdf|max:10000' 
+            ]);
+    
+            if ($validator->fails())
+                return response()->json(['data' => 'File Not available or file size is large'], 400);
+            
             $file_path =  $req->title . '_' . time() . '.' . $req->file->extension();
             $req->file->storeAs('task\\' . $teacher->id, $file_path);
             $file_path = 'task\\' . $teacher->id . '\\' . $file_path;

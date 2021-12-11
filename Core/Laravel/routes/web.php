@@ -41,9 +41,10 @@ use App\Http\Livewire\Teacher\{
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
     Route::view('/', 'dashboard')->name('dashboard');
+    Route::get('/delete/{model}/{id}', [ActionController::class , 'delete'])->name('delete'); // main delete
+    
     #### ADMIN ####
     Route::group(['prefix' => 'admin' , 'middleware' => 'admin'] ,function(){
-        Route::get('/delete/{model}/{id}', [ActionController::class , 'delete'])->name('delete'); // main delete
          // Trackings
         Route::get('/trackings/{id?}/{person?}', [TrackingController::class, 'main'])->name('trackings');
 

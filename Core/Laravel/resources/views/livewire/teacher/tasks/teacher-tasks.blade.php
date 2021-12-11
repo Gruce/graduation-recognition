@@ -4,7 +4,7 @@
             Tasks
         </h2>
     </x-slot>
-    @livewire('actions' , ['folder' => null , 'file' => null , 'search' => 'Task title'])
+    @livewire('actions' , ['folder' => 'teacher.tasks' , 'file' => 'task-send' , 'search' => 'Task title'])
     <div class="mt-3">
         <section class="text-gray-600 body-font">
             <div class="container px-5 py-10 mx-auto bg-white rounded-lg max-w-7xl sm:px-6 lg:px-8">
@@ -22,10 +22,7 @@
                                 <th class="p-3">#</th>
                                 <th class="p-3 text-left">title</th>
                                 <th class="p-3 text-left">body</th>
-                                {{-- <th class="p-3 text-left">Section Name</th> --}}
-                                {{-- <th class="p-3 text-left">Teacher Count</th> --}}
-                                {{-- <th class="p-3 text-left">Student Count </th>
-                                <th class="p-3 text-left">Actions </th> --}}
+                                <th class="p-3 text-left">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -37,17 +34,25 @@
                                 <td class="p-3">
                                     <div class="flex align-items-center">
                                         <div class="ml-3">
-                                            <div x-data="{ show: false }">
-                                                <span x-show="!show" @click="show = !show" class="font-bold text-gray-500">
+                                            <div>
+                                                <span class="font-bold text-gray-500">
                                                     {{ $task->title }}
                                                 </span>
                                             </div>
                                         </div>
                                 </td>
                                 <td class="p-3">
-                                    <div x-data="{ show: false }">
-                                        <span x-show="!show" @click="show = !show" class="text-gray-500">
-                                            {{ $task->body }}
+                                    <div>
+                                        <span class="text-gray-500">
+                                            {{ $task->body }} ,
+                                            {{$task->file_path}}
+                                        </span>
+                                    </div>
+                                </td>
+                                <td class="p-3">
+                                    <div>
+                                        <span class="text-gray-500">
+                                            <img src="{{asset('storage/' . $task->file_path)}}">
                                         </span>
                                     </div>
                                 </td>
@@ -76,15 +81,15 @@
                                             {{ $unit->students_count }}
                                         </span>
                                     </div>
-                                </td>
-                                <td>
-                                    <a href="{{route('delete' , [ 'Unit' , $unit->id])}}" class="text-red-500"><i class="material-icons text-base">delete</i></a>
                                 </td> --}}
+                                <td>
+                                    <a href="{{route('delete' , [ 'Task' , $task->id])}}" class="text-red-500"><i class="material-icons text-base">delete</i></a>
+                                </td>
                             </tr>
                             @empty
                             <tr class="bg-red-100">
                                 <td colspan="8" class="p-3 text-center">
-                                    No Units
+                                    No Tasks
                                 </td>
                             </tr>
                             @endforelse
@@ -92,7 +97,7 @@
                         </tbody>
                     </table>
                 </div>
-                {{-- {{ $sections->links() }} --}}
+                {{ $tasks->links() }}
             </div>
         </section>
 
@@ -113,7 +118,7 @@
         return {
         activeTab: -1,
         tabs: [
-            // '<span class="material-icons-outlined mr-2">add</span>New Unit',
+            '<span class="material-icons-outlined mr-2">add</span>New Task',
             '<span class="material-icons-outlined mr-2">search</span>Search',
         ]
         };

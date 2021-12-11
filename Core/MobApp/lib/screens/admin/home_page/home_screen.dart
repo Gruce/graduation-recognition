@@ -22,7 +22,7 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
           children: [
             Container(
               alignment: Alignment.center,
-              margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+              margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(24),
@@ -37,7 +37,7 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                   buildInfo('1000', 'Students\nN.O'),
                   Container(
                       width: 1, height: 50, color: const Color(0xff6875F5)),
-                  buildInfo('25', 'Cameras\nN.O'),
+                  buildInfo('15', 'Cameras\nN.O'),
                 ],
               ),
             ),

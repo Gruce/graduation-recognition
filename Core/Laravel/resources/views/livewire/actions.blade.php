@@ -13,9 +13,11 @@
                 <div x-show="activeTab!==-1">
                     <div class="container px-5 py-10 mx-auto bg-white rounded-lg max-w-7xl sm:px-6 lg:px-8">
                         <div x-show="activeTab===0">
-                            @livewire($folder . '.' . $file)
+                            @if($folder)
+                                @livewire($folder . '.' . $file)
+                            @endif
                         </div>
-                        <div x-show="activeTab===1">
+                        <div x-show="activeTab===@if($folder) 1 @else 0 @endif">
                             @livewire('search' , ['parameters' => $search])
                         </div>
                     </div>

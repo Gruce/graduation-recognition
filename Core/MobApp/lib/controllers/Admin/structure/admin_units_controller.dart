@@ -1,8 +1,5 @@
 import 'dart:convert';
 import 'package:get/get.dart';
-import 'package:graduaiton_app/models/student_models/section.dart';
-import 'package:graduaiton_app/models/student_models/stage.dart';
-import 'package:graduaiton_app/models/student_models/student.dart';
 import 'package:graduaiton_app/models/student_models/unit.dart';
 import 'package:graduaiton_app/util/utilities.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -49,7 +46,6 @@ class AdminUnitsController extends GetxController {
   void filterByUnit(index) {
     unitSelectedIndex.value = index;
     UnitModel unit = filteredUnits[index];
-
     if (unit.id == -1) {
       studentController.filteredStudents.assignAll(studentController.students);
     } else {
@@ -62,7 +58,6 @@ class AdminUnitsController extends GetxController {
 
   void filterByStage(id) {
     unitSelectedIndex.value = 0;
-
     if (id == -1) {
       filteredUnits.assignAll(units);
     } else {

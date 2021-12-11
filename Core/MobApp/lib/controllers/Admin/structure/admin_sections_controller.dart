@@ -4,8 +4,6 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/models/student_models/section.dart';
 import 'package:graduaiton_app/models/student_models/stage.dart';
-import 'package:graduaiton_app/models/student_models/student.dart';
-import 'package:graduaiton_app/models/student_models/unit.dart';
 import 'package:graduaiton_app/util/utilities.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -50,21 +48,16 @@ class AdminSectionsController extends GetxController {
     update();
   }
 
-  void filterBySection(index) {
-    sectionSelectedIndex.value = index;
-    // print( sectionSelectedIndex.value);
-    SectionModel section = sections[index];
-    StageModel stage = stageController.stages[index];
+  void filterBySection(i) {
+    sectionSelectedIndex.value = i;
+    SectionModel section = sections[i];
 
-    for (StageModel s in stageController.filteredStages) {}
     stageController.filterBySection(section.id);
+    StageModel stage = stageController.filteredStages[0];
 
-    for (UnitModel u in unitController.filteredUnits) {}
     unitController.filterByStage(stage.id);
 
-    
     stageController.update();
-    unitController.update();
     studentController.update();
     update();
   }

@@ -1,16 +1,11 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:graduaiton_app/models/student_models/section.dart';
 import 'package:graduaiton_app/models/student_models/stage.dart';
-import 'package:graduaiton_app/models/student_models/student.dart';
-import 'package:graduaiton_app/models/student_models/unit.dart';
 import 'package:graduaiton_app/util/utilities.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import '../../../config.dart';
 import '../admin_students_controller.dart';
-import 'admin_sections_controller.dart';
 import 'admin_units_controller.dart';
 
 class AdminStagesController extends GetxController {
@@ -20,7 +15,7 @@ class AdminStagesController extends GetxController {
   RxInt stageSelectedIndex = 0.obs;
   AdminStudentsController studentController =
       Get.put(AdminStudentsController());
-  // AdminUnitsController unitController = Get.put(AdminUnitsController());
+  AdminUnitsController unitController = Get.put(AdminUnitsController());
 
   final api = Config.api;
 
@@ -48,23 +43,26 @@ class AdminStagesController extends GetxController {
     }
     update();
   }
+
   void filterByStage(index) {
     stageSelectedIndex.value = index;
     StageModel stage = filteredStages[index];
-    // print(sectionController.sectionSelectedIndex);
+
+    unitController.filterByStage(stage.id);
     if (stage.id == -1) {
       studentController.filteredStudents.assignAll(studentController.students);
     } else {
       studentController.filteredStudents.assignAll(studentController.students
           .where((student) => student.stage_id == stage.id));
     }
+
+    unitController.update();
     studentController.update();
     update();
   }
 
   void filterBySection(id) {
     stageSelectedIndex.value = 0;
-
     if (id == -1) {
       filteredStages.assignAll(stages);
     } else {
@@ -72,29 +70,4 @@ class AdminStagesController extends GetxController {
     }
     filterByStage(0);
   }
-
-  // void filterByStage(index) {
-  //   stageSelectedIndex.value = index;
-  //   // print( sectionSelectedIndex.value);
-  //   StageModel stage = stages[index];
-
-  //   unitController.filterByStage(stage.id);
-  //   for (UnitModel u in unitController.filteredUnits) {}
-    
-  //   unitController.update();
-  //   studentController.update();
-
-  //   update();
-  // }
-
-  // void filterBySection(id) {
-  //   stageSelectedIndex.value = 0;
-
-  //   if (id == -1) {
-  //     filteredStages.assignAll(stages);
-  //   } else {
-  //     filteredStages.assignAll(stages.where((stage) => stage.section_id == id));
-  //   }
-  //   filterByStage(0);
-  // }
 }

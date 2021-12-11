@@ -14,7 +14,9 @@ class PersonModel {
     name = json['name'];
     trainingId = json['training_id'];
     type = json['type'];
-    trackings = TrackingModel.fromJson(json['trackings'][0]);
+      
+      trackings = TrackingModel.fromJson(json['trackings'][0]);
+    
   }
 
   Map<dynamic, dynamic> toJson() {

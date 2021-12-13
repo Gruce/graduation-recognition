@@ -1,83 +1,42 @@
-// // ignore_for_file: non_constant_identifier_names
-
-// import 'package:graduaiton_app/models/student_models/section.dart';
-// import 'package:graduaiton_app/models/student_models/stage.dart';
-
-// class UnitModel {
-//   int id = 0;
-//   String name = '';
-//   int stage_id = 0;
-//   int section_id = 0;
-//   int students_count = 1;
-//   SectionModel section = SectionModel();
-//   StageModel stage = StageModel();
-
-//   UnitModel({id, name, stage_id, section_id, SectionModel, StageModel});
-
-//   UnitModel.fromJson(Map<dynamic, dynamic> json) {
-//     id = json['id'];
-//     name = json['name'];
-//     stage_id = json['stage_id'];
-//     section_id = json['section_id'];
-//     students_count = json['students_count'];
-
-//     if (!json['section'].isEmpty) {
-//       section = SectionModel.fromJson(json['section']);
-//     }
-
-//     if (!json['stage'].isEmpty) {
-//       stage = StageModel.fromJson(json['stage']);
-//     }
-//   }
-
-//   Map<dynamic, dynamic> toJson() {
-//     final Map<dynamic, dynamic> data = <dynamic, dynamic>{};
-//     data['id'] = id;
-//     data['name'] = name;
-//     data['stage_id'] = stage_id;
-//     data['section_id'] = section_id;
-//     data['students_count'] = students_count;
-//     return data;
-//   }
-// }
 // ignore_for_file: non_constant_identifier_names
-import 'section.dart';
-import 'stage.dart';
+
+import 'package:graduaiton_app/models/student_models/section.dart';
+import 'package:graduaiton_app/models/student_models/stage.dart';
+
 
 class UnitModel {
   int id = 0;
   String name = '';
-  int unit_id = 0;
-  int section_id = 0;
   int stage_id = 0;
-  // SectionModel section = SectionModel();
-  // StageModel stage = StageModel();
+  int section_id = 0;
+  int students_count = 1;
+  SectionModel section = SectionModel();
+  StageModel stage = StageModel();
 
-  UnitModel({id, name, unit_id , section_id, stage_id});
+  UnitModel({id, name, stage_id, section_id});
 
   UnitModel.fromJson(Map<dynamic, dynamic> json) {
     id = json['id'];
     name = json['name'];
-    unit_id = json['unit_id'];
-    section_id = json['section_id'];
     stage_id = json['stage_id'];
-    // section = SectionModel.fromJson(json['section']);  
-    // stage = StageModel.fromJson(json['stage']);
-    
-    // if (!json['trackings'].isEmpty) {
-    //   trackings = TrackingModel.fromJson(json['trackings'][0]);
-    // }
+    section_id = json['section_id'];
+    students_count = json['students_count'];
+
+    if (json.containsKey('section')) {
+      section = SectionModel.fromJson(json['section']);
+    }
+
+    if (json.containsKey('stage')) {
+      stage = StageModel.fromJson(json['stage']);
+    }
   }
 
   Map<dynamic, dynamic> toJson() {
     final Map<dynamic, dynamic> data = <dynamic, dynamic>{};
     data['id'] = id;
     data['name'] = name;
-    data['unit_id'] = unit_id;
-    data['section_id'] = section_id;
     data['stage_id'] = stage_id;
-    // data['section'] = section;
-    // data['stage'] = stage;
+    data['section_id'] = section_id;
     return data;
   }
 }

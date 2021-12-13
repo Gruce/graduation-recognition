@@ -1,42 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:graduaiton_app/controllers/Teacher/teacher_profile_controller.dart';
-import 'package:graduaiton_app/controllers/Teacher/teacher_units_controller.dart';
-import 'package:graduaiton_app/models/user.dart';
-import 'package:graduaiton_app/screens/teacher/units/student_units_screen.dart';
+import 'package:graduaiton_app/controllers/Teacher/students_unit_controller.dart';
+
+
 
 import '../layout.dart';
 
-class TeacherUnitsScreen extends GetView {
-  TeacherUnitsScreen({Key? key}) : super(key: key);
+class StudentsUnitsScreen extends GetView {
+  StudentsUnitsScreen({Key? key}) : super(key: key);
 
   @override
-  TeacherUnitsController controller = Get.put(TeacherUnitsController());
+  TeacherStudentsUnitController controller =
+      Get.put(TeacherStudentsUnitController());
 
   @override
   Widget build(BuildContext context) {
+    controller.fetch(Get.arguments);
     return TeacherLayoutScreen(
-        title: 'Units',
+        title: 'Student',
         child: Column(children: [
+          // const Text("data"),
           Expanded(
-              child: GetBuilder<TeacherUnitsController>(
-                  builder: (_) => controller.units.isNotEmpty
+              child: GetBuilder<TeacherStudentsUnitController>(
+                  builder: (_) => controller.students.isNotEmpty
                       ? ListView.builder(
-                          itemCount: controller.units.length,
+                          itemCount: controller.students.length,
                           itemBuilder: (BuildContext context, int index) {
                             return GestureDetector(
-                              onTap: () => Get.to(() => StudentsUnitsScreen(),
-                                  arguments: controller.units[index].id),
+                                // onTap: () => Get.to(() => StudentsProfileWidget(),
+                                  // arguments: controller.students[index].id),
                               child: Card(
                                   elevation: 0,
                                   clipBehavior: Clip.antiAlias,
                                   child: Container(
                                       padding: const EdgeInsets.all(15),
                                       decoration: BoxDecoration(
-                                        color:
-                                            controller.units[index].name == 'A'
-                                                ? Color(0xffd4d8ff)
-                                                : Color(0xffFBEDEE),
+                                        color: const Color(0xffd4d8ff),
                                         borderRadius: BorderRadius.circular(20),
                                       ),
                                       child: Column(
@@ -51,45 +50,14 @@ class TeacherUnitsScreen extends GetView {
                                                             .spaceBetween,
                                                     children: [
                                                       Row(children: [
-                                                        Container(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .all(7.5),
-                                                          margin:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  right: 5),
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            shape:
-                                                                BoxShape.circle,
-                                                            color: controller
-                                                                        .units[
-                                                                            index]
-                                                                        .name ==
-                                                                    'A'
-                                                                ? Color(
-                                                                    0xff6875F5)
-                                                                : Color(
-                                                                    0xffDEBEC0),
-                                                          ),
-                                                          child: Text(
-                                                            controller
-                                                                .units[index]
-                                                                .name,
-                                                            style:
-                                                                const TextStyle(
-                                                                    color: Colors
-                                                                        .white),
-                                                          ),
-                                                        ),
                                                         Text(controller
-                                                            .units[index]
-                                                            .section
+                                                            .students[index]
+                                                            .user
                                                             .name),
                                                       ]),
-                                                      const Text(
-                                                          'Subject Title'),
+                                                      Text(controller
+                                                          .students[index]
+                                                          .stage.name),
                                                     ],
                                                   )),
                                               subtitle: Row(
@@ -98,15 +66,16 @@ class TeacherUnitsScreen extends GetView {
                                                         .spaceBetween,
                                                 children: [
                                                   Text(
-                                                    controller.units[index]
-                                                        .students_count
-                                                        .toString(),
+                                                    controller
+                                                            .students[index].user.email
+                                                            ,
                                                     style: TextStyle(
                                                         color: Colors.black
                                                             .withOpacity(0.6)),
                                                   ),
                                                   Text(
-                                                    '1 Hour to begin',
+                                                    controller
+                                                            .students[index].section.name,
                                                     style: TextStyle(
                                                         color: Colors.black
                                                             .withOpacity(0.6)),

@@ -36,6 +36,12 @@ use App\Http\Livewire\Teacher\{
     Tasks\TaskSend,
 };
     ## END TEACHER ##
+
+    ## STUDENT ##
+use App\Http\Livewire\Students\{
+    StudentIndex,
+};
+    ## END STUDENT ##
 ###### End Livewire ######
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
@@ -103,6 +109,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     });
     #### END ADMIN ####
 
+    ################################################################
 
     #### TEACHER ####
 
@@ -113,6 +120,16 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     });
 
     #### END TEACHER ####
+
+    ################################################################
+
+    #### STUDENT ####
+
+    Route::group(['prefix' => 'student' , 'middleware' => 'student'] ,function(){
+        // Route::get('/s', StudentIndex::class)->name('s');
+    });
+
+    #### END STUDENT ####
 
 });
 

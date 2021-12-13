@@ -48,7 +48,9 @@
                     ],
                 ];
             } break;
-            
+
+            ################################################################
+
             case 2:{
                 $array = [
                     [
@@ -72,9 +74,22 @@
                         'active' => isRoute('teacher_task'),
                     ],
                 ];
-            }
+            } break;
+
+            ################################################################
+
+            case 3:{
+                $array = [
+                    [
+                        'name' => 'Dashboard',
+                        'route' => 'dashboard',
+                        'active' => isRoute('dashboard'),
+                    ],
+                ];
+            } break;
+            
             default:
-                # code...
+                $array = [[]];
                 break;
         }
 

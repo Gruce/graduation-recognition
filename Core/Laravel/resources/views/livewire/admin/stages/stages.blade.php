@@ -96,7 +96,9 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <a href="{{route('delete' , [ 'Stage' , $stage->id])}}" class="text-red-500"><i class="material-icons text-base">delete</i></a>
+                                    <button wire:click="delete('Stage', '{{ $stage->id}}')" class="text-red-500"> 
+                                        <i class="material-icons text-base">delete</i>
+                                    </button>
                                 </td>
                             </tr>
                             @empty

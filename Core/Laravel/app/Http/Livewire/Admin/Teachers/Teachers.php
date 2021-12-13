@@ -8,6 +8,8 @@ use Livewire\WithPagination;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
+use App\Http\Controllers\ActionController;
+
 use App\Models\{
     Teacher,
     Person,
@@ -60,6 +62,13 @@ class Teachers extends Component
     public function changeSubject($t_index, $subject1){
         
 
+    }
+
+    public function delete($model , $id){
+        $response = ActionController::delete($model,$id);
+        $alert = $response->getStatusCode() == 200 ? 'success' : 'warning';
+        $this->alert($alert , $response->getData()->data);
+        $this->emitTo('teacher.tasks.teacher-tasks', '$refresh');
     }
 
     public function save(){

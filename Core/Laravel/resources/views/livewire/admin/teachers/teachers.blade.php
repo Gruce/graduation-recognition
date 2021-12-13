@@ -137,9 +137,9 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{route('delete' , [ 'Teacher' , $teacher->id])}}" class="text-red-500">
+                                    <button wire:click="delete('Teacher', '{{ $teacher->id}}')" class="text-red-500"> 
                                         <i class="material-icons text-base">delete</i>
-                                    </a>
+                                    </button>
 
                                 </td>
                             </tr>

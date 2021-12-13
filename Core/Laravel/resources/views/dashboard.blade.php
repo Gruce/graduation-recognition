@@ -11,10 +11,13 @@
                 @case(1) {{-- for admin --}}
                     @livewire('dashboard-stats')
                     @livewire('cameras')
-                    @break
+                @break
                 @case(2) {{-- for teacher --}}
                     @livewire('teacher.index')
-                    @break
+                @break
+                @case(3) {{-- for student --}}
+                    @livewire('students.student-index')
+                @break
                 @default
             @endswitch
             

@@ -43,6 +43,7 @@ class TaskSend extends Component
         }
 
         $this->alert($alert , $msg);
+        $this->emitTo('teacher.tasks.teacher-tasks', '$refresh');
     }
 
     public function render()

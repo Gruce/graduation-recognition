@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Teacher\Tasks;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use App\Http\Controllers\ActionController;
 
 class TeacherTasks extends Component
 {
@@ -17,6 +18,13 @@ class TeacherTasks extends Component
 
     public function search($text){
         $this->search = $text;
+    }
+
+    public function delete($model , $id){
+        $response = ActionController::delete($model,$id);
+        $alert = $response->getStatusCode() == 200 ? 'success' : 'warning';
+        $this->alert($alert , $response->getData()->data);
+        $this->emitTo('teacher.tasks.teacher-tasks', '$refresh');
     }
 
     public function render()

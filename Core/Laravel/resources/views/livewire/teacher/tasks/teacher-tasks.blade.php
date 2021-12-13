@@ -22,6 +22,7 @@
                                 <th class="p-3">#</th>
                                 <th class="p-3 text-left">title</th>
                                 <th class="p-3 text-left">body</th>
+                                <th class="p-3 text-left">Photo</th>
                                 <th class="p-3 text-left">Actions</th>
                             </tr>
                         </thead>
@@ -83,7 +84,9 @@
                                     </div>
                                 </td> --}}
                                 <td>
-                                    <a href="{{route('delete' , [ 'Task' , $task->id])}}" class="text-red-500"><i class="material-icons text-base">delete</i></a>
+                                    <button wire:click="delete('Task', '{{ $task->id}}')" class="text-red-500"> 
+                                        <i class="material-icons text-base">delete</i>
+                                    </button>
                                 </td>
                             </tr>
                             @empty

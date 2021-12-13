@@ -5,6 +5,8 @@ namespace App\Http\Livewire\Admin\Units;
 use Livewire\Component;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithPagination;
+use App\Http\Controllers\ActionController;
+
 use App\Models\{
     Stage,
     Section,
@@ -31,6 +33,13 @@ class Units extends Component
     public function search($text){
         $this->search = $text;
         $this->mount();
+    }
+
+    public function delete($model , $id){
+        $response = ActionController::delete($model,$id);
+        $alert = $response->getStatusCode() == 200 ? 'success' : 'warning';
+        $this->alert($alert , $response->getData()->data);
+        $this->emitTo('teacher.tasks.teacher-tasks', '$refresh');
     }
 
     public function save(){

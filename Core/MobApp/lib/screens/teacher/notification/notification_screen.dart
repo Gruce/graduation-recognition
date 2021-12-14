@@ -95,7 +95,8 @@ class TeacherNotification extends GetView {
                                           children: controller
                                               .unitsCheckbox.keys
                                               .map((int key) {
-                                            return CheckboxListTile(
+                                            return 
+                                            CheckboxListTile(
                                               title: Text(controller
                                                       .units[key].stage.name +
                                                   " " +
@@ -105,6 +106,7 @@ class TeacherNotification extends GetView {
                                               activeColor: Colors.pink,
                                               checkColor: Colors.white,
                                               onChanged: (bool? value) {
+                                                
                                                 controller.unitsCheckbox[key] =
                                                     value!;
                                                 print(controller.unitsCheckbox);

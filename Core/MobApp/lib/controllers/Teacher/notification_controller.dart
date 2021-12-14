@@ -78,6 +78,7 @@ class NotificationController extends GetxController {
     files_path.clear();
     titleController.text = '';
     bodyController.text = '';
+  
     Get.off(TeacherNotification());
   }
 

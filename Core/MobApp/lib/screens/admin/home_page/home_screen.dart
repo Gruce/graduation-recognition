@@ -2,17 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/Admin/admin_home_controller.dart';
 import 'package:graduaiton_app/controllers/Admin/admin_people_controller.dart';
-
+import 'package:graduaiton_app/controllers/Admin/admin_students_controller.dart';
 import 'package:graduaiton_app/routes/routes.dart';
-import 'package:graduaiton_app/screens/admin/home_page/camera_widget.dart';
-import 'package:graduaiton_app/screens/admin/people/person_widget.dart';
-
 import '../layout.dart';
 import 'today_lucture_widget.dart';
 
 class AdminHomeScreen extends GetView<AdminHomeController> {
   AdminHomeScreen({Key? key}) : super(key: key);
   AdminPeopleController controlleer = Get.put(AdminPeopleController());
+  AdminStudentsController controlleerr = Get.put(AdminStudentsController());
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +29,10 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  buildInfo('30', 'Lucturers\nN.O'),
+                  buildInfo(controlleer.people.length.toString(), 'Lucturers\nN.O'),
                   Container(
                       width: 1, height: 50, color: const Color(0xff6875F5)),
-                  buildInfo('1000', 'Students\nN.O'),
+                  buildInfo(controlleerr.students.length.toString(), 'Students\nN.O'),
                   Container(
                       width: 1, height: 50, color: const Color(0xff6875F5)),
                   buildInfo('15', 'Cameras\nN.O'),
@@ -81,7 +79,7 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                                 child: LuctureWidget(
                                   key: ObjectKey(
                                       controlleer.filteredPeople[index].id),
-                                  luctureName: "PHP Lucture",
+                                  luctureName: "PHP",
                                   startAt: "Start at 8:30 am",
                                   endAt: "End at 10:30 am",
                                   lucturerName: "Abdulkareem Mgbel",

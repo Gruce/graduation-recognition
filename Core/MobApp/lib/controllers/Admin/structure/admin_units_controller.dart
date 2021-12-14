@@ -34,7 +34,7 @@ class AdminUnitsController extends GetxController {
     var res = await Utilities.httpGet('units');
     if (res.statusCode == 200) {
       List response = json.decode(res.body)['data'];
-      units.add(UnitModel.fromJson({"id": -1, "name": "All Units"}));
+      // units.add(UnitModel.fromJson({"id": -1, "name": "All Units"}));
       for (var element in response) {
         units.add(UnitModel.fromJson(element));
       }

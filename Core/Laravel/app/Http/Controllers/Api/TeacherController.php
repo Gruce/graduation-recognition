@@ -87,30 +87,30 @@ class TeacherController extends Controller
 
         $teacher = auth()->user()->teacher()->first();
 
+        // $data = [
+        //     'title' => $req->title,
+        //     'body' => $req->body,
+        //     'to' => $req->to,
+        //     'ids' => implode(',' , $req->ids),
+        //     // 'ids' => $req->ids, // post man //
+        // ];
+        // $task = $teacher->tasks()->create($data);
+
         $file_path = null;
+        dd($req->toArray());
         if(!empty($req->file)){
             $validator = Validator::make($req->all(), [
-                'file' => 'file|mimes:jpeg,png,jpg,pdf|max:10000' 
+                'file*' => 'file|mimes:jpeg,png,jpg,pdf|max:10000' 
             ]);
     
             if ($validator->fails())
                 return response()->json(['data' => 'File Not available or file size is large'], 400);
-            
+            dd('fd');
             $file_path =  $req->title . '_' . time() . '.' . $req->file->extension();
             $req->file->storeAs('task\\' . $teacher->id, $file_path);
             $file_path = 'task\\' . $teacher->id . '\\' . $file_path;
         }
 
-
-        $data = [
-            'title' => $req->title,
-            'body' => $req->body,
-            'to' => $req->to,
-            'ids' => implode(',' , $req->ids),
-            // 'ids' => $req->ids, // post man //
-        ];
-        $task = $teacher->tasks()->create($data);
-        $task->files()->insert($file_path);
         $rsp = 200 ;
         $msg = 'Done';
         switch ($req->to) {

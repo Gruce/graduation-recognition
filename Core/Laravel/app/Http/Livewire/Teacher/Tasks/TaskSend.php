@@ -19,10 +19,11 @@ class TaskSend extends Component
     public $to = 1;
     public $ids = [];
     public $idsData = [];
-    public $file;
+    public $file ;
 
 
     public function save(){   
+        // dd($this->file);
         $data = [
             'title' => $this->title,
             'body' => $this->body,

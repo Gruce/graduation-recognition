@@ -9,6 +9,7 @@ import 'package:file_picker/file_picker.dart';
 class TeacherNotification extends GetView {
   TeacherNotification({Key? key}) : super(key: key);
 
+  @override
   NotificationController controller = Get.put(NotificationController());
 
   Widget build(BuildContext context) {
@@ -43,6 +44,7 @@ class TeacherNotification extends GetView {
                                   height: 4,
                                 ),
                                 TextField(
+                                  controller: controller.bodyController,
                                   maxLines: 2,
                                   textCapitalization:
                                       TextCapitalization.sentences,
@@ -56,7 +58,7 @@ class TeacherNotification extends GetView {
                                   children: <Widget>[
                                     Obx(() => Column(
                                           children: [
-                                            Text('files conut ' +
+                                            Text('files count ' +
                                                 controller.files.length
                                                     .toString()),
                                             ElevatedButton(
@@ -87,30 +89,25 @@ class TeacherNotification extends GetView {
                                                 : Container(),
                                           ],
                                         )),
-                                    Obx(() => Container(
+                                    Obx(
+                                      () => Container(
                                         width: double.maxFinite,
                                         height: double.maxFinite,
                                         child: ListView(
                                           shrinkWrap: true,
                                           children: controller
-                                              .unitsCheckbox.keys
-                                              .map((int key) {
-                                            return 
-                                            CheckboxListTile(
+                                              .unitsCheckbox.value.keys
+                                              .map((dynamic key) {
+                                            return CheckboxListTile(
                                               title: Text(controller
                                                       .units[key].stage.name +
                                                   " " +
                                                   controller.units[key].name),
                                               value:
-                                                  controller.unitsCheckbox[key],
+                                                  controller.unitsCheckbox.value[key],
                                               activeColor: Colors.pink,
                                               checkColor: Colors.white,
-                                              onChanged: (bool? value) {
-                                                
-                                                controller.unitsCheckbox[key] =
-                                                    value!;
-                                                print(controller.unitsCheckbox);
-                                              },
+                                              onChanged: (bool? value) => controller.check(key, value),
                                             );
                                           }).toList(),
                                         ),

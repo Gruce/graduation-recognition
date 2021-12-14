@@ -33,7 +33,7 @@ class NotificationController extends GetxController {
 
   RxList units = <UnitModel>[].obs;
 
-  Map<int, bool> unitsCheckbox = {};
+  RxMap unitsCheckbox = {}.obs;
 
   void fetchUnits() async {
     var res = await Utilities.httpGet('teacher/units');
@@ -55,9 +55,6 @@ class NotificationController extends GetxController {
     if (result != null) {
       files_path = result.paths.map((path) => path!).toList();
       files.assignAll(result.files);
-      for (PlatformFile file in files) {
-        print(file.name);
-      }
     } else {
       // User canceled the picker
     }
@@ -65,13 +62,21 @@ class NotificationController extends GetxController {
   }
 
   void send_notification() async {
+    List _units = [];
+
+    unitsCheckbox.forEach((key, value) {
+      if (value == true){
+        _units.add(units[key].id);
+      }
+    });
+
     Utilities.httpFilesPost(
         'teacher/send-task',
         {
           'title': titleController.text,
           'body': bodyController.text,
           'to': '1',
-          'ids': [],
+          'ids': _units.toString(),
         },
         files_path);
     files.clear();
@@ -86,5 +91,9 @@ class NotificationController extends GetxController {
     files.removeAt(i);
     files_path.removeAt(i);
     update();
+  }
+
+  void check(key, value){
+    unitsCheckbox[key] = value!;
   }
 }

@@ -5,6 +5,8 @@ namespace App\Http\Livewire\Admin\Subjects;
 use Livewire\Component;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithPagination;
+use App\Http\Controllers\ActionController;
+
 use App\Models\{
     Subject,
     Section,
@@ -29,6 +31,13 @@ class Subjects extends Component
     public $sections;
     public $stages;
     public $search;
+
+    public function delete($model , $id){
+        $response = ActionController::delete($model,$id);
+        $alert = $response->getStatusCode() == 200 ? 'success' : 'warning';
+        $this->alert($alert , $response->getData()->data);
+        $this->emitTo('teacher.tasks.teacher-tasks', '$refresh');
+    }
 
     public function save(){
         $this->validate();

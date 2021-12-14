@@ -3,17 +3,30 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class ActionController extends Controller
 {
-    use LivewireAlert;
-
-    public function delete($model , $id){
+    public static function delete($model , $id){
+        $delete = null;
+        $msg = 'Error';
+        $rsp = 400;
         $model = 'App\Models'. '\\' . $model;
-        $model = app($model);
-        $delete = $model::findOrFail($id)->delete();
 
-        return redirect()->back();
+        try {
+            $model = app($model);
+        } catch (\Throwable) {
+            $model = null;
+        }
+
+        if($model)
+            $delete = $model::findOrFail($id)->delete();
+
+        if($delete){
+            $msg = 'Done';
+            $rsp = 200;
+        }
+
+        return response()->json(['data' => $msg], $rsp);
+
     }
 }

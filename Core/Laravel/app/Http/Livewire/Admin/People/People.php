@@ -5,7 +5,7 @@ namespace App\Http\Livewire\Admin\People;
 use Livewire\Component;
 use App\Models\Person;
 use Livewire\WithPagination;
-
+use App\Http\Controllers\ActionController;
 
 class People extends Component
 {
@@ -18,6 +18,13 @@ class People extends Component
 
     function search($text){
         $this->search = $text;
+    }
+
+    public function delete($model , $id){
+        $response = ActionController::delete($model,$id);
+        $alert = $response->getStatusCode() == 200 ? 'success' : 'warning';
+        $this->alert($alert , $response->getData()->data);
+        $this->emitTo('teacher.tasks.teacher-tasks', '$refresh');
     }
 
     function selectEditPerson($id){

@@ -24,23 +24,25 @@ class TeacherController extends Controller
         return response()->json(['data' => $students]);
     }
 
-    // public function info(){
-    //     $info = auth()->user()->teacher()->with(
-    //         [
-    //             'user:id,name,email',
-    //             'section:id,name',
-    //             'stages:id,section_id,name',
-    //             'units' => function($unit){
-    //                 return $unit->with(['section:id,name' , 'stage:id,name'])->get();
-    //             },
-    //             'subjects' => function($subject){
-    //                 return $subject->with(['section:id,name' , 'stage:id,name'])->get();
-    //             },
-    //         ]
-    //         )->get(['id' , 'user_id' , 'section_id' , 'speciality']);
+    public function info(){
+        $info = auth()->user()->teacher()->with(
+            [
+                'user:id,name,email,type',
+                'section:id,name',
+                'stages:id,name',
+                'units:id,name',
+                'subjects:id,name'
+            ]
+            )->get(
+                [
+                    'id',
+                    'user_id',
+                    'section_id',
+                    'speciality'
+                ]);
 
-    //     return response()->json(['data' => $info]);
-    // }
+        return response()->json(['data' => $info]);
+    }
 
     public function units(){
         $units = auth()->user()->teacher()->with(
@@ -104,23 +106,23 @@ class TeacherController extends Controller
             'title' => $req->title,
             'body' => $req->body,
             'to' => $req->to,
-            // 'ids' => implode(',' , $req->ids),
-            'ids' => $req->ids, // post man //
+            'ids' => implode(',' , $req->ids),
+            // 'ids' => $req->ids, // post man //
         ];
         $task = $teacher->tasks()->create($data);
         $task->files()->insert($file_path);
         $rsp = 200 ;
         $msg = 'Done';
-        // switch ($req->to) {
-        //     case 1: $task->units()->attach($req->ids); break;
-        //     case 2: $task->stages()->attach($req->ids); break;
-        //     case 3: $task->sections()->attach($req->ids); break;
-        //     case 4: $task->students()->attach($req->ids); break;
-        //     default:{
-        //         $rsp = 400 ;
-        //         $msg = 'error';
-        //     } break;
-        // }
+        switch ($req->to) {
+            case 1: $task->units()->attach($req->ids); break;
+            case 2: $task->stages()->attach($req->ids); break;
+            case 3: $task->sections()->attach($req->ids); break;
+            case 4: $task->students()->attach($req->ids); break;
+            default:{
+                $rsp = 400 ;
+                $msg = 'error';
+            } break;
+        }
         //  when use postman
 
         return response()->json(['data' => $msg], $rsp);

@@ -26,7 +26,7 @@ class Routes {
   static const adminPeople = '/admin/people/';
   static const adminStudents = '/admin/students/';
 
-   //Teach Routes
+  //Teach Routes
   static const teacherMain = '/teacher/';
   static const teachTables = '/teacher/tables/';
   static const teachSchedule = '/teacher/schedule/';
@@ -47,7 +47,7 @@ class Routes {
     // Admin Routes
     GetPage(
         name: adminMain,
-        page: () => const AdminHomeScreen(),
+        page: () => AdminHomeScreen(),
         binding: AdminHomeBinding()),
 
     // GetPage(
@@ -62,23 +62,21 @@ class Routes {
 
     GetPage(
         name: adminPeople,
-        page: () =>  AdminPeopleScreen(),
+        page: () => AdminPeopleScreen(),
         binding: AdminProfileBinding()),
 
-        GetPage(
+    GetPage(
         name: adminStudents,
-        page: () =>  AdminStudentsScreen(),
+        page: () => AdminStudentsScreen(),
         binding: AdminProfileBinding()),
 
-    
-      // Teacher Routes
+    // Teacher Routes
     GetPage(
         name: teacherMain,
         page: () => TeacherHomeScreen(),
         binding: TeacherHomeBinding()),
 
-
-  GetPage(
+    GetPage(
         name: teachSchedule,
         page: () => const TeacherScheduleScreen(),
         binding: TeacherScheduleScrBinding()),
@@ -92,7 +90,5 @@ class Routes {
         name: teachUnits,
         page: () => TeacherUnitsScreen(),
         binding: TeacherUnitsBinding()),
-
-
   ];
 }

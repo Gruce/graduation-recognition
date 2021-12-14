@@ -77,7 +77,7 @@ class TeacherController extends Controller
 
         if(empty($students->toArray()[0]['units']))
             return response()->json(['data' => "You Don't have this unit ! "], 400);
-        
+
         return response()->json(['data' => $students]);
     }
     
@@ -98,30 +98,30 @@ class TeacherController extends Controller
             $req->file->storeAs('task\\' . $teacher->id, $file_path);
             $file_path = 'task\\' . $teacher->id . '\\' . $file_path;
         }
-        
+
 
         $data = [
             'title' => $req->title,
             'body' => $req->body,
             'to' => $req->to,
-            'ids' => implode(',' , $req->ids),
-            // 'ids' => $req->ids, // post man // 
+            // 'ids' => implode(',' , $req->ids),
+            'ids' => $req->ids, // post man //
         ];
         $task = $teacher->tasks()->create($data);
         $task->files()->insert($file_path);
         $rsp = 200 ;
         $msg = 'Done';
-        switch ($req->to) {
-            case 1: $task->units()->attach($req->ids); break;
-            case 2: $task->stages()->attach($req->ids); break;
-            case 3: $task->sections()->attach($req->ids); break;
-            case 4: $task->students()->attach($req->ids); break;
-            default:{
-                $rsp = 400 ;
-                $msg = 'error';
-            } break;
-        }
-        // when use postman 
+        // switch ($req->to) {
+        //     case 1: $task->units()->attach($req->ids); break;
+        //     case 2: $task->stages()->attach($req->ids); break;
+        //     case 3: $task->sections()->attach($req->ids); break;
+        //     case 4: $task->students()->attach($req->ids); break;
+        //     default:{
+        //         $rsp = 400 ;
+        //         $msg = 'error';
+        //     } break;
+        // }
+        //  when use postman
 
         return response()->json(['data' => $msg], $rsp);
     }

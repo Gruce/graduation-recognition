@@ -1,24 +1,21 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:graduaiton_app/models/student_models/section.dart';
 import 'package:graduaiton_app/models/student_models/stage.dart';
-import 'package:graduaiton_app/models/student_models/student.dart';
 import 'package:graduaiton_app/util/utilities.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import '../../../config.dart';
 import '../admin_students_controller.dart';
-import 'admin_sections_controller.dart';
+import 'admin_units_controller.dart';
 
 class AdminStagesController extends GetxController {
   late SharedPreferences prefs;
   RxList stages = <StageModel>[].obs;
   RxList filteredStages = <StageModel>[].obs;
   RxInt stageSelectedIndex = 0.obs;
-  RxInt stageSectionId = 0.obs;
   AdminStudentsController studentController =
       Get.put(AdminStudentsController());
+  AdminUnitsController unitController = Get.put(AdminUnitsController());
 
   final api = Config.api;
 
@@ -31,7 +28,6 @@ class AdminStagesController extends GetxController {
   @override
   // ignore: unnecessary_overrides
   void dispose() {
-    // filteredStages.assignAll(stages);
     super.dispose();
   }
 
@@ -51,28 +47,26 @@ class AdminStagesController extends GetxController {
   void filterByStage(index) {
     stageSelectedIndex.value = index;
     StageModel stage = filteredStages[index];
-    stageSectionId.value = stage.section_id;
-    // print(sectionController.sectionSelectedIndex);
+
+    unitController.filterByStage(stage.id);
     if (stage.id == -1) {
       studentController.filteredStudents.assignAll(studentController.students);
     } else {
       studentController.filteredStudents.assignAll(studentController.students
           .where((student) => student.stage_id == stage.id));
     }
-    studentController.update();
 
+    unitController.update();
+    studentController.update();
     update();
   }
 
-
   void filterBySection(id) {
     stageSelectedIndex.value = 0;
-
     if (id == -1) {
       filteredStages.assignAll(stages);
     } else {
-      filteredStages.assignAll(stages
-          .where((stage) => stage.section_id == id));
+      filteredStages.assignAll(stages.where((stage) => stage.section_id == id));
     }
     filterByStage(0);
   }

@@ -47,6 +47,34 @@ class Utilities {
     return res;
   }
 
+  static Future httpFilesPost(
+      String path, Map<dynamic, dynamic> data, List files) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final api = await Config.api;
+
+    http.MultipartRequest request =
+        http.MultipartRequest("POST", Uri.parse("$api/$path"));
+
+    for (var file in files) {
+      http.MultipartFile multipartFile =
+          await http.MultipartFile.fromPath('file', file);
+
+      request.files.add(multipartFile);
+    }
+
+    for (var entry in data.entries) {
+      request.fields[entry.key] = entry.value;
+    }
+
+    request.headers
+        .addAll({"Authorization": prefs.getString('jwt').toString()});
+
+    http.StreamedResponse response = await request.send();
+
+    print(response.statusCode);
+    print(await response.stream.bytesToString());
+  }
+
   static Future httpGet(String path) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final api = await Config.api;

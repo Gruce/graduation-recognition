@@ -1,43 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:graduaiton_app/controllers/Teacher/notification_controller.dart';
 import 'package:graduaiton_app/screens/teacher/home_page/widgets/button.dart';
 import 'package:graduaiton_app/screens/teacher/layout.dart';
+import 'package:file_picker/file_picker.dart';
 
-class TeacherNotification extends StatefulWidget {
-  const TeacherNotification({Key? key}) : super(key: key);
+class TeacherNotification extends GetView {
+  TeacherNotification({Key? key}) : super(key: key);
 
-  @override
-  _TeacherNotificationState createState() => _TeacherNotificationState();
-}
+  NotificationController controller = Get.put(NotificationController());
 
-class _TeacherNotificationState extends State<TeacherNotification> {
-  @override
-  static const menuItems = <String>[
-    'One',
-    'Two',
-    'Three',
-    'Four',
-  ];
-  final List<DropdownMenuItem<String>> _dropDownMenuItems = menuItems
-      .map(
-        (String value) => DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        ),
-      )
-      .toList();
-  final List<PopupMenuItem<String>> _popUpMenuItems = menuItems
-      .map(
-        (String value) => PopupMenuItem<String>(
-          value: value,
-          child: Text(value),
-        ),
-      )
-      .toList();
-
-  String _btn1SelectedVal = 'One';
-  String? _btn2SelectedVal;
-  late String _btn3SelectedVal;
-  @override
   Widget build(BuildContext context) {
     return TeacherLayoutScreen(
         title: 'Notification',
@@ -64,6 +37,7 @@ class _TeacherNotificationState extends State<TeacherNotification> {
                                     icon: Icon(Icons.account_box),
                                     border: const OutlineInputBorder(),
                                   ),
+                                  controller: controller.titleController,
                                 ),
                                 SizedBox(
                                   height: 4,
@@ -80,56 +54,77 @@ class _TeacherNotificationState extends State<TeacherNotification> {
                                 ),
                                 Column(
                                   children: <Widget>[
-                                    ListTile(
-                                      title: const Text(
-                                          'Stage:'),
-                                      trailing: DropdownButton<String>(
-                                        // Must be one of items.value.
-                                        value: _btn1SelectedVal,
-                                        onChanged: (String? newValue) {
-                                          if (newValue != null) {
-                                            // setState(() => _btn1SelectedVal = newValue);
-                                          }
-                                        },
-                                        items: this._dropDownMenuItems,
+                                    Obx(() => Column(
+                                          children: [
+                                            Text('files conut ' +
+                                                controller.files.length
+                                                    .toString()),
+                                            ElevatedButton(
+                                              onPressed: () =>
+                                                  controller.pick_files(),
+                                              child: const Text(
+                                                  "Open file picker"),
+                                            ),
+                                            controller.files_path.isNotEmpty
+                                                ? Column(
+                                                    children: List.from(
+                                                        controller.files
+                                                            .asMap()
+                                                            .map(
+                                                                (key, value) =>
+                                                                    MapEntry(
+                                                                        key,
+                                                                        Row(
+                                                                          children: [
+                                                                            Text(value.name),
+                                                                            IconButton(
+                                                                                onPressed: () => controller.removeIndex(key),
+                                                                                icon: const Icon(Icons.close_rounded)),
+                                                                          ],
+                                                                        )))
+                                                            .values
+                                                            .toList()))
+                                                : Container(),
+                                          ],
+                                        )),
+                                    Obx(() => Container(
+                                        width: double.maxFinite,
+                                        height: double.maxFinite,
+                                        child: ListView(
+                                          shrinkWrap: true,
+                                          children: controller
+                                              .unitsCheckbox.keys
+                                              .map((int key) {
+                                            return CheckboxListTile(
+                                              title: Text(controller
+                                                      .units[key].stage.name +
+                                                  " " +
+                                                  controller.units[key].name),
+                                              value:
+                                                  controller.unitsCheckbox[key],
+                                              activeColor: Colors.pink,
+                                              checkColor: Colors.white,
+                                              onChanged: (bool? value) {
+                                                controller.unitsCheckbox[key] =
+                                                    value!;
+                                                print(controller.unitsCheckbox);
+                                              },
+                                            );
+                                          }).toList(),
+                                        ),
                                       ),
-                                    ),
-                                    ListTile(
-                                        // for Left
-                                      title: const Text('Section:'),
-                                      trailing: DropdownButton(
-                                        value: _btn2SelectedVal,
-                                        hint: const Text('Choose'),
-                                        onChanged: (String? newValue) {
-                                          setState(() {
-                                            _btn2SelectedVal = newValue;
-                                          });
-                                        },
-                                        items: _dropDownMenuItems,
-                                      ),
-                                    ),
-                                   ListTile(
-                                        // for Left
-                                      title: const Text('Section:'),
-                                      trailing: DropdownButton(
-                                        value: _btn2SelectedVal,
-                                        hint: const Text('Choose'),
-                                        onChanged: (String? newValue) {
-                                          setState(() {
-                                            _btn2SelectedVal = newValue;
-                                          });
-                                        },
-                                        items: _dropDownMenuItems,
-                                      ),
-                                    ),
+                                    )
                                   ],
-                                )
+                                ),
                               ],
                             ),
                           ),
                         ),
                         actions: [
-                          MyButton(label: 'Send', onTap: (){})
+                          MyButton(
+                            label: 'Send',
+                            onTap: () => controller.send_notification(),
+                          )
                         ],
                       );
                     });

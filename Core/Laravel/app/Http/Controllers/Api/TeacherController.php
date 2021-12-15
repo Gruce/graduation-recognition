@@ -92,7 +92,7 @@ class TeacherController extends Controller
             'body' => $req->body,
             'to' => $req->to,
             'deadline' => $req->deadline,
-            'ids' => implode(',' , $req->ids),
+            // 'ids' => implode(',' , $req->ids),
             // 'ids' => $req->ids, // post man //
         ];
         $task = $teacher->tasks()->create($data);
@@ -131,5 +131,11 @@ class TeacherController extends Controller
         //  when use postman
 
         return response()->json(['data' => $msg], $rsp);
+    }
+
+    public function tasks(){
+        $teacher = auth()->user()->teacher()->first();
+        $tasks = $teacher->tasks()->with('files')->get();
+        dd($tasks->toArray());
     }
 }

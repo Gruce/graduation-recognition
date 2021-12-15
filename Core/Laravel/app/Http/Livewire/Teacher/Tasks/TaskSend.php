@@ -19,6 +19,7 @@ class TaskSend extends Component
     public $to = 1;
     public $ids = [];
     public $idsData = [];
+    public $deadline;
     public $files;
 
 
@@ -28,6 +29,7 @@ class TaskSend extends Component
             'body' => $this->body,
             'to' => $this->to,
             'ids' => array_keys($this->ids),
+            'deadline' => $this->deadline,
             'file' => $this->files ? $this->files : null,
         ];
 

@@ -23,7 +23,7 @@ class StudentSeeder extends Seeder
             'user_id' => 2,
             'section_id' => 1,
             'stage_id' => 4,
-            'unit_id' => 1,
+            'unit_id' => 7,
         ]);
 
         Student::create([

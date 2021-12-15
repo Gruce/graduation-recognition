@@ -121,7 +121,7 @@ class TeacherController extends Controller
                 $msg = 'error';
             } break;
         }
-         when use postman
+        //  when use postman
 
         return response()->json(['data' => $msg], $rsp);
     }

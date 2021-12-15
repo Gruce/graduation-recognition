@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/Teacher/students_unit_controller.dart';
+import 'package:graduaiton_app/screens/teacher/units/search.dart';
 
 
 
@@ -19,6 +20,7 @@ class StudentsUnitsScreen extends GetView {
     return TeacherLayoutScreen(
         title: 'Student',
         child: Column(children: [
+          StudentSearchWidget(),
           // const Text("data"),
           Expanded(
               child: GetBuilder<TeacherStudentsUnitController>(

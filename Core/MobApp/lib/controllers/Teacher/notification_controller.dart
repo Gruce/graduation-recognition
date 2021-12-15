@@ -9,6 +9,7 @@ import 'package:graduaiton_app/util/utilities.dart';
 
 class NotificationController extends GetxController {
   // @override
+  @override
   void onInit() async {
     titleController = TextEditingController();
     bodyController = TextEditingController();

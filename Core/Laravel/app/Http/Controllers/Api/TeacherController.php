@@ -24,23 +24,25 @@ class TeacherController extends Controller
         return response()->json(['data' => $students]);
     }
 
-    // public function info(){
-    //     $info = auth()->user()->teacher()->with(
-    //         [
-    //             'user:id,name,email',
-    //             'section:id,name',
-    //             'stages:id,section_id,name',
-    //             'units' => function($unit){
-    //                 return $unit->with(['section:id,name' , 'stage:id,name'])->get();
-    //             },
-    //             'subjects' => function($subject){
-    //                 return $subject->with(['section:id,name' , 'stage:id,name'])->get();
-    //             },
-    //         ]
-    //         )->get(['id' , 'user_id' , 'section_id' , 'speciality']);
+    public function info(){
+        $info = auth()->user()->teacher()->with(
+            [
+                'user:id,name,email,type',
+                'section:id,name',
+                'stages:id,name',
+                'units:id,name',
+                'subjects:id,name'
+            ]
+            )->get(
+                [
+                    'id',
+                    'user_id',
+                    'section_id',
+                    'speciality'
+                ]);
 
-    //     return response()->json(['data' => $info]);
-    // }
+        return response()->json(['data' => $info]);
+    }
 
     public function units(){
         $units = auth()->user()->teacher()->with(
@@ -80,35 +82,40 @@ class TeacherController extends Controller
 
         return response()->json(['data' => $students]);
     }
-
+    
     public static function send_task(Request $req){
 
         $teacher = auth()->user()->teacher()->first();
-
-        $file_path = null;
-        if(!empty($req->file)){
-            $validator = Validator::make($req->all(), [
-                'file' => 'file|mimes:jpeg,png,jpg,pdf|max:10000'
-            ]);
-
-            if ($validator->fails())
-                return response()->json(['data' => 'File Not available or file size is large'], 400);
-
-            $file_path =  $req->title . '_' . time() . '.' . $req->file->extension();
-            $req->file->storeAs('task\\' . $teacher->id, $file_path);
-            $file_path = 'task\\' . $teacher->id . '\\' . $file_path;
-        }
-
 
         $data = [
             'title' => $req->title,
             'body' => $req->body,
             'to' => $req->to,
-            'ids' => implode(',' , $req->ids),
+            'deadline' => $req->deadline,
+            // 'ids' => implode(',' , $req->ids),
             // 'ids' => $req->ids, // post man //
         ];
         $task = $teacher->tasks()->create($data);
-        $task->files()->insert($file_path);
+
+        $file_path = null;
+        $files = $req->toArray()['file'];
+
+        if(!empty($files)){
+            $validator = Validator::make($req->all(), [
+                'file*' => 'file|mimes:jpeg,png,jpg,pdf|max:10000' 
+            ]);
+            
+            if ($validator->fails())
+                return response()->json(['data' => 'File Not available or file size is large'], 400);
+
+            foreach ($files as $file){
+                $file_path =  $req->title . '_' . str_random(5) . '_' . time() . '.' . $file->extension();
+                $file->storeAs('task\\' . $teacher->id, $file_path);
+                $file_path = 'task\\' . $teacher->id . '\\' . $file_path;
+                $task->files()->create(['file_path' => $file_path]);
+            }
+        } 
+
         $rsp = 200 ;
         $msg = 'Done';
         switch ($req->to) {
@@ -124,5 +131,11 @@ class TeacherController extends Controller
         //  when use postman
 
         return response()->json(['data' => $msg], $rsp);
+    }
+
+    public function tasks(){
+        $teacher = auth()->user()->teacher()->first();
+        $tasks = $teacher->tasks()->with('files')->get();
+        dd($tasks->toArray());
     }
 }

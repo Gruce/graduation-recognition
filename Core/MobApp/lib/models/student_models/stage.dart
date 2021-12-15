@@ -9,7 +9,9 @@ class StageModel {
   StageModel.fromJson(Map<dynamic, dynamic> json) {
     id = json['id'];
     name = json['name'];
-    section_id = json['section_id'];
+    if (json.containsKey('section_id')) {
+      section_id = json['section_id'];
+    }
     // if (!json['trackings'].isEmpty) {
     //   trackings = TrackingModel.fromJson(json['trackings'][0]);
     // }

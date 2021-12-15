@@ -18,9 +18,16 @@ class UnitModel {
   UnitModel.fromJson(Map<dynamic, dynamic> json) {
     id = json['id'];
     name = json['name'];
-    stage_id = json['stage_id'];
-    section_id = json['section_id'];
-    students_count = json['students_count'];
+
+    if (json.containsKey('stage_id')) {
+      stage_id = json['stage_id'];
+    }
+    if (json.containsKey('section_id')) {
+      section_id = json['section_id'];
+    }
+    if (json.containsKey('students_count')) {
+      students_count = json['students_count'];
+    }
 
     if (json.containsKey('section')) {
       section = SectionModel.fromJson(json['section']);

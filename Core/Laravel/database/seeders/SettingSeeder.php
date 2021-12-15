@@ -18,6 +18,12 @@ class SettingSeeder extends Seeder
             'title' => 'Stages Count',
             'key'   => 'stages',
             'value' => '4'
-        ]);
+        ]); 
+
+        Setting::create([
+            'title' => 'App Restart',
+            'key'   => 'app_restart',
+            'value' => '0'
+        ]); 
     }
 }

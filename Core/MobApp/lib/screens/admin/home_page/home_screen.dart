@@ -1,95 +1,159 @@
-// ignore_for_file: file_names, unnecessary_new, prefer_const_literals_to_create_immutables, prefer_const_constructors
-import 'dart:html';
 import 'package:flutter/material.dart';
-import 'package:graduaiton_app/models/user.dart';
-import 'package:graduaiton_app/screens/admin/nav_bar/nav_bar.dart';
-import 'package:graduaiton_app/screens/admin/side_bar.dart';
-import 'package:graduaiton_app/util/utilities.dart';
+import 'package:get/get.dart';
+import 'package:graduaiton_app/controllers/Admin/admin_home_controller.dart';
+import 'package:graduaiton_app/controllers/Admin/admin_people_controller.dart';
+import 'package:graduaiton_app/controllers/Admin/admin_students_controller.dart';
+import 'package:graduaiton_app/routes/routes.dart';
+import '../layout.dart';
+import 'today_lucture_widget.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
-
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  @override
-  void initState() {
-    super.initState();
-  }
+class AdminHomeScreen extends GetView<AdminHomeController> {
+  AdminHomeScreen({Key? key}) : super(key: key);
+  AdminPeopleController controlleer = Get.put(AdminPeopleController());
+  AdminStudentsController controlleerr = Get.put(AdminStudentsController());
 
   @override
   Widget build(BuildContext context) {
-    // var scaffoldKey = GlobalKey<ScaffoldState>();
-    return Scaffold(
-      key: _scaffoldKey,
-      drawer: SideBar(),
-      body: Container(
-        decoration: BoxDecoration(
-          color: Colors.grey[200],
-        ),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(
-                height: 20,
+    return AdminLayoutScreen(
+        title: 'Home',
+        child: Column(
+          children: [
+            Container(
+              alignment: Alignment.center,
+              margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(24),
+                color: Colors.white,
               ),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                      icon: Icon(Icons.menu),
-                     onPressed: () => _scaffoldKey.currentState!.openDrawer(),
-                    ),
-                    Column(
-                      children: [
-                        Row(
-                          children: [
-                            Text('Location'),
-                            Icon(
-                              Icons.location_on,
-                              color: Color(0xff6875F5),
-                            ),
-                            Text('CsIT'),
-                          ],
-                        ),
-                      ],
-                    ),
-                    CircleAvatar(
-                      child: Image.asset('STLogo.png'),
-                      backgroundColor: Colors.white,
-                      // foregroundColor: Colors.white,
-                      // child: const Text('admin'),
-                    )
-                  ],
-                ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  buildInfo(controlleer.people.length.toString(), 'Lucturers\nN.O'),
+                  Container(
+                      width: 1, height: 50, color: const Color(0xff6875F5)),
+                  buildInfo(controlleerr.students.length.toString(), 'Students\nN.O'),
+                  Container(
+                      width: 1, height: 50, color: const Color(0xff6875F5)),
+                  buildInfo('15', 'Cameras\nN.O'),
+                ],
               ),
-              // Center(
-              //   child: NavBar(),
-              // ),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                margin: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(icon: Icon(Icons.search), onPressed: () {}),
-                    Text('Search for a person'),
-                    IconButton(icon: Icon(Icons.settings), onPressed: () {}),
-                  ],
-                ),
+            ),
+            Container(
+              alignment: Alignment.center,
+              margin: const EdgeInsets.symmetric(horizontal: 100, vertical: 5),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(24),
+                color: Colors.white,
               ),
-            ],
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: const <Widget>[
+                  Text(
+                    "Today Luctures",
+                    style: TextStyle(color: Color(0xff6875F5), fontSize: 20),
+                  )
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Expanded(
+                child: Container(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: const Color.fromRGBO(255, 255, 255, .5)),
+              child: GetBuilder<AdminPeopleController>(
+                  builder: (_) => controlleer.filteredPeople.isNotEmpty
+                      ? ListView.builder(
+                          itemCount: controlleer.filteredPeople.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return GestureDetector(
+                                onTap: () => Get.toNamed(Routes.personProfile,
+                                    arguments:
+                                        controlleer.filteredPeople[index].id),
+                                child: LuctureWidget(
+                                  key: ObjectKey(
+                                      controlleer.filteredPeople[index].id),
+                                  luctureName: "PHP",
+                                  startAt: "Start at 8:30 am",
+                                  endAt: "End at 10:30 am",
+                                  lucturerName: "Abdulkareem Mgbel",
+                                  stage: "First Stage",
+                                  unit: "A",
+                                ));
+                          },
+                        )
+                      : SizedBox(
+                          width: double.infinity,
+                          child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10.0, vertical: 5.0),
+                              child: const Text('Not Found',
+                                  style: TextStyle(fontSize: 24))))),
+            ))
+            // Expanded(
+            //     child: Container(
+            //   padding:
+            //       const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+            //   decoration: BoxDecoration(
+            //       borderRadius: BorderRadius.circular(20),
+            //       color: const Color.fromRGBO(255, 255, 255, .5)),
+            //   child: GetBuilder<AdminHomeController>(
+            //       builder: (_) => controller.cameras.isNotEmpty
+            //           ? ListView.builder(
+            //               itemCount: controller.cameras.length,
+            //               itemBuilder: (BuildContext context, int index) {
+            //                 return GestureDetector(
+            //                     onTap: () => Get.toNamed(Routes.personProfile,
+            //                         arguments: controller.cameras[index].id),
+            //                     child: CameraWidget(
+            //                       description:
+            //                           controller.cameras[index].description,
+            //                       state: controller.cameras[index].state,
+            //                       source: controller.cameras[index].source,
+            //                     ));
+            //               },
+            //             )
+            //           : SizedBox(
+            //               width: double.infinity,
+            //               child: Container(
+            //                   padding: const EdgeInsets.symmetric(
+            //                       horizontal: 10.0, vertical: 5.0),
+            //                   child: const Text('Not Found',
+            //                       style: TextStyle(fontSize: 24))))),
+            // )),
+          ],
+        ));
+  }
+}
+
+Padding buildInfo(String value, String description) {
+  return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(children: <Widget>[
+        Text(
+          value,
+          style: const TextStyle(
+            fontFamily: "Avenir",
+            fontWeight: FontWeight.w900,
+            fontSize: 28,
+            color: Color(0xff6875F5),
           ),
         ),
-      ),
-    );
-  }
+        Text(
+          description,
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            fontFamily: "Avenir",
+            fontWeight: FontWeight.w500,
+            fontSize: 12,
+            color: Color(0xff6875F5),
+          ),
+        )
+      ]));
 }

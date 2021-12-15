@@ -15,9 +15,10 @@ class CreateCamerasTable extends Migration
     {
         Schema::create('cameras', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('hall_id')->nullable()->constrained('halls')->onDelete('cascade');
             $table->string("description");
             $table->integer("state")->default(0);
-            $table->integer("source")->default(0);
+            $table->string("source")->default(0);
             $table->timestamps();
         });
     }

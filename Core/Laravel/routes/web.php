@@ -1,43 +1,135 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TrackingController;
-use App\Http\Controllers\PeopleController;
-use App\Http\Livewire\Teachers;
-use App\Http\Livewire\Settings;
 
+###### Controllers ###### 
+use App\Http\Controllers\{
+    TrackingController,
+    PeopleController,
+    ActionController,
+};
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+###### End Controllers ######
 
-Route::get('/', function () {
-    return view('welcome');
-});
+###### Livewire ######
+    ## ADMIN ##
+use App\Http\Livewire\Admin\{
+    People\People,
+    UnkownPeople\UnkownPeople,
+    Teachers\Teachers,
+    Students\Students,
+    Subjects\Subjects,
+    Stages\Stages,
+    Units\Units,
+    Sections\Sections,
+    Train\TrainNew,
+    Settings,
+};
+    ## END ADMIN ##
+
+    ## TEACHER ##
+use App\Http\Livewire\Teacher\{
+    Index,
+    Students\TeacherStudents,
+    Units\TeacherUnits,
+    Tasks\TeacherTasks,
+    Tasks\TaskSend,
+};
+    ## END TEACHER ##
+
+    ## STUDENT ##
+use App\Http\Livewire\Students\{
+    StudentIndex,
+};
+    ## END STUDENT ##
+###### End Livewire ######
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
-    Route::get('/dashboard', function () { return view('dashboard'); })->name('dashboard');
+
+    Route::view('/', 'dashboard')->name('dashboard');
+    Route::get('/delete/{model}/{id}', [ActionController::class , 'delete'])->name('delete'); // main delete
     
-    // Trackings
-    Route::get('/trackings/{id?}/{person?}', [TrackingController::class, 'main'])->name('trackings');
+    #### ADMIN ####
+    Route::group(['prefix' => 'admin' , 'middleware' => 'admin'] ,function(){
+         // Trackings
+        Route::get('/trackings/{id?}/{person?}', [TrackingController::class, 'main'])->name('trackings');
 
-    // People
-    Route::get('/people/{id?}', [PeopleController::class, 'main'])->name('people');
+        ## People ##
+        Route::group(['prefix' => 'people'] ,function(){
+            Route::get('/', People::class)->name('people');
+            Route::get('/unkown-people', UnkownPeople::class)->name('unkown_people');
+        });
+        ## End People ##
 
-    // Unkown people
-    Route::get('/peopleUnkown', [PeopleController::class, 'unkown'])->name('unkown_people');
+        ## Teachers ##
+        Route::group(['prefix' => 'teachers'] ,function(){
+            Route::get('/', Teachers::class)->name('teachers');
+        });
+        ## End Teachers ##
 
-    // Teachers
-    Route::get('/teachers/{id?}', Teachers::class)->name('teachers');
+        ## Students ## 
+        Route::group(['prefix' => 'students'] ,function(){
+            Route::get('/', Students::class)->name('students');
+        });
+        ## End Students ## 
 
-    // Settings
-    Route::get('/settings', Settings::class)->name('settings');
+        ## Train ##
+        Route::group(['prefix' => 'train'] ,function(){
+            Route::get('/', TrainNew::class)->name('trainNew');
+        });
+        ## End Train ##
+
+        ## Settings ##
+        Route::group(['prefix' => 'settings' , 'middleware' => 'admin'] ,function(){
+            Route::get('/', Settings::class)->name('settings');
+    
+            # Sections # 
+            Route::group(['prefix' => 'sections'] ,function(){
+                Route::get('/', Sections::class)->name('sections');
+            });
+        
+            # Stages # 
+            Route::group(['prefix' => 'stages'] ,function(){
+                Route::get('/', Stages::class)->name('stages');
+            });
+        
+            # Units # 
+            Route::group(['prefix' => 'units'] ,function(){
+                Route::get('/', Units::class)->name('units');
+            });
+        
+            # Subjects #
+            Route::group(['prefix' => 'subjects'] ,function(){
+                Route::get('/', Subjects::class)->name('subjects');
+            });
+        });
+
+        ## End Settings ##
+
+    });
+    #### END ADMIN ####
+
+    ################################################################
+
+    #### TEACHER ####
+
+    Route::group(['prefix' => 'teacher' , 'middleware' => 'teacher'] ,function(){
+        Route::get('/students/{unitID?}', TeacherStudents::class)->name('teacher_students');
+        Route::get('/units', TeacherUnits::class)->name('teacher_unit');
+        Route::get('/tasks', TeacherTasks::class)->name('teacher_task');
+    });
+
+    #### END TEACHER ####
+
+    ################################################################
+
+    #### STUDENT ####
+
+    Route::group(['prefix' => 'student' , 'middleware' => 'student'] ,function(){
+        // Route::get('/s', StudentIndex::class)->name('s');
+    });
+
+    #### END STUDENT ####
+
 });
 

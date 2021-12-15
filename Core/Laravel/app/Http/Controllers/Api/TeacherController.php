@@ -103,13 +103,12 @@ class TeacherController extends Controller
         $data = [
             'title' => $req->title,
             'body' => $req->body,
-            'file_path' => $file_path,
             'to' => $req->to,
             'ids' => implode(',' , $req->ids),
             // 'ids' => $req->ids, // post man //
         ];
         $task = $teacher->tasks()->create($data);
-
+        $task->files()->insert($file_path);
         $rsp = 200 ;
         $msg = 'Done';
         switch ($req->to) {

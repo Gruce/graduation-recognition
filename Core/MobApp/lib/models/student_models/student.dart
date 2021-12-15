@@ -30,10 +30,7 @@ class StudentModel {
     stage_id = json['stage_id'];
     unit_id = json['unit_id'];
     if (json.containsKey('user')) {
-      print("Contains User");
       user = UserModel.fromJson(json['user']);
-    } else {
-      print("Not contains");
     }
     if (json.containsKey('section')) {
       section = SectionModel.fromJson(json['section']);

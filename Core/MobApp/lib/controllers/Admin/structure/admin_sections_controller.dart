@@ -40,7 +40,7 @@ class AdminSectionsController extends GetxController {
     var res = await Utilities.httpGet('sections');
     if (res.statusCode == 200) {
       List response = json.decode(res.body)['data'];
-      sections.add(SectionModel.fromJson({"id": -1, "name": "All Sections"}));
+      // sections.add(SectionModel.fromJson({"id": -1, "name": "All Sections"}));
       for (var element in response) {
         sections.add(SectionModel.fromJson(element));
       }

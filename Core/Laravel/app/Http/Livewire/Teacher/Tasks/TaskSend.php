@@ -19,16 +19,18 @@ class TaskSend extends Component
     public $to = 1;
     public $ids = [];
     public $idsData = [];
-    public $file;
+    public $files;
 
 
     public function save(){   
+        // dd($this->file);
+        dd($this->files);
         $data = [
             'title' => $this->title,
             'body' => $this->body,
             'to' => $this->to,
             'ids' => array_keys($this->ids),
-            'file' => $this->file ? $this->file[0] : null,
+            'file' => $this->files ? $this->files[0] : null,
         ];
 
         $response = TeacherController::send_task(new Request($data));

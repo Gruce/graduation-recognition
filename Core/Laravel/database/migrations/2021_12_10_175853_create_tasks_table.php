@@ -19,8 +19,8 @@ class CreateTasksTable extends Migration
             $table->integer('to')->default(1); // 1 => to unit , 2 to stage , 3 to section , 4 to student //
             $table->string('ids');
             $table->string('title');
-            $table->text('body');
-            $table->text('file_path')->nullable();
+            $table->text('body')->nullable();
+            $table->timestamp('deadline');
             $table->timestamps();
         });
     }

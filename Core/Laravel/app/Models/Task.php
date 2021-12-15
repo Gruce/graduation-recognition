@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Task extends Model
 {
     use HasFactory;
-    protected $fillable = ['teacher_id' , 'title' , 'body' , 'file_path' , 'to' , 'ids'];
+    protected $fillable = ['teacher_id' , 'title' , 'body' , 'file_path' , 'to' , 'ids' , 'deadline'];
 
     public function teacher(){
         return $this->belongsTo(Teacher::class);
@@ -28,6 +28,10 @@ class Task extends Model
 
     public function students(){
         return $this->belongsToMany(Student::class)->withTimestamps();
+    }
+
+    public function files(){
+        return $this->hasMany(File::class);
     }
 
 }

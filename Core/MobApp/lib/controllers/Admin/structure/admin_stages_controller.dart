@@ -35,7 +35,7 @@ class AdminStagesController extends GetxController {
     var res = await Utilities.httpGet('stages');
     if (res.statusCode == 200) {
       List response = json.decode(res.body)['data'];
-      stages.add(StageModel.fromJson({"id": -1, "name": "All Stages"}));
+      // stages.add(StageModel.fromJson({"id": -1, "name": "All Stages"}));
       for (var element in response) {
         stages.add(StageModel.fromJson(element));
       }

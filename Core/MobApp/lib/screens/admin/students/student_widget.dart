@@ -31,7 +31,7 @@ class StudentWidget extends GetWidget {
       color: Colors.transparent,
       margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 6.0),
       child: Container(
-        padding: const EdgeInsets.all(14.0),
+        padding: const EdgeInsets.all(4.0),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             color: const Color.fromRGBO(255, 255, 255, 1)),
@@ -48,60 +48,67 @@ class StudentWidget extends GetWidget {
                   style:
                       const TextStyle(fontSize: 18, color: Color(0xff6875F5)),
                 ),
-                Container(
-                    padding: const EdgeInsets.all(5.0),
-                    decoration: BoxDecoration(
-                      color: const Color.fromRGBO(235, 235, 235, .8),
-                      border: Border.all(
-                        color: const Color.fromRGBO(235, 235, 235, .8),
-                        width: 2.0,
-                      ),
-                      borderRadius: const BorderRadius.all(Radius.circular(
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Container(
+                        padding: const EdgeInsets.all(5.0),
+                        decoration: BoxDecoration(
+                          color: const Color.fromRGBO(235, 235, 235, .8),
+                          border: Border.all(
+                            color: const Color.fromRGBO(235, 235, 235, .8),
+                            width: 2.0,
+                          ),
+                          borderRadius: const BorderRadius.all(Radius.circular(
                               5.0) //                 <--- border radius here
                           ),
-                    ),
-                    child: Text(
-                      section_name,
-                      style: const TextStyle(
-                        fontSize: 12,
-                      ),
-                    )),
-                Container(
-                    padding: const EdgeInsets.all(5.0),
-                    decoration: BoxDecoration(
-                      color: const Color.fromRGBO(235, 235, 235, .8),
-                      border: Border.all(
-                        color: const Color.fromRGBO(235, 235, 235, .8),
-                        width: 2.0,
-                      ),
-                      borderRadius: const BorderRadius.all(Radius.circular(
-                              5.0) //                 <--- border radius here
+                        ),
+                        child: Text(
+                          section_name,
+                          style: const TextStyle(
+                            fontSize: 12,
                           ),
-                    ),
-                    child: Text(
-                      stage_name,
-                      style: const TextStyle(
-                        fontSize: 12,
-                      ),
-                    )),
-                Container(
-                    padding: const EdgeInsets.all(5.0),
-                    decoration: BoxDecoration(
-                      color: const Color.fromRGBO(235, 235, 235, .8),
-                      border: Border.all(
-                        color: const Color.fromRGBO(235, 235, 235, .8),
-                        width: 2.0,
-                      ),
-                      borderRadius: const BorderRadius.all(Radius.circular(
-                              5.0) //                 <--- border radius here
+                        )),
+                    Row(children: [
+                      Container(
+                          padding: const EdgeInsets.all(5.0),
+                          decoration: BoxDecoration(
+                            color: const Color.fromRGBO(235, 235, 235, .8),
+                            border: Border.all(
+                              color: const Color.fromRGBO(235, 235, 235, .8),
+                              width: 2.0,
+                            ),
+                            borderRadius: const BorderRadius.all(Radius.circular(
+                                5.0) //                 <--- border radius here
+                            ),
                           ),
-                    ),
-                    child: Text(
-                      unit_name,
-                      style: const TextStyle(
-                        fontSize: 12,
-                      ),
-                    ))
+                          child: Text(
+                            stage_name,
+                            style: const TextStyle(
+                              fontSize: 12,
+                            ),
+                          )),
+                      Container(
+                          padding: const EdgeInsets.all(5.0),
+                          decoration: BoxDecoration(
+                            color: const Color.fromRGBO(235, 235, 235, .8),
+                            border: Border.all(
+                              color: const Color.fromRGBO(235, 235, 235, .8),
+                              width: 2.0,
+                            ),
+                            borderRadius: const BorderRadius.all(Radius.circular(
+                                5.0) //                 <--- border radius here
+                            ),
+                          ),
+                          child: Text(
+                            unit_name,
+                            style: const TextStyle(
+                              fontSize: 12,
+                            ),
+                          ))
+                    ],)
+                  ]
+                )
               ],
             ),
           ),

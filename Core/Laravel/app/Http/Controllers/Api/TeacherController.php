@@ -86,7 +86,7 @@ class TeacherController extends Controller
     public static function send_task(Request $req){
 
         $teacher = auth()->user()->teacher()->first();
-
+        dd($req->deadline);
         $data = [
             'title' => $req->title,
             'body' => $req->body,

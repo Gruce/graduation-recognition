@@ -48,7 +48,7 @@ class TeacherSidebarScreen extends GetWidget {
                           ),
                           onTap: () {},
                           subtitle: Text(
-                            "Lucturer",
+                            "x",
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 14,

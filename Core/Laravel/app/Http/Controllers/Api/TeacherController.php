@@ -80,7 +80,7 @@ class TeacherController extends Controller
 
         return response()->json(['data' => $students]);
     }
-    
+
     public static function send_task(Request $req){
 
         $teacher = auth()->user()->teacher()->first();
@@ -88,12 +88,12 @@ class TeacherController extends Controller
         $file_path = null;
         if(!empty($req->file)){
             $validator = Validator::make($req->all(), [
-                'file' => 'file|mimes:jpeg,png,jpg,pdf|max:10000' 
+                'file' => 'file|mimes:jpeg,png,jpg,pdf|max:10000'
             ]);
-    
+
             if ($validator->fails())
                 return response()->json(['data' => 'File Not available or file size is large'], 400);
-            
+
             $file_path =  $req->title . '_' . time() . '.' . $req->file->extension();
             $req->file->storeAs('task\\' . $teacher->id, $file_path);
             $file_path = 'task\\' . $teacher->id . '\\' . $file_path;
@@ -105,24 +105,24 @@ class TeacherController extends Controller
             'body' => $req->body,
             'file_path' => $file_path,
             'to' => $req->to,
-            // 'ids' => implode(',' , $req->ids),
-            'ids' => $req->ids, // post man //
+            'ids' => implode(',' , $req->ids),
+            // 'ids' => $req->ids, // post man //
         ];
         $task = $teacher->tasks()->create($data);
 
         $rsp = 200 ;
         $msg = 'Done';
-        // switch ($req->to) {
-        //     case 1: $task->units()->attach($req->ids); break;
-        //     case 2: $task->stages()->attach($req->ids); break;
-        //     case 3: $task->sections()->attach($req->ids); break;
-        //     case 4: $task->students()->attach($req->ids); break;
-        //     default:{
-        //         $rsp = 400 ;
-        //         $msg = 'error';
-        //     } break;
-        // }
-        //  when use postman
+        switch ($req->to) {
+            case 1: $task->units()->attach($req->ids); break;
+            case 2: $task->stages()->attach($req->ids); break;
+            case 3: $task->sections()->attach($req->ids); break;
+            case 4: $task->students()->attach($req->ids); break;
+            default:{
+                $rsp = 400 ;
+                $msg = 'error';
+            } break;
+        }
+         when use postman
 
         return response()->json(['data' => $msg], $rsp);
     }

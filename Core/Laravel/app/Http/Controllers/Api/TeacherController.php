@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class TeacherController extends Controller
 {
@@ -86,7 +87,6 @@ class TeacherController extends Controller
     public static function send_task(Request $req){
 
         $teacher = auth()->user()->teacher()->first();
-        dd($req->deadline);
         $data = [
             'title' => $req->title,
             'body' => $req->body,
@@ -110,8 +110,8 @@ class TeacherController extends Controller
 
             foreach ($files as $file){
                 $file_path =  $req->title . '_' . str_random(5) . '_' . time() . '.' . $file->extension();
-                $file->storeAs('task\\' . $teacher->id, $file_path);
-                $file_path = 'task\\' . $teacher->id . '\\' . $file_path;
+                $file->storeAs('task/' . $teacher->id, $file_path);
+                $file_path = 'task/' . $teacher->id . '/' . $file_path;
                 $task->files()->create(['file_path' => $file_path]);
             }
         } 
@@ -136,6 +136,31 @@ class TeacherController extends Controller
     public function tasks(){
         $teacher = auth()->user()->teacher()->first();
         $tasks = $teacher->tasks()->with('files')->get();
+
+        $images = [[]];
+        $image = '';
+
+        foreach($tasks as $task)
+            if($task->files)
+                foreach($task->files as $file){
+                    $images += [$task->id => Storage::disk('public')->url($file->file_path)];
+                }
+            else dd('null');
+
+        dd($images);
+        
+        foreach (glob(Storage::disk('public')->path('db/' . $person->id) . '/*.png') as $filename) {
+            $filename = str_replace(Storage::disk('public')->path('db/' . $person->id) . '/', '', $filename);
+            // $images += Storage::disk('public')->url('db/' . $person->id . '/' . $filename_;
+        }
+        if (count($images) > 0)
+            $image = $images[0];
+
+        return response()->json([
+            'data' => $person,
+            'image' => $image
+        ], 200);
+
         dd($tasks->toArray());
     }
 }

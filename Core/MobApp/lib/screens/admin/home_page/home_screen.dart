@@ -52,7 +52,7 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                 children: const <Widget>[
                   Text(
                     "Today Luctures",
-                    style: TextStyle(color: Color(0xff6875F5), fontSize: 20),
+                    style: TextStyle(color: Color(0xff6875F5), fontSize: 17),
                   )
                 ],
               ),
@@ -80,9 +80,11 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                                   key: ObjectKey(
                                       controlleer.filteredPeople[index].id),
                                   luctureName: "PHP",
+                                  hall: "Hall 9",
                                   startAt: "Start at 8:30 am",
                                   endAt: "End at 10:30 am",
                                   lucturerName: "Abdulkareem Mgbel",
+                                  section: "Computer Science",
                                   stage: "First Stage",
                                   unit: "A",
                                 ));

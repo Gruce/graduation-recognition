@@ -84,13 +84,15 @@ class TeacherController extends Controller
     }
 
     public static function send_task(Request $req){
+      info($req->file);
       $ids=$req->ids;
       if(gettype($req->ids)=='string'){
         $x= str_replace('[','',$req->ids);
         $x= str_replace(']','',$x);
         $ids=array_map('intval', explode(',', $x));
-        
+
       }
+      
         $teacher = auth()->user()->teacher()->first();
 
         $data = [
@@ -103,24 +105,24 @@ class TeacherController extends Controller
         ];
         $task = $teacher->tasks()->create($data);
 
-        $file_path = null;
-        $files = $req->toArray()['file'];
+        // $file_path = null;
+        // $files = $req->toArray()['file'];
 
-        if(!empty($files)){
-            $validator = Validator::make($req->all(), [
-                'file*' => 'file|mimes:jpeg,png,jpg,pdf|max:10000'
-            ]);
+        // if(!empty($files)){
+        //     $validator = Validator::make($req->all(), [
+        //         'file*' => 'file|mimes:jpeg,png,jpg,pdf|max:10000'
+        //     ]);
 
-            if ($validator->fails())
-                return response()->json(['data' => 'File Not available or file size is large'], 400);
+        //     if ($validator->fails())
+        //         return response()->json(['data' => 'File Not available or file size is large'], 400);
 
-            foreach ($files as $file){
-                $file_path =  $req->title . '_' . str_random(5) . '_' . time() . '.' . $file->extension();
-                $file->storeAs('task\\' . $teacher->id, $file_path);
-                $file_path = 'task\\' . $teacher->id . '\\' . $file_path;
-                $task->files()->create(['file_path' => $file_path]);
-            }
-        }
+        //     foreach ($files as $file){
+        //         $file_path =  $req->title . '_' . str_random(5) . '_' . time() . '.' . $file->extension();
+        //         $file->storeAs('task\\' . $teacher->id, $file_path);
+        //         $file_path = 'task\\' . $teacher->id . '\\' . $file_path;
+        //         $task->files()->create(['file_path' => $file_path]);
+        //     }
+        // }
 
         $rsp = 200 ;
         $msg = 'Done';

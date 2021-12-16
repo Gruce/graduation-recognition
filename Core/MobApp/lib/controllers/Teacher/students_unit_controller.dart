@@ -15,7 +15,6 @@ class TeacherStudentsUnitController extends GetxController {
   final api = Config.api;
   @override
   void onInit() async {
-   
     super.onInit();
   }
 
@@ -40,13 +39,16 @@ class TeacherStudentsUnitController extends GetxController {
   }
 
   void search(text) {
+    
     if (text.isEmpty) {
       filteredStudent.assignAll(students);
     } else {
+      
       filteredStudent.assignAll(students
-          .where((user) =>
-              user.name.toLowerCase().contains(text.toLowerCase()))
+          .where((student) =>
+              student.user.name.toLowerCase().contains(text.toLowerCase()))
           .toList());
+    print(filteredStudent);
     }
     update();
   }

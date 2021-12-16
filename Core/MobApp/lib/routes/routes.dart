@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:graduaiton_app/bindings/admin_bindings.dart';
 import 'package:graduaiton_app/bindings/auth_binding.dart';
 import 'package:graduaiton_app/bindings/general_bindings.dart';
+import 'package:graduaiton_app/bindings/student_bindings.dart';
 import 'package:graduaiton_app/bindings/teacher_bindings.dart';
 import 'package:graduaiton_app/screens/admin/home_page/home_screen.dart';
 import 'package:graduaiton_app/screens/admin/people/people_screen.dart';
@@ -9,6 +10,8 @@ import 'package:graduaiton_app/screens/admin/profile/profile_screen.dart';
 import 'package:graduaiton_app/screens/admin/students/students_screen.dart';
 import 'package:graduaiton_app/screens/general/people/person_profile_widget.dart';
 import 'package:graduaiton_app/screens/login_screen.dart';
+import 'package:graduaiton_app/screens/student/home_page/home_screen.dart';
+import 'package:graduaiton_app/screens/student/profile/profile_screen.dart';
 import 'package:graduaiton_app/screens/teacher/home_page/home_screen.dart';
 import 'package:graduaiton_app/screens/teacher/home_page/schedule_teacher.dart';
 import 'package:graduaiton_app/screens/teacher/profile/profile_screen.dart';
@@ -32,6 +35,10 @@ class Routes {
   static const teachSchedule = '/teacher/schedule/';
   static const teachUnits = '/teacher/units/';
   static const teachProfile = '/teacher/profile/';
+
+  //Student
+  static const studentMain = '/student/';
+  static const studentProfile='/student/profile/';
 
   static final routes = [
     // Auth Routes
@@ -90,5 +97,24 @@ class Routes {
         name: teachUnits,
         page: () => TeacherUnitsScreen(),
         binding: TeacherUnitsBinding()),
+
+
+    // Student Routes
+        GetPage(
+        name: studentMain,
+        page: () => StudentHomeScreen(),
+        binding: StudentHomeBinding()),
+
+    // GetPage(
+    //     name: teachSchedule,
+    //     page: () => const TeacherScheduleScreen(),
+    //     binding: TeacherScheduleScrBinding()),
+
+    GetPage(
+        name: studentProfile,
+        page: () => StudentProfileScreen(),
+        binding: StudentProfileBinding()),
+
+   
   ];
 }

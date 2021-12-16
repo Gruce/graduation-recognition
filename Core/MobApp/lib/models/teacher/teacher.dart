@@ -1,7 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 import 'package:graduaiton_app/models/student_models/section.dart';
 import 'package:graduaiton_app/models/student_models/stage.dart';
-import 'package:graduaiton_app/models/student_models/unit.dart';
 
 import '../user.dart';
 
@@ -10,7 +9,7 @@ class TeacherModel {
   int user_id = 0;
   int section_id = 0;
   int stage_id = 0;
-  String speciality = 'HTML';
+  String speciality = '';
   UserModel user = UserModel();
   SectionModel section = SectionModel();
   StageModel stage = StageModel();
@@ -22,6 +21,7 @@ class TeacherModel {
     section_id,
     stage_id,
     unit_id,
+    speciality,
   });
 
   TeacherModel.fromJson(Map<String, dynamic> json) {

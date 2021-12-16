@@ -18,15 +18,15 @@ class StudentsUnitsScreen extends GetView {
   Widget build(BuildContext context) {
     controller.fetch(Get.arguments);
     return TeacherLayoutScreen(
-        title: 'Student',
+        title: 'Students',
         child: Column(children: [
           StudentSearchWidget(),
           // const Text("data"),
           Expanded(
               child: GetBuilder<TeacherStudentsUnitController>(
-                  builder: (_) => controller.students.isNotEmpty
+                  builder: (_) => controller.filteredStudent.isNotEmpty
                       ? ListView.builder(
-                          itemCount: controller.students.length,
+                          itemCount: controller.filteredStudent.length,
                           itemBuilder: (BuildContext context, int index) {
                             return GestureDetector(
                                 // onTap: () => Get.to(() => StudentsProfileWidget(),
@@ -53,12 +53,12 @@ class StudentsUnitsScreen extends GetView {
                                                     children: [
                                                       Row(children: [
                                                         Text(controller
-                                                            .students[index]
+                                                            .filteredStudent[index]
                                                             .user
                                                             .name),
                                                       ]),
                                                       Text(controller
-                                                          .students[index]
+                                                          .filteredStudent[index]
                                                           .stage.name),
                                                     ],
                                                   )),
@@ -69,7 +69,7 @@ class StudentsUnitsScreen extends GetView {
                                                 children: [
                                                   Text(
                                                     controller
-                                                            .students[index].user.email
+                                                            .filteredStudent[index].user.email
                                                             ,
                                                     style: TextStyle(
                                                         color: Colors.black
@@ -77,7 +77,7 @@ class StudentsUnitsScreen extends GetView {
                                                   ),
                                                   Text(
                                                     controller
-                                                            .students[index].section.name,
+                                                            .filteredStudent[index].section.name,
                                                     style: TextStyle(
                                                         color: Colors.black
                                                             .withOpacity(0.6)),

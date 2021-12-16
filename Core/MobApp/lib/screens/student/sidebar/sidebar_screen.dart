@@ -2,20 +2,19 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:graduaiton_app/controllers/Teacher/teacher_profile_controller.dart';
 import 'package:graduaiton_app/models/user.dart';
-import 'package:graduaiton_app/screens/teacher/notification/notification_screen.dart';
-import 'package:graduaiton_app/screens/teacher/sidebar/sidebar_controller.dart';
+import 'package:graduaiton_app/screens/student/sidebar/sidebar_controller.dart';
 import 'package:graduaiton_app/util/utilities.dart';
 
-class TeacherSidebarScreen extends GetWidget {
-  TeacherSidebarScreen({Key? key}) : super(key: key);
+class StudentSidebarScreen extends GetWidget {
+  StudentSidebarScreen({Key? key}) : super(key: key);
 
   @override
-  TeacherSidebarController controller = Get.put(TeacherSidebarController());
-  TeacherProfileController controller1 = Get.put(TeacherProfileController());
+  StudentSidebarController controller = Get.put(StudentSidebarController());
+
   @override
   Widget build(BuildContext context) {
+
     return Drawer(
         child: SafeArea(
             child: Container(
@@ -47,9 +46,8 @@ class TeacherSidebarScreen extends GetWidget {
                             },
                           ),
                           onTap: () {},
-
                           subtitle: Text(
-                            controller1.teacher.value.speciality,
+                            "x",
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 14,
@@ -72,10 +70,11 @@ class TeacherSidebarScreen extends GetWidget {
                           indent: 22,
                           endIndent: 32,
                         ),
+
                         ListView.builder(
                             itemCount: controller.tabs.length,
                             shrinkWrap: true,
-                            itemBuilder: (context, i) => Card(
+                                  itemBuilder: (context, i) => Card(
                                   elevation: 0,
                                   color: const Color(0xff6875F5),
                                   child: ListTile(
@@ -92,17 +91,15 @@ class TeacherSidebarScreen extends GetWidget {
                                       color: Colors.white,
                                     ),
                                     selected: true,
-                                    onTap: () => {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                TeacherNotification()),
-                                      )
-                                    },
+                                    // onTap: () => {
+                                    //   Navigator.push(
+                                    //             context,
+                                    // MaterialPageRoute(builder: (context) => {}()),
+                                    //                       )
+                                    // },
                                   ),
                                 )),
-                        Card(
+                                Card(
                           elevation: 0,
                           color: const Color(0xff6875F5),
                           child: ListTile(

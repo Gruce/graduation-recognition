@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/gestures.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/config.dart';
 import 'package:graduaiton_app/models/camera.dart';
@@ -7,7 +8,7 @@ import 'package:graduaiton_app/util/utilities.dart';
 
 class AdminHomeController extends GetxController {
   RxList cameras = <CameraModel>[].obs;
-
+  RxBool shown = false.obs;
   final api = Config.api;
 
   @override
@@ -25,5 +26,10 @@ class AdminHomeController extends GetxController {
       }
     }
     update();
+  }
+
+  void swipe(details){
+
+    // print(details);
   }
 }

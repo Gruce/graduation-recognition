@@ -44,7 +44,7 @@ class LuctureWidget extends GetWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    luctureName,
+                    lucturerName,
                     style:
                         const TextStyle(fontSize: 18, color: Color(0xff6875F5)),
                   ),
@@ -62,7 +62,7 @@ class LuctureWidget extends GetWidget {
                             ),
                       ),
                       child: Text(
-                        lucturerName,
+                        luctureName,
                         style: const TextStyle(
                           color: Color(0xff6875F5),
                           fontSize: 13,
@@ -71,128 +71,136 @@ class LuctureWidget extends GetWidget {
                 ],
               ),
             ),
-            subtitle: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(5.0),
-                        decoration: BoxDecoration(
-                          color: const Color.fromRGBO(235, 235, 235, .8),
-                          border: Border.all(
-                            color: const Color.fromRGBO(235, 235, 235, .8),
-                            width: 2.0,
+            subtitle:
+                Row(mainAxisAlignment: MainAxisAlignment.start, children: <
+                    Widget>[
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.725,
+                    padding: const EdgeInsets.all(5.0),
+                    decoration: BoxDecoration(
+                      color: const Color.fromRGBO(235, 235, 235, .5),
+                      border: Border.all(
+                        color: const Color.fromRGBO(235, 235, 235, .0),
+                        width: 2.0,
+                      ),
+                      borderRadius: const BorderRadius.all(Radius.circular(
+                              5.0) //                 <--- border radius here
                           ),
-                          borderRadius: const BorderRadius.all(Radius.circular(
-                                  5.0) //                 <--- border radius here
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Icon(
+                                    Icons.first_page,
+                                    color: Colors.black54,
+                                    size: 14,
+                                  ),
+                                  SizedBox(width: 3),
+                                  Text(
+                                      startAt.isNotEmpty
+                                          ? startAt
+                                          : "No Start Time",
+                                      style: const TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black54,
+                                      )),
+                                ],
                               ),
-                        ),
-                        child: Row(
+                              SizedBox(width: 15),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Icon(
+                                    Icons.last_page,
+                                    color: Colors.black54,
+                                    size: 14,
+                                  ),
+                                  SizedBox(width: 3),
+                                  Text(endAt.isNotEmpty ? endAt : "No End Time",
+                                      style: const TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black54,
+                                      )),
+                                ],
+                              ),
+                            ]),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Icon(
-                              Icons.first_page,
-                              size: 14,
-                            ),
-                            const SizedBox(width: 5),
-                            Text(startAt.isNotEmpty ? startAt : "No Start Time",
-                                style: const TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                    backgroundColor: Colors.white)),
-                            const SizedBox(
-                              width: 20,
-                            ),
-                            const Icon(
-                              Icons.last_page,
-                              size: 14,
-                            ),
-                            const SizedBox(width: 3),
-                            Text(endAt.isNotEmpty ? endAt : "No End Time",
-                                style: const TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                    backgroundColor: Colors.white)),
-                            const SizedBox(
-                              width: 20,
-                            ),
                             const Icon(
                               Icons.highlight_alt,
                               size: 14,
                             ),
-                            const SizedBox(width: 3),
+                            SizedBox(width: 3),
                             Text(hall.isNotEmpty ? hall : "No End Time",
                                 style: const TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                    backgroundColor: Colors.white)),
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black54,
+                                )),
                           ],
                         ),
-                      ),
-                      const SizedBox(height: 10),
-                      Container(
-                        padding: const EdgeInsets.all(5.0),
-                        decoration: BoxDecoration(
-                          color: const Color.fromRGBO(235, 235, 235, .8),
-                          border: Border.all(
-                            color: const Color.fromRGBO(235, 235, 235, .8),
-                            width: 2.0,
-                          ),
-                          borderRadius: const BorderRadius.all(Radius.circular(
-                                  5.0) //                 <--- border radius here
-                              ),
-                        ),
-                        child: Row(
-                          children: [
-                            const Icon(
-                              Icons.view_sidebar_outlined,
-                              color: Color(0xff6875F5),
-                              size: 14,
-                            ),
-                            const SizedBox(width: 5),
-                            Text(section.isNotEmpty ? section : "No Stage",
-                                style: const TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                    backgroundColor: Color(0xff6875F5))),
-                            const SizedBox(width: 20),
-                            const Icon(
-                              Icons.amp_stories_outlined,
-                              color: Color(0xff6875F5),
-                              size: 14,
-                            ),
-                            const SizedBox(width: 5),
-                            Text(stage.isNotEmpty ? stage : "No Stage",
-                                style: const TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                    backgroundColor: Color(0xff6875F5))),
-                            const SizedBox(width: 20),
-                            const Icon(
-                              Icons.workspaces_outline,
-                              color: Color(0xff6875F5),
-                              size: 14,
-                            ),
-                            const SizedBox(width: 5),
-                            Text(unit.isNotEmpty ? unit : "No Unit",
-                                style: const TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                    backgroundColor: Color(0xff6875F5)))
-                          ],
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                  // trailing: const Icon(Icons.keyboard_arrow_right, size: 30.0)
-                ]),
+                  const SizedBox(height: 5),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.725,
+                    padding: const EdgeInsets.all(5.0),
+                    decoration: BoxDecoration(
+                      color: const Color.fromRGBO(235, 235, 235, .5),
+                      border: Border.all(
+                        color: const Color.fromRGBO(235, 235, 235, .0),
+                        width: 2.0,
+                      ),
+                      borderRadius: const BorderRadius.all(Radius.circular(
+                              5.0) //                 <--- border radius here
+                          ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(section.isNotEmpty ? section : "No Stage",
+                            style: const TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black54,
+                            )),
+                        const SizedBox(width: 20),
+                        Text(stage.isNotEmpty ? stage : "No Stage",
+                            style: const TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                              color:Colors.black54,
+                            )),
+                        const SizedBox(width: 20),
+                        Text(unit.isNotEmpty ? unit : "No Unit",
+                            style: const TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black54,
+                            ))
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              // trailing: const Icon(Icons.keyboard_arrow_right, size: 30.0)
+            ]),
           )),
     );
   }

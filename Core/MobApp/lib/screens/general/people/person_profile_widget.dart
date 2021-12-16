@@ -62,22 +62,22 @@ class PersonProfileWidget extends GetView {
                                         child: FlatButton(
                                             onPressed: () {},
                                             child: const Text(
-                                                "        5\nAbsences",style: TextStyle(color:Color(0xff6875F5))))),
+                                                "        5\nAbsences",style: TextStyle(color:Color(0xff6875F5),fontSize:10.5)))),
                                     Expanded(
                                         child: FlatButton(
                                             onPressed: () {},
                                             child: const Text(
-                                                "        2\nInfractions",style: TextStyle(color:Color(0xff6875F5))))),
+                                                "        2\nInfractions",style: TextStyle(color:Color(0xff6875F5),fontSize:9.9)))),
                                     Expanded(
                                         child: FlatButton(
                                             onPressed: () {},
                                             child: const Text(
-                                                "        3\nActivities",style: TextStyle(color:Color(0xff6875F5))))),
+                                                "        3\nActivities",style: TextStyle(color:Color(0xff6875F5),fontSize:10.5)))),
                                     Expanded(
                                         child: FlatButton(
                                             onPressed: () {},
                                             child: const Text(
-                                                "        1\nWarnings",style: TextStyle(color:Color(0xff6875F5))))),
+                                                "        1\nWarnings",style: TextStyle(color:Color(0xff6875F5),fontSize:10.5)))),
                                   ],
                                 )
                               ],
@@ -114,15 +114,15 @@ class PersonProfileWidget extends GetView {
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(5),
                         ),
-                        child: Column(
-                          children: const <Widget>[
-                            ListTile(
+                        child:Column(
+                          children: <Widget>[
+                             ListTile(
                               title: Text("Person Information",style: TextStyle(color:Color(0xff6875F5)),),
                             ),
                             Divider(),
                             ListTile(
                               title: Text("Email"),
-                              subtitle: Text("karm.99zo@gmail.com"),
+                              subtitle: Text(controller.person.user.email),
                               leading: Icon(Icons.email,color:Color(0xff6875F5)),
                             ),
                             ListTile(
@@ -136,22 +136,22 @@ class PersonProfileWidget extends GetView {
                                   "Abdulkareem mgbel farhan al-khalifa.\nbla bla bla bla bla bla bla bla bla bla bla."),
                               leading: Icon(Icons.format_align_center,color:Color(0xff6875F5)),
                             ),
-                            ListTile(
+                             ListTile(
                               title: Text("Living Location"),
                               subtitle: Text("AL-Hartha - Basra"),
                               leading: Icon(Icons.location_city,color:Color(0xff6875F5)),
                             ),
-                            ListTile(
+                           ListTile(
                               title: Text("Joined Date"),
                               subtitle: Text("11 November 2018"),
                               leading: Icon(Icons.calendar_view_day,color:Color(0xff6875F5)),
                             ),
-                            ListTile(
+                             ListTile(
                               title: Text("graduation Date"),
                               subtitle: Text("6 Jul 2022"),
                               leading: Icon(Icons.calendar_view_month,color:Color(0xff6875F5)),
                             ),
-                            ListTile(
+                             ListTile(
                               title: Text("Department"),
                               subtitle: Text("Computer Sicnce"),
                               leading: Icon(Icons.computer,color:Color(0xff6875F5)),

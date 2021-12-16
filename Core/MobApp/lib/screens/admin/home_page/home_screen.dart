@@ -4,13 +4,14 @@ import 'package:graduaiton_app/controllers/Admin/admin_home_controller.dart';
 import 'package:graduaiton_app/controllers/Admin/admin_people_controller.dart';
 import 'package:graduaiton_app/controllers/Admin/admin_students_controller.dart';
 import 'package:graduaiton_app/routes/routes.dart';
+import 'package:swipedetector/swipedetector.dart';
 import '../layout.dart';
 import 'today_lucture_widget.dart';
 
 class AdminHomeScreen extends GetView<AdminHomeController> {
   AdminHomeScreen({Key? key}) : super(key: key);
-  AdminPeopleController controlleer = Get.put(AdminPeopleController());
-  AdminStudentsController controlleerr = Get.put(AdminStudentsController());
+  AdminPeopleController controller1 = Get.put(AdminPeopleController());
+  AdminStudentsController controller2 = Get.put(AdminStudentsController());
 
   @override
   Widget build(BuildContext context) {
@@ -18,26 +19,38 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
         title: 'Home',
         child: Column(
           children: [
-            Container(
-              alignment: Alignment.center,
-              margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(24),
-                color: Colors.white,
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  buildInfo(controlleer.people.length.toString(), 'Lucturers\nN.O'),
-                  Container(
-                      width: 1, height: 50, color: const Color(0xff6875F5)),
-                  buildInfo(controlleerr.students.length.toString(), 'Students\nN.O'),
-                  Container(
-                      width: 1, height: 50, color: const Color(0xff6875F5)),
-                  buildInfo('15', 'Cameras\nN.O'),
-                ],
-              ),
+            Obx(
+              () => controller.shown.value
+                  ? Container(
+                      alignment: Alignment.center,
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 15, vertical: 15),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 30, vertical: 10),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(24),
+                        color: Colors.white,
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          buildInfo(controller1.people.length.toString(),
+                              'Lucturers\nN.O'),
+                          Container(
+                              width: 1,
+                              height: 50,
+                              color: const Color(0xff6875F5)),
+                          buildInfo(controller2.students.length.toString(),
+                              'Students\nN.O'),
+                          Container(
+                              width: 1,
+                              height: 50,
+                              color: const Color(0xff6875F5)),
+                          buildInfo('15', 'Cameras\nN.O'),
+                        ],
+                      ),
+                    )
+                  : Container(),
             ),
             Container(
               alignment: Alignment.center,
@@ -52,7 +65,7 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                 children: const <Widget>[
                   Text(
                     "Today Luctures",
-                    style: TextStyle(color: Color(0xff6875F5), fontSize: 17),
+                    style: TextStyle(color: Colors.black54, fontSize: 17),
                   )
                 ],
               ),
@@ -68,22 +81,22 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                   borderRadius: BorderRadius.circular(20),
                   color: const Color.fromRGBO(255, 255, 255, .5)),
               child: GetBuilder<AdminPeopleController>(
-                  builder: (_) => controlleer.filteredPeople.isNotEmpty
+                  builder: (_) => controller1.filteredPeople.isNotEmpty
                       ? ListView.builder(
-                          itemCount: controlleer.filteredPeople.length,
+                          itemCount: controller1.filteredPeople.length,
                           itemBuilder: (BuildContext context, int index) {
                             return GestureDetector(
                                 onTap: () => Get.toNamed(Routes.personProfile,
                                     arguments:
-                                        controlleer.filteredPeople[index].id),
+                                        controller1.filteredPeople[index].id),
                                 child: LuctureWidget(
                                   key: ObjectKey(
-                                      controlleer.filteredPeople[index].id),
+                                      controller1.filteredPeople[index].id),
                                   luctureName: "PHP",
                                   hall: "Hall 9",
-                                  startAt: "Start at 8:30 am",
-                                  endAt: "End at 10:30 am",
-                                  lucturerName: "Abdulkareem Mgbel",
+                                  startAt: "8:30 am",
+                                  endAt: "10:30 am",
+                                  lucturerName: "Hassan Alkhalidy",
                                   section: "Computer Science",
                                   stage: "First Stage",
                                   unit: "A",

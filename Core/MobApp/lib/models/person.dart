@@ -1,3 +1,5 @@
+import 'package:graduaiton_app/models/user.dart';
+
 import 'tracking.dart';
 
 class PersonModel {
@@ -6,6 +8,7 @@ class PersonModel {
   int trainingId = 1;
   int type = 0;
   String typeString = '';
+  UserModel user = UserModel();
   TrackingModel trackings = TrackingModel();
 
   PersonModel({id, name, trainingId, type, trackings, imageURL});
@@ -16,6 +19,9 @@ class PersonModel {
     trainingId = json['training_id'];
     type = json['type'];
     typeString = getTypeString(type);
+    if(json.containsKey('user')){
+      user = UserModel.fromJson(json['user']);
+    }
     if (!json['trackings'].isEmpty) {
       trackings = TrackingModel.fromJson(json['trackings'][0]);
     }

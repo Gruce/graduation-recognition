@@ -25,7 +25,7 @@ class TeacherNotification extends GetView {
                     builder: (BuildContext context) {
                       return AlertDialog(
                         scrollable: true,
-                        title: Text('Enter your notification you wnat to send'),
+                        title: Text('Notification Details'),
                         insetPadding: EdgeInsets.zero,
                         content: Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -33,10 +33,10 @@ class TeacherNotification extends GetView {
                             child: Column(
                               children: <Widget>[
                                 TextFormField(
-                                  decoration: InputDecoration(
-                                    labelText: 'Title',
-                                    icon: Icon(Icons.account_box),
-                                    border: const OutlineInputBorder(),
+                                  decoration: const InputDecoration(
+                                    labelText: 'Subject',
+                                    icon: Icon(Icons.account_box, color: ,),
+                                    border: OutlineInputBorder(),
                                   ),
                                   controller: controller.titleController,
                                 ),

@@ -82,27 +82,31 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                   color: const Color.fromRGBO(255, 255, 255, .5)),
               child: GetBuilder<AdminPeopleController>(
                   builder: (_) => controller1.filteredPeople.isNotEmpty
-                      ? ListView.builder(
-                          itemCount: controller1.filteredPeople.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return GestureDetector(
-                                onTap: () => Get.toNamed(Routes.personProfile,
-                                    arguments:
-                                        controller1.filteredPeople[index].id),
-                                child: LuctureWidget(
-                                  key: ObjectKey(
-                                      controller1.filteredPeople[index].id),
-                                  luctureName: "PHP",
-                                  hall: "Hall 9",
-                                  startAt: "8:30 am",
-                                  endAt: "10:30 am",
-                                  lucturerName: "Hassan Alkhalidy",
-                                  section: "Computer Science",
-                                  stage: "First Stage",
-                                  unit: "A",
-                                ));
+                      ? SwipeDetector(
+                          onSwipeUp: () {
+                            print("fuckkkkkkkkkkkkkk");
                           },
-                        )
+                          child: ListView.builder(
+                            itemCount: controller1.filteredPeople.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return GestureDetector(
+                                  onTap: () => Get.toNamed(Routes.personProfile,
+                                      arguments:
+                                          controller1.filteredPeople[index].id),
+                                  child: LuctureWidget(
+                                    key: ObjectKey(
+                                        controller1.filteredPeople[index].id),
+                                    luctureName: "PHP",
+                                    hall: "Hall 9",
+                                    startAt: "8:30 am",
+                                    endAt: "10:30 am",
+                                    lucturerName: "Hassan Alkhalidy",
+                                    section: "Computer Science",
+                                    stage: "First Stage",
+                                    unit: "A",
+                                  ));
+                            },
+                          ))
                       : SizedBox(
                           width: double.infinity,
                           child: Container(

@@ -27,7 +27,7 @@ class ApiController extends Controller
     }
 
     public function person(Request $req){
-        $person = Person::with('trackings.camera')->find($req->id);
+        $person = Person::with('trackings.camera')->with('user')->find($req->id);
 
         $images = [];
         $image = '';

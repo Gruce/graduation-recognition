@@ -20,6 +20,7 @@ class PersonProfileController extends GetxController {
       Map data = jsonDecode(res.body)['data'];
       person = PersonModel.fromJson(data);
       imageURL.value = jsonDecode(res.body)['image'];
+      print(person.user.email);
     }
     update();
   }

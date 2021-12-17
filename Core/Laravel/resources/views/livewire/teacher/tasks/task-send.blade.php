@@ -42,6 +42,12 @@
                 </div>
                 <div class="relative pt-4">
                     <label class="text-base leading-7 text-gray-600">
+                        Task To
+                    </label> 
+                    <input wire:model="deadline" type="datetime-local" class="w-full px-4 py-2 mt-2 mr-4 text-base text-black transition duration-500 ease-in-out transform rounded-lg bg-gray-100 focus:border-gray-600 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2">
+                </div>
+                <div class="relative pt-4">
+                    <label class="text-base leading-7 text-gray-600">
                         Task File
                     </label> 
                     <input type="file" class="custom-input-file" data-multiple-caption="{count} files selected" multiple wire:model="files" />

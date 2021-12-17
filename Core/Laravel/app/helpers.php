@@ -85,6 +85,11 @@
                         'route' => 'dashboard',
                         'active' => isRoute('dashboard'),
                     ],
+                    [
+                        'name' => 'Tasks',
+                        'route' => 'student_task',
+                        'active' => isRoute('student_task'),
+                    ],
                 ];
             } break;
             

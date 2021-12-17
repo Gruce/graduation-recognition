@@ -24,7 +24,7 @@ class MyinputField extends StatelessWidget {
           Text(
             title,
             style: TextStyle(
-                fontSize: 16, fontWeight: FontWeight.w600, color: Colors.grey),
+                fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black),
           ),
           Container(
             height: 52,
@@ -36,34 +36,30 @@ class MyinputField extends StatelessWidget {
             child: Row(children: [
               Expanded(
                   child: TextFormField(
-                    readOnly: widget==null?false:true,
+                readOnly: widget == null ? false : true,
                 autofocus: false,
-                cursorColor: Colors.grey[600],
+                cursorColor: Colors.black,
                 controller: controller,
                 style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
-                    color: Colors.grey),
+                    color: Colors.black),
                 decoration: InputDecoration(
-                  hintText: hint,
-                  hintStyle: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.grey),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide:BorderSide(
-                          color: Colors.white,
-                          width: 0
-                        ) ),
-                        enabledBorder:  UnderlineInputBorder(
-                        borderSide:BorderSide(
-                          color: Colors.white,
-                          width: 0
-                        ) )
-                ),
-              )
-              ),
-              widget==null?Container():Container(child: widget,)
+                    hintText: hint,
+                    hintStyle: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.grey[500]),
+                    focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white, width: 0)),
+                    enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white, width: 0))),
+              )),
+              widget == null
+                  ? Container()
+                  : Container(
+                      child: widget,
+                    )
             ]),
           ),
         ],

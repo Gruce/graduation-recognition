@@ -65,7 +65,7 @@ class TeacherProfileScreen extends GetView {
                               ),
                               const ListTile(
                                 contentPadding: EdgeInsets.all(0),
-                                title: Text("Administrator"),
+                                title: Text(""),
                                 //You can add Subtitle here
                               ),
                             ],

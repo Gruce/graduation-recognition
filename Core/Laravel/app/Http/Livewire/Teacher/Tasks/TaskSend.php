@@ -23,14 +23,12 @@ class TaskSend extends Component
 
 
     public function save(){   
-        // dd($this->file);
-        dd($this->files);
         $data = [
             'title' => $this->title,
             'body' => $this->body,
             'to' => $this->to,
             'ids' => array_keys($this->ids),
-            'file' => $this->files ? $this->files[0] : null,
+            'file' => $this->files ? $this->files : null,
         ];
 
         $response = TeacherController::send_task(new Request($data));

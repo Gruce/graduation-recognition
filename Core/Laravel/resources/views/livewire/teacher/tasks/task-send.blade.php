@@ -44,7 +44,7 @@
                     <label class="text-base leading-7 text-gray-600">
                         Task File
                     </label> 
-                    <input type="files" class="custom-input-file" data-multiple-caption="{count} files selected" multiple wire:model="file" />
+                    <input type="file" class="custom-input-file" data-multiple-caption="{count} files selected" multiple wire:model="files" />
                 </div>
             </div>
             <div class="flex items-center w-full pt-4 mb-4 mt-4">

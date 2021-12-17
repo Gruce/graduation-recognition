@@ -49,8 +49,8 @@ dependencies:
   intl: 
   english_words: ^4.0.0 
   video_player_web: ^2.0.4
-  swipedetector:
-  
+  sliding_up_panel:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

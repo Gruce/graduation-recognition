@@ -63,9 +63,10 @@ Route::group(['middleware' => 'auth'], function () {
     ## Teachers ##
     Route::group(['prefix' => 'teacher'] ,function(){
         Route::get('/my-students', [TeacherController::class, 'my_students']);
-        // Route::get('/info', [TeacherController::class, 'info']);
+        Route::get('/info', [TeacherController::class, 'info']);
         Route::get('/units', [TeacherController::class, 'units']);
         Route::get('/unit/{id}', [TeacherController::class, 'unit_student']);
+        Route::get('/tasks' , [TeacherController::class, 'tasks']);
         Route::post('/send-task' , [TeacherController::class, 'send_task']);
     });
     

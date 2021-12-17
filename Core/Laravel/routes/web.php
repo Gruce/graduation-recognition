@@ -40,6 +40,7 @@ use App\Http\Livewire\Teacher\{
     ## STUDENT ##
 use App\Http\Livewire\Students\{
     StudentIndex,
+    StudentTasks,
 };
     ## END STUDENT ##
 ###### End Livewire ######
@@ -126,7 +127,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     #### STUDENT ####
 
     Route::group(['prefix' => 'student' , 'middleware' => 'student'] ,function(){
-        // Route::get('/s', StudentIndex::class)->name('s');
+        Route::get('/tasks', StudentTasks::class)->name('student_task');
     });
 
     #### END STUDENT ####

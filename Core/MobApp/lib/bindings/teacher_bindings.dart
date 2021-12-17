@@ -20,12 +20,7 @@ class TeacherHomeBinding extends Bindings {
   }
 }
 
-// class TeacherTablesBinding extends Bindings {
-//   @override
-//   void dependencies() {
-//     Get.lazyPut(() => TeacherTablesScreen());
-//   }
-// }
+
 
 class TeacherProfileBinding extends Bindings {
   @override

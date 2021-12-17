@@ -9,6 +9,7 @@ import 'package:graduaiton_app/util/utilities.dart';
 
 class NotificationController extends GetxController {
   // @override
+  @override
   void onInit() async {
     titleController = TextEditingController();
     bodyController = TextEditingController();
@@ -28,6 +29,7 @@ class NotificationController extends GetxController {
   RxList files = [].obs;
   String title = '';
   String body = '';
+  String deadline = '';
   int to = 1;
   List<int> ids = [15];
 
@@ -65,7 +67,7 @@ class NotificationController extends GetxController {
     List _units = [];
 
     unitsCheckbox.forEach((key, value) {
-      if (value == true){
+      if (value == true) {
         _units.add(units[key].id);
       }
     });
@@ -77,12 +79,14 @@ class NotificationController extends GetxController {
           'body': bodyController.text,
           'to': '1',
           'ids': _units.toString(),
+          'deadline':'2021-12-15T23:24'
         },
         files_path);
     files.clear();
     files_path.clear();
     titleController.text = '';
     bodyController.text = '';
+
     Get.off(TeacherNotification());
   }
 
@@ -92,7 +96,7 @@ class NotificationController extends GetxController {
     update();
   }
 
-  void check(key, value){
+  void check(key, value) {
     unitsCheckbox[key] = value!;
   }
 }

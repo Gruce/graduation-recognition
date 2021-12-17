@@ -4,7 +4,7 @@
             Tasks
         </h2>
     </x-slot>
-    @livewire('actions' , ['folder' => 'teacher.tasks' , 'file' => 'task-send' , 'search' => 'Task title'])
+
     <div class="mt-3">
         <section class="text-gray-600 body-font">
             <div class="container px-5 py-10 mx-auto bg-white rounded-lg max-w-7xl sm:px-6 lg:px-8">
@@ -22,12 +22,13 @@
                                 <th class="p-3">#</th>
                                 <th class="p-3 text-left">Title</th>
                                 <th class="p-3 text-left">Body</th>
-                                <th class="p-3 text-left">Photo</th>
+                                <th class="p-3 text-left">Deadline</th>
+                                <th class="p-3 text-left">Files</th>
                                 <th class="p-3 text-left">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse($tasks as $i => $task)
+                            @forelse($units->tasks as $i => $task)
                             <tr class="bg-gray-50">
                                 <td class="p-3 text-center">
                                     {{ $loop->iteration }}
@@ -45,15 +46,23 @@
                                 <td class="p-3">
                                     <div>
                                         <span class="text-gray-500">
-                                            {{ $task->body }} ,
-                                            {{-- {{$task->files[0]->file_path}} --}}
+                                            {{ $task->body }} 
                                         </span>
                                     </div>
                                 </td>
                                 <td class="p-3">
                                     <div>
                                         <span class="text-gray-500">
-                                            {{-- <img src="{{asset('storage/' . $task->files[0]->file_path)}}"> --}}
+                                            {{ $task->deadline }}
+                                        </span>
+                                    </div>
+                                </td>
+                                <td class="p-3">
+                                    <div>
+                                        <span class="text-gray-500">
+                                            <button class="flex items-center text-white px-4 w-auto h-12 bg-blue-600 rounded hover:bg-blue-800 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none"> 
+                                                 عرض
+                                            </button>
                                         </span>
                                     </div>
                                 </td>
@@ -84,9 +93,7 @@
                                     </div>
                                 </td> --}}
                                 <td>
-                                    <button wire:click="delete('Task', '{{ $task->id}}')" class="text-red-500"> 
-                                        <i class="material-icons text-base">delete</i>
-                                    </button>
+                                   fh
                                 </td>
                             </tr>
                             @empty
@@ -100,20 +107,12 @@
                         </tbody>
                     </table>
                 </div>
-                {{ $tasks->links() }}
+                {{-- {{ $units->links() }} --}}
             </div>
         </section>
 
     </div>
 
-    <div class="fixed bottom-0 left-0 m-3">
-        <button wire:click="save" class="flex items-center text-white px-4 w-auto h-12 bg-blue-600 rounded hover:bg-blue-800 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none">
-            <span class="material-icons-outlined mr-3">
-                save
-            </span>
-            <span>Save</span>
-        </button>
-    </div>
 </div>
 
 <script>

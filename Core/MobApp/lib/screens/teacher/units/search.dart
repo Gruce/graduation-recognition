@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:graduaiton_app/controllers/Admin/admin_students_controller.dart';
+import 'package:graduaiton_app/controllers/Admin/admin_people_controller.dart';
+import 'package:graduaiton_app/controllers/Teacher/students_unit_controller.dart';
 
 // ignore: must_be_immutable
-class StudentsSearchWidget extends GetView {
-  StudentsSearchWidget({Key? key}) : super(key: key);
+class StudentSearchWidget extends GetView {
+  StudentSearchWidget({Key? key}) : super(key: key);
 
   @override
-  AdminStudentsController controller = Get.put(AdminStudentsController());
-
+  TeacherStudentsUnitController controller = Get.put(TeacherStudentsUnitController());
+  
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -50,6 +51,7 @@ class StudentsSearchWidget extends GetView {
             ),
           ),
         ],
+        
       ),
     );
   }

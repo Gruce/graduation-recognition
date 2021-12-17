@@ -49,7 +49,6 @@ class LuctureWidget extends GetWidget {
                         const TextStyle(fontSize: 18, color: Color(0xff6875F5)),
                   ),
                   Container(
-                      margin: const EdgeInsets.only(right: 18.0),
                       padding: const EdgeInsets.all(5.0),
                       decoration: BoxDecoration(
                         color: const Color.fromRGBO(235, 235, 235, .8),
@@ -72,135 +71,132 @@ class LuctureWidget extends GetWidget {
               ),
             ),
             subtitle:
-                Row(mainAxisAlignment: MainAxisAlignment.start, children: <
-                    Widget>[
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.725,
-                    padding: const EdgeInsets.all(5.0),
-                    decoration: BoxDecoration(
-                      color: const Color.fromRGBO(235, 235, 235, .5),
-                      border: Border.all(
-                        color: const Color.fromRGBO(235, 235, 235, .0),
-                        width: 2.0,
-                      ),
-                      borderRadius: const BorderRadius.all(Radius.circular(
-                              5.0) //                 <--- border radius here
-                          ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                Row(
+                    children: <Widget>[
+                      Expanded(
+                          flex: 1,
+                          child: Column(
                             children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const Icon(
-                                    Icons.first_page,
-                                    color: Colors.black54,
-                                    size: 14,
+                              Container(
+                                padding: const EdgeInsets.all(5.0),
+                                decoration: BoxDecoration(
+                                  color: const Color.fromRGBO(235, 235, 235, .5),
+                                  border: Border.all(
+                                    color: const Color.fromRGBO(235, 235, 235, .0),
+                                    width: 2.0,
                                   ),
-                                  SizedBox(width: 3),
-                                  Text(
-                                      startAt.isNotEmpty
-                                          ? startAt
-                                          : "No Start Time",
-                                      style: const TextStyle(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black54,
-                                      )),
-                                ],
-                              ),
-                              SizedBox(width: 15),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const Icon(
-                                    Icons.last_page,
-                                    color: Colors.black54,
-                                    size: 14,
+                                  borderRadius: const BorderRadius.all(Radius.circular(
+                                      5.0) //                 <--- border radius here
                                   ),
-                                  SizedBox(width: 3),
-                                  Text(endAt.isNotEmpty ? endAt : "No End Time",
-                                      style: const TextStyle(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black54,
-                                      )),
-                                ],
+                                ),
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 2,
+                                      child: Row(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              const Icon(
+                                                Icons.first_page,
+                                                color: Colors.black54,
+                                                size: 14,
+                                              ),
+                                              const SizedBox(width: 3),
+                                              Text(
+                                                  startAt.isNotEmpty
+                                                      ? startAt
+                                                      : "No Start Time",
+                                                  style: const TextStyle(
+                                                    fontSize: 10,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.black54,
+                                                  )),
+                                            ],
+                                          ),
+                                          const SizedBox(width: 15),
+                                          Row(
+                                            children: [
+                                              const Icon(
+                                                Icons.last_page,
+                                                color: Colors.black54,
+                                                size: 14,
+                                              ),
+                                              const SizedBox(width: 3),
+                                              Text(endAt.isNotEmpty ? endAt : "No End Time",
+                                                  style: const TextStyle(
+                                                    fontSize: 10,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.black54,
+                                                  )),
+                                            ],
+                                          ),
+                                        ])),
+                                    Expanded(
+                                      flex: 2,
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        children: [
+                                          const Icon(
+                                            Icons.highlight_alt,
+                                            size: 14,
+                                          ),
+                                          const SizedBox(width: 3),
+                                          Text(hall.isNotEmpty ? hall : "No Hall",
+                                              style: const TextStyle(
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.black54,
+                                              )),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
                               ),
-                            ]),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Icon(
-                              Icons.highlight_alt,
-                              size: 14,
-                            ),
-                            SizedBox(width: 3),
-                            Text(hall.isNotEmpty ? hall : "No End Time",
-                                style: const TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black54,
-                                )),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 5),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.725,
-                    padding: const EdgeInsets.all(5.0),
-                    decoration: BoxDecoration(
-                      color: const Color.fromRGBO(235, 235, 235, .5),
-                      border: Border.all(
-                        color: const Color.fromRGBO(235, 235, 235, .0),
-                        width: 2.0,
-                      ),
-                      borderRadius: const BorderRadius.all(Radius.circular(
-                              5.0) //                 <--- border radius here
-                          ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(section.isNotEmpty ? section : "No Stage",
-                            style: const TextStyle(
-                              fontSize: 10,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black54,
-                            )),
-                        const SizedBox(width: 20),
-                        Text(stage.isNotEmpty ? stage : "No Stage",
-                            style: const TextStyle(
-                              fontSize: 10,
-                              fontWeight: FontWeight.bold,
-                              color:Colors.black54,
-                            )),
-                        const SizedBox(width: 20),
-                        Text(unit.isNotEmpty ? unit : "No Unit",
-                            style: const TextStyle(
-                              fontSize: 10,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black54,
-                            ))
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              // trailing: const Icon(Icons.keyboard_arrow_right, size: 30.0)
-            ]),
+                              const SizedBox(height: 5),
+                              Container(
+                                padding: const EdgeInsets.all(5.0),
+                                decoration: BoxDecoration(
+                                  color: const Color.fromRGBO(235, 235, 235, .5),
+                                  border: Border.all(
+                                    color: const Color.fromRGBO(235, 235, 235, .0),
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: const BorderRadius.all(Radius.circular(
+                                      5.0) //                 <--- border radius here
+                                  ),
+                                ),
+                                child: Row(
+                                  children: [
+                                    Text(section.isNotEmpty ? section : "No Stage",
+                                        style: const TextStyle(
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black54,
+                                        )),
+                                    const SizedBox(width: 20),
+                                    Text(stage.isNotEmpty ? stage : "No Stage",
+                                        style: const TextStyle(
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.bold,
+                                          color:Colors.black54,
+                                        )),
+                                    const SizedBox(width: 20),
+                                    Text(unit.isNotEmpty ? unit : "No Unit",
+                                        style: const TextStyle(
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black54,
+                                        ))
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ))
+                      // trailing: const Icon(Icons.keyboard_arrow_right, size: 30.0)
+                    ]
+                ),
           )),
     );
   }

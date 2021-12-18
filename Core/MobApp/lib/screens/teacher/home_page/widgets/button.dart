@@ -10,8 +10,8 @@ class MyButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 150,
-        height: 50,
+        width: 120,
+        height: 40,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20), 
             color: const Color(0xff6875F5)),
@@ -20,7 +20,7 @@ class MyButton extends StatelessWidget {
               
               label,
               style: const TextStyle(
-                
+                fontSize: 16,
                 color: Colors.white,
               ),
             ),

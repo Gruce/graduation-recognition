@@ -9,6 +9,13 @@ use File;
 
 class TeacherController extends Controller
 {
+
+    public static function add_file($task , $file , $teacher_id){
+        $filename = uniqid().'.'.File::extension($file->getClientOriginalName());
+        $file->storeAs('public/tasks/' . $teacher_id, $filename);
+        $path = 'storage/tasks/' . $teacher_id . '/'. $filename ;
+        $task->files()->create(['file_path' => $path]);
+    }
     public function my_students(){
 
         $students = auth()->user()->teacher()->with(
@@ -99,7 +106,7 @@ class TeacherController extends Controller
             $x= str_replace(']','',$x);
             $ids=array_map('intval', explode(',', $x));
         }
-      
+
         $teacher = auth()->user()->teacher()->first();
 
         $data = [
@@ -112,14 +119,13 @@ class TeacherController extends Controller
         ];
 
         $task = $teacher->tasks()->create($data);
-
-        if ($req->hasFile('files')) {
-            foreach($req->file('files') as $i => $file){
-                $filename = uniqid().'.'.File::extension($file->getClientOriginalName());
-                $path = $req->file('files')[$i]->storeAs('public/tasks/' . $teacher->id, $filename);
-                $task->files()->create(['file_path' => $path]);
-            }
-        }
+        if($req->livewire)
+            foreach ($req->toArray()['files'] as $key => $file) 
+                self::add_file($task , $file , $teacher->id);
+    
+        elseif ($req->hasFile('files'))
+            foreach($req->file('files') as $i => $file)
+                self::add_file($task , $file , $teacher->id);
 
         $rsp = 200 ;
         $msg = 'Done';
@@ -141,6 +147,7 @@ class TeacherController extends Controller
     public function tasks(){
         $teacher = auth()->user()->teacher()->first();
         $tasks = $teacher->tasks()->with('files')->get();
-        dd($tasks->toArray());
+        
+        return response()->json(['data' => $tasks], 200);
     }
 }

@@ -67,14 +67,16 @@ class StudentsUnitsScreen extends GetView {
                                                     MainAxisAlignment
                                                         .spaceBetween,
                                                 children: [
-                                                  Text(
+                                                  Expanded(child: Text(
                                                     controller
-                                                            .filteredStudent[index].user.email
-                                                            ,
+                                                        .filteredStudent[index].user.email
+                                                    ,
+                                                    overflow: TextOverflow.ellipsis,
+                                                    maxLines: 1,
                                                     style: TextStyle(
                                                         color: Colors.black
                                                             .withOpacity(0.6)),
-                                                  ),
+                                                  )),
                                                   Text(
                                                     controller
                                                             .filteredStudent[index].section.name,

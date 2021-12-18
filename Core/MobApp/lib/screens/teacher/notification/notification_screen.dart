@@ -20,69 +20,60 @@ class TeacherNotification extends GetView {
               child: Column(
                 children: [
                   Container(
-                    margin: const EdgeInsets.only(
-                        left: 5, right: 5, top: 4, bottom: 10),
-                    decoration: BoxDecoration(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(10.0)),
+                    margin: const EdgeInsets.only(left:5,right: 5,top: 4,bottom: 10),
+                    decoration: new BoxDecoration (
+                      borderRadius: new BorderRadius.all(new Radius.circular(10.0)),
                       color: Colors.grey[200],
                     ),
-                    child: TextField(
-                      minLines: 1,
-                      // any number you need (It works as the rows for the textarea)
+                    child:TextField(
+                      minLines: 1, // any number you need (It works as the rows for the textarea)
                       keyboardType: TextInputType.multiline,
                       maxLines: null,
                       decoration: const InputDecoration(
                         labelText: 'Subject',
-                        labelStyle: TextStyle(color: Colors.black54),
+                        labelStyle: TextStyle(color:Colors.black54 ),
                         hintText: 'enter the subject',
-                        hintStyle: TextStyle(color: Colors.black38),
+                        hintStyle: TextStyle( color:  Colors.black38),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
-                          borderSide:
-                              BorderSide(color: Color(0xff6875F5), width: 1.0),
+                          borderSide: BorderSide(color:  Color(0xff6875F5), width: 1.0),
                         ),
                         focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(5)),
-                            borderSide:
-                                BorderSide(width: 1, color: Color(0xff6875F5))),
-                        border: OutlineInputBorder(
+                            borderSide: BorderSide(width: 1,color:Color(0xff6875F5))
+                        ),
+                        border:OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0xff6875F5),
-                          ),
-                        ),
+                          ),),
                       ),
                       controller: controller.titleController,
                     ),
                   ),
                   Container(
-                    margin: const EdgeInsets.only(
-                        left: 5, right: 5, top: 4, bottom: 10),
-                    decoration: BoxDecoration(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(10.0)),
+                    margin: const EdgeInsets.only(left:5,right: 5,top: 4,bottom: 10),
+                    decoration: new BoxDecoration (
+                      borderRadius: new BorderRadius.all(new Radius.circular(10.0)),
                       color: Colors.grey[200],
                     ),
-                    child: TextField(
-                      minLines: 3,
-                      // any number you need (It works as the rows for the textarea)
+                    child:TextField(
+                      minLines: 3, // any number you need (It works as the rows for the textarea)
                       keyboardType: TextInputType.multiline,
                       maxLines: null,
                       decoration: const InputDecoration(
                         labelText: 'Text',
-                        labelStyle: TextStyle(color: Colors.black54),
+                        labelStyle: TextStyle(color:Colors.black54 ),
                         hintText: 'enter the Text',
-                        hintStyle: TextStyle(color: Colors.black38),
-                        enabledBorder: OutlineInputBorder(
+                        hintStyle: TextStyle( color:  Colors.black38),
+                        enabledBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
-                          borderSide:
-                              BorderSide(color: Color(0xff6875F5), width: 1.0),
+                          borderSide: const BorderSide(color:  Color(0xff6875F5), width: 1.0),
                         ),
                         focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(4)),
-                            borderSide:
-                                BorderSide(width: 1, color: Color(0xff6875F5))),
-                        border: OutlineInputBorder(
+                            borderSide: BorderSide(width: 1,color:Color(0xff6875F5))
+                        ),
+                        border:OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Colors.black,
                           ),
@@ -91,9 +82,9 @@ class TeacherNotification extends GetView {
                       controller: controller.bodyController,
                     ),
                   ),
-                  const SizedBox(height: 5),
+                  SizedBox(height: 5),
                   Obx(
-                    () => Container(
+                        () => Container(
                       margin: const EdgeInsets.only(left: 5, right: 5),
                       padding: const EdgeInsets.only(left: 5),
                       decoration: BoxDecoration(
@@ -125,92 +116,92 @@ class TeacherNotification extends GetView {
                     height: 15,
                   ),
                   Obx(() => Column(
-                        children: [
-                          GestureDetector(
-                            onTap: () => controller.pick_files(),
-                            child: Container(
-                              margin: const EdgeInsets.only(left: 5, right: 5),
-                              padding: const EdgeInsets.only(left: 5),
-                              decoration: BoxDecoration(
-                                  color: Colors.grey[200],
-                                  borderRadius:
-                                      const BorderRadius.all(Radius.circular(15))),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(15),
-                                        color: Colors.grey[200],
+                    children: [
+                      GestureDetector(
+                        onTap: () => controller.pick_files(),
+                        child: Container(
+                          margin: const EdgeInsets.only(left: 5, right: 5),
+                          padding: const EdgeInsets.only(left: 5),
+                          decoration: BoxDecoration(
+                              color: Colors.grey[200],
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(15))),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    color: Colors.grey[200],
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      const Text("Select file",
+                                          style: TextStyle(
+                                              color: Color(0xff6875F5))),
+                                      IconButton(
+                                        onPressed: () =>
+                                            controller.pick_files(),
+                                        icon: const Icon(
+                                          Icons.upload_file,
+                                          color: Color(0xff6875F5),
+                                        ),
                                       ),
-                                      child: Row(
-                                        children: [
-                                          const Text("Select file",
-                                              style: TextStyle(
-                                                  color: Color(0xff6875F5))),
-                                          IconButton(
-                                            onPressed: () =>
-                                                controller.pick_files(),
-                                            icon: const Icon(
-                                              Icons.upload_file,
-                                              color: Color(0xff6875F5),
-                                            ),
-                                          ),
-                                        ],
-                                      )),
-                                  Container(
-                                    margin: const EdgeInsets.all(10),
-                                    padding: const EdgeInsets.all(10),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15),
-                                      color: Colors.grey[200],
-                                    ),
-                                    child: Text(
-                                        controller.files.length.toString() +
-                                            ' File selected'),
-                                  ),
-                                ],
+                                    ],
+                                  )),
+                              Container(
+                                margin: const EdgeInsets.all(10),
+                                padding: const EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: Colors.grey[200],
+                                ),
+                                child: Text(
+                                    controller.files.length.toString() +
+                                        ' File selected'),
                               ),
-                            ),
+                            ],
                           ),
-                          controller.files_path.isNotEmpty
-                              ? Container(
-                                  width: 300,
-                                  height: 150,
-                                  child: SingleChildScrollView(
-                                    child: Column(
-                                        children: List.from(controller.files
-                                            .asMap()
-                                            .map((key, value) => MapEntry(
-                                                key,
-                                                Row(
-                                                  children: [
-                                                    Text(
-                                                      value.name,
-                                                    ),
-                                                    IconButton(
-                                                        onPressed: () =>
-                                                            controller
-                                                                .removeIndex(
-                                                                    key),
-                                                        icon: const Icon(Icons
-                                                            .close_rounded)),
-                                                  ],
-                                                )))
-                                            .values
-                                            .toList())),
-                                  ),
-                                )
-                              : Container(),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          MyButton(
-                            label: 'Send',
-                            onTap: () => controller.send_notification(),
-                          )
-                        ],
-                      )),
+                        ),
+                      ),
+                      controller.files_path.isNotEmpty
+                          ? Container(
+                        width: 300,
+                        height: 150,
+                        child: SingleChildScrollView(
+                          child: Column(
+                              children: List.from(controller.files
+                                  .asMap()
+                                  .map((key, value) => MapEntry(
+                                  key,
+                                  Row(
+                                    children: [
+                                      Text(
+                                        value.name,
+                                      ),
+                                      IconButton(
+                                          onPressed: () =>
+                                              controller
+                                                  .removeIndex(
+                                                  key),
+                                          icon: const Icon(Icons
+                                              .close_rounded)),
+                                    ],
+                                  )))
+                                  .values
+                                  .toList())),
+                        ),
+                      )
+                          : Container(),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      MyButton(
+                        label: 'Send',
+                        onTap: () => controller.send_notification(),
+                      )
+                    ],
+                  )),
                 ],
               ),
             ),

@@ -38,4 +38,29 @@ class Teacher extends Model
     public function tasks(){
         return $this->hasMany(Task::class);
     }
+
+    public function lectures($day = null){
+        $lectures = $this->units()->with(
+            [
+                'lectures' => function($lecture) use ($day){
+                    return $lecture->whereHas('day' , function($q) use ($day){
+                        return $q->where('name' , $day);
+                    })->with(
+                        [
+                            'classroom' => function($classroom){
+                                return $classroom->with('cameras')->get();
+                            },
+                            'subject:id,name',
+                            'day:id,name',
+                        ]
+                    )->get();
+                },
+                'section:id,name',
+                'stage:id,name',
+                
+            ]
+        );
+
+        return $lectures;
+    }
 }

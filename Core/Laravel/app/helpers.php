@@ -126,6 +126,11 @@
                         'route' => 'subjects',
                         'active' => isRoute('subjects'),
                     ],
+                    [
+                        'name' => 'Schedule',
+                        'route' => 'schedule',
+                        'active' => isRoute('schedule'),
+                    ],
                 ];
             }break;
 

@@ -30,4 +30,12 @@ class Unit extends Model
     public function tasks(){
         return $this->belongsToMany(Task::class)->withTimestamps();
     }
+
+    public function schedule(){
+        return $this->hasOne(Schedule::class);
+    }
+
+    public function lectures(){
+        return $this->hasMany(Lecture::class);
+    }
 }

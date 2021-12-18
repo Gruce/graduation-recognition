@@ -148,4 +148,12 @@ class TeacherController extends Controller
         
         return response()->json(['data' => $tasks], 200);
     }
+
+    public function lectures($day = null){
+        $teacher = auth()->user()->teacher()->first();
+
+        $units_lectures = $teacher->lectures($day)->get();
+
+        return response()->json(['data' => $units_lectures], 200);
+    }
 }

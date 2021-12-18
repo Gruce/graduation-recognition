@@ -12,6 +12,10 @@ class Index extends Component
     
     public function render()
     {
-        return view('livewire.teacher.index');
+        $teacher = auth()->user()->teacher()->first();
+
+        $units_lectures = $teacher->lectures()->get();
+
+        return view('livewire.teacher.index' , ['units_lectures' => $units_lectures]);
     }
 }

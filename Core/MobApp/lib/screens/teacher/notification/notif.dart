@@ -43,9 +43,11 @@ class Notif extends GetView {
                   }).toList(),
                 ),
               ),
+              SizedBox(height: 10,),
               Obx(() => Column(
                     children: [
                       Text('files count ' + controller.files.length.toString()),
+                      SizedBox(height: 20,),
                       GestureDetector(
                         onTap: () => controller.pick_files(),
                         child: Container(
@@ -58,7 +60,7 @@ class Notif extends GetView {
                             mainAxisAlignment: MainAxisAlignment.center,
                             
                             children: [
-                              Text("Upload file",style: TextStyle(color: Colors.black)),
+                              const Text("Select file",style: TextStyle(color: Colors.black)),
                               IconButton(
                                 onPressed: () =>controller.pick_files(),
                                 icon: Icon(Icons.upload_file),
@@ -95,7 +97,7 @@ class Notif extends GetView {
                             )
                           : Container(),
                       SizedBox(
-                        height: 20,
+                        height: 10,
                       ),
                       MyButton(
                         label: 'Send',

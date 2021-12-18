@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use File;
 
 class TeacherController extends Controller
 {
@@ -84,14 +85,20 @@ class TeacherController extends Controller
     }
 
     public static function send_task(Request $req){
-      info($req->file);
-      $ids=$req->ids;
-      if(gettype($req->ids)=='string'){
-        $x= str_replace('[','',$req->ids);
-        $x= str_replace(']','',$x);
-        $ids=array_map('intval', explode(',', $x));
+        $file_paths = [];
 
-      }
+        $validator = Validator::make($req->all(), [
+            'files*' => 'file|mimes:jpeg,png,jpg,pdf,docx,doc,rar,zip|max:10000'
+        ]);
+        if ($validator->fails())
+            return response()->json(['data' => 'File extension Not available or file size is large'], 400);
+    
+        $ids=$req->ids;
+        if(gettype($req->ids)=='string'){
+            $x= str_replace('[','',$req->ids);
+            $x= str_replace(']','',$x);
+            $ids=array_map('intval', explode(',', $x));
+        }
       
         $teacher = auth()->user()->teacher()->first();
 
@@ -103,26 +110,16 @@ class TeacherController extends Controller
             // 'ids' => implode(',' , $req->ids),
             // 'ids' => $req->ids, // post man //
         ];
+
         $task = $teacher->tasks()->create($data);
 
-        // $file_path = null;
-        // $files = $req->toArray()['file'];
-
-        // if(!empty($files)){
-        //     $validator = Validator::make($req->all(), [
-        //         'file*' => 'file|mimes:jpeg,png,jpg,pdf|max:10000'
-        //     ]);
-
-        //     if ($validator->fails())
-        //         return response()->json(['data' => 'File Not available or file size is large'], 400);
-
-        //     foreach ($files as $file){
-        //         $file_path =  $req->title . '_' . str_random(5) . '_' . time() . '.' . $file->extension();
-        //         $file->storeAs('task\\' . $teacher->id, $file_path);
-        //         $file_path = 'task\\' . $teacher->id . '\\' . $file_path;
-        //         $task->files()->create(['file_path' => $file_path]);
-        //     }
-        // }
+        if ($req->hasFile('files')) {
+            foreach($req->file('files') as $i => $file){
+                $filename = uniqid().'.'.File::extension($file->getClientOriginalName());
+                $path = $req->file('files')[$i]->storeAs('public/tasks/' . $teacher->id, $filename);
+                $task->files()->create(['file_path' => $path]);
+            }
+        }
 
         $rsp = 200 ;
         $msg = 'Done';
@@ -137,7 +134,6 @@ class TeacherController extends Controller
                 $msg = 'error';
             } break;
         }
-        //  when use postman
 
         return response()->json(['data' => $msg], $rsp);
     }

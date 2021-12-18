@@ -14,6 +14,7 @@ use App\Models\Section;
 use App\Models\Stage;
 use App\Models\Unit;
 use App\Models\Lecture;
+use App\Models\Classroom;
 
 
 
@@ -164,5 +165,10 @@ class ApiController extends Controller
 
         return response()->json(['data' => $lectures], 200);
         
+    }
+
+    public function classroom(){
+        $classrooms = Classroom::with('cameras')->get();
+        return response()->json(['data' => $classrooms], 200);
     }
 }

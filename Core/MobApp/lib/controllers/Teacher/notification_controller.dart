@@ -79,7 +79,8 @@ class NotificationController extends GetxController {
           'body': bodyController.text,
           'to': '1',
           'ids': _units.toString(),
-          'deadline':'2021-12-15T23:24'
+          'deadline':'2021-12-15T23:24',
+          
         },
         files_path);
     files.clear();

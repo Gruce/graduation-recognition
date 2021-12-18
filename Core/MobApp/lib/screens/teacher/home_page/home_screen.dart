@@ -4,8 +4,8 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:graduaiton_app/controllers/Teacher/teacher_home_controller.dart';
-import 'package:graduaiton_app/screens/teacher/home_page/componts_of_cards_home_screen.dart';
 import 'package:graduaiton_app/screens/teacher/home_page/widgets/button.dart';
+import 'package:graduaiton_app/screens/teacher/home_page/widgets/circular_progress.dart';
 import 'package:graduaiton_app/screens/teacher/profile/profile_screen.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import '../layout.dart';
@@ -21,7 +21,7 @@ class TeacherHomeScreen extends GetView {
   Widget build(BuildContext context) {
     return TeacherLayoutScreen(
       title: 'Home',
-      child: Obx( () => controller.isLectureStarted.value ? ComponentHomeScreen() : Container(child: Column(children: [
+      child: Obx( () => controller.isLectureStarted.value ? DeterminatePage() : Container(child: Column(children: [
         Text("Not started"),
         MyButton(label: "Start Lecture", onTap: controller.startLecture)
       ],))),

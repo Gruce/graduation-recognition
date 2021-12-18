@@ -83,63 +83,67 @@ class TeacherController extends Controller
         return response()->json(['data' => $students]);
     }
 
-    public static function send_task(Request $req){
-      info($req->file);
-      $ids=$req->ids;
-      if(gettype($req->ids)=='string'){
-        $x= str_replace('[','',$req->ids);
-        $x= str_replace(']','',$x);
-        $ids=array_map('intval', explode(',', $x));
-
-      }
+    public static function send_task(Request $req ){
+      info($req->toArray());
       
-        $teacher = auth()->user()->teacher()->first();
+      // $ids=$req->ids;
+      // if(gettype($req->ids)=='string'){
+      //   $x= str_replace('[','',$req->ids);
+      //   $x= str_replace(']','',$x);
+      //   $ids=array_map('intval', explode(',', $x));
 
-        $data = [
-            'title' => $req->title,
-            'body' => $req->body,
-            'to' => $req->to,
-            'deadline' => $req->deadline,
-            // 'ids' => implode(',' , $req->ids),
-            // 'ids' => $req->ids, // post man //
-        ];
-        $task = $teacher->tasks()->create($data);
+      // }
 
-        // $file_path = null;
-        // $files = $req->toArray()['file'];
+      //   $teacher = auth()->user()->teacher()->first();
 
-        // if(!empty($files)){
-        //     $validator = Validator::make($req->all(), [
-        //         'file*' => 'file|mimes:jpeg,png,jpg,pdf|max:10000'
-        //     ]);
+      //   $data = [
+      //       'title' => $req->title,
+      //       'body' => $req->body,
+      //       'to' => $req->to,
+      //       'deadline' => $req->deadline,
+      //       // 'ids' => implode(',' , $req->ids),
+      //       // 'ids' => $req->ids, // post man //
+      //   ];
+      //   $task = $teacher->tasks()->create($data);
 
-        //     if ($validator->fails())
-        //         return response()->json(['data' => 'File Not available or file size is large'], 400);
+      //   // $file_path = null;
+      //   // $files = $req->toArray()['file'];
 
-        //     foreach ($files as $file){
-        //         $file_path =  $req->title . '_' . str_random(5) . '_' . time() . '.' . $file->extension();
-        //         $file->storeAs('task\\' . $teacher->id, $file_path);
-        //         $file_path = 'task\\' . $teacher->id . '\\' . $file_path;
-        //         $task->files()->create(['file_path' => $file_path]);
-        //     }
-        // }
+      //   // if(!empty($files)){
+      //   //     $validator = Validator::make($req->all(), [
+      //   //         'file*' => 'file|mimes:jpeg,png,jpg,pdf|max:10000'
+      //   //     ]);
 
-        $rsp = 200 ;
-        $msg = 'Done';
+      //   //     if ($validator->fails())
+      //   //         return response()->json(['data' => 'File Not available or file size is large'], 400);
 
-        switch ($req->to) {
-            case 1: $task->units()->attach($ids); break;
-            case 2: $task->stages()->attach($ids); break;
-            case 3: $task->sections()->attach($ids); break;
-            case 4: $task->students()->attach($ids); break;
-            default:{
-                $rsp = 400 ;
-                $msg = 'error';
-            } break;
-        }
-        //  when use postman
+      //   //     foreach ($files as $file){
+      //   //         $file_path =  $req->title . '_' . str_random(5) . '_' . time() . '.' . $file->extension();
+      //   //         $file->storeAs('task\\' . $teacher->id, $file_path);
+      //   //         $file_path = 'task\\' . $teacher->id . '\\' . $file_path;
+      //   //         $task->files()->create(['file_path' => $file_path]);
+      //   //     }
+      //   // }
 
-        return response()->json(['data' => $msg], $rsp);
+      //   $rsp = 200 ;
+      //   $msg = 'Done';
+
+      //   switch ($req->to) {
+      //       case 1: $task->units()->attach($ids); break;
+      //       case 2: $task->stages()->attach($ids); break;
+      //       case 3: $task->sections()->attach($ids); break;
+      //       case 4: $task->students()->attach($ids); break;
+      //       default:{
+      //           $rsp = 400 ;
+      //           $msg = 'error';
+      //       } break;
+      //   }
+      //   //  when use postman
+
+      //   return response()->json(['data' => $msg], $rsp);
+
+        return response()->json(['data' => 'end'], 200);
+
     }
 
     public function tasks(){

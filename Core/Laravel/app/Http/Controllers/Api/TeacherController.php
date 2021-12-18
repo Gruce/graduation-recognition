@@ -114,8 +114,6 @@ class TeacherController extends Controller
             'body' => $req->body,
             'to' => $req->to,
             'deadline' => $req->deadline,
-            // 'ids' => implode(',' , $req->ids),
-            // 'ids' => $req->ids, // post man //
         ];
 
         $task = $teacher->tasks()->create($data);

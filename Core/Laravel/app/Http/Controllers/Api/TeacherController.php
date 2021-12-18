@@ -84,62 +84,65 @@ class TeacherController extends Controller
     }
 
     public static function send_task(Request $req){
-      info($req->file);
+      info($req->toArray());
       $ids=$req->ids;
-      if(gettype($req->ids)=='string'){
-        $x= str_replace('[','',$req->ids);
-        $x= str_replace(']','',$x);
-        $ids=array_map('intval', explode(',', $x));
 
-      }
+
+      return 'end test';
+    //   if(gettype($req->ids)=='string'){
+    //     $x= str_replace('[','',$req->ids);
+    //     $x= str_replace(']','',$x);
+    //     $ids=array_map('intval', explode(',', $x));
+
+    //   }
       
-        $teacher = auth()->user()->teacher()->first();
+    //     $teacher = auth()->user()->teacher()->first();
 
-        $data = [
-            'title' => $req->title,
-            'body' => $req->body,
-            'to' => $req->to,
-            'deadline' => $req->deadline,
-            // 'ids' => implode(',' , $req->ids),
-            // 'ids' => $req->ids, // post man //
-        ];
-        $task = $teacher->tasks()->create($data);
+    //     $data = [
+    //         'title' => $req->title,
+    //         'body' => $req->body,
+    //         'to' => $req->to,
+    //         'deadline' => $req->deadline,
+    //         // 'ids' => implode(',' , $req->ids),
+    //         // 'ids' => $req->ids, // post man //
+    //     ];
+    //     $task = $teacher->tasks()->create($data);
 
-        // $file_path = null;
-        // $files = $req->toArray()['file'];
+    //     // $file_path = null;
+    //     // $files = $req->toArray()['file'];
 
-        // if(!empty($files)){
-        //     $validator = Validator::make($req->all(), [
-        //         'file*' => 'file|mimes:jpeg,png,jpg,pdf|max:10000'
-        //     ]);
+    //     // if(!empty($files)){
+    //     //     $validator = Validator::make($req->all(), [
+    //     //         'file*' => 'file|mimes:jpeg,png,jpg,pdf|max:10000'
+    //     //     ]);
 
-        //     if ($validator->fails())
-        //         return response()->json(['data' => 'File Not available or file size is large'], 400);
+    //     //     if ($validator->fails())
+    //     //         return response()->json(['data' => 'File Not available or file size is large'], 400);
 
-        //     foreach ($files as $file){
-        //         $file_path =  $req->title . '_' . str_random(5) . '_' . time() . '.' . $file->extension();
-        //         $file->storeAs('task\\' . $teacher->id, $file_path);
-        //         $file_path = 'task\\' . $teacher->id . '\\' . $file_path;
-        //         $task->files()->create(['file_path' => $file_path]);
-        //     }
-        // }
+    //     //     foreach ($files as $file){
+    //     //         $file_path =  $req->title . '_' . str_random(5) . '_' . time() . '.' . $file->extension();
+    //     //         $file->storeAs('task\\' . $teacher->id, $file_path);
+    //     //         $file_path = 'task\\' . $teacher->id . '\\' . $file_path;
+    //     //         $task->files()->create(['file_path' => $file_path]);
+    //     //     }
+    //     // }
 
-        $rsp = 200 ;
-        $msg = 'Done';
+    //     $rsp = 200 ;
+    //     $msg = 'Done';
 
-        switch ($req->to) {
-            case 1: $task->units()->attach($ids); break;
-            case 2: $task->stages()->attach($ids); break;
-            case 3: $task->sections()->attach($ids); break;
-            case 4: $task->students()->attach($ids); break;
-            default:{
-                $rsp = 400 ;
-                $msg = 'error';
-            } break;
-        }
-        //  when use postman
+    //     switch ($req->to) {
+    //         case 1: $task->units()->attach($ids); break;
+    //         case 2: $task->stages()->attach($ids); break;
+    //         case 3: $task->sections()->attach($ids); break;
+    //         case 4: $task->students()->attach($ids); break;
+    //         default:{
+    //             $rsp = 400 ;
+    //             $msg = 'error';
+    //         } break;
+    //     }
+    //     //  when use postman
 
-        return response()->json(['data' => $msg], $rsp);
+    //     return response()->json(['data' => $msg], $rsp);
     }
 
     public function tasks(){

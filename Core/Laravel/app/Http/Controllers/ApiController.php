@@ -147,7 +147,9 @@ class ApiController extends Controller
 
     public function lectures($day = null)
     {
-        $lectures = Lecture::with(
+        $lectures = Lecture::whereHas('day' , function ($q) use ($day){
+            return $q->where('name' , 'LIKE' , $day);
+        })->with(
             [
                 'unit' => function($unit){
                     return $unit->with(['section:id,name','stage:id,name']);

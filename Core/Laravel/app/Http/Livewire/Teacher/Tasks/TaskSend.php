@@ -20,17 +20,18 @@ class TaskSend extends Component
     public $ids = [];
     public $idsData = [];
     public $deadline;
-    public $files;
+    public $files ;
 
 
     public function save(){   
         $data = [
+            'livewire' => true,
             'title' => $this->title,
             'body' => $this->body,
             'to' => $this->to,
             'ids' => array_keys($this->ids),
             'deadline' => $this->deadline,
-            'file' => $this->files ? $this->files : null,
+            'files' => $this->files ? $this->files : null,
         ];
 
         $response = TeacherController::send_task(new Request($data));

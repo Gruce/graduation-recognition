@@ -18,6 +18,7 @@
                             <th class="p-3 text-left">Start</th>
                             <th class="p-3 text-left">Classroom</th>
                             <th class="p-3 text-left">Stage</th>
+                            <th class="p-3 text-left">Unit</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -62,6 +63,13 @@
                                     <div>
                                         <span class="text-gray-500">
                                             {{ $unit_lectures->stage->name }}
+                                        </span>
+                                    </div>
+                                </td>
+                                <td class="p-3">
+                                    <div>
+                                        <span class="text-gray-500">
+                                            {{ $unit_lectures->name }}
                                         </span>
                                     </div>
                                 </td>

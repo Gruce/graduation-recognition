@@ -146,10 +146,16 @@ class ApiController extends Controller
         ], 200);
     }
 
-    public function lectures($day = null)
+    public static function lectures($day = null , $section = null , $stage = null , $unit = null) // section and staeg and unit is id and day is name //
     {
         $lectures = Lecture::whereHas('day' , function ($q) use ($day){
             return $q->where('name' , 'LIKE' , $day);
+        })->whereHas('unit.section' , function ($q) use ($section){
+            return $q->where('id' , 'LIKE' , $section);
+        })->whereHas('unit.stage' , function($q) use ($stage){
+            return $q->where('id' , 'LIKE' , $stage);
+        })->whereHas('unit' , function($q) use ($unit){
+            return $q->where('id' , 'LIKE' , $unit);
         })->with(
             [
                 'unit' => function($unit){

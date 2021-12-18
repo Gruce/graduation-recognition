@@ -13,6 +13,7 @@ use App\Models\Setting;
 use App\Models\Section;
 use App\Models\Stage;
 use App\Models\Unit;
+use App\Models\Lecture;
 
 
 
@@ -142,5 +143,24 @@ class ApiController extends Controller
         return response()->json([
             'data' => Unit::with(['section:id,name','stage:id,name,section_id'])->get(['id','name','section_id','stage_id'])
         ], 200);
+    }
+
+    public function lectures($day = null)
+    {
+        $lectures = Lecture::with(
+            [
+                'unit' => function($unit){
+                    return $unit->with(['section:id,name','stage:id,name']);
+                },
+                'subject:id,name',
+                'classroom' => function($classroom){
+                    return $classroom->with('cameras')->get();
+                },
+                'day:id,name'
+            ]
+        )->get();
+
+        return response()->json(['data' => $lectures], 200);
+        
     }
 }

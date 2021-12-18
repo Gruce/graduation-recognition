@@ -78,6 +78,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('not_trained_people', [ApiController::class, 'not_trained_people']);
     Route::post('people/new', [ApiController::class, 'new_person']);
     Route::post('app_restart', [ApiController::class, 'app_restart']);
+    Route::get('lectures/{day?}', [ApiController::class, 'lectures']);
+
 
 
 

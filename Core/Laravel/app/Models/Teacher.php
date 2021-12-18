@@ -44,7 +44,7 @@ class Teacher extends Model
             [
                 'lectures' => function($lecture) use ($day){
                     return $lecture->whereHas('day' , function($q) use ($day){
-                        return $q->where('name' , $day);
+                        return $q->where('name' , 'LIKE' , $day);
                     })->with(
                         [
                             'classroom' => function($classroom){

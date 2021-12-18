@@ -30,30 +30,30 @@ class AdminSidebarScreen extends GetWidget {
                       child: Column(children: <Widget>[
                         controller.user.name.isNotEmpty
                             ? ListTile(
-                                title: Text(
-                                  controller.user.name,
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.w800),
-                                ),
-                                onTap: () => Get.toNamed(Routes.adminProfile, arguments: controller.user),
-                                subtitle: Text(
-                                  controller.user.typeString,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                                leading: CircleAvatar(
-                                  child: Image(image: AssetImage('assets/STLogo.png')),
-                                  backgroundColor: Colors.white,
-                                  radius: 20,
-                                ),
-                              )
+                          title: Text(
+                            controller.user.name,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 22,
+                                fontWeight: FontWeight.w800),
+                          ),
+                          onTap: () => Get.toNamed(Routes.adminProfile, arguments: controller.user),
+                          subtitle: Text(
+                            controller.user.typeString,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                            ),
+                          ),
+                          leading: CircleAvatar(
+                            child: Image(image: AssetImage('assets/STLogo.png')),
+                            backgroundColor: Colors.white,
+                            radius: 20,
+                          ),
+                        )
                             : const Center(
-                                child: CircularProgressIndicator(),
-                              ),
+                          child: CircularProgressIndicator(),
+                        ),
                         Divider(
                           height: 50,
                           thickness: 0.6,
@@ -65,25 +65,25 @@ class AdminSidebarScreen extends GetWidget {
                             itemCount: controller.tabs.length,
                             shrinkWrap: true,
                             itemBuilder: (context, i) => Card(
-                                  elevation: 0,
-                                  color: const Color(0xff6875F5),
-                                  child: ListTile(
-                                    title: Text(
-                                      controller.tabs[i]['title'],
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 19,
-                                        fontWeight: FontWeight.w300,
-                                      ),
-                                    ),
-                                    leading: Icon(
-                                      controller.tabs[i]['icon'],
-                                      color: Colors.white,
-                                    ),
-                                    selected: true,
-                                    onTap: () => {controller.onItemTap(i)},
+                              elevation: 0,
+                              color: const Color(0xff6875F5),
+                              child: ListTile(
+                                title: Text(
+                                  controller.tabs[i]['title'],
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 19,
+                                    fontWeight: FontWeight.w300,
                                   ),
-                                )),
+                                ),
+                                leading: Icon(
+                                  controller.tabs[i]['icon'],
+                                  color: Colors.white,
+                                ),
+                                selected: true,
+                                onTap: () => {controller.onItemTap(i)},
+                              ),
+                            )),
                         Card(
                           elevation: 0,
                           color: const Color(0xff6875F5),

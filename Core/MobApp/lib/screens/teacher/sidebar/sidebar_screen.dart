@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/Teacher/teacher_profile_controller.dart';
 import 'package:graduaiton_app/models/user.dart';
-import 'package:graduaiton_app/screens/teacher/notification/notification_screen.dart';
+import 'package:graduaiton_app/screens/general/notification/notification_screen.dart';
 import 'package:graduaiton_app/screens/teacher/sidebar/sidebar_controller.dart';
 import 'package:graduaiton_app/util/utilities.dart';
 

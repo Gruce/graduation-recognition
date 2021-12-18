@@ -30,7 +30,7 @@ class MyinputField extends StatelessWidget {
                 fontSize: 16, color: Colors.black54),
           ),],),),
           Container(
-            height: MediaQuery.of(context).size.height/8,
+            height: 40,
             margin: const EdgeInsets.only(left:10,right: 10,top: 4,bottom: 10),
             padding: const EdgeInsets.only(left: 15),
             decoration: BoxDecoration(

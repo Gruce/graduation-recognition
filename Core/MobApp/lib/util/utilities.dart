@@ -57,7 +57,7 @@ class Utilities {
 
     for (var file in files) {
       http.MultipartFile multipartFile =
-          await http.MultipartFile.fromPath('file', file);
+          await http.MultipartFile.fromPath('files[]', file);
 
       request.files.add(multipartFile);
     }

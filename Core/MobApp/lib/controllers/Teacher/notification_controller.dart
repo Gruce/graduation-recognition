@@ -53,7 +53,6 @@ class NotificationController extends GetxController {
   void pick_files() async {
     FilePickerResult? result =
         await FilePicker.platform.pickFiles(allowMultiple: true);
-
     if (result != null) {
       files_path = result.paths.map((path) => path!).toList();
       files.assignAll(result.files);
@@ -71,8 +70,7 @@ class NotificationController extends GetxController {
         _units.add(units[key].id);
       }
     });
-
-    Utilities.httpFilesPost(
+    await Utilities.httpFilesPost(
         'teacher/send-task',
         {
           'title': titleController.text,

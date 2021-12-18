@@ -48,7 +48,6 @@ class StudentsDropDownWidget extends GetView {
                       {controller.filterBySection(int.parse(index.toString()))},
                 )
               : const Text("Loading"),
-
           // const Text("Stage "),
           controllerr.stages.isNotEmpty
               ? DropdownButton(

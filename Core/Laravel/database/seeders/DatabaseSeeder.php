@@ -15,14 +15,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Camera::create([
-            'description' => 'Main Camera',
-            'state' => 1,
-        ]);
+
                   
         $this->call([
-
             UserSeeder::class,
+            ClassroomSeeder::class,
+            CameraSeeder::class,
             PersonSeeder::class,
             SectionSeeder::class,
             StageSeeder::class,

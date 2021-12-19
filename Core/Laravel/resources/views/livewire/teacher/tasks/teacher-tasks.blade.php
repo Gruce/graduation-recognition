@@ -53,7 +53,7 @@
                                 <td class="p-3">
                                     <div>
                                         <span class="text-gray-500">
-                                            {{-- <img src="{{asset('storage/' . $task->files[0]->file_path)}}"> --}}
+                                            {{-- <img src="{{asset($task->files[0]->file_path)}}"> --}}
                                         </span>
                                     </div>
                                 </td>

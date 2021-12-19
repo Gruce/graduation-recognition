@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Lecture extends Model
 {
-    protected $fillable = ['subject_id' , 'start' , 'classroom_id' , 'day_id' , 'unit_id'];
+    protected $fillable = ['subject_id' , 'start' , 'classroom_id' , 'day_id' , 'unit_id' , 'teacher_id'];
     use HasFactory;
 
     public function subject(){
@@ -24,5 +24,9 @@ class Lecture extends Model
 
     public function unit(){
         return $this->belongsTo(Unit::class);
+    }
+
+    public function teacher(){
+        return $this->belongsTo(Teacher::class);
     }
 }

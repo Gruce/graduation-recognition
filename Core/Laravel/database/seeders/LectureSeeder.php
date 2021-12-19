@@ -17,6 +17,7 @@ class LectureSeeder extends Seeder
         Lecture::create(
             [
                 'unit_id' => 15,
+                'teacher_id' => 2,
                 'subject_id' => 4,
                 'start' => '8:00 AM',
                 'classroom_id' => 5,
@@ -27,6 +28,7 @@ class LectureSeeder extends Seeder
         Lecture::create(
             [
                 'unit_id' => 15,
+                'teacher_id' => 2,
                 'subject_id' => 4,
                 'start' => '10:00 AM',
                 'classroom_id' => 5,
@@ -37,6 +39,7 @@ class LectureSeeder extends Seeder
         Lecture::create(
             [
                 'unit_id' => 16,
+                'teacher_id' => 2,
                 'subject_id' => 4,
                 'start' => '12:00 AM',
                 'classroom_id' => 5,

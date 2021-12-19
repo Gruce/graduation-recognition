@@ -4,7 +4,7 @@
             People
         </h2>
     </x-slot>
-    @livewire('actions' , ['folder' => 'admin.schedule' , 'file' => 'schedule-add' , 'search' => 'People name'])
+    @livewire('actions' , ['folder' => 'admin.schedule' , 'file' => 'schedule-add' , 'search' => 'Teacher name'])
     <div class="mt-3">
         <section class="text-gray-600 body-font">
             <div class="container px-5 py-10 mx-auto bg-white rounded-lg max-w-7xl sm:px-6 lg:px-8">
@@ -48,6 +48,7 @@
                                 <th class="p-3 text-left">Stage</th>
                                 <th class="p-3 text-left">Unit</th>
                                 <th class="p-3 text-left">Classroom</th>
+                                <th class="p-3 text-left">Teacher</th>
                                 <th class="p-3 text-left">Name</th>
                                 <th class="p-3 text-left">Day</th>
                                 <th class="p-3 text-left">Start</th>
@@ -56,7 +57,7 @@
                         <tbody>
                             @foreach ($days as $day)
                                 <tr class="bg-gray-100 text-gray-400">
-                                    <th class="p-3" colspan="8">{{$day->name}}</th>
+                                    <th class="p-3" colspan="9">{{$day->name}}</th>
                                 </tr>
                                 @forelse($lectures  as $i => $lecture)
                                     @if($day->name == $lecture->day->name)
@@ -98,6 +99,13 @@
                                             <td class="p-3">
                                                 <div>
                                                     <span class="text-gray-500">
+                                                        {{ $lecture->teacher->user->name }}
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td class="p-3">
+                                                <div>
+                                                    <span class="text-gray-500">
                                                         {{ $lecture->subject->name }}
                                                     </span>
                                                 </div>
@@ -120,7 +128,7 @@
                                     @endif
                                 @empty
                                     <tr class="bg-red-100">
-                                        <td colspan="8" class="p-3 text-center">
+                                        <td colspan="9" class="p-3 text-center">
                                             No lectures
                                         </td>
                                     </tr>

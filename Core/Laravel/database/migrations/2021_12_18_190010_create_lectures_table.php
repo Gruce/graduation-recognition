@@ -15,7 +15,8 @@ class CreateLecturesTable extends Migration
     {
         Schema::create('lectures', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('subject_id')->nullable()->constrained('subjects')->onDelete('cascade'); 
+            $table->foreignId('subject_id')->nullable()->constrained('subjects')->onDelete('cascade');
+            $table->foreignId('teacher_id')->nullable()->constrained('teachers')->onDelete('cascade'); 
             $table->foreignId('unit_id')->nullable()->constrained('units')->onDelete('cascade'); 
             $table->foreignId('classroom_id')->nullable()->constrained('classrooms')->onDelete('cascade'); 
             $table->foreignId('day_id')->nullable()->constrained('days')->onDelete('cascade'); 

@@ -14,7 +14,7 @@ class Index extends Component
     {
         $teacher = auth()->user()->teacher()->first();
 
-        $units_lectures = $teacher->lectures()->get();
+        $units_lectures = $teacher->get_lectures()->get();
 
         return view('livewire.teacher.index' , ['units_lectures' => $units_lectures]);
     }

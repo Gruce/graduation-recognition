@@ -24,7 +24,7 @@ class Unit extends Model
     }
 
     public function teachers(){
-        return $this->belongsToMany(Teacher::class)->withTimestamps();
+        return $this->belongsToMany(Teacher::class)->withPivot(['id' , 'teacher_id' , 'unit_id'])->withTimestamps();
     }
 
     public function tasks(){

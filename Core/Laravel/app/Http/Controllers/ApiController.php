@@ -146,7 +146,7 @@ class ApiController extends Controller
         ], 200);
     }
 
-    public static function lectures($day = null , $section = null , $stage = null , $unit = null) // section and staeg and unit is id and day is name //
+    public static function lectures($day = null , $section = null , $stage = null , $unit = null , $search = null) // section and staeg and unit is id and day is name //
     {
         $lectures = Lecture::whereHas('day' , function ($q) use ($day){
             return $q->where('name' , 'LIKE' , $day);
@@ -156,6 +156,8 @@ class ApiController extends Controller
             return $q->where('id' , 'LIKE' , $stage);
         })->whereHas('unit' , function($q) use ($unit){
             return $q->where('id' , 'LIKE' , $unit);
+        })->whereHas('teacher.user' , function($q) use ($search){
+            return $q->where('name' , 'LIKE' , '%' . $search . '%');
         })->with(
             [
                 'unit' => function($unit){
@@ -165,7 +167,8 @@ class ApiController extends Controller
                 'classroom' => function($classroom){
                     return $classroom->with('cameras')->get();
                 },
-                'day:id,name'
+                'day:id,name',
+                'teacher.user:id,name'
             ]
         )->get();
 

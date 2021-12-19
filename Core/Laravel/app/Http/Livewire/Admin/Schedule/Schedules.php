@@ -14,16 +14,21 @@ use App\Models\{
 
 class Schedules extends Component
 {
-    protected $listeners = ['$refresh'];
+    protected $listeners = ['$refresh' , 'search'];
 
     public $section;
     public $stage;
     public $unit;
     public $dayName;
+    public $search;
+
+    public function search($text){
+        $this->search = $text;
+    }
 
     public function render()
     {
-        $response = ApiController::lectures($this->dayName , $this->section , $this->stage , $this->unit);
+        $response = ApiController::lectures($this->dayName , $this->section , $this->stage , $this->unit , $this->search);
         $lectures = $response->getData()->data;
 
         $days = Day::get(['id' , 'name']);

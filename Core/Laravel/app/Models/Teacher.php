@@ -32,14 +32,18 @@ class Teacher extends Model
     }
 
     public function units(){
-        return $this->belongsToMany(Unit::class)->withTimestamps();
+        return $this->belongsToMany(Unit::class)->withPivot(['id' , 'teacher_id' , 'unit_id'])->withTimestamps();
     }
 
     public function tasks(){
         return $this->hasMany(Task::class);
     }
 
-    public function lectures($day = null){
+    // public function lectures(){
+    //     return $this->hasMany(Lecture::class);
+    // }
+
+    public function get_lectures($day = null){
         $lectures = $this->units()->with(
             [
                 'lectures' => function($lecture) use ($day){
@@ -57,7 +61,7 @@ class Teacher extends Model
                 },
                 'section:id,name',
                 'stage:id,name',
-                
+
             ]
         );
 

@@ -37,7 +37,7 @@ class AdminSidebarScreen extends GetWidget {
                                       fontSize: 22,
                                       fontWeight: FontWeight.w800),
                                 ),
-                                onTap: () => Get.toNamed(Routes.adminProfile, arguments: controller.user),
+                                onTap: () => Get.toNamed(Routes.adminProfile),
                                 subtitle: Text(
                                   controller.user.typeString,
                                   style: TextStyle(

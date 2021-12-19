@@ -13,8 +13,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      // defaultTransition: Transition.noTransition, //this would be the solution
-      // transitionDuration: const Duration(seconds: 0),
+        // defaultTransition: Transition.noTransition, //this would be the solution
+        // transitionDuration: const Duration(seconds: 0),
         title: 'Graduation App',
         debugShowCheckedModeBanner: false,
         initialRoute: Routes.login,

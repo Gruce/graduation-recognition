@@ -16,45 +16,43 @@ class MyinputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children:[
-      Container(
-        alignment: Alignment.topLeft,
-      margin: const EdgeInsets.all(6),
-        padding: const EdgeInsets.all(3),
+    return Container(
+      margin: EdgeInsets.only(top: 16),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             title,
-            style: const TextStyle(
-                fontSize: 16, color: Colors.black54),
-          ),],),),
+            style: TextStyle(
+                fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black),
+          ),
           Container(
-            height: MediaQuery.of(context).size.height/8,
-            margin: const EdgeInsets.only(left:10,right: 10,top: 4,bottom: 10),
-            padding: const EdgeInsets.only(left: 15),
+            height: 52,
+            margin: EdgeInsets.only(top: 8.0),
+            padding: EdgeInsets.only(left: 14),
             decoration: BoxDecoration(
-                border: Border.all(color: const Color(0xff6875F5), width: 1),
+                border: Border.all(color: Colors.grey, width: 1.0),
                 borderRadius: BorderRadius.circular(12)),
             child: Row(children: [
               Expanded(
-                  child: TextField(
-                    expands: true,
-                    // minLines: 6, // any number you need (It works as the rows for the textarea)
-                    // keyboardType: TextInputType.multiline,
-                    maxLines: null,
+                  child: TextFormField(
+                readOnly: widget == null ? false : true,
+                autofocus: false,
+                cursorColor: Colors.black,
                 controller: controller,
-                style: const TextStyle(
+                style: TextStyle(
                     fontSize: 14,
+                    fontWeight: FontWeight.w600,
                     color: Colors.black),
                 decoration: InputDecoration(
                     hintText: hint,
-                    hintStyle: const TextStyle(
+                    hintStyle: TextStyle(
                         fontSize: 16,
-                        color: Colors.grey),
-                    focusedBorder: const UnderlineInputBorder(
+                        fontWeight: FontWeight.w600,
+                        color: Colors.grey[500]),
+                    focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.white, width: 0)),
-                    enabledBorder: const UnderlineInputBorder(
+                    enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.white, width: 0))),
               )),
               widget == null
@@ -65,6 +63,7 @@ class MyinputField extends StatelessWidget {
             ]),
           ),
         ],
+      ),
     );
   }
 }

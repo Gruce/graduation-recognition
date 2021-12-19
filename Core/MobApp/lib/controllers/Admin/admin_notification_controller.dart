@@ -4,10 +4,9 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/models/student_models/unit.dart';
-import 'package:graduaiton_app/screens/teacher/notification/notification_screen.dart';
 import 'package:graduaiton_app/util/utilities.dart';
 
-class NotificationController extends GetxController {
+class AdminNotificationController extends GetxController {
   // @override
   @override
   void onInit() async {
@@ -85,7 +84,7 @@ class NotificationController extends GetxController {
     titleController.text = '';
     bodyController.text = '';
 
-    Get.off(TeacherNotification());
+    Get.off(AdminNotificationController());
   }
 
   void removeIndex(i) {

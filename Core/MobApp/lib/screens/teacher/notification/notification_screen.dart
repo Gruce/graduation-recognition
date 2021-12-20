@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/Teacher/notification_controller.dart';
+import 'package:graduaiton_app/screens/general/people/attendance.dart';
 import 'package:graduaiton_app/screens/teacher/home_page/widgets/button.dart';
 import 'package:graduaiton_app/screens/teacher/home_page/widgets/input_field.dart';
 import 'package:graduaiton_app/screens/teacher/layout.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:graduaiton_app/screens/teacher/notification/notif.dart';
+import 'package:intl/intl.dart';
 
 class TeacherNotification extends GetView {
   TeacherNotification({Key? key}) : super(key: key);
@@ -98,21 +100,21 @@ class TeacherNotification extends GetView {
                     ),
                   ),
                   SizedBox(height: 5),
-              // TextButton(
-              //     onPressed: () {
-              //       DatePicker.showDatePicker(context,
-              //           showTitleActions: true,
-              //           minTime: DateTime(2018, 3, 5),
-              //           maxTime: DateTime(2019, 6, 7), onChanged: (date) {
-              //             print('change $date');
-              //           }, onConfirm: (date) {
-              //             print('confirm $date');
-              //           }, currentTime: DateTime.now(), locale: LocaleType.zh);
-              //     },
-              //     child: Text(
-              //       'show date time picker (Chinese)',
-              //       style: TextStyle(color: Colors.blue),
-              //     )),
+                  // TextButton(
+                  //     onPressed: () {
+                  //       DatePicker.showDatePicker(context,
+                  //           showTitleActions: true,
+                  //           minTime: DateTime(2018, 3, 5),
+                  //           maxTime: DateTime(2019, 6, 7), onChanged: (date) {
+                  //             print('change $date');
+                  //           }, onConfirm: (date) {
+                  //             print('confirm $date');
+                  //           }, currentTime: DateTime.now(), locale: LocaleType.zh);
+                  //     },
+                  //     child: Text(
+                  //       'show date time picker (Chinese)',
+                  //       style: TextStyle(color: Colors.blue),
+                  //     )),
                   Obx(
                     () => Container(
                       margin: const EdgeInsets.only(left: 5, right: 5),

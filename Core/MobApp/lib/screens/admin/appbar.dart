@@ -7,7 +7,7 @@ import 'sidebar/sidebar_controller.dart';
 
 // ignore: must_be_immutable
 class AdminAppbar extends StatelessWidget {
-   AdminAppbar({Key? key, required this.title}) : super(key: key);
+  AdminAppbar({Key? key, required this.title}) : super(key: key);
 
   AdminSidebarController controller = Get.put(AdminSidebarController());
 
@@ -52,7 +52,6 @@ class AdminAppbar extends StatelessWidget {
                 backgroundColor: Colors.white,
               ),
             ),
-
           ],
         ),
       ),

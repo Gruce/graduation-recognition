@@ -49,5 +49,12 @@ class SubjectSeeder extends Seeder
             'stage_id' => 8,
         ]);
 
+        // ID 6
+        Subject::create([
+            'name' => 'Cloud',
+            'section_id' => 1, 
+            'stage_id' => 4,
+        ]);
+
     }
 }

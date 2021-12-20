@@ -24,10 +24,18 @@ class Unit extends Model
     }
 
     public function teachers(){
-        return $this->belongsToMany(Teacher::class)->withTimestamps();
+        return $this->belongsToMany(Teacher::class)->withPivot(['id' , 'teacher_id' , 'unit_id'])->withTimestamps();
     }
 
     public function tasks(){
         return $this->belongsToMany(Task::class)->withTimestamps();
+    }
+
+    public function schedule(){
+        return $this->hasOne(Schedule::class);
+    }
+
+    public function lectures(){
+        return $this->hasMany(Lecture::class);
     }
 }

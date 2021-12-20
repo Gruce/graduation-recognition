@@ -3,8 +3,12 @@ import 'package:get/get.dart';
 import 'package:graduaiton_app/routes/routes.dart';
 import 'package:graduaiton_app/screens/teacher/profile/profile_screen.dart';
 
+import 'sidebar/sidebar_controller.dart';
+
 class AdminAppbar extends StatelessWidget {
-  const AdminAppbar({Key? key, required this.title}) : super(key: key);
+  AdminAppbar({Key? key, required this.title}) : super(key: key);
+
+  AdminSidebarController controller = Get.put(AdminSidebarController());
 
   final String title;
 
@@ -47,7 +51,6 @@ class AdminAppbar extends StatelessWidget {
                 backgroundColor: Colors.white,
               ),
             ),
-
           ],
         ),
       ),

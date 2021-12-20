@@ -15,6 +15,7 @@ use App\Http\Controllers\{
     ## ADMIN ##
 use App\Http\Livewire\Admin\{
     People\People,
+    Schedule\Schedules,
     UnkownPeople\UnkownPeople,
     Teachers\Teachers,
     Students\Students,
@@ -102,6 +103,11 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
             # Subjects #
             Route::group(['prefix' => 'subjects'] ,function(){
                 Route::get('/', Subjects::class)->name('subjects');
+            });
+
+            # schedule #
+            Route::group(['prefix' => 'schedule'] ,function(){
+                Route::get('/', Schedules::class)->name('schedule');
             });
         });
 

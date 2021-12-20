@@ -32,10 +32,39 @@ class Teacher extends Model
     }
 
     public function units(){
-        return $this->belongsToMany(Unit::class)->withTimestamps();
+        return $this->belongsToMany(Unit::class)->withPivot(['id' , 'teacher_id' , 'unit_id'])->withTimestamps();
     }
 
     public function tasks(){
         return $this->hasMany(Task::class);
+    }
+
+    // public function lectures(){
+    //     return $this->hasMany(Lecture::class);
+    // }
+
+    public function get_lectures($day = null){
+        $lectures = $this->units()->with(
+            [
+                'lectures' => function($lecture) use ($day){
+                    return $lecture->whereHas('day' , function($q) use ($day){
+                        return $q->where('name' , 'LIKE' , $day);
+                    })->with(
+                        [
+                            'classroom' => function($classroom){
+                                return $classroom->with('cameras')->get();
+                            },
+                            'subject:id,name',
+                            'day:id,name',
+                        ]
+                    )->get();
+                },
+                'section:id,name',
+                'stage:id,name',
+
+            ]
+        );
+
+        return $lectures;
     }
 }

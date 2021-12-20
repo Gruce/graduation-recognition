@@ -15,7 +15,7 @@ class Notif extends GetView {
         child: Padding(
           padding: EdgeInsets.all(6),
           child: Column(
-            children: [
+           children: [
               MyinputField(
                 title: 'Title',
                 hint: 'Enter your title',
@@ -56,11 +56,11 @@ class Notif extends GetView {
                                   BorderRadius.all(Radius.circular(20))),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            
                             children: [
-                              Text("Upload file",style: TextStyle(color: Colors.black)),
+                              Text("Upload file",
+                                  style: TextStyle(color: Colors.black)),
                               IconButton(
-                                onPressed: () =>controller.pick_files(),
+                                onPressed: () => controller.pick_files(),
                                 icon: Icon(Icons.upload_file),
                               ),
                             ],

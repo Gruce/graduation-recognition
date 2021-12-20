@@ -3,7 +3,9 @@ import 'dart:convert';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:graduaiton_app/models/notification.dart';
 import 'package:graduaiton_app/models/student_models/unit.dart';
+import 'package:graduaiton_app/models/teacher/files.dart';
 import 'package:graduaiton_app/screens/teacher/notification/notification_screen.dart';
 import 'package:graduaiton_app/util/utilities.dart';
 
@@ -17,7 +19,7 @@ class NotificationController extends GetxController {
     idsController = TextEditingController();
 
     fetchUnits();
-
+    fetch();
     super.onInit();
   }
 
@@ -35,6 +37,7 @@ class NotificationController extends GetxController {
 
   RxList units = <UnitModel>[].obs;
 
+  RxList notifications = <NotificationModel>[].obs;
   RxMap unitsCheckbox = {}.obs;
 
   void fetchUnits() async {
@@ -77,7 +80,7 @@ class NotificationController extends GetxController {
           'body': bodyController.text,
           'to': '1',
           'ids': _units.toString(),
-          'deadline':'2021-12-15T23:24'
+          'deadline': '2021-12-15T23:24',
         },
         files_path);
     files.clear();
@@ -96,5 +99,25 @@ class NotificationController extends GetxController {
 
   void check(key, value) {
     unitsCheckbox[key] = value!;
+  }
+
+  void fetch() async {
+    final res = await Utilities.httpGet('teacher/tasks');
+    if (res.statusCode == 200) {
+      List response = json.decode(res.body)['data'];
+      for (int i = 0; i < response.length; i++) {
+        NotificationModel notif = NotificationModel.fromJson(response[i]);
+        notifications.add(notif);
+      }
+      print("==================================");
+
+      for (NotificationModel notif in notifications) {
+        print(notif.title);
+        for (FileModel file in notif.files) {
+          print(file.file_path);
+        }
+      }
+    }
+    update();
   }
 }

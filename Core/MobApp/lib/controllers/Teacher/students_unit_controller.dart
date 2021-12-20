@@ -48,7 +48,7 @@ class TeacherStudentsUnitController extends GetxController {
           .where((student) =>
               student.user.name.toLowerCase().contains(text.toLowerCase()))
           .toList());
-    print(filteredStudent);
+    
     }
     update();
   }

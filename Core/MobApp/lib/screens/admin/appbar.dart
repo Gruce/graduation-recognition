@@ -5,6 +5,7 @@ import 'package:graduaiton_app/screens/teacher/profile/profile_screen.dart';
 
 import 'sidebar/sidebar_controller.dart';
 
+// ignore: must_be_immutable
 class AdminAppbar extends StatelessWidget {
    AdminAppbar({Key? key, required this.title}) : super(key: key);
 
@@ -16,7 +17,6 @@ class AdminAppbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(children: [
       Container(
-        padding: const EdgeInsets.all(5),
         decoration: BoxDecoration(
           // border: Border.all(
           //   color: const Color(0xFFdddddd),
@@ -26,7 +26,7 @@ class AdminAppbar extends StatelessWidget {
           color: Colors.transparent,
           borderRadius: BorderRadius.circular(30.0),
         ),
-        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -46,7 +46,7 @@ class AdminAppbar extends StatelessWidget {
               ],
             ),
             GestureDetector(
-              onTap: () => Get.toNamed(Routes.adminProfile, arguments: controller.user),
+              onTap: () => Get.toNamed(Routes.adminProfile),
               child: CircleAvatar(
                 child: Image.asset('assets/STLogo.png'),
                 backgroundColor: Colors.white,

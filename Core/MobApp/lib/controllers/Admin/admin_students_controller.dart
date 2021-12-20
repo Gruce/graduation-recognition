@@ -12,6 +12,9 @@ class AdminStudentsController extends GetxController {
   RxList students = <StudentModel>[].obs;
   RxList filteredStudents = <StudentModel>[].obs;
 
+  RxBool searchToggle = false.obs;
+  RxBool filterToggle = false.obs;
+
   final api = Config.api;
 
   @override

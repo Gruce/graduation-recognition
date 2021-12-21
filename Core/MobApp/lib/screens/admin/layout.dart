@@ -19,7 +19,7 @@ class AdminLayoutScreen extends GetView<AdminLayoutController> {
         backgroundColor: Colors.grey[200],
         drawer: AdminSidebarScreen(),
         appBar: PreferredSize(
-            preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 0.15),
+            preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 0.13),
             child: SafeArea(child: AdminAppbar(
               title: title,
             ))),

@@ -39,130 +39,122 @@ class StudentWidget extends GetWidget {
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
           title: Container(
-            margin: const EdgeInsets.only(bottom: 10.0),
-            child: Row(
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  name,
-                  style:
-                      const TextStyle(fontSize: 18, color: Color(0xff6875F5)),
-                ),
-                  const SizedBox(width: 25,),
-                  Container(
-                    padding: const EdgeInsets.all(5.0),
-                    decoration: BoxDecoration(
-                      color: const Color.fromRGBO(235, 235, 235, .8),
-                      border: Border.all(
-                        color: const Color.fromRGBO(235, 235, 235, .8),
-                        width: 2.0,
+              margin: const EdgeInsets.only(bottom: 10.0),
+              child: Row(
+                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        name,
+                        style: const TextStyle(
+                            fontSize: 16, color: Color(0xff6875F5)),
                       ),
-                      borderRadius: const BorderRadius.all(Radius.circular(
-                              5.0) //                 <--- border radius here
-                          ),
                     ),
-                    child: Row(
-                      children: [
-                        const Icon(
-                          Icons.photo_camera_outlined,
-                          size: 14,
-                        ),
-                        const SizedBox(width: 2),
-                        Text(camera,
-                            style: const TextStyle(
-                                fontSize: 10, fontWeight: FontWeight.bold))
-                      ],
-                    ),
-                  ),
-                const SizedBox(width: 10,),
-                  Container(
-                    padding: const EdgeInsets.all(5.0),
-                    decoration: BoxDecoration(
-                      color: const Color.fromRGBO(235, 235, 235, .8),
-                      border: Border.all(
-                        color: const Color.fromRGBO(235, 235, 235, .8),
-                        width: 2.0,
-                      ),
-                      borderRadius: const BorderRadius.all(Radius.circular(
-                              5.0) //                 <--- border radius here
-                          ),
-                    ),
-                    child: Row(
-                      children: [
-                        const Icon(
-                          Icons.schedule,
-                          size: 14,
-                        ),
-                        const SizedBox(width: 2),
-                        Text(time,
-                            style: const TextStyle(
-                                fontSize: 10, fontWeight: FontWeight.bold)),
-                      ],
-                    ),
-                  ),
-                ])
-
-            ),
+                    Expanded(
+                        flex: 2,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Row(
+                              children: [
+                                const Icon(
+                                  Icons.photo_camera_outlined,
+                                  size: 14,
+                                ),
+                                const SizedBox(width: 2),
+                                Text(camera,
+                                    style: const TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.bold))
+                              ],
+                            ),
+                            const SizedBox(width: 10),
+                            Row(
+                              children: [
+                                const Icon(
+                                  Icons.schedule,
+                                  size: 14,
+                                ),
+                                const SizedBox(width: 2),
+                                Text(time,
+                                    style: const TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.bold)),
+                              ],
+                            ),
+                          ],
+                        )),
+                  ])),
 
           subtitle: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              Container(
-                  padding: const EdgeInsets.all(5.0),
-                  decoration: BoxDecoration(
-                    color: const Color.fromRGBO(235, 235, 235, .8),
-                    border: Border.all(
-                      color: const Color.fromRGBO(235, 235, 235, .8),
-                      width: 2.0,
-                    ),
-                    borderRadius: const BorderRadius.all(Radius.circular(
-                            5.0) //                 <--- border radius here
+              Expanded(
+                  flex: 3,
+                  child: Container(
+                      padding: const EdgeInsets.all(5.0),
+                      margin: const EdgeInsets.only(right: 5.0),
+                      decoration: BoxDecoration(
+                        color: const Color.fromRGBO(235, 235, 235, .3),
+                        border: Border.all(
+                          color: const Color.fromRGBO(235, 235, 235, .3),
+                          width: 2.0,
                         ),
-                  ),
-                  child: Text(
-                    section_name,
-                    style: const TextStyle(
-                      fontSize: 12,
-                    ),
-                  )),
-              const SizedBox(width: 10),
-              Container(
-                  padding: const EdgeInsets.all(5.0),
-                  decoration: BoxDecoration(
-                    color: const Color.fromRGBO(235, 235, 235, .8),
-                    border: Border.all(
-                      color: const Color.fromRGBO(235, 235, 235, .8),
-                      width: 2.0,
-                    ),
-                    borderRadius: const BorderRadius.all(Radius.circular(
-                            5.0) //                 <--- border radius here
+                        borderRadius: const BorderRadius.all(Radius.circular(
+                                5.0) //                 <--- border radius here
+                            ),
+                      ),
+                      child: Text(
+                        section_name,
+                        style: const TextStyle(
+                          fontSize: 12,
                         ),
-                  ),
-                  child: Text(
-                    stage_name,
-                    style: const TextStyle(
-                      fontSize: 12,
-                    ),
-                  )),
-              const SizedBox(width: 10),
-              Container(
-                  padding: const EdgeInsets.all(5.0),
-                  decoration: BoxDecoration(
-                    color: const Color.fromRGBO(235, 235, 235, .8),
-                    border: Border.all(
-                      color: const Color.fromRGBO(235, 235, 235, .8),
-                      width: 2.0,
-                    ),
-                    borderRadius: const BorderRadius.all(Radius.circular(
-                            5.0) //                 <--- border radius here
+                        textAlign: TextAlign.center,
+                      ))),
+              Expanded(
+                  flex: 2,
+                  child: Container(
+                      padding: const EdgeInsets.all(5.0),
+                      margin: const EdgeInsets.only(right: 5.0),
+                      decoration: BoxDecoration(
+                        color: const Color.fromRGBO(235, 235, 235, .3),
+                        border: Border.all(
+                          color: const Color.fromRGBO(235, 235, 235, .3),
+                          width: 2.0,
                         ),
-                  ),
-                  child: Text(
-                    unit_name,
-                    style: const TextStyle(
-                      fontSize: 12,
-                    ),
-                  )),
+                        borderRadius: const BorderRadius.all(Radius.circular(
+                                5.0) //                 <--- border radius here
+                            ),
+                      ),
+                      child: Text(
+                        stage_name,
+                        style: const TextStyle(
+                          fontSize: 12,
+                        ),
+                        textAlign: TextAlign.center,
+                      ))),
+              Expanded(
+                  flex: 1,
+                  child: Container(
+                      padding: const EdgeInsets.all(5.0),
+                      decoration: BoxDecoration(
+                        color: const Color.fromRGBO(235, 235, 235, .3),
+                        border: Border.all(
+                          color: const Color.fromRGBO(235, 235, 235, .3),
+                          width: 2.0,
+                        ),
+                        borderRadius: const BorderRadius.all(Radius.circular(
+                                5.0) //                 <--- border radius here
+                            ),
+                      ),
+                      child: Text(
+                        unit_name,
+                        style: const TextStyle(
+                          fontSize: 12,
+                        ),
+                        textAlign: TextAlign.center,
+                      ))),
             ],
           ),
           // trailing: const Icon(Icons.keyboard_arrow_right, size: 30.0)

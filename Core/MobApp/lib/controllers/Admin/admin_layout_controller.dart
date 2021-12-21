@@ -4,11 +4,17 @@ import 'package:get/get.dart';
 class AdminLayoutController extends GetxController {
   RxInt selectedIndex = 0.obs;
 
+  @override
+  void onInit() {
+    tabIndex(Get.currentRoute);
+    super.onInit();
+  }
+
   final List<Map<dynamic, dynamic>> tabs = [
     {"title": "Home", "icon": Icons.home, "route": '/admin/'},
     {"title": "People", "icon": Icons.groups, "route": '/admin/people/'},
     {"title": "Students", "icon": Icons.people, "route": '/admin/students/'},
-
+    {"title": "Lectures", "icon": Icons.schedule, "route": '/admin/lectures/'},
   ].obs;
 
   void tabIndex(String route) {
@@ -22,7 +28,7 @@ class AdminLayoutController extends GetxController {
   void onItemTap(int index) {
     if (selectedIndex.value != index) {
       selectedIndex.value = index;
-      Get.toNamed(tabs[index]['route']);
+      Get.offAllNamed(tabs[index]['route']);
     }
   }
 }

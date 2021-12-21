@@ -13,7 +13,6 @@ class TeacherModel {
   UserModel user = UserModel();
   SectionModel section = SectionModel();
   StageModel stage = StageModel();
-  
 
   TeacherModel({
     id,
@@ -28,13 +27,13 @@ class TeacherModel {
     id = json['id'];
     user_id = json['user_id'];
     section_id = json['section_id'];
-    stage_id = json['stage_id'];
     speciality = json['speciality'];
+
+    if (json.containsKey('stage_id')) {
+      stage_id = json['stage_id'];
+    }
     if (json.containsKey('user')) {
-      
       user = UserModel.fromJson(json['user']);
-    } else {
-     
     }
     if (json.containsKey('section')) {
       section = SectionModel.fromJson(json['section']);
@@ -42,7 +41,6 @@ class TeacherModel {
     if (json.containsKey('stage')) {
       stage = StageModel.fromJson(json['stage']);
     }
-    
   }
 
   Map<dynamic, dynamic> toJson() {

@@ -14,7 +14,6 @@ import 'package:graduaiton_app/screens/login_screen.dart';
 import 'package:graduaiton_app/screens/student/home_page/home_screen.dart';
 import 'package:graduaiton_app/screens/student/profile/profile_screen.dart';
 import 'package:graduaiton_app/screens/teacher/home_page/home_screen.dart';
-import 'package:graduaiton_app/screens/teacher/home_page/schedule_teacher.dart';
 import 'package:graduaiton_app/screens/teacher/profile/profile_screen.dart';
 import 'package:graduaiton_app/screens/teacher/units/units_screen.dart';
 
@@ -40,7 +39,7 @@ class Routes {
 
   //Student
   static const studentMain = '/student/';
-  static const studentProfile='/student/profile/';
+  static const studentProfile = '/student/profile/';
 
   static final routes = [
     // Auth Routes
@@ -90,10 +89,10 @@ class Routes {
         page: () => TeacherHomeScreen(),
         binding: TeacherHomeBinding()),
 
-    GetPage(
-        name: teachSchedule,
-        page: () => const TeacherScheduleScreen(),
-        binding: TeacherScheduleScrBinding()),
+    // GetPage(
+    //     name: teachSchedule,
+    //     page: () => const TeacherScheduleScreen(),
+    //     binding: TeacherScheduleScrBinding()),
 
     GetPage(
         name: teachProfile,
@@ -105,9 +104,8 @@ class Routes {
         page: () => TeacherUnitsScreen(),
         binding: TeacherUnitsBinding()),
 
-
     // Student Routes
-        GetPage(
+    GetPage(
         name: studentMain,
         page: () => StudentHomeScreen(),
         binding: StudentHomeBinding()),
@@ -121,7 +119,5 @@ class Routes {
         name: studentProfile,
         page: () => StudentProfileScreen(),
         binding: StudentProfileBinding()),
-
-   
   ];
 }

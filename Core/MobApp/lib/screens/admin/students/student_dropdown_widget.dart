@@ -15,38 +15,36 @@ class StudentsDropDownWidget extends GetView {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(1),
-        border: Border.all(
-          color: Colors.white.withOpacity(1),
-          width: 1.0,
-        ),
-        borderRadius: BorderRadius.circular(20.0),
-      ),
       child: Obx(
-        () => Row(children: <Widget>[
-          // const Text("Section "),
+        () => Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
           controller.sections.isNotEmpty
-              ? DropdownButton(
-                  // Initial Value
-                  value: controller.sectionSelectedIndex.value,
-                  // Down Arrow Icon
-                  icon: const Icon(Icons.keyboard_arrow_down),
-                  // Array list of items
-                  items: controller.sections.asMap().keys.map((int index) {
-                    return DropdownMenuItem(
-                      value: index,
-                      child: Text(controller.sections[index].name,
-                          style: const TextStyle(
-                              color: Color(0xff6875F5), fontSize: 12.3)),
-                    );
-                  }).toList(),
-                  // After selecting the desired option,it will
-                  // change button value to selected value
-                  onChanged: (Object? index) =>
-                      {controller.filterBySection(int.parse(index.toString()))},
-                )
+              ? Container(
+                  padding: EdgeInsets.only(left: 5, right: 5),
+                  margin: EdgeInsets.all(0),
+                  decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                    color: const Color.fromRGBO(255, 255, 255, .5)),
+                  child: DropdownButton(
+                    underline:Container(),
+                    // Initial Value
+                    value: controller.sectionSelectedIndex.value,
+                    // Down Arrow Icon
+                    icon: const Icon(Icons.keyboard_arrow_down),
+                    // Array list of items
+                    items: controller.sections.asMap().keys.map((int index) {
+                      return DropdownMenuItem(
+                        value: index,
+                        child: Text(controller.sections[index].name,
+                            style: const TextStyle(
+                                color: Color(0xff6875F5), fontSize: 12.3)),
+                      );
+                    }).toList(),
+                    onChanged: (Object? index) =>
+                    {controller.filterBySection(int.parse(index.toString()))},
+                  )
+              )
               : const Text("Loading"),
           // const Text("Stage "),
           controllerr.stages.isNotEmpty
@@ -65,8 +63,6 @@ class StudentsDropDownWidget extends GetView {
                               color: Color(0xff6875F5), fontSize: 12.3)),
                     );
                   }).toList(),
-                  // After selecting the desired option,it will
-                  // change button value to selected value
                   onChanged: (Object? index) => {
                     controllerr.filterByStage(
                       int.parse(index.toString()),
@@ -91,8 +87,6 @@ class StudentsDropDownWidget extends GetView {
                               color: Color(0xff6875F5), fontSize: 12.3)),
                     );
                   }).toList(),
-                  // After selecting the desired option,it will
-                  // change button value to selected value
                   onChanged: (Object? index) =>
                       {controlleerr.filterByUnit(int.parse(index.toString()))},
                 )

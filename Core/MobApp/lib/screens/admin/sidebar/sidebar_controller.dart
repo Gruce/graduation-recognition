@@ -11,7 +11,6 @@ class AdminSidebarController extends GetxController {
   final List<Map<dynamic, dynamic>> tabs = [
     {"title": "People", "icon": Icons.groups_sharp, "route": '/admin/people/'},
     {"title": "Students", "icon": Icons.people_sharp, "route": '/admin/students/'},
-    {"title": "Notification", "icon": Icons.notification_add, "route": '/general/notification/'},
   ];
 
   late SharedPreferences prefs;

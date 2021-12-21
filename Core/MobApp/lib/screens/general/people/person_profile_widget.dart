@@ -114,23 +114,23 @@ class PersonProfileWidget extends GetView {
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(5),
                         ),
-                        child: Column(
+                        child:Column(
                           children: <Widget>[
-                              const ListTile(
+                             ListTile(
                               title: Text("Person Information",style: TextStyle(color:Color(0xff6875F5)),),
                             ),
-                            const Divider(),
+                            Divider(),
                             ListTile(
-                              title: const Text("Email"),
+                              title: Text("Email"),
                               subtitle: Text(controller.person.user.email),
-                              leading: const Icon(Icons.email,color:Color(0xff6875F5)),
+                              leading: Icon(Icons.email,color:Color(0xff6875F5)),
                             ),
-                            const ListTile(
+                            ListTile(
                               title: Text("Phone Number"),
                               subtitle: Text("07701111111"),
                               leading: Icon(Icons.phone,color:Color(0xff6875F5)),
                             ),
-                            const ListTile(
+                            ListTile(
                               title: Text("About"),
                               subtitle: Text(
                                   "Abdulkareem mgbel farhan al-khalifa.\nbla bla bla bla bla bla bla bla bla bla bla."),

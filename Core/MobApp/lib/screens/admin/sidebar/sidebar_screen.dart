@@ -2,10 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:graduaiton_app/models/user.dart';
 import 'package:graduaiton_app/routes/routes.dart';
+import 'package:graduaiton_app/screens/admin/nav_bar/add_new/Teacher_add.dart';
+import 'package:graduaiton_app/screens/admin/nav_bar/absence_and_presence/absence_and_presence.dart';
+import 'package:graduaiton_app/screens/admin/profile/profile_screen.dart';
 import 'package:graduaiton_app/screens/admin/sidebar/sidebar_controller.dart';
-import 'package:graduaiton_app/screens/general/notification/general_notification.dart';
-
+import 'package:graduaiton_app/util/utilities.dart';
 
 class AdminSidebarScreen extends GetWidget {
   AdminSidebarScreen({Key? key}) : super(key: key);
@@ -34,7 +37,7 @@ class AdminSidebarScreen extends GetWidget {
                                       fontSize: 22,
                                       fontWeight: FontWeight.w800),
                                 ),
-                                onTap: () => Get.toNamed(Routes.adminProfile),
+                                onTap: () => Get.toNamed(Routes.adminProfile, arguments: controller.user),
                                 subtitle: Text(
                                   controller.user.typeString,
                                   style: TextStyle(

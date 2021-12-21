@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/Teacher/notification_controller.dart';
 import 'package:graduaiton_app/models/student_models/unit.dart';
-import 'package:graduaiton_app/screens/general/people/attendance.dart';
+import 'package:graduaiton_app/screens/general/attendance/attendance.dart';
 import 'package:graduaiton_app/screens/teacher/home_page/widgets/button.dart';
 import 'package:graduaiton_app/screens/teacher/layout.dart';
 import 'package:file_picker/file_picker.dart';
@@ -21,7 +21,7 @@ class TeacherNotification extends GetView {
         title: 'Notification',
         child: Column(children: [
           IconButton(
-              onPressed: () => Get.to(Attendance()), icon: Icon(Icons.ac_unit)),
+              onPressed: () => Get.to(Attendance()), icon: Icon(Icons.one_x_mobiledata)),
           GestureDetector(
             onTap: () => Get.to(Notif()),
             child: Container(
@@ -56,74 +56,97 @@ class TeacherNotification extends GetView {
                       ? ListView.builder(
                           itemCount: controller.notifications.length,
                           itemBuilder: (BuildContext context, int index) {
-                            return GestureDetector(
-                              // onTap: () => Get.to(() => StudentsProfileWidget(),
-                              // arguments: controller.students[index].id),
+                            return Padding(
+                              padding: const EdgeInsets.only(bottom: 10,left: 10,right: 10),
                               child: Card(
                                   elevation: 0,
                                   clipBehavior: Clip.antiAlias,
-                                  child: Container(
-                                      padding: const EdgeInsets.all(15),
-                                      decoration: BoxDecoration(
-                                        color: const Color(0xffd4d8ff),
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                      child: Column(
-                                        children: [
-                                          ListTile(
-                                              title: Container(
-                                                  margin: const EdgeInsets.only(
-                                                      bottom: 15),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Row(children: [
-                                                        Text(controller
-                                                            .notifications[
-                                                                index]
-                                                            .title),
-                                                      ]),
-                                                      Text(
-                                                        controller
-                                                            .notifications[
-                                                                index]
-                                                            .created_at,
-                                                        style: TextStyle(
-                                                            fontSize: 12),
-                                                      ),
-                                                    ],
-                                                  )),
-                                              subtitle: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Expanded(
-                                                      child: Text(
-                                                    controller
-                                                        .notifications[index]
-                                                        .body,
-                                                    
-                                                    style: TextStyle(
-                                                        color: Colors.black
-                                                            .withOpacity(0.6)),
-                                                  )),
-                                                  Row(
-                                                    children: List.from(
-                                                        controller
-                                                            .notifications[
-                                                                index]
-                                                            .units
-                                                            .map((unit) => 
-                                                                  Text(' - '+ unit.stage.name +' - ' +unit.name)
-                                                            )),
-                                                  ),
-                                                ],
-                                              )),
-                                        ],
-                                      ))),
+                                  child: Flexible(
+                                    child: Container(
+                                        padding: const EdgeInsets.all(15),
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xfffffff),
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        child: Column(
+                                          children: [
+                                            ListTile(
+                                                title: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Container(
+                                                        margin: const EdgeInsets
+                                                            .only(bottom: 15),
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Text('To :'),
+                                                            Column(
+                                                              children: List.from(
+                                                                  controller
+                                                                      .notifications[
+                                                                          index]
+                                                                      .units
+                                                                      .map((unit) =>
+                                                                          Text(
+                                                                            unit.stage.name +
+                                                                                ' - ' +
+                                                                                unit.name,
+                                                                            style:
+                                                                                TextStyle(fontSize: 12),
+                                                                          ))),
+                                                            ),
+                                                            Text(
+                                                              controller
+                                                                  .notifications[
+                                                                      index]
+                                                                  .created_at,
+                                                              style: TextStyle(
+                                                                  fontSize: 12),
+                                                            ),
+                                                          ],
+                                                        )),
+                                                    Divider(
+                                                      thickness: 1,
+                                                    ),
+                                                    Text(
+                                                      'Title : ' +
+                                                          controller
+                                                              .notifications[
+                                                                  index]
+                                                              .title,
+                                                    ),
+                                                    SizedBox(
+                                                      height: 15,
+                                                    ),
+                                                  ],
+                                                ),
+                                                subtitle: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Expanded(
+                                                        child: Text(
+                                                      'Note : ' +
+                                                          controller
+                                                              .notifications[
+                                                                  index]
+                                                              .body,
+                                                      style: TextStyle(
+                                                          color: Colors.black
+                                                              .withOpacity(
+                                                                  0.6)),
+                                                    )),
+                                                  ],
+                                                )),
+                                          ],
+                                        )),
+                                  )),
                             );
                           })
                       : SizedBox(

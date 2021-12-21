@@ -12,10 +12,10 @@ class TeacherLayoutScreen extends GetView<TeacherLayoutController> {
   final Widget child;
   final String title;
   @override
-   Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: Colors.grey[200],
+        backgroundColor: Colors.white,
         drawer: TeacherSidebarScreen(),
         appBar: PreferredSize(
             preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 0.15),
@@ -24,7 +24,16 @@ class TeacherLayoutScreen extends GetView<TeacherLayoutController> {
             ))),
         bottomNavigationBar: TeacherBottomNavigationBar(),
         // body: child
-        body: child
-        );
+        body: SafeArea(
+          child: ListView(
+            children: [
+              Container(
+                height: MediaQuery.of(context).size.height,
+                margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 20),
+                child: child,
+              )
+            ],
+          ),
+        ));
   }
 }

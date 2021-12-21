@@ -15,7 +15,7 @@ class Notif extends GetView {
         child: Padding(
           padding: EdgeInsets.all(6),
           child: Column(
-            children: [
+           children: [
               MyinputField(
                 title: 'Title',
                 hint: 'Enter your title',

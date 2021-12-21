@@ -17,78 +17,57 @@ class AdminStudentsScreen extends GetView {
   Widget build(BuildContext context) {
     return AdminLayoutScreen(
         title: 'Students',
-        child: Container(
-          margin: const EdgeInsets.all(15),
-          child: Obx(
-              () => Column(
-                children: [
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                            icon: const Icon(Icons.search),
-                            onPressed: () => controller.searchToggle.value = !controller.searchToggle.value,
-                            color: controller.searchToggle.value ? const Color(0xff6875F5) : Colors.black54
-                        ),
-                        IconButton(
-                            icon: const Icon(Icons.filter_alt),
-                            onPressed: () => controller.filterToggle.value = !controller.filterToggle.value,
-                            color: controller.filterToggle.value ? const Color(0xff6875F5) : Colors.black54
-                        )
-                      ]
-                  ),
-                  // Search Container
-                  controller.searchToggle.value ? StudentsSearchWidget() : Container(),
-                  const SizedBox(height: 10),
-                  controller.filterToggle.value ? StudentsDropDownWidget() : Container(),
-                  // DropDownWidget(),
-                  const SizedBox(height: 10),
-                  Expanded(
-                      child: Container(
-                        padding:
-                        const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: const Color.fromRGBO(255, 255, 255, .5)),
-                        child: GetBuilder<AdminStudentsController>(
-                            builder: (_) => controller.filteredStudents.isNotEmpty
-                                ? ListView.builder(
-                              itemCount: controller.filteredStudents.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return GestureDetector(
-                                    onTap: () => Get.toNamed(Routes.personProfile,
-                                        arguments:
+        child: Column(
+          children: [
+            // Search Container
+            StudentsSearchWidget(),
+            const SizedBox(height: 10),
+            StudentsDropDownWidget(),
+            // DropDownWidget(),
+            const SizedBox(height: 10),
+            Expanded(
+                child: Container(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: const Color.fromRGBO(255, 255, 255, .5)),
+              child: GetBuilder<AdminStudentsController>(
+                  builder: (_) => controller.filteredStudents.isNotEmpty
+                      ? ListView.builder(
+                          itemCount: controller.filteredStudents.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return GestureDetector(
+                                onTap: () => Get.toNamed(Routes.personProfile,
+                                    arguments:
                                         controller.filteredStudents[index].id),
-                                    child: StudentWidget(
-                                      key: ObjectKey(
-                                          controller.filteredStudents[index].id),
-                                      name: controller
-                                          .filteredStudents[index].user.name,
-                                      section_name: controller
-                                          .filteredStudents[index].section.name,
-                                      stage_name: controller
-                                          .filteredStudents[index].stage.name,
-                                      unit_name: controller
-                                          .filteredStudents[index].unit.name,
-                                      camera: "Camera",
-                                      time: "Time",
-                                      user_id: controller
-                                          .filteredStudents[index].user_id,
-                                    ));
-                              },
-                            )
-                                : SizedBox(
-                                width: double.infinity,
-                                child: Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10.0, vertical: 5.0),
-                                    child: const Text('Not Found',
-                                        style: TextStyle(fontSize: 24))))),
-                      ))
-                ],
-              )
-          )
-        )
-    );
+                                child: StudentWidget(
+                                  key: ObjectKey(
+                                      controller.filteredStudents[index].id),
+                                  name: controller
+                                      .filteredStudents[index].user.name,
+                                  section_name: controller
+                                      .filteredStudents[index].section.name,
+                                  stage_name: controller
+                                      .filteredStudents[index].stage.name,
+                                  unit_name: controller
+                                      .filteredStudents[index].unit.name,
+                                  camera: "Camera",
+                                  time: "Time",
+                                  user_id: controller
+                                      .filteredStudents[index].user_id,
+                                ));
+                          },
+                        )
+                      : SizedBox(
+                          width: double.infinity,
+                          child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10.0, vertical: 5.0),
+                              child: const Text('Not Found',
+                                  style: TextStyle(fontSize: 24))))),
+            ))
+          ],
+        ));
   }
 }

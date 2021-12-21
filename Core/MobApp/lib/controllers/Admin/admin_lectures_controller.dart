@@ -6,6 +6,7 @@ import 'package:graduaiton_app/util/utilities.dart';
 
 class AdminLecturesController extends GetxController {
   RxList lectures = <LectureModel>[].obs;
+  RxString search = 'asd'.obs;
 
   @override
   void onInit() async {

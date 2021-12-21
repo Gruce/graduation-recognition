@@ -106,9 +106,7 @@ class TeacherNotification extends GetView {
                                                     controller
                                                         .notifications[index]
                                                         .body,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    maxLines: 1,
+                                                    
                                                     style: TextStyle(
                                                         color: Colors.black
                                                             .withOpacity(0.6)),

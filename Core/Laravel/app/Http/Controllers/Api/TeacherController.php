@@ -99,7 +99,7 @@ class TeacherController extends Controller
         ]);
         if ($validator->fails())
             return response()->json(['data' => 'File extension Not available or file size is large'], 400);
-    
+
         $ids=$req->ids;
         if(gettype($req->ids)=='string'){
             $x= str_replace('[','',$req->ids);
@@ -118,9 +118,9 @@ class TeacherController extends Controller
 
         $task = $teacher->tasks()->create($data);
         if($req->livewire)
-            foreach ($req->toArray()['files'] as $key => $file) 
+            foreach ($req->toArray()['files'] as $key => $file)
                 self::add_file($task , $file , $teacher->id);
-    
+
         elseif ($req->hasFile('files'))
             foreach($req->file('files') as $i => $file)
                 self::add_file($task , $file , $teacher->id);
@@ -144,14 +144,16 @@ class TeacherController extends Controller
 
     public function tasks(){
         $teacher = auth()->user()->teacher()->first();
-        $tasks = $teacher->tasks()->with('files')->get();
-        
+        $tasks = $teacher->tasks()->with(['files','units'=>function($unit){
+          return $unit->with('stage')->get();
+        }])->get();
+
         return response()->json(['data' => $tasks], 200);
     }
 
     public function lectures($day = null){
         $teacher = auth()->user()->teacher()->first();
-
+        
         $units_lectures = $teacher->get_lectures($day)->get();
 
         return response()->json(['data' => $units_lectures], 200);

@@ -55,7 +55,7 @@ class NotificationController extends GetxController {
 
   void pick_files() async {
     FilePickerResult? result =
-    await FilePicker.platform.pickFiles(allowMultiple: true);
+        await FilePicker.platform.pickFiles(allowMultiple: true);
     if (result != null) {
       files_path = result.paths.map((path) => path!).toList();
       files.assignAll(result.files);

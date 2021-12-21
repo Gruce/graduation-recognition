@@ -14,7 +14,7 @@ class AdminBottomNavigationBar extends GetWidget {
           currentIndex: controller.selectedIndex.value,
           onTap: (index) => controller.onItemTap(index),
           selectedItemColor: const Color(0xff6875F5),
-          // unselectedItemColor: const Color(0xff6875F5),
+          unselectedItemColor: const Color(0xff6875F5),
           selectedFontSize: 13.0,
           showUnselectedLabels: false,
           items: controller.tabs

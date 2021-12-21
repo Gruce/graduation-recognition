@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/Teacher/notification_controller.dart';
+import 'package:graduaiton_app/models/student_models/unit.dart';
 import 'package:graduaiton_app/screens/general/people/attendance.dart';
 import 'package:graduaiton_app/screens/teacher/home_page/widgets/button.dart';
 import 'package:graduaiton_app/screens/teacher/layout.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:graduaiton_app/screens/teacher/notification/notif.dart';
 import 'package:intl/intl.dart';
+
 class TeacherNotification extends GetView {
   TeacherNotification({Key? key}) : super(key: key);
 
@@ -16,10 +18,10 @@ class TeacherNotification extends GetView {
 
   Widget build(BuildContext context) {
     return TeacherLayoutScreen(
-      title: 'Notification',
-      child: Column(
-        children: [
-          IconButton(onPressed: ()=>Get.to(Attendance()), icon: Icon(Icons.ac_unit)),
+        title: 'Notification',
+        child: Column(children: [
+          IconButton(
+              onPressed: () => Get.to(Attendance()), icon: Icon(Icons.ac_unit)),
           GestureDetector(
             onTap: () => Get.to(Notif()),
             child: Container(
@@ -45,16 +47,18 @@ class TeacherNotification extends GetView {
                   ],
                 )),
           ),
-          SizedBox(height: 10,),
-         Expanded(
+          SizedBox(
+            height: 10,
+          ),
+          Expanded(
               child: GetBuilder<NotificationController>(
                   builder: (_) => controller.notifications.isNotEmpty
                       ? ListView.builder(
                           itemCount: controller.notifications.length,
                           itemBuilder: (BuildContext context, int index) {
                             return GestureDetector(
-                                // onTap: () => Get.to(() => StudentsProfileWidget(),
-                                  // arguments: controller.students[index].id),
+                              // onTap: () => Get.to(() => StudentsProfileWidget(),
+                              // arguments: controller.students[index].id),
                               child: Card(
                                   elevation: 0,
                                   clipBehavior: Clip.antiAlias,
@@ -77,11 +81,18 @@ class TeacherNotification extends GetView {
                                                     children: [
                                                       Row(children: [
                                                         Text(controller
-                                                            .notifications[index].title
-                                                            ),
+                                                            .notifications[
+                                                                index]
+                                                            .title),
                                                       ]),
-                                                      
-                                                      Text(controller.notifications[index].created_at,style: TextStyle(fontSize: 12),),
+                                                      Text(
+                                                        controller
+                                                            .notifications[
+                                                                index]
+                                                            .created_at,
+                                                        style: TextStyle(
+                                                            fontSize: 12),
+                                                      ),
                                                     ],
                                                   )),
                                               subtitle: Row(
@@ -89,21 +100,27 @@ class TeacherNotification extends GetView {
                                                     MainAxisAlignment
                                                         .spaceBetween,
                                                 children: [
-                                                  Expanded(child: Text(
-                                                   controller
-                                                            .notifications[index].body
-                                                    ,
-                                                    overflow: TextOverflow.ellipsis,
+                                                  Expanded(
+                                                      child: Text(
+                                                    controller
+                                                        .notifications[index]
+                                                        .body,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
                                                     maxLines: 1,
                                                     style: TextStyle(
                                                         color: Colors.black
                                                             .withOpacity(0.6)),
                                                   )),
-                                                  Text(
-                                                    's',
-                                                    style: TextStyle(
-                                                        color: Colors.black
-                                                            .withOpacity(0.6)),
+                                                  Row(
+                                                    children: List.from(
+                                                        controller
+                                                            .notifications[
+                                                                index]
+                                                            .units
+                                                            .map((unit) => 
+                                                                  Text(' - '+ unit.stage.name +' - ' +unit.name)
+                                                            )),
                                                   ),
                                                 ],
                                               )),
@@ -117,15 +134,7 @@ class TeacherNotification extends GetView {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 10.0, vertical: 5.0),
                               child: const Text('Not Found',
-                                  style: TextStyle(fontSize: 24)
-                                  )
-                                  )
-                                  )
-                                  )
-                                  )
-
+                                  style: TextStyle(fontSize: 24))))))
         ]));
-        
   }
-  
 }

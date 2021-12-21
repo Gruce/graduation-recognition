@@ -75,7 +75,7 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                                         key: ObjectKey(controller1
                                             .filteredPeople[index].id),
                                         luctureName: "PHP",
-                                        hall: "Hall 9",
+                                        classroom: "Hall 9",
                                         startAt: "8:30 am",
                                         endAt: "10:30 am",
                                         lucturerName: "Hassan Alkhalidy",
@@ -128,8 +128,7 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                   ),
                 ],
               ),
-            )
-            ));
+            )));
   }
 }
 

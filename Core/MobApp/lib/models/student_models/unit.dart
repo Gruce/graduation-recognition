@@ -1,6 +1,5 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:graduaiton_app/models/schedule/lectures.dart';
 import 'package:graduaiton_app/models/student_models/section.dart';
 import 'package:graduaiton_app/models/student_models/stage.dart';
 
@@ -36,7 +35,6 @@ class UnitModel {
     if (json.containsKey('stage')) {
       stage = StageModel.fromJson(json['stage']);
     }
-    
   }
 
   Map<dynamic, dynamic> toJson() {

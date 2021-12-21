@@ -11,7 +11,6 @@ class LucuresWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-        controller.getLuctures(Get.arguments);
 
     return const AdminLayoutScreen(
         title: 'Luctures',

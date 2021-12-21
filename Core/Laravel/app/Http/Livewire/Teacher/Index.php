@@ -8,7 +8,7 @@ class Index extends Component
 {
     public $current_lecture;
     public function start(){
-        dd($this->current_lecture->toArray());
+        dd('fd');
     }
     
     public function render()

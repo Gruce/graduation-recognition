@@ -4,7 +4,9 @@ import 'package:graduaiton_app/bindings/auth_binding.dart';
 import 'package:graduaiton_app/bindings/general_bindings.dart';
 import 'package:graduaiton_app/bindings/student_bindings.dart';
 import 'package:graduaiton_app/bindings/teacher_bindings.dart';
+import 'package:graduaiton_app/controllers/Admin/admin_lectures_controller.dart';
 import 'package:graduaiton_app/screens/admin/home_page/home_screen.dart';
+import 'package:graduaiton_app/screens/admin/lectures/lectures_screen.dart';
 import 'package:graduaiton_app/screens/admin/people/people_screen.dart';
 import 'package:graduaiton_app/screens/admin/profile/profile_screen.dart';
 import 'package:graduaiton_app/screens/admin/students/students_screen.dart';
@@ -28,7 +30,8 @@ class Routes {
   static const adminProfile = '/admin/profile/';
   static const adminPeople = '/admin/people/';
   static const adminStudents = '/admin/students/';
-  static const adminNotification = '/general/notification/';
+  static const adminNotification = '/admin/notification/';
+  static const adminLectures = '/admin/lectures/';
 
   //Teach Routes
   static const teacherMain = '/teacher/';
@@ -82,6 +85,11 @@ class Routes {
         name: adminNotification,
         page: () => GeneralNotification(),
         binding: AdminProfileBinding()),
+
+    GetPage(
+        name: adminLectures,
+        page: () => AdminLecturesScreen(),
+        binding: AdminLecturesBinding()),
 
     // Teacher Routes
     GetPage(

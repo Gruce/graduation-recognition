@@ -10,8 +10,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AdminSidebarController extends GetxController {
   final List<Map<dynamic, dynamic>> tabs = [
     {"title": "People", "icon": Icons.groups_sharp, "route": '/admin/people/'},
-    {"title": "Students", "icon": Icons.people_sharp, "route": '/admin/students/'},
-    {"title": "Notification", "icon": Icons.notification_add, "route": '/general/notification/'},
+    {
+      "title": "Students",
+      "icon": Icons.people_sharp,
+      "route": '/admin/students/'
+    },
+    {
+      "title": "Notification",
+      "icon": Icons.notification_add,
+      "route": '/admin/notification/'
+    },
   ];
 
   late SharedPreferences prefs;
@@ -25,7 +33,6 @@ class AdminSidebarController extends GetxController {
     update();
     super.onInit();
   }
-
 
   void onItemTap(int index) {
     //Notify Bottom Navbar

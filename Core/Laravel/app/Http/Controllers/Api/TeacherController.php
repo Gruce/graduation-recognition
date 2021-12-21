@@ -125,7 +125,7 @@ class TeacherController extends Controller
             foreach($req->file('files') as $i => $file)
                 self::add_file($task , $file , $teacher->id);
 
-        $rsp = 200 ;
+        $rsp = 200;
         $msg = 'Done';
 
         switch ($req->to) {

@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:graduaiton_app/controllers/Admin/admin_students_controller.dart';
+import 'package:graduaiton_app/screens/admin/home_page/home_screen.dart';
+import 'package:graduaiton_app/screens/admin/people/people_screen.dart';
+import 'package:graduaiton_app/screens/admin/students/students_screen.dart';
 
 class AdminLayoutController extends GetxController {
   RxInt selectedIndex = 0.obs;
+
+  @override
+  void onInit() {
+    tabIndex(Get.currentRoute);
+    super.onInit();
+  }
 
   final List<Map<dynamic, dynamic>> tabs = [
     {"title": "Home", "icon": Icons.home, "route": '/admin/'},
@@ -22,7 +32,7 @@ class AdminLayoutController extends GetxController {
   void onItemTap(int index) {
     if (selectedIndex.value != index) {
       selectedIndex.value = index;
-      Get.toNamed(tabs[index]['route']);
+      Get.offAllNamed(tabs[index]['route']);
     }
   }
 }

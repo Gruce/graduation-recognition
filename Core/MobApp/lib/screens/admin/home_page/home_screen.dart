@@ -128,8 +128,7 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                   ),
                 ],
               ),
-            )
-            ));
+            )));
   }
 }
 

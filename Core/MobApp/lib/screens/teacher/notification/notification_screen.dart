@@ -1,5 +1,6 @@
 import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/Teacher/notification_controller.dart';
@@ -144,7 +145,7 @@ class TeacherNotification extends GetView {
                       ),
                     ),
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 15,
                   ),
                   Obx(() => Column(

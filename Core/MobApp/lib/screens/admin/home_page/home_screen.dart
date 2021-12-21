@@ -4,9 +4,9 @@ import 'package:graduaiton_app/controllers/Admin/admin_home_controller.dart';
 import 'package:graduaiton_app/controllers/Admin/admin_people_controller.dart';
 import 'package:graduaiton_app/controllers/Admin/admin_students_controller.dart';
 import 'package:graduaiton_app/routes/routes.dart';
+import 'package:graduaiton_app/screens/general/luctures/lecture_widget.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import '../layout.dart';
-import 'today_lucture_widget.dart';
 
 class AdminHomeScreen extends GetView<AdminHomeController> {
   AdminHomeScreen({Key? key}) : super(key: key);

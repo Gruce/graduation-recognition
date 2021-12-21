@@ -17,7 +17,7 @@ class _CameraAddState extends State<CameraAdd> {
         context: context,
         builder: (context) {
           final TextEditingController _textEditingController =
-              TextEditingController();
+          TextEditingController();
           bool isChecked = false;
           return StatefulBuilder(builder: (context, setState) {
             return AlertDialog(
@@ -81,7 +81,7 @@ class _CameraAddState extends State<CameraAdd> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Teacher"),
-        
+
       ),
       body: Center(
         // ignore: deprecated_member_use

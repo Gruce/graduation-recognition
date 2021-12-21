@@ -85,7 +85,15 @@ class StudentsUnitsScreen extends GetView {
                                                             .withOpacity(0.6)),
                                                   ),
 
-                                                  
+                                                  // Container(
+                                                  //   padding: const EdgeInsets.all(5),
+                                                  //   margin: const EdgeInsets.only(right: 5),
+                                                  //   decoration: BoxDecoration(
+                                                  //     borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                  //     color: const Color(0xffcccccc),
+                                                  //   ),
+                                                  //   child: Icon(Icons.arrow_right_alt_rounded),
+                                                  // ),
                                                 ],
                                               )),
                                         ],

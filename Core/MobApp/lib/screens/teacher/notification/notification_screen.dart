@@ -168,60 +168,17 @@ class TeacherNotification extends GetView {
                                       ),
                                       child: Row(
                                         children: [
-                                          ListTile(
-                                              title: Container(
-                                                  margin: const EdgeInsets.only(
-                                                      bottom: 15),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Row(children: [
-                                                        Text(controller
-                                                            .notifications[
-                                                                index]
-                                                            .title),
-                                                      ]),
-                                                      Text(
-                                                        controller
-                                                            .notifications[
-                                                                index]
-                                                            .created_at,
-                                                        style: TextStyle(
-                                                            fontSize: 12),
-                                                      ),
-                                                    ],
-                                                  )),
-                                              subtitle: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Expanded(
-                                                      child: Text(
-                                                    controller
-                                                        .notifications[index]
-                                                        .body,
-                                                    style: TextStyle(
-                                                        color: Colors.black
-                                                            .withOpacity(0.6)),
-                                                  )),
-                                                  Row(
-                                                    children: List.from(
-                                                        controller
-                                                            .notifications[
-                                                                index]
-                                                            .units
-                                                            .map((unit) => Text(
-                                                                ' - ' +
-                                                                    unit.stage
-                                                                        .name +
-                                                                    ' - ' +
-                                                                    unit.name))),
-                                                  ),
-                                                ],
-                                              )),
+                                          const Text("Select file",
+                                              style: TextStyle(
+                                                  color: Color(0xff6875F5))),
+                                          IconButton(
+                                            onPressed: () =>
+                                                controller.pick_files(),
+                                            icon: const Icon(
+                                              Icons.upload_file,
+                                              color: Color(0xff6875F5),
+                                            ),
+                                          ),
                                         ],
                                       )),
                                   Container(

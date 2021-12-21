@@ -51,6 +51,9 @@ class Teacher extends Model
                         return $q->where('name' , 'LIKE' , $day);
                     })->with(
                         [
+                            'unit'=> function($unit){
+                              return $unit->with(['stage:id,name','section:id,name'])->get();
+                            },
                             'classroom' => function($classroom){
                                 return $classroom->with('cameras')->get();
                             },

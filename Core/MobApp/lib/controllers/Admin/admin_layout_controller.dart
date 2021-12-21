@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:graduaiton_app/controllers/Admin/admin_students_controller.dart';
-import 'package:graduaiton_app/screens/admin/home_page/home_screen.dart';
-import 'package:graduaiton_app/screens/admin/people/people_screen.dart';
-import 'package:graduaiton_app/screens/admin/students/students_screen.dart';
 
 class AdminLayoutController extends GetxController {
   RxInt selectedIndex = 0.obs;
@@ -18,7 +14,7 @@ class AdminLayoutController extends GetxController {
     {"title": "Home", "icon": Icons.home, "route": '/admin/'},
     {"title": "People", "icon": Icons.groups, "route": '/admin/people/'},
     {"title": "Students", "icon": Icons.people, "route": '/admin/students/'},
-
+    {"title": "Lectures", "icon": Icons.schedule, "route": '/admin/lectures/'},
   ].obs;
 
   void tabIndex(String route) {

@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:graduaiton_app/models/person.dart';
 import 'package:graduaiton_app/models/user.dart';
@@ -19,6 +20,7 @@ class PersonProfileController extends GetxController {
       Map data = jsonDecode(res.body)['data'];
       person = PersonModel.fromJson(data);
       imageURL.value = jsonDecode(res.body)['image'];
+      print(person.user.email);
     }
     update();
   }

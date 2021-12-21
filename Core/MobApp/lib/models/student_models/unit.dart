@@ -3,7 +3,6 @@
 import 'package:graduaiton_app/models/student_models/section.dart';
 import 'package:graduaiton_app/models/student_models/stage.dart';
 
-
 class UnitModel {
   int id = 0;
   String name = '';

@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:graduaiton_app/controllers/Admin/admin_students_controller.dart';
 
-// ignore: must_be_immutable
-class StudentsSearchWidget extends GetView {
-  StudentsSearchWidget({Key? key}) : super(key: key);
-
-  @override
-  AdminStudentsController controller = Get.put(AdminStudentsController());
+class LuctureSearchWidget extends StatelessWidget {
+  LuctureSearchWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +28,7 @@ class StudentsSearchWidget extends GetView {
           ),
           Expanded(
             child: TextField(
-              onChanged: (value) => controller.search(value),
+              // onChanged: (value) => controller.search(value),
               keyboardType: TextInputType.text,
               decoration: const InputDecoration(
                 border: InputBorder.none,

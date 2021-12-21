@@ -51,7 +51,7 @@ class AdminNotificationController extends GetxController {
 
   void pick_files() async {
     FilePickerResult? result =
-    await FilePicker.platform.pickFiles(allowMultiple: true);
+        await FilePicker.platform.pickFiles(allowMultiple: true);
     if (result != null) {
       files_path = result.paths.map((path) => path!).toList();
       files.assignAll(result.files);
@@ -76,7 +76,7 @@ class AdminNotificationController extends GetxController {
           'body': bodyController.text,
           'to': '1',
           'ids': _units.toString(),
-          'deadline':'2021-12-15T23:24'
+          'deadline': '2021-12-15T23:24'
         },
         files_path);
     files.clear();

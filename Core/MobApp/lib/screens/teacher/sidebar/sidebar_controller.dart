@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class TeacherSidebarController extends GetxController {
   final List<Map<dynamic, dynamic>> tabs = [
-    
+
     {"title": "Notification", "icon": Icons.notification_add, "route": '/teacher/notification/'},
   ];
 

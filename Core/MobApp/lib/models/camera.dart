@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 class CameraModel {
   int id = 0;
   String description = '';
+  int classroom_id = 0;
   int state = 1;
   String source = '0';
 
@@ -13,7 +14,6 @@ class CameraModel {
     description = json['description'];
     state = json['state'];
     source = json['source'];
-
   }
 
   Map<dynamic, dynamic> toJson() {

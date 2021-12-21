@@ -12,7 +12,7 @@ class StudentsSearchWidget extends GetView {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(1),
         border: Border.all(
@@ -44,7 +44,7 @@ class StudentsSearchWidget extends GetView {
                 isDense: true,
               ),
               style: const TextStyle(
-                fontSize: 16.0,
+                fontSize: 14.0,
                 color: Colors.black,
               ),
             ),

@@ -13,19 +13,19 @@ class TeacherBottomNavigationBar extends GetWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() => BottomNavigationBar(
-          currentIndex: controller.selectedIndex.value,
-          onTap: (index) => controller.onItemTap(index),
-          selectedItemColor: const Color(0xff6875F5),
-          selectedFontSize: 13.0,
-          showUnselectedLabels: false,
-          items: controller.tabs
-              .map((element) => BottomNavigationBarItem(
-                    icon: Icon(
-                      element['icon'],
-                    ),
-                    label: element['title'],
-                  ))
-              .toList(),
-        ));
+      currentIndex: controller.selectedIndex.value,
+      onTap: (index) => controller.onItemTap(index),
+      selectedItemColor: const Color(0xff6875F5),
+      selectedFontSize: 13.0,
+      showUnselectedLabels: false,
+      items: controller.tabs
+          .map((element) => BottomNavigationBarItem(
+        icon: Icon(
+          element['icon'],
+        ),
+        label: element['title'],
+      ))
+          .toList(),
+    ));
   }
 }

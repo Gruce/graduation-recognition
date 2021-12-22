@@ -1,9 +1,7 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/models/schedule/lecture.dart';
 import 'package:graduaiton_app/screens/general/luctures/lucture_search_widget.dart';
-import 'package:graduaiton_app/util/utilities.dart';
 
 class Property {
   String name;
@@ -11,16 +9,20 @@ class Property {
   Icon icon;
   Widget widget;
   Property(
-      {required this.name,
+      {
+        required this.name,
       required this.value,
       required this.icon,
-      required this.widget});
-}
+      required this.widget
+      });
+  }
 
 class LucturesController extends GetxController {
   List<LectureModel> lectures = <LectureModel>[];
   List<LectureModel> filteredLectures = <LectureModel>[];
   List<Property> properties = <Property>[].obs;
+
+  RxString textSearch = "".obs;
 
   @override
   void onInit() {
@@ -29,30 +31,45 @@ class LucturesController extends GetxController {
         name: 'search',
         value: false,
         icon: const Icon(Icons.search),
-        widget: LuctureSearchWidget(),
+        widget: LuctureSearchWidget(controller: this),
       ),
       Property(
         name: 'stage',
         value: false,
         icon: const Icon(Icons.storage),
-        widget: LuctureSearchWidget(),
+        widget: LuctureSearchWidget(controller: this),
       ),
       Property(
         name: 'unit',
         value: false,
         icon: const Icon(Icons.ac_unit),
-        widget: LuctureSearchWidget(),
+        widget: LuctureSearchWidget(controller: this),
       ),
       Property(
         name: 'day',
         value: false,
         icon: const Icon(Icons.date_range),
-        widget: LuctureSearchWidget(),
+        widget: LuctureSearchWidget(controller: this),
       ),
     ]);
 
     filteredLectures.assignAll(lectures);
     super.onInit();
+  }
+
+  void filter(){
+    // Search Filter
+    if (textSearch.value.isEmpty) {
+      filteredLectures.assignAll(lectures);
+    } else {
+      filteredLectures.assignAll(lectures
+          .where((lecture) =>
+          lecture.teacher.user.name.toLowerCase().contains(textSearch.value.toLowerCase()))
+          .toList());
+    }
+
+    // Another Filter
+    update();
   }
 
   void toggleProperty(Property p) {

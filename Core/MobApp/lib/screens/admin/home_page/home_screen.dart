@@ -5,6 +5,7 @@ import 'package:graduaiton_app/controllers/Admin/admin_people_controller.dart';
 import 'package:graduaiton_app/controllers/Admin/admin_students_controller.dart';
 import 'package:graduaiton_app/routes/routes.dart';
 import 'package:graduaiton_app/screens/general/luctures/lecture_widget.dart';
+import 'package:graduaiton_app/screens/general/luctures/luctures_wiget.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import '../layout.dart';
 
@@ -53,46 +54,13 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                             TextStyle(color: Color(0xff6875F5), fontSize: 18),
                         textAlign: TextAlign.center,
                       )),
-                  Expanded(
-                      child: Container(
-                    // padding:
-                    // const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: const Color.fromRGBO(255, 255, 255, .5),
-                    ),
-                    child: GetBuilder<AdminPeopleController>(
-                        builder: (_) => controller1.filteredPeople.isNotEmpty
-                            ? ListView.builder(
-                                itemCount: controller1.filteredPeople.length,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return GestureDetector(
-                                      onTap: () => Get.toNamed(
-                                          Routes.personProfile,
-                                          arguments: controller1
-                                              .filteredPeople[index].id),
-                                      child: LuctureWidget(
-                                        key: ObjectKey(controller1
-                                            .filteredPeople[index].id),
-                                        luctureName: "PHP",
-                                        classroom: "Hall 9",
-                                        startAt: "8:30 am",
-                                        endAt: "10:30 am",
-                                        lucturerName: "Hassan Alkhalidy",
-                                        section: "Computer Science",
-                                        stage: "First Stage",
-                                        unit: "A",
-                                      ));
-                                },
-                              )
-                            : SizedBox(
-                                width: double.infinity,
-                                child: Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10.0, vertical: 5.0),
-                                    child: const Text('Not Found',
-                                        style: TextStyle(fontSize: 24))))),
-                  )),
+                  Obx(() => controller.lectures.isNotEmpty
+                  ? Expanded(flex: 1,
+                    child: LucturesWidget(
+                      lectures: controller.lectures,
+                      today: true,
+                    )
+                  ): Container())
                 ],
               ),
               body: Column(

@@ -19,6 +19,7 @@ class AdminLecturesScreen extends GetView {
         child: Obx(() => controller.lectures.isNotEmpty
             ? LucturesWidget(
                 lectures: controller.lectures,
+                today: false,
               )
             : Container()));
   }

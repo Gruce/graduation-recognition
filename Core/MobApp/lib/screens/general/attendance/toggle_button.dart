@@ -12,7 +12,7 @@ class AnimatedToggle extends StatefulWidget {
     required this.values,
     required this.onToggleCallback,
     this.backgroundColor = const Color(0xFFe7e7e8),
-    this.buttonColor = const Color(0xFFFFFFFF),
+    this.buttonColor = const Color(0xFF61BA67),
     this.textColor = const Color(0xFF000000),
   });
   @override
@@ -43,7 +43,7 @@ class _AnimatedToggleState extends State<AnimatedToggle> {
               width: Get.width * 0.33,
               height: Get.width * 0.12,
               decoration: ShapeDecoration(
-                color: widget.backgroundColor,
+                color: Color(0xFFF67070),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(Get.width * 0.1),
                 ),
@@ -77,7 +77,7 @@ class _AnimatedToggleState extends State<AnimatedToggle> {
               width: Get.width * 0.17,
               height: Get.width * 0.125,
               decoration: ShapeDecoration(
-                color: widget.buttonColor,
+                color: const Color(0xFF40C162),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(Get.width * 0.1),
                 ),
@@ -88,7 +88,7 @@ class _AnimatedToggleState extends State<AnimatedToggle> {
                   fontFamily: 'Rubik',
                   fontSize: Get.width * 0.030,
                   color: widget.textColor,
-                  fontWeight: FontWeight.bold,
+                  
                 ),
               ),
               alignment: Alignment.center,

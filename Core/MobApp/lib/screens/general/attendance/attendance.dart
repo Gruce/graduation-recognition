@@ -69,44 +69,44 @@ class Attendance extends GetWidget {
                                                         MainAxisAlignment
                                                             .spaceBetween,
                                                     children: [
-                                                      Row(children: [
+                                                      
                                                         Text('Hassan Hazim'),
-                                                      ]),
-                                                      Container(
-                                                        height: 20,
-                                                        width: 78,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color:
-                                                              Color(0xFFBAF3D2),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      6.0),
+                                                        Container(
+                                                          height: 20,
+                                                          width: 129,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: Color(
+                                                                0xFFBAF3D2),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        6.0),
+                                                          ),
+                                                          child: AnimatedToggle(
+                                                            values: [
+                                                              'Present',
+                                                              'Absent'
+                                                            ],
+                                                            onToggleCallback:
+                                                                (value) {
+                                                              // setState(() {
+                                                              //   _toggleValue =
+                                                              //       value;
+                                                              // });
+                                                            },
+                                                            buttonColor:
+                                                                const Color(
+                                                                    0xFF0A3157),
+                                                            backgroundColor:
+                                                                const Color(
+                                                                    0xFFB5C1CC),
+                                                            textColor:
+                                                                const Color(
+                                                                    0xFFFFFFFF),
+                                                          ),
                                                         ),
-                                                        child: AnimatedToggle(
-                                                          values: [
-                                                            'English',
-                                                            'Arabic'
-                                                          ],
-                                                          onToggleCallback:
-                                                              (value) {
-                                                            // setState(() {
-                                                            //   _toggleValue =
-                                                            //       value;
-                                                            // });
-                                                          },
-                                                          buttonColor:
-                                                              const Color(
-                                                                  0xFF0A3157),
-                                                          backgroundColor:
-                                                              const Color(
-                                                                  0xFFB5C1CC),
-                                                          textColor:
-                                                              const Color(
-                                                                  0xFFFFFFFF),
-                                                        ),
-                                                      ),
+                                                      
                                                     ],
                                                   )),
                                               subtitle: Row(

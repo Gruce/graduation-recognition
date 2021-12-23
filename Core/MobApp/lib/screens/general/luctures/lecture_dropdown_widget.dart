@@ -9,14 +9,14 @@ import 'luctures_controller.dart';
 
 // ignore: must_be_immutable
 class LuctureDropDownWidget extends GetView {
-  LuctureDropDownWidget({Key? key, required this.controlleer,required this.controlleeer}) : super(key: key);
+  LuctureDropDownWidget({Key? key, required this.controlleer}) : super(key: key);
   @override
   LecturesSectionsController controller = Get.put(LecturesSectionsController());
   LecturesStagesController stageController = Get.put(LecturesStagesController());
   LecturesUnitsController unitController = Get.put(LecturesUnitsController());
 
   LucturesController controlleer;
-  LecturesSectionsController controlleeer;
+  // LecturesSectionsController controlleeer;
   @override
   Widget build(BuildContext context) {
     return Obx(

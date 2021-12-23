@@ -43,7 +43,7 @@ class LucturesController extends GetxController {
         name: 'stage',
         value: false,
         icon: const Icon(Icons.storage),
-        widget: LuctureDropDownWidget(controlleer: this, controlleeer: this,),
+        widget: LuctureDropDownWidget(controlleer: this),
       ),
       Property(
         name: 'unit',

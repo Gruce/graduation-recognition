@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/models/schedule/lecture.dart';
+import 'package:graduaiton_app/models/student_models/stage.dart';
 import 'package:graduaiton_app/screens/general/luctures/lucture_search_widget.dart';
+
+import 'lecture_dropdown_widget.dart';
 
 class Property {
   String name;
@@ -21,8 +24,11 @@ class LucturesController extends GetxController {
   List<LectureModel> lectures = <LectureModel>[];
   List<LectureModel> filteredLectures = <LectureModel>[];
   List<Property> properties = <Property>[].obs;
-
   RxString textSearch = "".obs;
+
+  // List<LectureModel> filteredStages = <LectureModel>[];
+  // RxList stages = <StageModel>[].obs;
+  // RxInt stageSelectedIndex = 0.obs;
 
   @override
   void onInit() {
@@ -37,7 +43,7 @@ class LucturesController extends GetxController {
         name: 'stage',
         value: false,
         icon: const Icon(Icons.storage),
-        widget: LuctureSearchWidget(controller: this),
+        widget: LuctureDropDownWidget(controlleer: this, controlleeer: this,),
       ),
       Property(
         name: 'unit',
@@ -77,4 +83,18 @@ class LucturesController extends GetxController {
     properties[i].value = !properties[i].value;
     update();
   }
+
+  // void filterByStage(index) {
+  //   stageSelectedIndex.value = index;
+  //   LectureModel stage = filteredStages[index];
+  //   print(filteredStages);
+
+  //   if (stage.id == -1) {
+  //     filteredLectures.assignAll(lectures);
+  //   } else {
+  //     filteredLectures.assignAll(lectures
+  //         .where((lecture) => lecture.unit.stage_id == stage.id));
+  //   }
+  //   update();
+  // }
 }

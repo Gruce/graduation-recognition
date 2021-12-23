@@ -45,7 +45,6 @@ class AdminStudentsController extends GetxController {
     if (text.isEmpty) {
       filteredStudents.assignAll(students);
     } else {
-      print(filteredStudents);
       filteredStudents.assignAll(students
           .where((student) =>
           student.user.name.toLowerCase().contains(text.toLowerCase()))

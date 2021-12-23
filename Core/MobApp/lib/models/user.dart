@@ -10,8 +10,12 @@ class UserModel {
   UserModel.fromJson(Map<dynamic, dynamic> json) {
     id = json['id'];
     name = json['name'];
-    email = json['email'];
-    type = json['type'];
+    if (json.containsKey('email')) {
+      email = json['email'];
+    }
+    if (json.containsKey('type')) {
+      type = json['type'];
+    }
     typeString = getTypeString(type);
   }
 
@@ -24,8 +28,8 @@ class UserModel {
     return data;
   }
 
-  String getTypeString(int type){
-    switch (type){
+  String getTypeString(int type) {
+    switch (type) {
       case 1:
         return "Admin";
       case 2:

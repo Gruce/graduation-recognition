@@ -13,7 +13,7 @@ class Attendance extends GetWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-          margin: EdgeInsets.only(left: 10, right: 10, top: 30),
+          margin: const EdgeInsets.only(left: 10, right: 10, top: 30),
           child: Column(
             children: [
               Container(
@@ -27,7 +27,7 @@ class Attendance extends GetWidget {
                           fontWeight: FontWeight.bold,
                           color: Colors.grey[400]),
                     ),
-                    Text(
+                    const Text(
                       "Today",
                       style: TextStyle(
                         fontSize: 30,
@@ -49,7 +49,7 @@ class Attendance extends GetWidget {
                                   elevation: 0,
                                   clipBehavior: Clip.antiAlias,
                                   shape: RoundedRectangleBorder(
-                                    side: BorderSide(
+                                    side: const BorderSide(
                                         color: Color.fromRGBO(249, 249, 249, 1),
                                         width: 0.6),
                                     borderRadius: BorderRadius.circular(8),
@@ -67,7 +67,7 @@ class Attendance extends GetWidget {
                                                         MainAxisAlignment
                                                             .spaceBetween,
                                                     children: [
-                                                      Row(children: [
+                                                      Row(children: const [
                                                         Text('Hassan Hazim'),
                                                       ]),
                                                       Container(
@@ -75,14 +75,14 @@ class Attendance extends GetWidget {
                                                         width: 78,
                                                         decoration:
                                                             BoxDecoration(
-                                                          color:
-                                                              Color(0xFFBAF3D2),
+                                                          color: const Color(
+                                                              0xFFBAF3D2),
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(
                                                                       6.0),
                                                         ),
-                                                        child: Center(
+                                                        child: const Center(
                                                           child: Text(
                                                             'Present',
                                                             style: TextStyle(
@@ -116,14 +116,15 @@ class Attendance extends GetWidget {
                                                       height: 20,
                                                       width: 100,
                                                       decoration: BoxDecoration(
-                                                        color: Color.fromRGBO(
+                                                        color: const Color
+                                                                .fromRGBO(
                                                             243, 243, 243, 1),
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(6.0),
                                                       ),
                                                       child: Row(
-                                                        children: [
+                                                        children: const [
                                                           Text(
                                                             ' Absences : ',
                                                             style: TextStyle(

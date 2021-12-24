@@ -31,7 +31,6 @@ class AdminHomeController extends GetxController {
 
   void fetch() async {
     var res = await Utilities.httpGet('lectures/' + DateFormat('EEEE').format(DateTime.now()));
-    print('lectures/' + DateFormat('EEEE').format(DateTime.now()));
     if (res.statusCode == 200) {
       List response = json.decode(res.body)['data'];
       for (var element in response) {

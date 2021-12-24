@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 import 'package:get/get.dart';
+import 'package:graduaiton_app/models/schedule/day.dart';
 import 'package:graduaiton_app/models/schedule/lecture.dart';
 import 'package:graduaiton_app/models/student_models/section.dart';
 import 'package:graduaiton_app/models/student_models/stage.dart';
@@ -13,7 +14,7 @@ import 'package:http/http.dart' as http;
 
 class DaysFilterController extends GetxController {
   late SharedPreferences prefs;
-  RxList days = <SectionModel>[].obs;
+  RxList days = <LectureModel>[].obs;
   RxInt daySelectedIndex = 0.obs;
 
   LucturesController lucturesController = Get.put(LucturesController());
@@ -34,9 +35,11 @@ class DaysFilterController extends GetxController {
     var res = await Utilities.httpGet('lectures');
     if (res.statusCode == 200) {
       List response = json.decode(res.body)['data'];
-      days.add(LectureModel.fromJson({"id": -1, "name": "Weekly"}));
+      days.add(DayModel.fromJson({"id": -1, "name": "Weekly"}));
       for (var element in response) {
-        days.add(LectureModel.fromJson(element));
+        print(element);
+        days.add(DayModel.fromJson(element));
+        print(days);
       }
     }
     update();

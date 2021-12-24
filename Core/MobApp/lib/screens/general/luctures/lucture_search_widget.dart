@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class LuctureSearchWidget extends StatelessWidget {
-  LuctureSearchWidget({Key? key}) : super(key: key);
+import 'luctures_controller.dart';
+
+class LuctureSearchWidget extends GetWidget {
+  LuctureSearchWidget({Key? key, required this.controller}) : super(key: key);
+  
+  LucturesController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +32,7 @@ class LuctureSearchWidget extends StatelessWidget {
           ),
           Expanded(
             child: TextField(
-              // onChanged: (value) => controller.search(value),
+              onChanged: (value) => {controller.textSearch.value = value, controller.filter()},
               keyboardType: TextInputType.text,
               decoration: const InputDecoration(
                 border: InputBorder.none,

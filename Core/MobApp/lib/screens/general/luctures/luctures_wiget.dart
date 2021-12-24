@@ -6,16 +6,19 @@ import 'lecture_widget.dart';
 import 'luctures_controller.dart';
 
 class LucturesWidget extends StatelessWidget {
-  LucturesWidget({Key? key, this.lectures}) : super(key: key);
+  LucturesWidget({Key? key, this.lectures, required this.today}) : super(key: key);
 
   final lectures;
+  final bool today;
   LucturesController controller = Get.put(LucturesController());
 
   @override
   Widget build(BuildContext context) {
     controller.filteredLectures.assignAll(lectures);
+    controller.lectures.assignAll(lectures);
 
     return Column(children: [
+      today ? Container() :
       GetBuilder<LucturesController>(
         builder: (_) => Column(
           children: [
@@ -44,15 +47,16 @@ class LucturesWidget extends StatelessWidget {
           ],
         ),
       ),
-      Expanded(
-        child: Container(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: const Color.fromRGBO(255, 255, 255, .5)),
-            child: controller.filteredLectures.isNotEmpty
-                ? ListView.builder(
+       GetBuilder<LucturesController>(
+        builder: (_) => controller.filteredLectures.isNotEmpty
+          ? Expanded(
+              child: Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 10.0, vertical: 5.0),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: const Color.fromRGBO(255, 255, 255, .5)),
+                  child: ListView.builder(
                     itemCount: controller.filteredLectures.length,
                     itemBuilder: (BuildContext context, int index) {
                       return LuctureWidget(
@@ -71,15 +75,15 @@ class LucturesWidget extends StatelessWidget {
                         unit: controller.filteredLectures[index].unit.name,
                       );
                     },
-                  )
-                : SizedBox(
-                    width: double.infinity,
-                    child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10.0, vertical: 5.0),
-                        child: const Text('Not Found',
-                            style: TextStyle(fontSize: 24))))),
-      )
+                  )),
+            )
+          : SizedBox(
+              width: double.infinity,
+              child: Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 10.0, vertical: 5.0),
+                  child:
+                      const Text('Not Found', style: TextStyle(fontSize: 24)))))
     ]);
   }
 }

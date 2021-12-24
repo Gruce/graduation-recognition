@@ -52,7 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'students'] ,function(){
         Route::get('/', [StudentController::class, 'students']);
     });
-    
+
 
     ## Trackings ##
     Route::group(['prefix' => 'tracking'] ,function(){
@@ -70,7 +70,14 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/lectures/{day?}' , [TeacherController::class, 'lectures']);
         Route::post('/send-task' , [TeacherController::class, 'send_task']);
     });
-    
+
+
+     ## Student ##
+     Route::group(['prefix' => 'student'] ,function(){
+
+      Route::get('/subjects', [StudentController::class, 'subjects']);
+
+  });
 
 
 

@@ -91,12 +91,7 @@ class StudentSidebarScreen extends GetWidget {
                                       color: Colors.white,
                                     ),
                                     selected: true,
-                                    // onTap: () => {
-                                    //   Navigator.push(
-                                    //             context,
-                                    // MaterialPageRoute(builder: (context) => {}()),
-                                    //                       )
-                                    // },
+                                    onTap: () => {controller.onItemTap(i)},
                                   ),
                                 )),
                                 Card(

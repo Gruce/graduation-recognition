@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/Teacher/notification_controller.dart';
 import 'package:graduaiton_app/screens/general/attendance/attendance.dart';
-import 'package:graduaiton_app/screens/teacher/layout.dart';
-import 'package:graduaiton_app/screens/teacher/notification/notif.dart';
 
+import 'package:graduaiton_app/screens/teacher/layout.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:graduaiton_app/screens/teacher/notification/notif.dart';
+import 'package:intl/intl.dart';
 
 class TeacherNotification extends GetView {
   TeacherNotification({Key? key}) : super(key: key);
@@ -30,7 +33,7 @@ class TeacherNotification extends GetView {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Send Notification",
+                     Text("Send Notification",
                         style: TextStyle(
                             color: Colors.white, fontWeight: FontWeight.bold)),
                     SizedBox(
@@ -151,7 +154,12 @@ class TeacherNotification extends GetView {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 10.0, vertical: 5.0),
                               child: const Text('Not Found',
-                                  style: TextStyle(fontSize: 24))))))
-        ]));
+                                  style: TextStyle(fontSize: 24))
+                                  )
+                                  )
+                                  )
+                                  )
+        ])
+        );
   }
 }

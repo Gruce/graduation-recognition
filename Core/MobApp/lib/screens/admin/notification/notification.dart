@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/Admin/admin_notification_controller.dart';
+import 'package:graduaiton_app/controllers/Admin/structure/admin_sections_controller.dart';
 import 'package:graduaiton_app/screens/teacher/home_page/widgets/button.dart';
 
 class AdminNotification extends GetView {
   AdminNotification({Key? key}) : super(key: key);
 
   @override
-
   AdminNotificationController controller =
       Get.put(AdminNotificationController());
+  //      @override
+  // AdminSectionsController controlleer =
+  //     Get.put(AdminSectionsController());
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,33 +98,199 @@ class AdminNotification extends GetView {
                     ),
                   ),
                   const SizedBox(height: 5),
-                  Obx(
-                    () => Container(
-                      margin: const EdgeInsets.only(left: 5, right: 5),
-                      padding: const EdgeInsets.only(left: 5),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Colors.grey[200],
-                      ),
-                      child: ListView(
-                        shrinkWrap: true,
-                        children: controller.lucturerCheckbox.keys
-                            .map((dynamic key) {
-                          return CheckboxListTile(
-                            title: Text(
-                              controller.lectures[key].teacher.user.name,
-                              style: TextStyle(fontSize: 15),
-                            ),
-                            value: controller.lucturerCheckbox.value[key],
-                            activeColor: const Color(0xff6875F5),
-                            checkColor: Colors.white,
-                            onChanged: (bool? value) =>
-                                controller.check(key, value),
-                          );
-                        }).toList(),
-                      ),
-                    ),
-                  ),
+                  Column(children: [
+                        GestureDetector(
+                            onTap: () => controller.pick_files(),
+                            child: Container(
+                                margin:
+                                    const EdgeInsets.only(left: 5, right: 5),
+                                padding: const EdgeInsets.only(left: 5),
+                                decoration: BoxDecoration(
+                                    color: Colors.grey[200],
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(15))),
+                                child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                            color: Colors.grey[200],
+                                          ),
+                                          // child: Row(
+                                          //   children: [
+                                              // CheckboxListTile(
+                                              //   title: const Text(
+                                              //     "All Teachers",
+                                              //     style: TextStyle(
+                                              //         fontSize: 15),
+                                              //   ),
+                                              //   value: controller
+                                              //       .lucturerCheckbox
+                                              //       .value[key],
+                                              //   activeColor:
+                                              //       const Color(0xff6875F5),
+                                              //   checkColor: Colors.white,
+                                              //   onChanged: (bool? value) =>
+                                              //       controller.check(
+                                              //           key, value),
+                                              // ),
+                                              // CheckboxListTile(
+                                              //   title: const Text(
+                                              //     "All Student",
+                                              //     style: TextStyle(
+                                              //         fontSize: 15),
+                                              //   ),
+                                              //   value: controller
+                                              //       .lucturerCheckbox
+                                              //       .value[key],
+                                              //   activeColor:
+                                              //       const Color(0xff6875F5),
+                                              //   checkColor: Colors.white,
+                                              //   onChanged: (bool? value) =>
+                                              //       controller.check(
+                                              //           key, value),
+                                              // ),
+                                              //  CheckboxListTile(
+                                              //   title: const Text(
+                                              //     "All Section",
+                                              //     style: TextStyle(
+                                              //         fontSize: 15),
+                                              //   ),
+                                              //   value: controller
+                                              //       .lucturerCheckbox
+                                              //       .value[key],
+                                              //   activeColor:
+                                              //       const Color(0xff6875F5),
+                                              //   checkColor: Colors.white,
+                                              //   onChanged: (bool? value) =>
+                                              //       controller.check(
+                                              //           key, value),
+                                              // ),
+                                          //   ],
+                                          // )
+                                          ),
+                                    ])))
+                      ]),
+    //                    Obx(
+    //   () => Container(
+    //       decoration: BoxDecoration(
+    //           borderRadius: BorderRadius.circular(15),
+    //           color: const Color.fromRGBO(255, 255, 255, .3)),
+    //       child: Row(
+    //           mainAxisAlignment: MainAxisAlignment.center,
+    //           children: <Widget>[
+                
+    //             //select section
+    //             controller.sections.isNotEmpty
+    //                 ? Container(
+    //                     child: DropdownButton(
+    //                     underline: Container(),
+    //                     // Initial Value
+    //                     value: controller.sectionSelectedIndex.value,
+    //                     // Down Arrow Icon
+    //                     icon: const Icon(Icons.keyboard_arrow_down),
+    //                     // Array list of items
+    //                     items:
+    //                         controller.sections.asMap().keys.map((int index) {
+    //                       return DropdownMenuItem(
+    //                         value: index,
+    //                         child: Text(controller.sections[index].name,
+    //                             style: const TextStyle(
+    //                                 color: Color(0xff6875F5), fontSize: 12.3)),
+    //                       );
+    //                     }).toList(),
+    //                     onChanged: (Object? index) => {
+    //                       controller
+    //                           .filterBySection(int.parse(index.toString()))
+    //                     },
+    //                   ))
+    //                 : const Text("Loading"),
+    //             // const Text("Stage "),
+
+    //             //select teacher
+    //             controllerr.stages.isNotEmpty
+    //                 ? DropdownButton(
+    //                     underline: Container(),
+    //                     // Initial Value
+    //                     value: controllerr.stageSelectedIndex.value,
+    //                     // Down Arrow Icon
+    //                     icon: const Icon(Icons.keyboard_arrow_down),
+    //                     // Array list of items
+    //                     items: controllerr.filteredStages
+    //                         .asMap()
+    //                         .keys
+    //                         .map((int index) {
+    //                       return DropdownMenuItem(
+    //                         value: index,
+    //                         child: Text(controllerr.filteredStages[index].name,
+    //                             style: const TextStyle(
+    //                                 color: Color(0xff6875F5), fontSize: 12.3)),
+    //                       );
+    //                     }).toList(),
+    //                     onChanged: (Object? index) => {
+    //                       controllerr.filterByStage(
+    //                         int.parse(index.toString()),
+    //                       )
+    //                     },
+    //                   )
+    //                 : const Text("Loading"),
+
+    //                 //select student
+    //             controlleerr.units.isNotEmpty
+    //                 ? DropdownButton(
+    //                     underline: Container(),
+    //                     // Initial Value
+    //                     value: controlleerr.unitSelectedIndex.value,
+    //                     // Down Arrow Icon
+    //                     icon: const Icon(Icons.keyboard_arrow_down),
+    //                     // Array list of items
+    //                     items: controlleerr.filteredUnits
+    //                         .asMap()
+    //                         .keys
+    //                         .map((int index) {
+    //                       return DropdownMenuItem(
+    //                         value: index,
+    //                         child: Text(controlleerr.filteredUnits[index].name,
+    //                             style: const TextStyle(
+    //                                 color: Color(0xff6875F5), fontSize: 12.3)),
+    //                       );
+    //                     }).toList(),
+    //                     onChanged: (Object? index) => {
+    //                       controlleerr.filterByUnit(int.parse(index.toString()))
+    //                     },
+    //                   )
+    //                 : const Text("Loading"),
+    //           ])),
+    // ),
+                  // Obx(
+                  //   () => Container(
+                  //     margin: const EdgeInsets.only(left: 5, right: 5),
+                  //     padding: const EdgeInsets.only(left: 5),
+                  //     decoration: BoxDecoration(
+                  //       borderRadius: BorderRadius.circular(15),
+                  //       color: Colors.grey[200],
+                  //     ),
+                  //     child: ListView(
+                  //       shrinkWrap: true,
+                  //       children: controller.lucturerCheckbox.keys
+                  //           .map((dynamic key) {
+                  //         return CheckboxListTile(
+                  //           title: Text(
+                  //             controller.lectures[key].teacher.user.name,
+                  //             style: TextStyle(fontSize: 15),
+                  //           ),
+                  //           value: controller.lucturerCheckbox.value[key],
+                  //           activeColor: const Color(0xff6875F5),
+                  //           checkColor: Colors.white,
+                  //           onChanged: (bool? value) =>
+                  //               controller.check(key, value),
+                  //         );
+                  //       }).toList(),
+                  //     ),
+                  //   ),
+                  // ),
                   const SizedBox(
                     height: 15,
                   ),

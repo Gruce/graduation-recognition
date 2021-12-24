@@ -55,6 +55,7 @@ class LecturesSectionsController extends GetxController {
     unitController.filterByStage(stage.id);
 
     stageController.update();
+    unitController.update();
     lucturesController.update();
     update();
   }

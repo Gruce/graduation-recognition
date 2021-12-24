@@ -9,14 +9,14 @@ import 'luctures_controller.dart';
 
 // ignore: must_be_immutable
 class LuctureDropDownWidget extends GetView {
-  LuctureDropDownWidget({Key? key, required this.controlleer}) : super(key: key);
+  LuctureDropDownWidget({Key? key, required this.controller1}) : super(key: key);
   @override
   LecturesSectionsController controller = Get.put(LecturesSectionsController());
   LecturesStagesController stageController = Get.put(LecturesStagesController());
   LecturesUnitsController unitController = Get.put(LecturesUnitsController());
 
-  LucturesController controlleer;
-  // LecturesSectionsController controlleeer;
+  LucturesController controller1;
+  // LecturesSectionsController controller2;
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -98,9 +98,8 @@ class LuctureDropDownWidget extends GetView {
                                     color: Color(0xff6875F5), fontSize: 12.3)),
                           );
                         }).toList(),
-                        onChanged: (Object? index) => {
-                          unitController.filterByUnit(int.parse(index.toString()))
-                        },
+                          onChanged: (Object? index) => {controller1.unitIndex.value = int.parse(index.toString()), controller1.filter()}
+                        ,
                       )
                     : const Text("Loading"),
               ])),

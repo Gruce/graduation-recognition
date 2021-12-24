@@ -17,6 +17,7 @@ class LecturesUnitsController extends GetxController {
  
   LucturesController lucturesController = Get.put(LucturesController());
 
+
   @override
   void onInit() async {
     fetchUnits();
@@ -38,6 +39,7 @@ class LecturesUnitsController extends GetxController {
         units.add(UnitModel.fromJson(element));
       }
       filteredUnits.assignAll(units);
+      lucturesController.update();
     }
     update();
   }
@@ -45,6 +47,8 @@ class LecturesUnitsController extends GetxController {
   void filterByUnit(index) {
     unitSelectedIndex.value = index;
     UnitModel unit = filteredUnits[index];
+    print(lucturesController.filteredLectures[0].unit_id);
+
     if (unit.id == -1) {
       lucturesController.filteredLectures.assignAll(lucturesController.lectures);
     } else {
@@ -63,5 +67,6 @@ class LecturesUnitsController extends GetxController {
       filteredUnits.assignAll(units.where((unit) => unit.stage_id == id));
     }
     filterByUnit(0);
+    update();
   }
 }

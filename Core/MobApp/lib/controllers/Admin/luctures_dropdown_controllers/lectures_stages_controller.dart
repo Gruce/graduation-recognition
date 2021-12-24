@@ -68,5 +68,6 @@ class LecturesStagesController extends GetxController {
       filteredStages.assignAll(stages.where((stage) => stage.section_id == id));
     }
     filterByStage(0);
+    lucturesController.update();
   }
 }

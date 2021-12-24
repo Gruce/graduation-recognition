@@ -1,8 +1,5 @@
 import 'dart:convert';
-
-import 'package:flutter/gestures.dart';
 import 'package:get/get.dart';
-import 'package:graduaiton_app/config.dart';
 import 'package:graduaiton_app/models/camera.dart';
 import 'package:graduaiton_app/models/schedule/lecture.dart';
 import 'package:graduaiton_app/util/utilities.dart';
@@ -34,16 +31,12 @@ class AdminHomeController extends GetxController {
 
   void fetch() async {
     var res = await Utilities.httpGet('lectures/' + DateFormat('EEEE').format(DateTime.now()));
+    print('lectures/' + DateFormat('EEEE').format(DateTime.now()));
     if (res.statusCode == 200) {
       List response = json.decode(res.body)['data'];
       for (var element in response) {
         lectures.add(LectureModel.fromJson(element));
       }
     }
-  }
-
-  void swipe(details){
-
-    // print(details);
   }
 }

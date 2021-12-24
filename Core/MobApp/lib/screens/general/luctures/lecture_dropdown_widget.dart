@@ -1,8 +1,8 @@
- import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:graduaiton_app/controllers/Admin/luctures_dropdown_controllers/lectures_sections_controller.dart';
-import 'package:graduaiton_app/controllers/Admin/luctures_dropdown_controllers/lectures_stages_controller.dart';
-import 'package:graduaiton_app/controllers/Admin/luctures_dropdown_controllers/lectures_units_controller.dart';
+import 'package:graduaiton_app/controllers/Admin/lectures_controller/luctures_dropdown_controllers/lectures_sections_controller.dart';
+import 'package:graduaiton_app/controllers/Admin/lectures_controller/luctures_dropdown_controllers/lectures_stages_controller.dart';
+import 'package:graduaiton_app/controllers/Admin/lectures_controller/luctures_dropdown_controllers/lectures_units_controller.dart';
 
 
 import 'luctures_controller.dart';

@@ -12,7 +12,8 @@ class SearchWidget extends GetView {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      margin: EdgeInsets.all(15),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(1),
         border: Border.all(
@@ -24,7 +25,7 @@ class SearchWidget extends GetView {
       child: Row(
         children: <Widget>[
           const Padding(
-            padding: EdgeInsets.only(left: 8),
+            padding: EdgeInsets.all(8),
             child: Icon(
               Icons.search,
               color: Colors.grey,

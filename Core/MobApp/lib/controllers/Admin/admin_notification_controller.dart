@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:graduaiton_app/models/schedule/lecture.dart';
 import 'package:graduaiton_app/models/student_models/unit.dart';
 import 'package:graduaiton_app/util/utilities.dart';
 
@@ -15,7 +16,7 @@ class AdminNotificationController extends GetxController {
     toController = TextEditingController();
     idsController = TextEditingController();
 
-    fetchUnits();
+    fetch();
 
     super.onInit();
   }
@@ -28,25 +29,18 @@ class AdminNotificationController extends GetxController {
   RxList files = [].obs;
   String title = '';
   String body = '';
-  String deadline = '';
   int to = 1;
-  List<int> ids = [15];
+  RxList lectures = <LectureModel>[].obs;
+  RxMap lucturerCheckbox = {}.obs;
 
-  RxList units = <UnitModel>[].obs;
-
-  RxMap unitsCheckbox = {}.obs;
-
-  void fetchUnits() async {
-    var res = await Utilities.httpGet('teacher/units');
+  void fetch() async {
+    var res = await Utilities.httpGet('lectures');
     if (res.statusCode == 200) {
-      List response = json.decode(res.body)['data'][0]['units'];
-      for (int i = 0; i < response.length; i++) {
-        UnitModel unit = UnitModel.fromJson(response[i]);
-        units.add(unit);
-        unitsCheckbox[i] = false;
+      List response = json.decode(res.body)['data'];
+      for (var element in response) {
+        lectures.add(LectureModel.fromJson(element));
       }
     }
-    update();
   }
 
   void pick_files() async {
@@ -62,11 +56,11 @@ class AdminNotificationController extends GetxController {
   }
 
   void send_notification() async {
-    List _units = [];
+    List _teachers = [];
 
-    unitsCheckbox.forEach((key, value) {
+    lucturerCheckbox.forEach((key, value) {
       if (value == true) {
-        _units.add(units[key].id);
+        _teachers.add(lectures[key].id);
       }
     });
     await Utilities.httpFilesPost(
@@ -75,8 +69,7 @@ class AdminNotificationController extends GetxController {
           'title': titleController.text,
           'body': bodyController.text,
           'to': '1',
-          'ids': _units.toString(),
-          'deadline': '2021-12-15T23:24'
+          'ids': _teachers.toString(),
         },
         files_path);
     files.clear();
@@ -94,6 +87,6 @@ class AdminNotificationController extends GetxController {
   }
 
   void check(key, value) {
-    unitsCheckbox[key] = value!;
+    lucturerCheckbox[key] = value!;
   }
 }

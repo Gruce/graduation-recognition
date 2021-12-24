@@ -8,7 +8,6 @@ import 'package:graduaiton_app/screens/general/luctures/luctures_controller.dart
 import 'package:graduaiton_app/util/utilities.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
-import '../../../config.dart';
 import 'lectures_stages_controller.dart';
 import 'lectures_units_controller.dart';
 

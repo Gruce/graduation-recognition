@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\{
+    UserController,
     PeopleController,
     TeacherController,
     StudentController,
@@ -37,10 +38,24 @@ Route::group(['middleware' => 'api','prefix' => 'auth'], function ($router) {
 });
 
 Route::group(['middleware' => 'auth'], function () {
+    #### ADMIN ####
+    Route::group(['prefix' => 'admin' , 'middleware' => 'admin'] ,function(){
+        ## Users ##
+        Route::group(['prefix' => 'users'] ,function(){
+            Route::get('/', [UserController::class, 'users']);
+            Route::post('/new' , [UserController::class , 'new_user']);
+        });
+        ## END USER ##
+    });
+    
+    #### END ADMIN ####
+
     ## People ##
     Route::group(['prefix' => 'people'] ,function(){
         Route::get('', [PeopleController::class, 'people']);
     });
+
+
 
     ## Cameras ##
     Route::group(['prefix' => 'cameras'] ,function(){

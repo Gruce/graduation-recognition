@@ -30,15 +30,16 @@ class StudentController extends Controller
     }
 
     public function subjects(){
-      $student = auth()->user()->student()->first();
-      $unit_id=$student->unit_id;
+        $student = auth()->user()->student()->first();
+        $unit_id=$student->unit_id;
 
-      $stage = $student->stage()->first();
-      $subjects= $stage->subjects()->with(['teachers'=>function($teacher)use($unit_id){
+        $stage = $student->stage()->first();
 
-        return $teacher->with('user:id,name,email')->get();
-      }])->get();
-      return response()->json(['data' => $subjects]);
+        $subjects= $stage->subjects()->with(['teachers'=>function($teacher)use($unit_id){
+            return $teacher->with('user:id,name,email')->get();
+        }])->get();
 
-  }
+        return response()->json(['data' => $subjects]);
+
+    }
 }

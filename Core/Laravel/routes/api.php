@@ -53,31 +53,31 @@ Route::group(['middleware' => 'auth'], function () {
 
         ## lectures ## 
         Route::group(['prefix' => 'lectures'] ,function(){
-            Route::get('lectures/{day?}', [ApiController::class, 'lectures']);
+            Route::get('/{day?}', [LectureController::class, 'lectures']);
         });
 
         ## end lectures ##
+
+        ## Students ##
+        Route::group(['prefix' => 'students'] ,function(){
+            Route::get('/', [StudentController::class, 'students']);
+        });
+
+        ## End Students ##
 
     });
     
     #### END ADMIN ####
 
     ## People ##
-    Route::group(['prefix' => 'people'] ,function(){
-        Route::get('', [PeopleController::class, 'people']);
-    });
-
-
+    // Route::group(['prefix' => 'people'] ,function(){
+    //     Route::get('', [PeopleController::class, 'people']);
+    // });
 
     ## Cameras ##
     Route::group(['prefix' => 'cameras'] ,function(){
         Route::get('/', [CameraController::class , 'cameras']);
         Route::post('/state', [CameraController::class, 'camera_state']);
-    });
-
-    ## Students ##
-    Route::group(['prefix' => 'students'] ,function(){
-        Route::get('/', [StudentController::class, 'students']);
     });
 
 

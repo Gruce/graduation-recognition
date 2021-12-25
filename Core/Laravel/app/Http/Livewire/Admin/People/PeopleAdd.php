@@ -3,34 +3,46 @@
 namespace App\Http\Livewire\Admin\People;
 
 use Livewire\Component;
-use App\Models\Person;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Illuminate\Http\Request;
+
+use App\Http\Controllers\{
+    Api\UserController,
+};
 
 class PeopleAdd extends Component
 {
-    public Person $person;
-    public $personAdded = null;
+    use LivewireAlert;
 
-    protected $rules = [
-        'person.name' => 'required|string|min:3',
-        'person.type' => 'max:2',
-    ];
+    public $name ;
+    public $type = 0 ;
+    public $email;
+    public $password;
 
-    public function save(){
-        $this->validate();
-        if ($this->person->type == null)
-            $this->person->type = 0;
+    public function save()
+    {
+        $data = [
+            'name' => $this->name,
+            'type' => $this->type,
+            'email' => $this->email,
+            'password' => $this->password,
+            'livewire' => true,
+        ];
 
-        if ($this->person->save()){
-            $this->personAdded = $this->person->name;
-            $this->person = new Person();
+        $response = UserController::new_user(new Request($data));
+        $status = $response->getStatusCode() ;
+        $rspData = $response->getData();
+
+        $alert = 'success';
+        $msg = 'Done';
+        if($status != 200){
+            $alert = 'warning';
+            $msg = $rspData->data;
         }
-        $this->emit('reRenderParent');
-    }
 
-    public function mount(){
-        $this->person = new Person();
+        $this->alert($alert , $msg);
+        $this->emitTo('livewire.admin.people.people', '$refresh');
     }
-
     public function render()
     {
         return view('livewire.admin.people.people-add');

@@ -3,15 +3,18 @@
 namespace App\Http\Livewire\Admin\People;
 
 use Livewire\Component;
-use App\Models\Person;
+use App\Models\User;
 use Livewire\WithPagination;
-use App\Http\Controllers\ActionController;
+use App\Http\Controllers\{
+    ActionController,
+    Api\UserController,
+};
 
 class People extends Component
 {
     use WithPagination;
 
-    protected $listeners = ['reRenderParent', 'search'];
+    protected $listeners = ['$refresh', 'search'];
     
     public $editingPerson = -1;
     public $search;
@@ -39,11 +42,14 @@ class People extends Component
 
     public function render()
     {
-        $people = Person::where('name', 'LIKE', '%'.$this->search.'%')
-            ->where('type', '!=', '-1')
-            ->with('trackings')
-            ->orderBy('id', 'DESC')
-            ->paginate(10);
+        $people = User::where('name', 'LIKE', '%'.$this->search.'%')
+            ->with(
+                [
+                    'trackings' => function($tracking){
+                        return $tracking->with('camera.classroom')->latest()->take(1);
+                    }
+                ]
+            )->orderBy('id', 'DESC')->paginate(10);
 
         return view('livewire.admin.people.people', ['people' => $people]);
     }

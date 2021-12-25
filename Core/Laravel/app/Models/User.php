@@ -19,6 +19,7 @@ class User extends Authenticatable implements JWTSubject
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use \Staudenmeir\EloquentEagerLimit\HasEagerLimit;
 
     /**
      * The attributes that are mass assignable.

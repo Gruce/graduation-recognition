@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/Teacher/students_unit_controller.dart';
-import 'package:graduaiton_app/screens/general/people/attendance_controller.dart';
+import 'package:graduaiton_app/screens/general/attendance/toggle_button.dart';
+
 import 'package:intl/intl.dart';
 
 class Attendance extends GetWidget {
   @override
+  int _toggleValue = 0;
   TeacherStudentsUnitController controller =
       Get.put(TeacherStudentsUnitController());
   Widget build(BuildContext context) {
@@ -67,34 +69,44 @@ class Attendance extends GetWidget {
                                                         MainAxisAlignment
                                                             .spaceBetween,
                                                     children: [
-                                                      Row(children: [
+                                                      
                                                         Text('Hassan Hazim'),
-                                                      ]),
-                                                      Container(
-                                                        height: 20,
-                                                        width: 78,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color:
-                                                              Color(0xFFBAF3D2),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      6.0),
-                                                        ),
-                                                        child: Center(
-                                                          child: Text(
-                                                            'Present',
-                                                            style: TextStyle(
-                                                                color: Color
-                                                                    .fromRGBO(
-                                                                        0,
-                                                                        0,
-                                                                        0,
-                                                                        0.6)),
+                                                        Container(
+                                                          height: 20,
+                                                          width: 129,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: Color(
+                                                                0xFFBAF3D2),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        6.0),
+                                                          ),
+                                                          child: AnimatedToggle(
+                                                            values: [
+                                                              'Present',
+                                                              'Absent'
+                                                            ],
+                                                            onToggleCallback:
+                                                                (value) {
+                                                              // setState(() {
+                                                              //   _toggleValue =
+                                                              //       value;
+                                                              // });
+                                                            },
+                                                            buttonColor:
+                                                                const Color(
+                                                                    0xFF0A3157),
+                                                            backgroundColor:
+                                                                const Color(
+                                                                    0xFFB5C1CC),
+                                                            textColor:
+                                                                const Color(
+                                                                    0xFFFFFFFF),
                                                           ),
                                                         ),
-                                                      ),
+                                                      
                                                     ],
                                                   )),
                                               subtitle: Row(

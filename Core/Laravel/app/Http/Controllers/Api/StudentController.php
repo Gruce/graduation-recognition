@@ -38,7 +38,7 @@ class StudentController extends Controller
         $subjects = $stage->subjects()->with(
             [
                 'teachers' => function($teacher) use ($unit_id){
-                    return $teacher->with('user:id,name,email')->get();
+                    return $teacher->wherePivot('unit_id' , 5)->with('user:id,name,email')->get();
                 }
             ]
         )->get();

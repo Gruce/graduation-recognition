@@ -22,7 +22,7 @@ class SubjectStudentScreen extends GetView {
                           itemCount: controller.subject.length,
                           itemBuilder: (BuildContext context, int index) {
                             return GestureDetector(
-                              onTap: () =>controller.d(controller.subject[index].id),
+                              onTap: () =>controller.fechTask(controller.subject[index].id,controller.subject[index].teachers[0].id),
                               child: Card(
                                   margin: EdgeInsets.all(15),
                                   shape: BeveledRectangleBorder(

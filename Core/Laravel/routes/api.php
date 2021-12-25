@@ -55,7 +55,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/units', [ApiController::class, 'units']);
         Route::get('/classrooms', [ApiController::class, 'classroom']);
 
-        ## lectures ## 
+        ## lectures ##
         Route::group(['prefix' => 'lectures'] ,function(){
             Route::get('/days', [LectureController::class, 'days']);
             Route::get('/{day?}', [LectureController::class, 'lectures']);
@@ -78,7 +78,7 @@ Route::group(['middleware' => 'auth'], function () {
         ## End teachers ##
 
     });
-    
+
     #### END ADMIN ####
 
     ## People ##
@@ -105,6 +105,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'student' , 'middleware' => 'student'] ,function(){
 
         Route::get('/subjects', [StudentController::class, 'subjects']);
+        Route::get('/subject-tasks/{subject_id}/{teacher_id}', [StudentController::class, 'subject_tasks']);
 
     });
 

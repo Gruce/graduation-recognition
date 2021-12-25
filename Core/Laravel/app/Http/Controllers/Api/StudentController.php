@@ -49,6 +49,13 @@ class StudentController extends Controller
         )->get();
 
         return response()->json(['data' => $subjects]);
-
     }
+
+    public function subject_tasks($subject_id,$teacher_id)
+    {
+      info($subject_id);
+      info($teacher_id);
+    }
+
+
 }

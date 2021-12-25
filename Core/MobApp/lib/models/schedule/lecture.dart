@@ -58,9 +58,11 @@ class LectureModel {
     }
     if (json.containsKey('unit')) {
       unit = UnitModel.fromJson(json['unit']);
+      
     }
     if (json.containsKey('teacher')) {
       teacher = TeacherModel.fromJson(json['teacher']);
+      
     }
   }
 

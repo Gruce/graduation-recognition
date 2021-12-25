@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:graduaiton_app/config.dart';
 import 'package:graduaiton_app/controllers/Teacher/teacher_home_controller.dart';
 import 'package:graduaiton_app/routes/routes.dart';
 import 'package:graduaiton_app/screens/teacher/home_page/today_lucture_widget.dart';
@@ -11,14 +12,16 @@ import 'package:graduaiton_app/screens/teacher/home_page/widgets/circular_progre
 import 'package:graduaiton_app/screens/teacher/profile/profile_screen.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../layout.dart';
 
 class TeacherHomeScreen extends GetView<TeacherHomeController> {
   TeacherHomeScreen({Key? key}) : super(key: key);
-
+ 
   @override
   TeacherHomeController controller = Get.put(TeacherHomeController());
-  
+    
+   
   @override
   Widget build(BuildContext context) {
     return TeacherLayoutScreen(
@@ -188,7 +191,7 @@ class TeacherHomeScreen extends GetView<TeacherHomeController> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Row(children: [
-                                      Text('Stage : Forth'),
+                                      Text('Stage : Forth '),
                                     ]),
                                     Text('Unit: A'),
                                   ],
@@ -217,7 +220,7 @@ class TeacherHomeScreen extends GetView<TeacherHomeController> {
                     ),
                     SizedBox(height: 30,),
              Text("Not started"),
-            MyButton(label: "Start Lecture", onTap: controller.startLecture)
+            MyButton(label: "Start Lecture", onTap: controller.startLecture),
            
           ],
         )
@@ -230,5 +233,6 @@ class TeacherHomeScreen extends GetView<TeacherHomeController> {
       ));
       
   }
+  
 }
 

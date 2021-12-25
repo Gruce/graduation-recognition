@@ -43,8 +43,9 @@ class TeacherHomeController extends GetxController {
       List response = json.decode(res.body)['data'][0]['lectures'];
 
       for (var element in response) {
+        
         lectures.add(LectureModel.fromJson(element));
-        print(element);
+        
       }
     }
 

@@ -1,18 +1,18 @@
 import 'package:graduaiton_app/models/teacher/teacher.dart';
 
-class SubjectModel {
+class SubjectsModel {
   int id = 0;
   String name = '';
-  // List<TeacherModel> teachers = [];
-  SubjectModel({id, name});
+  List<TeacherModel> teachers = [];
+  SubjectsModel({id, name});
 
-  SubjectModel.fromJson(Map<dynamic, dynamic> json) {
+  SubjectsModel.fromJson(Map<dynamic, dynamic> json) {
     id = json['id'];
     name = json['name'];
 
-    // for (var teacher in json['teachers']) {
-    //   teachers.add(TeacherModel.fromJson(teacher));
-    // }
+    for (var teacher in json['teachers']) {
+      teachers.add(TeacherModel.fromJson(teacher));
+    }
   }
 
   Map<dynamic, dynamic> toJson() {

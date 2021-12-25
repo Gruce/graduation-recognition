@@ -19,7 +19,7 @@ class TeacherUnitsController extends GetxController {
       List response = json.decode(res.body)['data'][0]['units'];
       for (var element in response) {
         units.add(UnitModel.fromJson(element));
-       
+        
       }
     }
     update();

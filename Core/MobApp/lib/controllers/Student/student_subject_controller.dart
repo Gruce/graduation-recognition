@@ -2,11 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:graduaiton_app/models/schedule/subject.dart';
+import 'package:graduaiton_app/screens/student/model/subjects.dart';
 import 'package:graduaiton_app/util/utilities.dart';
 
 class SubjectsStudentController extends GetxController {
-  RxList subject = <SubjectModel>[].obs;
+  RxList subject = <SubjectsModel>[].obs;
   late int x;
 
   @override
@@ -16,13 +16,13 @@ class SubjectsStudentController extends GetxController {
   }
 
   void fetch() async {
-    var res = await Utilities.httpGet('student/subjects' + x.toString());
-    
+    var res = await Utilities.httpGet('student/subjects');
+
     if (res.statusCode == 200) {
       List response = json.decode(res.body)['data'];
-
+      print(response);
       for (var element in response) {
-        subject.add(SubjectModel.fromJson(element));
+        subject.add(SubjectsModel.fromJson(element));
       }
     }
     update();

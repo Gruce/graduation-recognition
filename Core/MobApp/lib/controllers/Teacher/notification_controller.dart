@@ -113,7 +113,7 @@ class NotificationController extends GetxController {
       print("==================================");
 
       for (NotificationModel notif in notifications) {
-        print(notif.title);
+        
         for (FileModel file in notif.files) {
           print(file.file_path);
         }

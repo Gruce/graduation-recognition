@@ -120,10 +120,10 @@ class Routes {
         page: () => StudentHomeScreen(),
         binding: StudentHomeBinding()),
 
-     GetPage(
-        name: subjectsStudent,
-        page: () => SubjectStudentScreen(),
-        binding: SubjectsStudentBinding()),
+    //  GetPage(
+    //     name: subjectsStudent,
+    //     page: () => SubjectStudentScreen(),
+    //     binding: SubjectsStudentBinding()),
 
 
     GetPage(

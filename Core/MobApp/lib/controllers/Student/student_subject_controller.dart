@@ -6,7 +6,7 @@ import 'package:graduaiton_app/models/schedule/subject.dart';
 import 'package:graduaiton_app/util/utilities.dart';
 
 class SubjectsStudentController extends GetxController {
-  RxList subject = <SubjectModel>[].obs;
+  // RxList subject = <SubjectModel>[].obs;
   late int x;
 
   @override
@@ -21,9 +21,9 @@ class SubjectsStudentController extends GetxController {
     if (res.statusCode == 200) {
       List response = json.decode(res.body)['data'];
 
-      for (var element in response) {
-        subject.add(SubjectModel.fromJson(element));
-      }
+      // for (var element in response) {
+      //   subject.add(SubjectModel.fromJson(element));
+      // }
     }
     update();
   }

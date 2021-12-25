@@ -55,12 +55,13 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                         textAlign: TextAlign.center,
                       )),
                   Obx(() => controller.lectures.isNotEmpty
-                  ? Expanded(flex: 1,
-                    child: LucturesWidget(
-                      lectures: controller.lectures,
-                      today: true,
-                    )
-                  ): Container())
+                      ? Expanded(
+                          flex: 1,
+                          child: LucturesWidget(
+                            lectures: controller.lectures,
+                            today: true,
+                          ))
+                      : Container())
                 ],
               ),
               body: Column(
@@ -94,9 +95,113 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                       ],
                     ),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      bottom: 13,
+                      top: 29,
+                      left: 30,
+                      right: 15,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        const Text('Lucturers',
+                            style: TextStyle(
+                                color: Color(0xff6875F5), fontSize: 18)),
+                        Row(
+                          children: <Widget>[
+                            Container(
+                              alignment: Alignment.center,
+                              height: 20,
+                              width: 40,
+                              margin: const EdgeInsets.only(right: 6),
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Color(0xff6875F5),
+                              ),
+                              child: Text(
+                                controller1.people.length.toString(),
+                                style: const TextStyle(color: Colors.white),
+                                textAlign: TextAlign.center,
+                              ),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    height: 140,
+                    child: ListView.builder(
+                      itemCount: 10,
+                      padding: const EdgeInsets.only(left: 16),
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () {},
+                          child: LucturersCard(
+                            luctures: 'Abdulkareem',
+                          ),
+                        );
+                      },
+                    ),
+                  ),
                 ],
               ),
             )));
+  }
+}
+
+class LucturersCard extends StatefulWidget {
+  final String luctures;
+
+  LucturersCard({
+    Key? key,
+    required this.luctures,
+  }) : super(key: key);
+
+  @override
+  _LucturersCardState createState() => _LucturersCardState();
+}
+
+class _LucturersCardState extends State<LucturersCard> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.all(10),
+      width: 120,
+      height: 135,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(25),
+        boxShadow: const [
+          BoxShadow(
+            color: Color(0xff6875F5),
+            blurRadius: 3,
+            spreadRadius: 1,
+            offset: Offset(2.0, 2.0),
+          )
+        ],
+        color: Colors.white,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: const [
+          Icon(
+            Icons.person,
+            color: Color(0xff6875F5),
+            size: 30,
+          ),
+          SizedBox(
+            height: 9,
+          ),
+          Text(
+            "Abdulkareem",
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 16, color: Color(0xff6875F5)),
+          )
+        ],
+      ),
+    );
   }
 }
 

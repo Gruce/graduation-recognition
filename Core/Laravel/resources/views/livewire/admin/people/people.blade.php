@@ -1,7 +1,7 @@
 <div>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            People
+            Users
         </h2>
     </x-slot>
     @livewire('actions' , ['folder' => 'admin.people' , 'file' => 'people-add' , 'search' => 'People name'])
@@ -19,7 +19,6 @@
                             <tr>
                                 <th class="p-3">#</th>
                                 <th class="p-3 text-left">Name</th>
-                                <th class="p-3 text-left">Training Id</th>
                                 <th class="p-3 text-left">Date Time Added</th>
                                 <th class="p-3 text-left">Last Seen</th>
                                 <th class="p-3 text-left">Action</th>
@@ -42,13 +41,16 @@
                                                 <div class="">
                                                     @switch($person->type)
                                                         @case(0)
-                                                            Visitor
+                                                            User
                                                         @break
                                                         @case(1)
-                                                            Student
+                                                            Admin
                                                         @break
                                                         @case(2)
-                                                            Emlpoyer
+                                                            Teacher
+                                                        @break
+                                                        @case(3)
+                                                            Teacher
                                                         @break
                                                         @default
                                                             Unkown
@@ -56,9 +58,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </td>
-                                    <td class="p-3">
-                                        {{ $person->training_id }} 
                                     </td>
                                     <td class="p-3">
                                         <span class="flex items-left flex-col">
@@ -80,14 +79,20 @@
                                                         videocam
                                                     </span>
                                                     <span>
-                                                        {{ $person->trackings->last()->camera->description }}
+                                                        {{ $person->trackings[0]->camera->description }}
+                                                    </span>
+                                                    <span class="material-icons-outlined text-base mx-2">
+                                                        location_city
+                                                    </span>
+                                                    <span>
+                                                        {{ $person->trackings[0]->camera->classroom->name }}
                                                     </span>
                                                 </div>
                                                 <div class="flex">
                                                     <span class="material-icons-outlined text-base mr-2">
                                                         schedule
                                                     </span>
-                                                    {{ $person->trackings->last()->created_at->diffForHumans() }}
+                                                    {{ $person->trackings[0]->created_at->diffForHumans() }}
                                                 </div>
                                             </span>
                                         @else 
@@ -130,7 +135,7 @@
         return {
         activeTab: -1,
         tabs: [
-            '<span class="material-icons-outlined mr-2">add</span>New Person',
+            '<span class="material-icons-outlined mr-2">add</span>New User',
             '<span class="material-icons-outlined mr-2">search</span>Search',
         ]
         };

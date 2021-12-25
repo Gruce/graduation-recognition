@@ -29,10 +29,10 @@ class Trackings extends Component
         if ($this->cameraId){
             $trackings = Tracking::where('camera_id', $this->cameraId);
             if ($this->personId)
-                $trackings = $trackings->where('person_id', $this->personId);
-            $trackings = $trackings->with('camera', 'person');
+                $trackings = $trackings->where('user_id', $this->personId);
+            $trackings = $trackings->with('camera', 'user');
         } else
-            $trackings = Tracking::with('camera', 'person');
+            $trackings = Tracking::with('camera', 'user');
 
         return view('livewire.trackings', ['trackings' => $trackings->orderBy('id', 'DESC')->paginate(10)]);
     }

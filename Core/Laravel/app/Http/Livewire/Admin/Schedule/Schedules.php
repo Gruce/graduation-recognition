@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Admin\Schedule;
 
 use Livewire\Component;
-use App\Http\Controllers\ApiController;
+use App\Http\Controllers\Api\LectureController;
 use App\Models\{
     Day,
     Section,
@@ -28,7 +28,7 @@ class Schedules extends Component
 
     public function render()
     {
-        $response = ApiController::lectures($this->dayName , $this->section , $this->stage , $this->unit , $this->search);
+        $response = LectureController::lectures($this->dayName , $this->section , $this->stage , $this->unit , $this->search);
         $lectures = $response->getData()->data;
 
         $days = Day::get(['id' , 'name']);

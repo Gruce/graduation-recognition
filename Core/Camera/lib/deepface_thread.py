@@ -62,7 +62,7 @@ class DeepFaceThread(threading.Thread):
                     person = Utilities.search_id(id, self.people)
                     if (person):
                         name = self.auth.tracking(self.camera_id, [person['id']])
-                        cprint('[Recognition] Camera ' + str(self.camera_id) + ' - ' + " Person found: " + str(counter) + ", id = " + str(id), 'blue')
+                        cprint('[Recognition] Camera ' + str(self.camera_id) + ' - ' + " Person found: " + str(name) + ", id = " + str(id), 'blue')
 
                         self.statueLabel.setText('[Recognition] Camera ' + str(self.camera_id) + ' - ' + " Person found: " + str(name))
 

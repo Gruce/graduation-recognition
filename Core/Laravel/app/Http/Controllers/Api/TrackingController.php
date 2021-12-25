@@ -19,26 +19,28 @@ class TrackingController extends Controller
             $file = $req->image->store('tracking/' . date("Y-m-d"), 'public');
 
         foreach (json_decode($req->people) as $person){
-            if ($person == -1){
-                $user = new Person;
-                $name = $user->name = '';
-                $user->training_id = 1;
-                $user->type = -1;
-                $user->save();
-                $user->name = 'Unkown ' . $user->id;
-                $user->save();
-                $person = $user->id;
+            // if ($person == -1){
+            //     $user = new Person;
+            //     $name = $user->name = '';
+            //     $user->training_id = 1;
+            //     $user->type = -1;
+            //     $user->save();
+            //     $user->name = 'Unkown ' . $user->id;
+            //     $user->save();
+            //     $person = $user->id;
                 
-                $file = $req->image->store('db/' . $user->id, 'public');
-            }
+            //     $file = $req->image->store('db/' . $user->id, 'public');
+            // }
 
             $track              = new Tracking;
-            $name = $track->person_id   = $person;
+            $track->user_id   = $person;
             $track->camera_id   = $req->id;
             $track->image_path  = $file;
             $track->save();
+
+            $name = $track->user->name;
         }
         
-        return response()->json(['data' => 'Success.' , 'name' => $name], 200);
+        return response()->json(['data' => $name], 200);
     }
 }

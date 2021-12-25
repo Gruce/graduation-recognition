@@ -19,6 +19,7 @@ class User extends Authenticatable implements JWTSubject
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use \Staudenmeir\EloquentEagerLimit\HasEagerLimit;
 
     /**
      * The attributes that are mass assignable.
@@ -29,6 +30,8 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
+        'is_trained',
+        'type'
     ];
 
     /**
@@ -76,6 +79,10 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
+
+    public function trackings(){
+        return $this->hasMany(Tracking::class);
+    }
 
     public function person(){
         return $this->hasOne(Person::class);

@@ -15,7 +15,7 @@ class CreateTrackingsTable extends Migration
     {
         Schema::create('trackings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('person_id')->nullable()->constrained('people')->onDelete('cascade');
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
             $table->foreignId('camera_id')->nullable()->constrained('cameras')->onDelete('cascade');
             $table->dateTime('seen')->default(now());
             $table->string('image_path');

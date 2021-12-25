@@ -7,7 +7,7 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 
 use Livewire\Component;
 use App\Models\Camera;
-use App\Models\Person;
+use App\Models\User;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Http\Client\Socket\Client;
 use Http\Message\RequestFactory;
@@ -40,7 +40,7 @@ class Cameras extends Component
         $cameras = Camera::with('trackings')->get();
         $person = null;
         if ($this->personId)
-            $person = Person::find($this->personId);
+            $person = User::find($this->personId);
 
         return view('livewire.cameras', [
             'cameras'       => $cameras,

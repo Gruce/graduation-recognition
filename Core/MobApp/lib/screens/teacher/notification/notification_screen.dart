@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/Teacher/notification_controller.dart';
 import 'package:graduaiton_app/models/student_models/unit.dart';
-import 'package:graduaiton_app/screens/general/people/attendance.dart';
+import 'package:graduaiton_app/screens/general/attendance/attendance.dart';
 import 'package:graduaiton_app/screens/teacher/home_page/widgets/button.dart';
 import 'package:graduaiton_app/screens/teacher/layout.dart';
 import 'package:file_picker/file_picker.dart';

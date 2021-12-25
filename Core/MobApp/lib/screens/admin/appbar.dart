@@ -51,6 +51,7 @@ class AdminAppbar extends StatelessWidget {
                 backgroundColor: Colors.white,
               ),
             ),
+
           ],
         ),
       ),

@@ -51,6 +51,7 @@ dependencies:
   video_player_web: ^2.0.4
   sliding_up_panel:
   syncfusion_flutter_gauges:
+  flutter_staggered_grid_view:
 dev_dependencies:
   flutter_test:
     sdk: flutter

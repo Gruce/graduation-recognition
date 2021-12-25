@@ -3,8 +3,9 @@ import 'package:graduaiton_app/models/schedule/classroom.dart';
 import 'package:graduaiton_app/models/schedule/day.dart';
 import 'package:graduaiton_app/models/schedule/subject.dart';
 import 'package:graduaiton_app/models/student_models/unit.dart';
+import 'package:graduaiton_app/models/teacher/teacher.dart';
 
-class LecturesModle {
+class LectureModel {
   int id = 0;
   int subject_id = 0;
   int teacher_id = 2;
@@ -17,8 +18,9 @@ class LecturesModle {
   CameraModel cameras = CameraModel();
   SubjectModel subject = SubjectModel();
   DayModel day = DayModel();
+  TeacherModel teacher = TeacherModel();
 
-  LecturesModle({
+  LectureModel({
     id,
     subject_id,
     teacher_id,
@@ -33,7 +35,7 @@ class LecturesModle {
     unit,
   });
 
-  LecturesModle.fromJson(Map<dynamic, dynamic> json) {
+  LectureModel.fromJson(Map<dynamic, dynamic> json) {
     id = json['id'];
     subject_id = json['subject_id'];
     teacher_id = json['teacher_id'];
@@ -54,9 +56,11 @@ class LecturesModle {
     if (json.containsKey('day')) {
       day = DayModel.fromJson(json['day']);
     }
-
     if (json.containsKey('unit')) {
       unit = UnitModel.fromJson(json['unit']);
+    }
+    if (json.containsKey('teacher')) {
+      teacher = TeacherModel.fromJson(json['teacher']);
     }
   }
 

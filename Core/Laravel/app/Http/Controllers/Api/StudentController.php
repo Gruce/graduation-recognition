@@ -26,6 +26,24 @@ class StudentController extends Controller
         );
 
         return response()->json(['data' => $students]);
-        
+
+    }
+
+    public function subjects(){
+        $student = auth()->user()->student()->first();
+        $unit_id=$student->unit_id;
+
+        $stage = $student->stage()->first();
+
+        $subjects = $stage->subjects()->with(
+            [
+                'teachers' => function($teacher) use ($unit_id){
+                    return $teacher->wherePivot('unit_id' , 5)->with('user:id,name,email')->get();
+                }
+            ]
+        )->get();
+
+        return response()->json(['data' => $subjects]);
+
     }
 }

@@ -24,7 +24,6 @@ class UserController extends Controller
             'type' => 'required|integer|min:0|max:3'
         ]);
 
-
         if ($validator->fails()){
             return response()->json(['message' => $validator->errors()], 400);
         }
@@ -39,11 +38,10 @@ class UserController extends Controller
             'is_trained' => true,
         ];
 
-
         $user = User::create($data);
 
         if($user)
-            return response()->json(['message' => 'done'], 200);
+            return response()->json(['id' => $user->id], 200);
         else return response()->json(['message' => 'error'], 400);
 
     }

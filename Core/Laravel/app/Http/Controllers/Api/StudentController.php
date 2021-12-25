@@ -35,9 +35,13 @@ class StudentController extends Controller
 
         $stage = $student->stage()->first();
 
-        $subjects= $stage->subjects()->with(['teachers'=>function($teacher)use($unit_id){
-            return $teacher->with('user:id,name,email')->get();
-        }])->get();
+        $subjects = $stage->subjects()->with(
+            [
+                'teachers' => function($teacher) use ($unit_id){
+                    return $teacher->with('user:id,name,email')->get();
+                }
+            ]
+        )->get();
 
         return response()->json(['data' => $subjects]);
 

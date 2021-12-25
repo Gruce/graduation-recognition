@@ -19,7 +19,6 @@ class TeacherSeeder extends Seeder
         // ID 1
         $data = [
             'user_id' => 1,
-            'person_id' => 1,
             'section_id' => 1,
             'speciality' => 'PHP',
         ];
@@ -34,7 +33,6 @@ class TeacherSeeder extends Seeder
 
         $data = [
             'user_id' => 5,
-            'person_id' => 5,
             'section_id' => 2,
             'speciality' => 'HTML',
         ];
@@ -49,7 +47,6 @@ class TeacherSeeder extends Seeder
 
         $data = [
             'user_id' => 6,
-            'person_id' => 6,
             'section_id' => 1,
             'speciality' => 'HTML',
         ];

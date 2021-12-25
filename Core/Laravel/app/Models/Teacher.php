@@ -52,7 +52,7 @@ class Teacher extends Model
                     })->with(
                         [
                             'unit'=> function($unit){
-                              return $unit->with(['stage:id,name','section:id,name'])->get();
+                                return $unit->with(['stage:id,name','section:id,name'])->get();
                             },
                             'classroom' => function($classroom){
                                 return $classroom->with('cameras')->get();
@@ -65,6 +65,36 @@ class Teacher extends Model
                 'section:id,name',
                 'stage:id,name',
 
+            ]
+        );
+
+        return $lectures;
+    }
+
+    public function current_lecture(){
+        $time = date('H:i:s');
+        $day = Day::where('name' , date('l'))->first()->id;
+
+        $lectures = $this->units()->with(
+            [
+                'lectures' => function($lecture) use ($day , $time){
+                    return $lecture->whereHas('day' , function($q) use ($day){
+                        return $q->where('id' , $day);
+                    })->where('start' , '<=' , $time)->with(
+                        [
+                            'unit'=> function($unit){
+                                return $unit->with(['stage:id,name','section:id,name'])->get();
+                            },
+                            'classroom' => function($classroom){
+                                return $classroom->with('cameras')->get();
+                            },
+                            'subject:id,name',
+                            'day:id,name',
+                        ]
+                    )->orderBy('start' , 'DESC')->first();
+                },
+                'section:id,name',
+                'stage:id,name',
             ]
         );
 

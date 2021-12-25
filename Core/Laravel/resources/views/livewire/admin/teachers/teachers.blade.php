@@ -24,7 +24,6 @@
                                 <th class="p-3 text-left">Section</th>
                                 <th class="p-3 text-left">Speciality</th>
                                 <th class="p-3 text-left">Subjects</th>
-                                <th class="p-3 text-left">Link Trained Person</th>
                                 <th class="p-3 text-left">Actions </th>
                             </tr>
                         </thead>
@@ -118,23 +117,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                </td>
-                                <td class="p-3">
-                                    @if ($teacher->person)
-                                    <div class="flex text-blue-600">
-                                        <span class="material-icons-outlined mr-3">
-                                            link
-                                        </span>
-                                        Linked
-                                    </div>
-                                    @else
-                                    <div wire:click="link({{ $teacher->id }})" class="flex text-red-600 cursor-pointer">
-                                        <span class="material-icons-outlined mr-1">
-                                            link
-                                        </span>
-                                        Not linked
-                                    </div>
-                                    @endif
                                 </td>
                                 <td>
                                     <button wire:click="delete('Teacher', '{{ $teacher->id}}')" class="text-red-500"> 

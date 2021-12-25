@@ -61,7 +61,7 @@
                                 </tr>
                                 @forelse($lectures  as $i => $lecture)
                                     @if($day->name == $lecture->day->name)
-                                        <tr class="@if('Sunday' == $lecture->day->name) bg-red-50 @else bg-gray-50 @endif"  >
+                                        <tr class="@if(date('l') == $lecture->day->name) bg-red-50 @else bg-gray-50 @endif"  >
                                             <td class="p-3 text-center">
                                                 {{ $loop->iteration }}
                                             </td>

@@ -14,7 +14,6 @@ from PIL import ImageFont
 import arabic_reshaper
 from bidi.algorithm import get_display
 
-
 ###########################################################################
 ##########################  Face Detection  ###############################
 import torch
@@ -25,12 +24,7 @@ from Core.Camera.lib.config import Config
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
-mtcnn = MTCNN(
-    margin=14,
-    factor=0.3,
-    keep_all=False,
-    device=device
-).eval()
+mtcnn = MTCNN(margin=14, factor=0.3, keep_all=False, device=device).eval()
 
 ######################################################################################
 db_path = Config.db_path
@@ -39,14 +33,17 @@ total_faces = []
 
 fontpath = normpath("Core/Camera/JannaBold.ttf")
 
+
 #########################################################################
 ############################ Functions ###############################
 def get_milliseconds():
-        return int(round(time.time() * 1000))
+    return int(round(time.time() * 1000))
+
 
 def if_directory_not_exists_create(directory):
     if not os.path.exists(directory):
         os.makedirs(directory)
+
 
 def list_cameras():
     index = 0
@@ -60,6 +57,8 @@ def list_cameras():
         cap.release()
         index += 1
     return arr
+
+
 #########################################################################
 ############################ API ###############################
 from Core.Camera.lib.api import Auth
@@ -68,24 +67,33 @@ auth = Auth()
 
 
 class CameraWidget(QtWidgets.QWidget):
-    def __init__(self, width, height, stream_link="0", cameras=None, statue_label=None, name_edit=None, aspect_ratio=False, parent=None, deque_size=1):
+    def __init__(self,
+                 width,
+                 height,
+                 stream_link="0",
+                 cameras=None,
+                 statue_label=None,
+                 name_edit=None,
+                 aspect_ratio=False,
+                 parent=None,
+                 deque_size=1):
         super(CameraWidget, self).__init__(parent)
 
         # Initialize deque used to store frames read from the stream
         self.deque = deque(maxlen=deque_size)
 
         # Slight offset is needed since PyQt layouts have a built in padding
-        # So add offset to counter the padding 
+        # So add offset to counter the padding
         self.offset = 16
         self.screen_width = width - self.offset
         self.screen_height = height - self.offset
         self.maintain_aspect_ratio = aspect_ratio
-        
+
         if (cameras is None):
             self.camera_stream_link = 0
         else:
             self.camera_stream_link = int(cameras.currentText())
-            
+
         # Flag to check if camera is valid/working
         self.online = False
         self.capture = None
@@ -112,23 +120,23 @@ class CameraWidget(QtWidgets.QWidget):
         total_faces.clear()
         self.statueLabel.setText("Waiting for a face...")
         self.update()
-    
+
     def changeSource(self):
         self.camera_stream_link = int(cameras.currentText())
         self.load_network_stream()
         self.update()
 
-
     def load_network_stream(self):
         """Verifies stream link and open new stream if valid"""
-
         def load_network_stream_thread():
             if self.verify_network_stream(self.camera_stream_link):
                 self.capture = cv2.VideoCapture(self.camera_stream_link)
                 self.capture.set(cv2.CAP_PROP_FPS, 1)
                 self.fps = self.capture.get(cv2.CAP_PROP_FPS)
                 self.online = True
-        self.load_stream_thread = Thread(target=load_network_stream_thread, args=())
+
+        self.load_stream_thread = Thread(target=load_network_stream_thread,
+                                         args=())
         self.load_stream_thread.daemon = True
         self.load_stream_thread.start()
 
@@ -154,29 +162,39 @@ class CameraWidget(QtWidgets.QWidget):
                         # Draw faces
                         if boxes is not None:
                             for (x1, y1, x2, y2) in boxes:
-                                image = numpy.array(frame[int(y1):int(y2), int(x1):int(x2)])
+                                image = numpy.array(frame[int(y1):int(y2),
+                                                          int(x1):int(x2)])
 
                                 if len(total_faces) <= 5:
                                     if image.any():
                                         total_faces.append(image)
-                                        self.statueLabel.setText("Captures: " + str(len(total_faces)))
+                                        self.statueLabel.setText(
+                                            "Captures: " +
+                                            str(len(total_faces)))
                                 else:
-                                    self.statueLabel.setText("Done! Now press Train Person button.")
+                                    self.statueLabel.setText(
+                                        "Done! Now press Train Person button.")
 
-                                cv2.rectangle(frame, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 2)
+                                cv2.rectangle(frame, (int(x1), int(y1)),
+                                              (int(x2), int(y2)), (0, 255, 0),
+                                              2)
                                 if (self.nameEdit.text() != ""):
                                     try:
                                         text = self.nameEdit.text()
-                                        reshaped_text = arabic_reshaper.reshape(text)
-                                        bidi_text = get_display(reshaped_text) 
-                                        img_pil = Image.fromarray(frame).convert('RGB')
+                                        reshaped_text = arabic_reshaper.reshape(
+                                            text)
+                                        bidi_text = get_display(reshaped_text)
+                                        img_pil = Image.fromarray(
+                                            frame).convert('RGB')
                                         draw = ImageDraw.Draw(img_pil)
-                                        fontTrueType = ImageFont.truetype(fontpath, 24)
-                                        draw.text((int(x1),int(y2)), bidi_text,(0,255,0), font = fontTrueType)
+                                        fontTrueType = ImageFont.truetype(
+                                            fontpath, 24)
+                                        draw.text((int(x1), int(y2)),
+                                                  bidi_text, (0, 255, 0),
+                                                  font=fontTrueType)
                                         frame = numpy.array(img_pil)
                                     except Exception as e:
                                         print(e)
-
 
                         self.deque.append(frame)
                     else:
@@ -190,7 +208,6 @@ class CameraWidget(QtWidgets.QWidget):
                 self.spin(.001)
             except AttributeError:
                 pass
-            
 
     def spin(self, seconds):
         """Pause for set amount of seconds, replaces time.sleep so program doesnt stall"""
@@ -215,40 +232,66 @@ class CameraWidget(QtWidgets.QWidget):
                 self.frame = imutils.resize(frame, width=self.screen_width)
             # Force resize
             else:
-                self.frame = cv2.resize(frame, (self.screen_width, self.screen_height))
+                self.frame = cv2.resize(
+                    frame, (self.screen_width, self.screen_height))
 
             # Convert to pixmap and set to video frame
-            self.img = QtGui.QImage(self.frame, self.frame.shape[1], self.frame.shape[0], QtGui.QImage.Format_RGB888).rgbSwapped()
+            self.img = QtGui.QImage(self.frame, self.frame.shape[1],
+                                    self.frame.shape[0],
+                                    QtGui.QImage.Format_RGB888).rgbSwapped()
             self.pix = QtGui.QPixmap.fromImage(self.img)
             self.video_frame.setPixmap(self.pix)
 
     def get_video_frame(self):
         return self.video_frame
 
-    
-    
 
 def exit_application():
     """Exit program event handler"""
 
     sys.exit(1)
 
+
 @QtCore.pyqtSlot()
 def repeat(cam):
     cam.refresh()
+
 
 @QtCore.pyqtSlot()
 def changeSource(cam):
     cam.changeSource()
 
+
 @QtCore.pyqtSlot()
-def train(cam, name, _type):
-    auth.new_person(name, total_faces, _type)
+def train(cam, name, email, password, _type):
+    if name == "":
+        cam.statueLabel.setText("Please enter a name.")
+        return
+
+    if _type == "":
+        cam.statueLabel.setText("Please select a type.")
+        return
+
+    if email == "":
+        cam.statueLabel.setText("Please enter email");
+        return
+
+    if password == "":
+        cam.statueLabel.setText("Please enter password");
+        return
+
+
+
+    if len(total_faces) <= 4:
+        cam.statueLabel.setText("Please capture at least five face.")
+        return
+    cam.statueLabel.setText("Training...")
+    auth.new_person(name, email, password , total_faces, _type)
     cam.refresh()
+    cam.statueLabel.setText("Trained! Waiting for a face...")
 
-    
 
-    
+
 if __name__ == '__main__':
 
     # Create main application window
@@ -269,7 +312,6 @@ if __name__ == '__main__':
     screen_width = QtWidgets.QApplication.desktop().screenGeometry().width()
     screen_height = QtWidgets.QApplication.desktop().screenGeometry().height()
 
-
     name = QtWidgets.QLabel('Name')
     name.setFont(QtGui.QFont('Arial', 20))
 
@@ -278,57 +320,68 @@ if __name__ == '__main__':
     repeatButton = QtWidgets.QPushButton('Repeat', )
     font = repeatButton.font()
     font.setPointSize(20)
-    repeatButton.setFont(font) 
-
+    repeatButton.setFont(font)
 
     nameEdit = QtWidgets.QLineEdit()
     font = nameEdit.font()
     font.setPointSize(20)
-    nameEdit.setFont(font) 
-
+    nameEdit.setFont(font)
 
     trainButton = QtWidgets.QPushButton('Train Person', )
     font = trainButton.font()
     font.setPointSize(20)
-    trainButton.setFont(font) 
-
+    trainButton.setFont(font)
 
     sourceLabel = QtWidgets.QLabel('Camera Source: ')
     sourceLabel.setFont(QtGui.QFont('Arial', 20))
 
-    cameras = QtWidgets.QComboBox() 
+    cameras = QtWidgets.QComboBox()
     cameras.addItems(list_cameras())
     font = cameras.font()
     font.setPointSize(20)
-    cameras.setFont(font) 
+    cameras.setFont(font)
 
     changeSourceButton = QtWidgets.QPushButton('Change', )
     font = changeSourceButton.font()
     font.setPointSize(20)
-    changeSourceButton.setFont(font) 
+    changeSourceButton.setFont(font)
     changeSourceButton.clicked.connect(lambda: changeSource(cam))
 
-
-    cam = CameraWidget(screen_width//2, screen_height//2, cameras, statue_label=statueLabel, name_edit=nameEdit)
+    cam = CameraWidget(screen_width // 2,
+                       screen_height // 2,
+                       cameras,
+                       statue_label=statueLabel,
+                       name_edit=nameEdit)
 
     repeatButton.clicked.connect(lambda: repeat(cam))
 
-    typeComboBox = QtWidgets.QComboBox() 
-    typeComboBox.addItems(['Visitor', 'Student', 'Teacher'])
+    typeComboBox = QtWidgets.QComboBox()
+    typeComboBox.addItems(['User', 'Admin', 'Lecturer', 'Student'])
     font = typeComboBox.font()
     font.setPointSize(20)
-    typeComboBox.setFont(font) 
+    typeComboBox.setFont(font)
 
+    email = QtWidgets.QLabel('Email')
+    email.setFont(QtGui.QFont('Arial', 20))
+    emailEdit = QtWidgets.QLineEdit()
+    font = emailEdit.font()
+    font.setPointSize(20)
+    emailEdit.setFont(font)
 
+    password = QtWidgets.QLabel('Password')
+    password.setFont(QtGui.QFont('Arial', 20))
+    passwordEdit = QtWidgets.QLineEdit()
+    font = passwordEdit.font()
+    font.setPointSize(20)
+    passwordEdit.setFont(font)
 
-    trainButton.clicked.connect(lambda: train(cam, nameEdit.text(), str(typeComboBox.currentIndex())))
+    trainButton.clicked.connect(
+        lambda: train(cam, nameEdit.text(), emailEdit.text(), passwordEdit.text(), str(typeComboBox.currentIndex())))
 
 
     ml.addWidget(sourceLabel, 1, 0, 1, 1)
     ml.addWidget(cameras, 1, 1, 1, 2)
     ml.addWidget(changeSourceButton, 1, 3, 1, 1)
-    
-
 
     ml.addWidget(statueLabel, 2, 0, 1, 3)
     ml.addWidget(repeatButton, 2, 3, 1, 1)
@@ -338,6 +391,10 @@ if __name__ == '__main__':
     ml.addWidget(typeComboBox, 3, 2)
     ml.addWidget(trainButton, 3, 3)
 
+    ml.addWidget(email, 4, 0)
+    ml.addWidget(emailEdit, 4, 1)
+    ml.addWidget(password, 4, 2)
+    ml.addWidget(passwordEdit, 4, 3)
 
     ml.addWidget(cam.get_video_frame(), 0, 0, 1, 4)
 
@@ -345,5 +402,5 @@ if __name__ == '__main__':
 
     QtWidgets.QShortcut(QtGui.QKeySequence('Ctrl+Q'), mw, exit_application)
 
-    if(sys.flags.interactive != 1) or not hasattr(QtCore, 'PYQT_VERSION'):
+    if (sys.flags.interactive != 1) or not hasattr(QtCore, 'PYQT_VERSION'):
         QtWidgets.QApplication.instance().exec_()

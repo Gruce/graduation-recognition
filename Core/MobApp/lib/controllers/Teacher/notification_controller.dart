@@ -87,7 +87,7 @@ class NotificationController extends GetxController {
     files_path.clear();
     titleController.text = '';
     bodyController.text = '';
-    fetch();
+
     Get.off(TeacherNotification());
   }
 
@@ -102,7 +102,6 @@ class NotificationController extends GetxController {
   }
 
   void fetch() async {
-    notifications.clear();
     final res = await Utilities.httpGet('teacher/tasks');
     if (res.statusCode == 200) {
       List response = json.decode(res.body)['data'];

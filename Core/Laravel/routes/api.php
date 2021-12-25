@@ -53,6 +53,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         ## lectures ## 
         Route::group(['prefix' => 'lectures'] ,function(){
+            Route::get('/days', [LectureController::class, 'days']);
             Route::get('/{day?}', [LectureController::class, 'lectures']);
         });
 

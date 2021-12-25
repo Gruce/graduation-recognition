@@ -5,7 +5,11 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Models\User;
+use App\Models\{
+    User,
+    Teacher,
+    Student
+};
 use Str;
 
 class UserController extends Controller
@@ -39,6 +43,12 @@ class UserController extends Controller
         ];
 
         $user = User::create($data);
+
+        switch ($req->type){
+            case 2: Teacher::create(['user_id' => $user->id]); break;
+            case 3: Student::create(['user_id' => $user->id]); break;
+        }
+        
 
         if($user)
             return response()->json(['id' => $user->id], 200);

@@ -9,13 +9,13 @@ class Tracking extends Model
 {
     use HasFactory;
     use \Staudenmeir\EloquentEagerLimit\HasEagerLimit;
-    protected $fillable = ['person_id' , 'camera_id' , 'last_seen' , 'image_path'];
+    protected $fillable = ['user_id' , 'camera_id' , 'last_seen' , 'image_path'];
 
     public $timestamps = true;
 
-    public function person()
+    public function user()
     {
-        return $this->belongsTo(Person::class);
+        return $this->belongsTo(User::class);
     }
 
     public function camera()

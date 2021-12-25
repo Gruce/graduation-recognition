@@ -24,26 +24,29 @@
                     <div class="flex align-items-center">
                       {{-- <img class="rounded-full h-12 w-12  object-cover" src="https://images.unsplash.com/photo-1613588718956-c2e80305bf61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80" alt="unsplash image"> --}}
                       <div class="ml-3">
-                        <a href="{{ route('trackings', [$cameraId ? $cameraId : 0, $tracking->person->id]) }}" class="
-                          @if ($personId == $tracking->person->id)
+                        <a href="{{ route('trackings', [$cameraId ? $cameraId : 0, $tracking->user->id]) }}" class="
+                          @if ($personId == $tracking->user->id)
                             text-green-300
                           @else
                             text-gray-500
                             transition
                             hover:text-gray-800
                           @endif font-bold">
-                          {{ $tracking->person->name }}
+                          {{ $tracking->user->name }}
                         </a>
                         <div class="">
-                          @switch($tracking->person->type)
+                          @switch($tracking->user->type)
                             @case(0)
-                              Visitor
+                              User
                               @break
                             @case(1)
-                              Student
+                              Admin
                               @break
                             @case(2)
-                              Emlpyer
+                              Lecturer
+                              @break
+                            @case(3)
+                              Student
                               @break
                             @default
                             Unkown

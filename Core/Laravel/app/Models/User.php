@@ -29,6 +29,8 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
+        'is_trained',
+        'type'
     ];
 
     /**
@@ -76,6 +78,10 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
+
+    public function trackings(){
+        return $this->hasMany(Tracking::class);
+    }
 
     public function person(){
         return $this->hasOne(Person::class);

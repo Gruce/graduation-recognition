@@ -16,6 +16,7 @@ import 'package:graduaiton_app/screens/general/people/person_profile_widget.dart
 import 'package:graduaiton_app/screens/login_screen.dart';
 import 'package:graduaiton_app/screens/student/home_page/home_screen.dart';
 import 'package:graduaiton_app/screens/student/profile/profile_screen.dart';
+import 'package:graduaiton_app/screens/student/subject/subjects_student.dart';
 import 'package:graduaiton_app/screens/teacher/home_page/home_screen.dart';
 import 'package:graduaiton_app/screens/teacher/profile/profile_screen.dart';
 import 'package:graduaiton_app/screens/teacher/units/units_screen.dart';
@@ -43,8 +44,8 @@ class Routes {
 
   //Student
   static const studentMain = '/student/';
-  static const studentProfile = '/student/profile/';
-
+  static const studentProfile = '/student/profile';
+  static const subjectsStudent = '/student/subjects';
   static final routes = [
     // Auth Routes
     GetPage(
@@ -119,10 +120,11 @@ class Routes {
         page: () => StudentHomeScreen(),
         binding: StudentHomeBinding()),
 
-    // GetPage(
-    //     name: teachSchedule,
-    //     page: () => const TeacherScheduleScreen(),
-    //     binding: TeacherScheduleScrBinding()),
+     GetPage(
+        name: subjectsStudent,
+        page: () => SubjectStudentScreen(),
+        binding: SubjectsStudentBinding()),
+
 
     GetPage(
         name: studentProfile,

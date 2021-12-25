@@ -2,7 +2,6 @@ import os
 import threading
 import time
 import cv2
-import deepface
 from deepface import DeepFace
 from retinaface import RetinaFace
 import matplotlib.pyplot as plt

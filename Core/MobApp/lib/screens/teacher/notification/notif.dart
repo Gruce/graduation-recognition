@@ -4,9 +4,12 @@ import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/Teacher/notification_controller.dart';
 import 'package:graduaiton_app/screens/teacher/home_page/widgets/button.dart';
 import 'package:graduaiton_app/screens/teacher/home_page/widgets/input_field.dart';
+import 'package:graduaiton_app/screens/teacher/notification/button.dart';
+import 'package:http/http.dart';
 
 class Notif extends GetView {
   @override
+  C co = Get.put(C());
   NotificationController controller = Get.put(NotificationController());
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +18,7 @@ class Notif extends GetView {
         child: Padding(
           padding: EdgeInsets.all(6),
           child: Column(
-           children: [
+            children: [
               MyinputField(
                 title: 'Title',
                 hint: 'Enter your title',
@@ -25,6 +28,15 @@ class Notif extends GetView {
                 title: 'Note',
                 hint: 'Enter your note',
                 controller: controller.bodyController,
+              ),
+              IconButton(
+                icon: Icon(
+                  Icons.calendar_today_outlined,
+                  color: Colors.grey,
+                ),
+                onPressed: () {
+                 co.getDateFromUser();
+                },
               ),
               Obx(
                 () => ListView(

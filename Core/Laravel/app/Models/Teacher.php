@@ -39,9 +39,9 @@ class Teacher extends Model
         return $this->hasMany(Task::class);
     }
 
-    // public function lectures(){
-    //     return $this->hasMany(Lecture::class);
-    // }
+    public function lectures(){
+        return $this->hasMany(Lecture::class);
+    }
 
     public function get_lectures($day = null){
         $lectures = $this->units()->with(

@@ -21,11 +21,11 @@
                         'route' => 'people',
                         'active' => isRoute('people'),
                     ],
-                    [
-                        'name' => 'Unkown People',
-                        'route' => 'unkown_people',
-                        'active' => isRoute('unkown_people'),
-                    ],
+                    // [
+                    //     'name' => 'Unkown People',
+                    //     'route' => 'unkown_people',
+                    //     'active' => isRoute('unkown_people'),
+                    // ],
                     [
                         'name' => 'Teachers',
                         'route' => 'teachers',

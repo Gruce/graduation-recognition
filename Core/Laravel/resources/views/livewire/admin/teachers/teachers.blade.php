@@ -107,7 +107,7 @@
                                             <div class="text-gray-600 focus-within:text-gray-400">
                                                 @foreach ($teacher->subjects->merge($subjects)->unique() as $key => $subject)
                                                 @if($subject->section_id == $teacher->section_id)
-                                                <input class="form-check-input" type="checkbox" id="teachers.{{ $i }}.subjects.{{ $key }}.name" {{-- wire:model="teachers.{{ $i }}.subjects.{{ $key }}.id" --}} wire:change="changeSubject({{$i}}, {{$subject->id}})">
+                                                <input class="form-check-input" wire:model="subjectID.{{$subject->id}}" type="checkbox" id="teachers.{{ $i }}.subjects.{{ $key }}.name" >
 
                                                 <label class="form-check-label" for="teachers.{{ $i }}.subjects.{{ $key }}.name">
                                                     {{ $subject->name}}

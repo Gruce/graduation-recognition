@@ -17,7 +17,7 @@ class Index extends Component
 
         $units_lectures = $teacher->get_lectures()->get();
 
-        $current_lecture = $teacher->current_lecture()->get(); // true for current lecture // 
+        $current_lecture = $teacher->current_lecture()->get(); 
 
         foreach($current_lecture as $lecture)
             if($lecture->lectures->toArray()){

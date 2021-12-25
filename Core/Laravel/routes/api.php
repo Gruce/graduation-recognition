@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\{
     UserController,
+    AdminController,
+    LectureController,
     PeopleController,
     TeacherController,
     StudentController,
@@ -45,38 +47,48 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/', [UserController::class, 'users']);
             Route::post('/new' , [UserController::class , 'new_user']);
         });
+
         ## END USER ##
+
+        Route::get('/sections', [ApiController::class, 'sections']);
+        Route::get('/stages', [ApiController::class, 'stages']);
+        Route::get('/units', [ApiController::class, 'units']);
+        Route::get('/classrooms', [ApiController::class, 'classroom']);
+
+        ## lectures ## 
+        Route::group(['prefix' => 'lectures'] ,function(){
+            Route::get('/days', [LectureController::class, 'days']);
+            Route::get('/{day?}', [LectureController::class, 'lectures']);
+        });
+
+        ## end lectures ##
+
+        ## Students ##
+        Route::group(['prefix' => 'students'] ,function(){
+            Route::get('/', [StudentController::class, 'students']);
+        });
+
+        ## End Students ##
+
+        ## teachers ##
+        Route::group(['prefix' => 'teachers'] ,function(){
+            Route::get('/', [AdminController::class, 'teachers']);
+        });
+
+        ## End teachers ##
+
     });
     
     #### END ADMIN ####
 
     ## People ##
-    Route::group(['prefix' => 'people'] ,function(){
-        Route::get('', [PeopleController::class, 'people']);
-    });
+    // Route::group(['prefix' => 'people'] ,function(){
+    //     Route::get('', [PeopleController::class, 'people']);
+    // });
 
 
-
-    ## Cameras ##
-    Route::group(['prefix' => 'cameras'] ,function(){
-        Route::get('/', [CameraController::class , 'cameras']);
-        Route::post('/state', [CameraController::class, 'camera_state']);
-    });
-
-    ## Students ##
-    Route::group(['prefix' => 'students'] ,function(){
-        Route::get('/', [StudentController::class, 'students']);
-    });
-
-
-    ## Trackings ##
-    Route::group(['prefix' => 'tracking'] ,function(){
-        Route::post('/new', [TrackingController::class, 'new_track']);
-    });
-
-
-    ## Teachers ##
-    Route::group(['prefix' => 'teacher'] ,function(){
+    #### Teachers ####
+    Route::group(['prefix' => 'teacher' , 'middleware' => 'teacher'] ,function(){
         Route::get('/my-students', [TeacherController::class, 'my_students']);
         Route::get('/info', [TeacherController::class, 'info']);
         Route::get('/units', [TeacherController::class, 'units']);
@@ -86,30 +98,36 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/send-task' , [TeacherController::class, 'send_task']);
     });
 
-
-     ## Student ##
-     Route::group(['prefix' => 'student'] ,function(){
-
-      Route::get('/subjects', [StudentController::class, 'subjects']);
-
-  });
+    #### END Teachers ####
 
 
+    #### Student ####
+    Route::group(['prefix' => 'student' , 'middleware' => 'student'] ,function(){
 
-    Route::post('person', [ApiController::class, 'person']);
-    Route::get('not_trained_people', [ApiController::class, 'not_trained_people']);
-    Route::post('people/new', [ApiController::class, 'new_person']);
-    Route::post('app_restart', [ApiController::class, 'app_restart']);
-    Route::get('classrooms', [ApiController::class, 'classroom']);
-    Route::get('lectures/{day?}', [ApiController::class, 'lectures']);
+        Route::get('/subjects', [StudentController::class, 'subjects']);
 
-    Route::get('sections', [ApiController::class, 'sections']);
+    });
 
-
-    Route::get('stages', [ApiController::class, 'stages']);
+    #### End Student ####
 
 
-    Route::get('units', [ApiController::class, 'units']);
+    ## Cameras ##
+    Route::group(['prefix' => 'cameras'] ,function(){
+        Route::get('/', [CameraController::class , 'cameras']);
+        Route::post('/state', [CameraController::class, 'camera_state']);
+    });
+
+
+    ## Trackings ##
+    Route::group(['prefix' => 'tracking'] ,function(){
+        Route::post('/new', [TrackingController::class, 'new_track']);
+    });
+
+    // Route::post('person', [ApiController::class, 'person']);
+    // Route::get('not_trained_people', [ApiController::class, 'not_trained_people']);
+    // Route::post('people/new', [ApiController::class, 'new_person']);
+    // Route::post('app_restart', [ApiController::class, 'app_restart']);
+
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

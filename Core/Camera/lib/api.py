@@ -57,11 +57,11 @@ class Auth:
         if x.status_code == 200:
             cprint("Tracked Uploaded.", 'blue')
             name = x.json()['data']
-            cprint('[Found, Camera ' + str(camera_id) + '] ' + name, 'cyan')
+            cprint('[Found, Camera ' + str(camera_id) + '] ' + str(name), 'cyan')
 
-            if "Unkown" in name:
-                directory = 'Core/Laravel/storage/app/public/db/'
-                os.remove(os.path.normpath(directory + 'representations_arcface.pkl')) if os.path.exists(directory + 'representations_arcface.pkl') else None
+            # if "Unkown" in name:
+            #     directory = 'Core/Laravel/storage/app/public/db/'
+            #     os.remove(os.path.normpath(directory + 'representations_arcface.pkl')) if os.path.exists(directory + 'representations_arcface.pkl') else None
             
             return name
 
@@ -69,7 +69,7 @@ class Auth:
 
     # People
     def people(self):
-        res = requests.get(api + 'users', headers=self.headers)
+        res = requests.get(api + 'admin/users', headers=self.headers)
         if res.status_code == 200:
             return res.json()["data"]
 
@@ -86,13 +86,14 @@ class Auth:
         
     # New Person
     def new_person(self, name, email, password, total_faces, _type):        
-        resp = requests.post(api + 'users/new', data={
+        resp = requests.post(api + 'admin/users/new', data={
             'name': name,
             'email': email,
             'password': password,
             'type': _type
         }, headers=self.headers)
 
+        print(resp.json())
 
         person_id = resp.json()['id']
         directory = 'Core/Laravel/storage/app/public/db/'

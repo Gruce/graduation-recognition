@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Student;
+use App\Models\{
+    Teacher,
+    Student
+};
 
 class StudentController extends Controller
 {
@@ -31,14 +34,16 @@ class StudentController extends Controller
 
     public function subjects(){
         $student = auth()->user()->student()->first();
-        $unit_id=$student->unit_id;
+        $unit_id = $student->unit_id;
 
         $stage = $student->stage()->first();
 
         $subjects = $stage->subjects()->with(
             [
-                'teachers' => function($teacher) use ($unit_id){
-                    return $teacher->wherePivot('unit_id' , 5)->with('user:id,name,email')->get();
+                'teachers' => function($teachers) use ($unit_id){
+                    return $teachers->whereHas('units', function ($query) use ($unit_id){
+                        $query->where('unit_id', $unit_id);
+                    })->with(['user:id,name,email'])->get();
                 }
             ]
         )->get();

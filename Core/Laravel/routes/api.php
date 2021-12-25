@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\{
     UserController,
+    LectureController,
     PeopleController,
     TeacherController,
     StudentController,
@@ -45,7 +46,18 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/', [UserController::class, 'users']);
             Route::post('/new' , [UserController::class , 'new_user']);
         });
+
         ## END USER ##
+
+        Route::get('/classrooms', [ApiController::class, 'classroom']);
+
+        ## lectures ## 
+        Route::group(['prefix' => 'lectures'] ,function(){
+            Route::get('lectures/{day?}', [ApiController::class, 'lectures']);
+        });
+
+        ## end lectures ##
+
     });
     
     #### END ADMIN ####
@@ -100,8 +112,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('not_trained_people', [ApiController::class, 'not_trained_people']);
     Route::post('people/new', [ApiController::class, 'new_person']);
     Route::post('app_restart', [ApiController::class, 'app_restart']);
-    Route::get('classrooms', [ApiController::class, 'classroom']);
-    Route::get('lectures/{day?}', [ApiController::class, 'lectures']);
+
 
     Route::get('sections', [ApiController::class, 'sections']);
 

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\{
     UserController,
+    AdminController,
     LectureController,
     PeopleController,
     TeacherController,
@@ -49,10 +50,14 @@ Route::group(['middleware' => 'auth'], function () {
 
         ## END USER ##
 
+        Route::get('/sections', [ApiController::class, 'sections']);
+        Route::get('/stages', [ApiController::class, 'stages']);
+        Route::get('/units', [ApiController::class, 'units']);
         Route::get('/classrooms', [ApiController::class, 'classroom']);
 
         ## lectures ## 
         Route::group(['prefix' => 'lectures'] ,function(){
+            Route::get('/days', [LectureController::class, 'days']);
             Route::get('/{day?}', [LectureController::class, 'lectures']);
         });
 
@@ -65,6 +70,13 @@ Route::group(['middleware' => 'auth'], function () {
 
         ## End Students ##
 
+        ## teachers ##
+        Route::group(['prefix' => 'teachers'] ,function(){
+            Route::get('/', [AdminController::class, 'teachers']);
+        });
+
+        ## End teachers ##
+
     });
     
     #### END ADMIN ####
@@ -73,6 +85,31 @@ Route::group(['middleware' => 'auth'], function () {
     // Route::group(['prefix' => 'people'] ,function(){
     //     Route::get('', [PeopleController::class, 'people']);
     // });
+
+
+    #### Teachers ####
+    Route::group(['prefix' => 'teacher' , 'middleware' => 'teacher'] ,function(){
+        Route::get('/my-students', [TeacherController::class, 'my_students']);
+        Route::get('/info', [TeacherController::class, 'info']);
+        Route::get('/units', [TeacherController::class, 'units']);
+        Route::get('/unit/{id}', [TeacherController::class, 'unit_student']);
+        Route::get('/tasks' , [TeacherController::class, 'tasks']);
+        Route::get('/lectures/{day?}' , [TeacherController::class, 'lectures']);
+        Route::post('/send-task' , [TeacherController::class, 'send_task']);
+    });
+
+    #### END Teachers ####
+
+
+    #### Student ####
+    Route::group(['prefix' => 'student' , 'middleware' => 'student'] ,function(){
+
+        Route::get('/subjects', [StudentController::class, 'subjects']);
+
+    });
+
+    #### End Student ####
+
 
     ## Cameras ##
     Route::group(['prefix' => 'cameras'] ,function(){
@@ -86,41 +123,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/new', [TrackingController::class, 'new_track']);
     });
 
+    // Route::post('person', [ApiController::class, 'person']);
+    // Route::get('not_trained_people', [ApiController::class, 'not_trained_people']);
+    // Route::post('people/new', [ApiController::class, 'new_person']);
+    // Route::post('app_restart', [ApiController::class, 'app_restart']);
 
-    ## Teachers ##
-    Route::group(['prefix' => 'teacher'] ,function(){
-        Route::get('/my-students', [TeacherController::class, 'my_students']);
-        Route::get('/info', [TeacherController::class, 'info']);
-        Route::get('/units', [TeacherController::class, 'units']);
-        Route::get('/unit/{id}', [TeacherController::class, 'unit_student']);
-        Route::get('/tasks' , [TeacherController::class, 'tasks']);
-        Route::get('/lectures/{day?}' , [TeacherController::class, 'lectures']);
-        Route::post('/send-task' , [TeacherController::class, 'send_task']);
-    });
-
-
-     ## Student ##
-     Route::group(['prefix' => 'student'] ,function(){
-
-      Route::get('/subjects', [StudentController::class, 'subjects']);
-
-  });
-
-
-
-    Route::post('person', [ApiController::class, 'person']);
-    Route::get('not_trained_people', [ApiController::class, 'not_trained_people']);
-    Route::post('people/new', [ApiController::class, 'new_person']);
-    Route::post('app_restart', [ApiController::class, 'app_restart']);
-
-
-    Route::get('sections', [ApiController::class, 'sections']);
-
-
-    Route::get('stages', [ApiController::class, 'stages']);
-
-
-    Route::get('units', [ApiController::class, 'units']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

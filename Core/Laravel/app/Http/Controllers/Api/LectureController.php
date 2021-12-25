@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Day;
 
 class LectureController extends Controller
 {
@@ -35,5 +36,35 @@ class LectureController extends Controller
 
         return response()->json(['data' => $lectures], 200);
         
+    }
+
+    public function days(){
+        $days = Day::with(
+            [
+                'lectures' => function($lecture){
+                    return $lecture->with(
+                        [
+                            'subject:id,name',
+                            'teacher' => function($teacher){
+                                return $teacher->with('user:id,name')->select('id' , 'user_id');
+                            },
+                            'unit' => function ($unit){
+                                return $unit->with(
+                                    [
+                                        'section:id,name',
+                                        'stage:id,name'
+                                    ]
+                                )->select('id' , 'name' , 'section_id' , 'stage_id');
+                            },
+                            'classroom' => function($classroom){
+                                return $classroom->with('cameras')->get();
+                            }
+                        ]
+                    )->get();
+                }
+            ]
+        )->get();
+
+        return response()->json(['data' => $days], 200);
     }
 }

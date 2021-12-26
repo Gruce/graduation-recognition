@@ -16,10 +16,9 @@ class TaskSend extends Component
 
     public $title;
     public $body;
-    public $to = 1;
+    public $to = 0;
     public $ids = [];
     public $idsData = [];
-    public $deadline;
     public $files ;
 
 
@@ -28,9 +27,8 @@ class TaskSend extends Component
             'livewire' => true,
             'title' => $this->title,
             'body' => $this->body,
-            'to' => $this->to,
+            'to' => 1,
             'ids' => array_keys($this->ids),
-            'deadline' => $this->deadline,
             'files' => $this->files ? $this->files : null,
         ];
 
@@ -53,17 +51,22 @@ class TaskSend extends Component
     {
         $teacher = auth()->user()->teacher()->first();
         $section = $teacher->section()->get();
-        $units = $teacher->units()->with('stage:id,name')->get();
         $stages = $teacher->stages()->get();
+        $units = $teacher->units()->where('stage_id' , $this->to)->get();
 
-        switch ($this->to) {
-            case 1: $this->idsData = $units->toArray(); break;
-            case 2: $this->idsData = $stages->toArray(); break;
-            case 3: $this->idsData = $section->toArray(); break;
-            default:
-                break;
-        }
+        // switch ($this->to) {
+        //     case 1: $this->idsData = $units->toArray(); break;
+        //     case 2: $this->idsData = $stages->toArray(); break;
+        //     case 3: $this->idsData = $section->toArray(); break;
+        //     default:
+        //         break;
+        // }
 
-        return view('livewire.teacher.tasks.task-send');
+        return view('livewire.teacher.tasks.task-send',
+            [
+                'stages' => $stages,
+                'units' => $units,
+            ]
+        );
     }
 }

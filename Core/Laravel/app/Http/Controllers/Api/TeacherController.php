@@ -5,6 +5,11 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Models\{
+    Stage,
+    Unit,
+    Subject
+};
 use File;
 
 class TeacherController extends Controller
@@ -95,10 +100,13 @@ class TeacherController extends Controller
         $file_paths = [];
 
         $validator = Validator::make($req->all(), [
-            'files*' => 'file|mimes:jpeg,png,jpg,pdf,docx,doc,rar,zip|max:10000'
+            'files*' => 'file|mimes:jpeg,png,jpg,pdf,docx,doc,rar,zip|max:10000',
+            'ids' => 'required',
+            'title' => 'required',
         ]);
+
         if ($validator->fails())
-            return response()->json(['data' => 'File extension Not available or file size is large'], 400);
+            return response()->json(['data' => 'File extension Not available or file size is large Or title or stage unit not existing'], 400);
 
         $ids=$req->ids;
         if(gettype($req->ids)=='string'){
@@ -107,13 +115,16 @@ class TeacherController extends Controller
             $ids=array_map('intval', explode(',', $x));
         }
 
+        $stage_id = Unit::find($ids[0])->stage_id;
         $teacher = auth()->user()->teacher()->first();
+        $stage = $teacher->stages()->wherePivot('stage_id' , $stage_id)->first();
+        $subject = Subject::where('stage_id' , $stage->id)->first();
 
         $data = [
+            'subject_id' => $subject->id,
             'title' => $req->title,
             'body' => $req->body,
             'to' => $req->to,
-            'deadline' => $req->deadline,
         ];
 
         $task = $teacher->tasks()->create($data);
@@ -130,9 +141,9 @@ class TeacherController extends Controller
 
         switch ($req->to) {
             case 1: $task->units()->attach($ids); break;
-            case 2: $task->stages()->attach($ids); break;
-            case 3: $task->sections()->attach($ids); break;
-            case 4: $task->students()->attach($ids); break;
+            // case 2: $task->stages()->attach($ids); break;
+            // case 3: $task->sections()->attach($ids); break;
+            // case 4: $task->students()->attach($ids); break;
             default:{
                 $rsp = 400 ;
                 $msg = 'error';
@@ -145,7 +156,7 @@ class TeacherController extends Controller
     public function tasks(){
         $teacher = auth()->user()->teacher()->first();
         $tasks = $teacher->tasks()->with(['files','units'=>function($unit){
-          return $unit->with('stage')->get();
+            return $unit->with('stage')->get();
         }])->get();
 
         return response()->json(['data' => $tasks], 200);

@@ -12,6 +12,7 @@ class SubjectsStudentController extends GetxController {
   @override
   void onInit() async {
     fetch();
+
     super.onInit();
   }
 
@@ -20,7 +21,7 @@ class SubjectsStudentController extends GetxController {
 
     if (res.statusCode == 200) {
       List response = json.decode(res.body)['data'];
-      
+
       for (var element in response) {
         subject.add(SubjectsModel.fromJson(element));
       }
@@ -29,16 +30,18 @@ class SubjectsStudentController extends GetxController {
   }
 
   void fechStudentTask(int x, int y) async {
+    notification.clear();
     var res = await Utilities.httpGet(
         'student/subject-tasks/' + x.toString() + '/' + y.toString());
 
     if (res.statusCode == 200) {
       List response = json.decode(res.body)['data'];
-      
+
       print('===============================================================');
       for (var element in response) {
         print(element);
-        print('===============================================================');
+        print(
+            '===============================================================');
         notification.add(Notif.fromJson(element));
       }
     }

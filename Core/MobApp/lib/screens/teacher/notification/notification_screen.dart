@@ -112,7 +112,8 @@ class TeacherNotification extends GetView {
                                                                   fontSize: 12),
                                                             ),
                                                           ],
-                                                        )),
+                                                        )
+                                                        ),
                                                     Divider(
                                                       thickness: 1,
                                                     ),
@@ -183,11 +184,15 @@ class TeacherNotification extends GetView {
                                                           color: Colors.black
                                                               .withOpacity(
                                                                   0.6)),
-                                                    )),
+                                                    )
+                                                    ),
                                                   ],
-                                                )),
+                                                )
+                                                ),
                                           ],
-                                        )),
+                                        )
+                                        
+                                        ),
                                   )),
                             );
                           })

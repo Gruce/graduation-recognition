@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\{
     Teacher,
-    Student
+    Student,
+    Subject,
+    Task,
 };
 
 class StudentController extends Controller
@@ -51,10 +53,12 @@ class StudentController extends Controller
         return response()->json(['data' => $subjects]);
     }
 
-    public function subject_tasks($subject_id,$teacher_id)
-    {
-      info($subject_id);
-      info($teacher_id);
+    public function subject_tasks($subject_id , $teacher_id){
+        $student = auth()->user()->student()->first();
+        $unit_id = $student->unit_id;
+        $tasks = Task::where('teacher_id' , $teacher_id)->with('files')->get();
+
+        return response()->json(['data' => $tasks]);
     }
 
 

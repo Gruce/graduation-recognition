@@ -103,10 +103,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     #### Student ####
     Route::group(['prefix' => 'student' , 'middleware' => 'student'] ,function(){
-
         Route::get('/subjects', [StudentController::class, 'subjects']);
         Route::get('/subject-tasks/{subject_id}/{teacher_id}', [StudentController::class, 'subject_tasks']);
-
     });
 
     #### End Student ####

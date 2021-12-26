@@ -56,7 +56,7 @@ class StudentController extends Controller
     public function subject_tasks($subject_id , $teacher_id){
         $student = auth()->user()->student()->first();
         $unit_id = $student->unit_id;
-        $tasks = Task::where('teacher_id' , $teacher_id)->with('files')->get();
+        $tasks = Task::where('teacher_id' , $teacher_id)->where('subject_id' , $subject_id)->with('files')->get();
 
         return response()->json(['data' => $tasks]);
     }

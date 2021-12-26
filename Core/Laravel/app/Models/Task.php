@@ -8,10 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Task extends Model
 {
     use HasFactory;
-    protected $fillable = ['teacher_id' , 'title' , 'body' , 'file_path' , 'to' , 'ids' , 'deadline'];
+    protected $fillable = ['teacher_id' , 'title' , 'body' , 'file_path' , 'to' , 'ids' , 'subject_id'];
 
     public function teacher(){
         return $this->belongsTo(Teacher::class);
+    }
+
+    public function subject(){
+        return $this->belongsTo(Subject::class);
     }
 
     public function units(){

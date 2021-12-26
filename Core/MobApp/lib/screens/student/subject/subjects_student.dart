@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/Student/student_subject_controller.dart';
 import 'package:graduaiton_app/screens/student/layout.dart';
+import 'notify_of_subject.dart';
 
 class SubjectStudentScreen extends GetView {
   SubjectStudentScreen({Key? key}) : super(key: key);
@@ -22,7 +23,11 @@ class SubjectStudentScreen extends GetView {
                           itemCount: controller.subject.length,
                           itemBuilder: (BuildContext context, int index) {
                             return GestureDetector(
-                              onTap: () =>controller.fechTask(controller.subject[index].id,controller.subject[index].teachers[0].id),
+                              
+                              onTap: () => {controller.fechTask(controller.subject[index].id,controller.subject[index].teachers[0].id),Get.to(Notif())},
+                              
+                              
+                             
                               child: Card(
                                   margin: EdgeInsets.all(15),
                                   shape: BeveledRectangleBorder(

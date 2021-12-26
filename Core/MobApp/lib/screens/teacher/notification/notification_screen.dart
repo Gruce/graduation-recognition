@@ -152,8 +152,7 @@ class TeacherNotification extends GetView {
                                                                 height:20.0,
                                                                 child: RaisedButton(
                                                                 onPressed: () =>
-                                                                    launchURL(
-                                                                        index),
+                                                                    launchURL(index),
                                                                 child: Text(
                                                                     'View',style: TextStyle(color: Colors.white),),
                                                               )

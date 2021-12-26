@@ -9,7 +9,7 @@ import 'package:http/http.dart';
 
 class Notif extends GetView {
   @override
-  C co = Get.put(C());
+ 
   NotificationController controller = Get.put(NotificationController());
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +35,7 @@ class Notif extends GetView {
                   color: Colors.grey,
                 ),
                 onPressed: () {
-                 co.getDateFromUser();
+                 ;
                 },
               ),
               Obx(

@@ -10,14 +10,13 @@ class NotificationModel {
   int to = 0;
   String title = '';
   String body = '';
-  String deadline = '';
   String created_at = '';
   List<UnitModel> units = [];
   List<int> ids = [];
   List<FileModel> files = [];
-
+  
   NotificationModel(
-      {id, teacher_id, title, body, to, deadline, ids, files, date, units});
+      {id, teacher_id, title, body, to, ids, files, date, units});
 
   NotificationModel.fromJson(Map<dynamic, dynamic> json) {
     id = json['id'];
@@ -25,7 +24,6 @@ class NotificationModel {
     to = json['to'];
     title = json['title'];
     body = json['body'];
-    deadline = json['deadline'];
     ids = json['ids'];
     created_at = Jiffy(json['created_at']).fromNow();
     for (var file in json['files']) {
@@ -43,7 +41,6 @@ class NotificationModel {
     data['to'] = to;
     data['title'] = title;
     data['body'] = body;
-    data['deadline'] = deadline;
     data['ids'] = ids;
     data['created_at'] = created_at;
     data['files'] = files;

@@ -50,7 +50,7 @@ class Utilities {
   static Future httpFilesPost(
       String path, Map<dynamic, dynamic> data, List files) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    final api = await Config.api;
+    final api = await Config.api; 
 
     http.MultipartRequest request =
         http.MultipartRequest("POST", Uri.parse("$api/$path"));

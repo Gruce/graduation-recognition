@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\{
     Teacher,
-    Student
+    Student,
+    Subject,
+    Task,
+    Lecture
 };
 
 class StudentController extends Controller
@@ -49,6 +52,26 @@ class StudentController extends Controller
         )->get();
 
         return response()->json(['data' => $subjects]);
+    }
+
+    public function subject_tasks($subject_id , $teacher_id){
+        $student = auth()->user()->student()->first();
+        $unit_id = $student->unit_id;
+        $tasks = Task::where('teacher_id' , $teacher_id)->where('subject_id' , $subject_id)->with('files')->get();
+
+        return response()->json(['data' => $tasks]);
+    }
+
+    public function lectures($today = null){
+        $today = $today ? date('l') : null;
+        $student = auth()->user()->student()->first();
+        $lectures = Lecture::whereHas('day' , function($day) use($today){
+            return $day->where('name' , 'LIKE' , $today);
+        })->where('unit_id' , $student->unit_id)->get();
+
+        return response()->json(['data' => $lectures]);
 
     }
+
+
 }

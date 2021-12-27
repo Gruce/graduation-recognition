@@ -45,10 +45,10 @@ class AdminPeopleScreen extends GetView {
                                         controller.filteredPeople[index].id),
                                     name: controller.filteredPeople[index].name,
                                     type: controller.filteredPeople[index].type,
-                                    camera: controller
-                                        .filteredPeople[index].trackings.camera.description,
-                                    time: controller
-                                        .filteredPeople[index].trackings.seen,
+                                    camera:"camera",
+                                    //  controller.filteredPeople[index].trackings.camera.description,
+                                    time:"time",
+                                    // controller.filteredPeople[index].trackings.seen,
                                     typeString: controller.filteredPeople[index].typeString));
                           },
                         )

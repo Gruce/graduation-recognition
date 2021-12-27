@@ -32,7 +32,7 @@ class AdminStagesController extends GetxController {
   }
 
   void fetchStages() async {
-    var res = await Utilities.httpGet('stages');
+    var res = await Utilities.httpGet('admin/stages/');
     if (res.statusCode == 200) {
       List response = json.decode(res.body)['data'];
       stages.add(StageModel.fromJson({"id": -1, "name": "All Stages"}));

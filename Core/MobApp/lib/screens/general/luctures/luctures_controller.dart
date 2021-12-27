@@ -56,7 +56,7 @@ class LucturesController extends GetxController {
         widget: LuctureSearchWidget(controller: this),
       ),
       Property(
-        name: 'day',
+        name: 'days',
         value: false,
         icon: const Icon(Icons.date_range),
         widget: LuctureDaysFilterWidget(controller2: this),
@@ -69,9 +69,9 @@ class LucturesController extends GetxController {
 
   void filter() {
       
-    LecturesSectionsController _sectionController = Get.put(LecturesSectionsController());
-    LecturesStagesController _stageController = Get.put(LecturesStagesController());
-    LecturesUnitsController _unitController = Get.put(LecturesUnitsController());
+    // LecturesSectionsController _sectionController = Get.put(LecturesSectionsController());
+    // LecturesStagesController _stageController = Get.put(LecturesStagesController());
+    // LecturesUnitsController _unitController = Get.put(LecturesUnitsController());
 
     filteredLectures.assignAll(lectures);
 
@@ -85,9 +85,10 @@ class LucturesController extends GetxController {
     }
 
     // Another Filter
-    _unitController.filterByUnit(unitIndex.value);
-
-
+    // _sectionController.filterBySection(sectionIndex);
+    // _stageController.filterByStage(stageIndex);
+    // _unitController.filterByUnit(unitIndex);
+    
     update();
   }
 

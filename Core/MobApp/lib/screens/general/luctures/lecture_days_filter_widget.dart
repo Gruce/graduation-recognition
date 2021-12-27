@@ -21,7 +21,7 @@ class LuctureDaysFilterWidget extends GetView {
           child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                controller.days.isNotEmpty
+               controller.days.isNotEmpty
                     ? Container(
                         child: DropdownButton(
                         underline: Container(),

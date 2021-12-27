@@ -33,7 +33,7 @@ class LecturesSectionsController extends GetxController {
   }
 
   void fetchSections() async {
-    var res = await Utilities.httpGet('sections');
+    var res = await Utilities.httpGet('admin/sections');
     if (res.statusCode == 200) {
       List response = json.decode(res.body)['data'];
       sections.add(SectionModel.fromJson({"id": -1, "name": "All Sections"}));
@@ -41,11 +41,12 @@ class LecturesSectionsController extends GetxController {
         sections.add(SectionModel.fromJson(element));
       }
     }
+    lucturesController.update();
     update();
   }
 
   void filterBySection(i) {
-    sectionSelectedIndex.value = i;
+   sectionSelectedIndex.value = i;
     SectionModel section = sections[i];
 
     stageController.filterBySection(section.id);
@@ -54,7 +55,6 @@ class LecturesSectionsController extends GetxController {
     unitController.filterByStage(stage.id);
 
     stageController.update();
-    unitController.update();
     lucturesController.update();
     update();
   }

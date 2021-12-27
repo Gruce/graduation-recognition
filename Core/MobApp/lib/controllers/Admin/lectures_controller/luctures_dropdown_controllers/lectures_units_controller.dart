@@ -29,7 +29,7 @@ class LecturesUnitsController extends GetxController {
   }
 
   void fetchUnits() async {
-    var res = await Utilities.httpGet('units');
+    var res = await Utilities.httpGet('admin/units');
     if (res.statusCode == 200) {
       List response = json.decode(res.body)['data'];
       units.add(UnitModel.fromJson({"id": -1, "name": "All Units"}));
@@ -41,23 +41,21 @@ class LecturesUnitsController extends GetxController {
     }
     update();
   }
-
+  
   void filterByUnit(index) {
     unitSelectedIndex.value = index;
     UnitModel unit = filteredUnits[index];
-    print(lucturesController.filteredLectures[0].unit_id);
-
     if (unit.id == -1) {
       lucturesController.filteredLectures.assignAll(lucturesController.lectures);
     } else {
       lucturesController.filteredLectures.assignAll(lucturesController.lectures
-          .where((lecture) => lecture.unit_id == unit.id));
+          .where((student) => student.unit_id == unit.id));
     }
     lucturesController.update();
     update();
   }
 
-  void filterByStage(id) {
+void filterByStage(id) {
     unitSelectedIndex.value = 0;
     if (id == -1) {
       filteredUnits.assignAll(units);
@@ -65,6 +63,5 @@ class LecturesUnitsController extends GetxController {
       filteredUnits.assignAll(units.where((unit) => unit.stage_id == id));
     }
     filterByUnit(0);
-    update();
   }
 }

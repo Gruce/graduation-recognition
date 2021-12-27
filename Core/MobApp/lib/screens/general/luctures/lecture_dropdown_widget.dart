@@ -10,13 +10,13 @@ import 'luctures_controller.dart';
 // ignore: must_be_immutable
 class LuctureDropDownWidget extends GetView {
   LuctureDropDownWidget({Key? key, required this.controller1}) : super(key: key);
-  @override
-  LecturesSectionsController controller = Get.put(LecturesSectionsController());
+
+  LecturesSectionsController sectionController = Get.put(LecturesSectionsController());
   LecturesStagesController stageController = Get.put(LecturesStagesController());
   LecturesUnitsController unitController = Get.put(LecturesUnitsController());
 
   LucturesController controller1;
-  // LecturesSectionsController controller2;
+
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -27,78 +27,73 @@ class LuctureDropDownWidget extends GetView {
           child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                controller.sections.isNotEmpty
-                    ? Container(
+                sectionController.sections.isNotEmpty?
+                 Container(
                         child: DropdownButton(
                         underline: Container(),
                         // Initial Value
-                        value: controller.sectionSelectedIndex.value,
+                        value: sectionController.sectionSelectedIndex.value,
                         // Down Arrow Icon
                         icon: const Icon(Icons.keyboard_arrow_down),
                         // Array list of items
                         items:
-                            controller.sections.asMap().keys.map((int index) {
+                           sectionController.sections.asMap().keys.map((int se) {
                           return DropdownMenuItem(
-                            value: index,
-                            child: Text(controller.sections[index].name,
+                            value: se,
+                            child: Text(sectionController.sections[se].name,
                                 style: const TextStyle(
                                     color: Color(0xff6875F5), fontSize: 12.3)),
                           );
                         }).toList(),
-                        onChanged: (Object? index) => {
-                          controller
-                              .filterBySection(int.parse(index.toString()))
+                        onChanged: (Object? se) =>  {
+                          sectionController.filterBySection(int.parse(se.toString()))
                         },
                       ))
                     : const Text("Loading"),
                 // const Text("Stage "),
-                stageController.stages.isNotEmpty
-                    ? DropdownButton(
+                stageController.stages.isNotEmpty?
+                 DropdownButton(
                         underline: Container(),
                         // Initial Value
                         value: stageController.stageSelectedIndex.value,
                         // Down Arrow Icon
                         icon: const Icon(Icons.keyboard_arrow_down),
                         // Array list of items
-                        items: stageController.filteredStages
-                            .asMap()
-                            .keys
-                            .map((int index) {
+                        items:stageController.stages.asMap().keys.map((int st) {
                           return DropdownMenuItem(
-                            value: index,
-                            child: Text(stageController.filteredStages[index].name,
+                            value: st,
+                            child: Text(stageController.filteredStages[st].name,
                                 style: const TextStyle(
                                     color: Color(0xff6875F5), fontSize: 12.3)),
                           );
                         }).toList(),
-                        onChanged: (Object? index) => {
-                          stageController.filterByStage(
-                            int.parse(index.toString()),
-                          )
+                        onChanged: (Object? st) =>  {
+                          stageController
+                              .filterByStage(int.parse(st.toString()))
                         },
                       )
                     : const Text("Loading"),
 
-                unitController.units.isNotEmpty
-                    ? DropdownButton(
+                unitController.units.isNotEmpty?
+                 DropdownButton(
                         underline: Container(),
                         // Initial Value
                         value: unitController.unitSelectedIndex.value,
                         // Down Arrow Icon
                         icon: const Icon(Icons.keyboard_arrow_down),
                         // Array list of items
-                        items: unitController.filteredUnits
-                            .asMap()
-                            .keys
-                            .map((int index) {
+                        items:unitController.units.asMap().keys.map((int u) {
                           return DropdownMenuItem(
-                            value: index,
-                            child: Text(unitController.filteredUnits[index].name,
+                            value: u,
+                            child: Text(unitController.filteredUnits[u].name,
                                 style: const TextStyle(
                                     color: Color(0xff6875F5), fontSize: 12.3)),
                           );
                         }).toList(),
-                          onChanged: (Object? index) => {controller1.unitIndex.value = int.parse(index.toString()), controller1.filter()}
+                          onChanged: (Object? u) =>{
+                          unitController
+                              .filterByUnit(int.parse(u.toString()))
+                        }
                         ,
                       )
                     : const Text("Loading"),

@@ -37,7 +37,7 @@ class AdminSectionsController extends GetxController {
   }
 
   void fetchSections() async {
-    var res = await Utilities.httpGet('sections');
+    var res = await Utilities.httpGet('admin/sections/');
     if (res.statusCode == 200) {
       List response = json.decode(res.body)['data'];
       sections.add(SectionModel.fromJson({"id": -1, "name": "All Sections"}));

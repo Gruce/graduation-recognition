@@ -14,7 +14,7 @@ class LecturesStagesController extends GetxController {
   RxInt stageSelectedIndex = 0.obs;
 
   LecturesUnitsController unitController = Get.put(LecturesUnitsController());
-  LucturesController lucturesController = Get.put(LucturesController());
+  LucturesController lecturesController = Get.put(LucturesController());
 
   @override
   void onInit() async {
@@ -29,7 +29,7 @@ class LecturesStagesController extends GetxController {
   }
 
   void fetchStages() async {
-    var res = await Utilities.httpGet('stages');
+    var res = await Utilities.httpGet('admin/stages');
     if (res.statusCode == 200) {
       List response = json.decode(res.body)['data'];
       stages.add(StageModel.fromJson({"id": -1, "name": "All Stages"}));
@@ -47,17 +47,16 @@ class LecturesStagesController extends GetxController {
 
     unitController.filterByStage(stage.id);
     if (stage.id == -1) {
-      lucturesController.filteredLectures.assignAll(lucturesController.lectures);
+      lecturesController.filteredLectures.assignAll(lecturesController.lectures);
     } else {
-      lucturesController.filteredLectures.assignAll(lucturesController.lectures
+      lecturesController.filteredLectures.assignAll(lecturesController.lectures
           .where((lecture) => lecture.unit.stage_id == stage.id));
     }
 
     unitController.update();
-    lucturesController.update();
+    lecturesController.update();
     update();
   }
-
   void filterBySection(id) {
     stageSelectedIndex.value = 0;
     if (id == -1) {
@@ -66,6 +65,5 @@ class LecturesStagesController extends GetxController {
       filteredStages.assignAll(stages.where((stage) => stage.section_id == id));
     }
     filterByStage(0);
-    lucturesController.update();
   }
 }

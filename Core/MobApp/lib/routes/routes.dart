@@ -75,7 +75,7 @@ class Routes {
 
     GetPage(
         name: adminPeople,
-        page: () => AdminPeopleScreen(),
+        page: () => AdminUsersScreen(),
         binding: AdminProfileBinding()),
 
     GetPage(

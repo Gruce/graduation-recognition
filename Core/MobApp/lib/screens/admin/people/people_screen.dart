@@ -7,16 +7,16 @@ import 'package:graduaiton_app/screens/admin/people/search_widget.dart';
 import '../layout.dart';
 import 'person_widget.dart';
 
-class AdminPeopleScreen extends GetView {
-  AdminPeopleScreen({Key? key}) : super(key: key);
+class AdminUsersScreen extends GetView {
+  AdminUsersScreen({Key? key}) : super(key: key);
 
   @override
-  AdminPeopleController controller = Get.put(AdminPeopleController());
+  AdminUsersController controller = Get.put(AdminUsersController());
 
   @override
   Widget build(BuildContext context) {
     return AdminLayoutScreen(
-        title: 'People',
+        title: 'Users',
         child: Column(
           children: [
             // Search Container
@@ -31,7 +31,7 @@ class AdminPeopleScreen extends GetView {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: const Color.fromRGBO(255, 255, 255, .5)),
-              child: GetBuilder<AdminPeopleController>(
+              child: GetBuilder<AdminUsersController>(
                   builder: (_) => controller.filteredPeople.isNotEmpty
                       ? ListView.builder(
                           itemCount: controller.filteredPeople.length,

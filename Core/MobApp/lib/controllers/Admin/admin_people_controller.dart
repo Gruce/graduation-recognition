@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 import '../../config.dart';
 
 
-class AdminPeopleController extends GetxController {
+class AdminUsersController extends GetxController {
   late SharedPreferences prefs;
   RxList people = <UserModel>[].obs;
   RxList filteredPeople = <UserModel>[].obs;

@@ -7,7 +7,7 @@ class SearchWidget extends GetView {
   SearchWidget({Key? key}) : super(key: key);
 
   @override
-  AdminPeopleController controller = Get.put(AdminPeopleController());
+  AdminUsersController controller = Get.put(AdminUsersController());
 
   @override
   Widget build(BuildContext context) {

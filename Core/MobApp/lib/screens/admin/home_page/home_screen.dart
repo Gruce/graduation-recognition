@@ -11,7 +11,7 @@ import '../layout.dart';
 
 class AdminHomeScreen extends GetView<AdminHomeController> {
   AdminHomeScreen({Key? key}) : super(key: key);
-  AdminPeopleController controller1 = Get.put(AdminPeopleController());
+  AdminUsersController controller1 = Get.put(AdminUsersController());
   AdminStudentsController controller2 = Get.put(AdminStudentsController());
 
   @override

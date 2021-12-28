@@ -76,7 +76,7 @@ class Routes {
     GetPage(
         name: adminPeople,
         page: () => AdminUsersScreen(),
-        binding: AdminProfileBinding()),
+        binding: AdminUsersBinding()),
 
     GetPage(
         name: adminStudents,
@@ -124,7 +124,6 @@ class Routes {
     //     name: subjectsStudent,
     //     page: () => SubjectStudentScreen(),
     //     binding: SubjectsStudentBinding()),
-
 
     GetPage(
         name: studentProfile,

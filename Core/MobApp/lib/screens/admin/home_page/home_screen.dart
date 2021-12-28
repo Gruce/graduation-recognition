@@ -4,6 +4,7 @@ import 'package:graduaiton_app/controllers/Admin/admin_home_controller.dart';
 import 'package:graduaiton_app/controllers/Admin/admin_people_controller.dart';
 import 'package:graduaiton_app/controllers/Admin/admin_students_controller.dart';
 import 'package:graduaiton_app/routes/routes.dart';
+import 'package:graduaiton_app/screens/general/camera/camera.dart';
 import 'package:graduaiton_app/screens/general/luctures/lecture_widget.dart';
 import 'package:graduaiton_app/screens/general/luctures/luctures_wiget.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
@@ -66,6 +67,7 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
               ),
               body: Column(
                 children: [
+                  CameraWidget(),
                   Container(
                     alignment: Alignment.center,
                     margin: const EdgeInsets.symmetric(

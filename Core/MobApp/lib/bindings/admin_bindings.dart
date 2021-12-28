@@ -26,10 +26,10 @@ class AdminProfileBinding extends Bindings {
   }
 }
 
-class AdminPeopleBinding extends Bindings {
+class AdminUsersBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => AdminPeopleController());
+    Get.lazyPut(() => AdminUsersController());
   }
 }
 

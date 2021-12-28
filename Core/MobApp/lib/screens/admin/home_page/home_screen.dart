@@ -83,7 +83,7 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        buildInfo(usersController.users.length.toString(),
+                        buildInfo(teachersController.teachers.length.toString(),
                             'Lucturers\nN.O'),
                         Container(
                             width: 1,
@@ -109,7 +109,7 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        const Text('Lucturers',
+                        const Text("Today's Luctures",
                             style: TextStyle(
                                 color: Color(0xff6875F5), fontSize: 18)),
                         Row(
@@ -124,7 +124,7 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                                 color: Color(0xff6875F5),
                               ),
                               child: Text(
-                                usersController.users.length.toString(),
+                                controller.lecturers.length.toString(),
                                 style: const TextStyle(color: Colors.white),
                                 textAlign: TextAlign.center,
                               ),
@@ -135,10 +135,13 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                     ),
                   ),
                   Container(
-                    height: 140,
+                    height: 170,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(25),
+                    ),
                     child: ListView.builder(
                       itemCount: controller.lecturers.length,
-                      padding: const EdgeInsets.only(left: 16),
+                      padding: const EdgeInsets.all(10),
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         return GestureDetector(
@@ -146,7 +149,10 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                           child: Card(
                             child: Column(
                               children: [
-                                Text(controller.lecturers[index].user.name)
+                                LucturersCard(
+                                  luctures:
+                                      controller.lecturers[index].user.name,
+                                )
                               ],
                             ),
                           ),
@@ -166,39 +172,41 @@ class LucturersCard extends StatelessWidget {
     required this.luctures,
   }) : super(key: key);
   final String luctures;
+  AdminLucurersController teachersController =
+      Get.put(AdminLucurersController());
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(10),
-      width: 120,
-      height: 135,
+      width: 115,
+      height: 115,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
-        boxShadow: const [
-          BoxShadow(
-            color: Color(0xff6875F5),
-            blurRadius: 3,
-            spreadRadius: 1,
-            offset: Offset(2.0, 2.0),
-          )
-        ],
-        color: Colors.white,
+        // boxShadow: const [
+        //   // BoxShadow(
+        //   //   color: Color(0xff6875F5),
+        //   //   blurRadius: 1,
+        //   //   spreadRadius: 1,
+        //   //   offset: Offset(2.0, 2.0),
+        //   // )
+        // ],
+        // color: Colors.white,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-          Icon(
+        children: [
+          const Icon(
             Icons.person,
             color: Color(0xff6875F5),
             size: 30,
           ),
-          SizedBox(
+          const SizedBox(
             height: 9,
           ),
           Text(
-            "Abdulkareem",
+            luctures,
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 16, color: Color(0xff6875F5)),
+            style: const TextStyle(fontSize: 16, color: Color(0xff6875F5)),
           )
         ],
       ),

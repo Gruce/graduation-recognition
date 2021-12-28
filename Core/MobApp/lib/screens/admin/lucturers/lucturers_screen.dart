@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/Admin/admin_teachers_controller.dart';
+import 'package:graduaiton_app/models/student_models/section.dart';
 import 'package:graduaiton_app/routes/routes.dart';
 
 import '../layout.dart';
@@ -43,16 +46,17 @@ class AdminLucurersScreen extends GetView {
                                 child: TeacherWidget(
                                     key: ObjectKey(
                                         controller.filteredTeachers[index].id),
-                                    name: controller.filteredTeachers[index].user.name,
+                                    name: controller
+                                        .filteredTeachers[index].user.name,
                                     type: 2,
-                                    camera:"camera",
+                                    camera: "camera",
                                     //  controller.filteredPeople[index].trackings.camera.description,
-                                    time:"time",
-                                    sectionName:controller.filteredTeachers[index].section.name,
+                                    time: "time",
+                                    sectionName: controller
+                                        .filteredTeachers[index].section.name,
                                     // controller.filteredPeople[index].trackings.seen,
-                                    speciality: controller.filteredTeachers[index].speciality
-                                    )
-                                  );
+                                    speciality: controller
+                                        .filteredTeachers[index].speciality));
                           },
                         )
                       : SizedBox(

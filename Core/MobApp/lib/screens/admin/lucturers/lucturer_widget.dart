@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class TeacherWidget extends GetWidget {
-  TeacherWidget(
-      {Key? key,
-      required this.name,
-      required this.type,
-      required this.speciality,
-      required this.sectionName,
-      required this.camera,
-      required this.time,
-    })
-      : super(key: key);
+  TeacherWidget({
+    Key? key,
+    required this.name,
+    required this.type,
+    required this.speciality,
+    required this.sectionName,
+    required this.camera,
+    required this.time,
+  }) : super(key: key);
 
   String name;
   int type;
@@ -19,7 +18,6 @@ class TeacherWidget extends GetWidget {
   String camera;
   String sectionName;
   String time;
-
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +41,8 @@ class TeacherWidget extends GetWidget {
               children: [
                 Text(
                   name,
-                  style: const TextStyle(fontSize: 18,color: Color(0xff6875F5)),
+                  style:
+                      const TextStyle(fontSize: 18, color: Color(0xff6875F5)),
                 ),
                 Container(
                     padding: const EdgeInsets.all(5.0),
@@ -61,7 +60,7 @@ class TeacherWidget extends GetWidget {
                       speciality,
                       style: const TextStyle(
                         fontSize: 14,
-                        color:Color(0xff6875F5) ,
+                        color: Color(0xff6875F5),
                       ),
                     ))
               ],
@@ -90,14 +89,14 @@ class TeacherWidget extends GetWidget {
                     ),
                     SizedBox(width: 5),
                     Text(
-                      // camera.isNotEmpty ? camera :
-                       "No camera",
+                        // camera.isNotEmpty ? camera :
+                        "No camera",
                         style: TextStyle(
                             fontSize: 10, fontWeight: FontWeight.bold))
                   ],
                 ),
               ),
-              const SizedBox(width: 15),
+              const SizedBox(width: 5),
               Container(
                 padding: const EdgeInsets.all(5.0),
                 decoration: BoxDecoration(
@@ -116,14 +115,14 @@ class TeacherWidget extends GetWidget {
                     ),
                     SizedBox(width: 5),
                     Text(
-                      // time.isNotEmpty ? time :
-                     "Not seen yet",
+                        // time.isNotEmpty ? time :
+                        "Not seen yet",
                         style: TextStyle(
                             fontSize: 10, fontWeight: FontWeight.bold))
                   ],
                 ),
               ),
-               const SizedBox(width: 15),
+              const SizedBox(width: 5),
               Container(
                 padding: const EdgeInsets.all(5.0),
                 decoration: BoxDecoration(
@@ -135,15 +134,15 @@ class TeacherWidget extends GetWidget {
                   borderRadius: const BorderRadius.all(Radius.circular(5.0)),
                 ),
                 child: Row(
-                  children:[
+                  children: [
                     const Icon(
                       Icons.store_mall_directory_outlined,
                       size: 14,
                     ),
                     SizedBox(width: 5),
                     Text(
-                      // time.isNotEmpty ? time :
-                     sectionName,
+                        // time.isNotEmpty ? time :
+                        sectionName,
                         style: const TextStyle(
                             fontSize: 10, fontWeight: FontWeight.bold))
                   ],

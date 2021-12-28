@@ -5,7 +5,6 @@ import 'package:graduaiton_app/controllers/Admin/admin_people_controller.dart';
 import 'package:graduaiton_app/controllers/Admin/admin_students_controller.dart';
 import 'package:graduaiton_app/controllers/Admin/admin_teachers_controller.dart';
 import 'package:graduaiton_app/routes/routes.dart';
-import 'package:graduaiton_app/screens/general/camera/camera.dart';
 import 'package:graduaiton_app/screens/general/luctures/lecture_widget.dart';
 import 'package:graduaiton_app/screens/general/luctures/luctures_wiget.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
@@ -14,8 +13,10 @@ import '../layout.dart';
 class AdminHomeScreen extends GetView<AdminHomeController> {
   AdminHomeScreen({Key? key}) : super(key: key);
   AdminUsersController usersController = Get.put(AdminUsersController());
-  AdminStudentsController studentsController = Get.put(AdminStudentsController());
-  AdminLucurersController teachersController = Get.put(AdminLucurersController());
+  AdminStudentsController studentsController =
+      Get.put(AdminStudentsController());
+  AdminLucurersController teachersController =
+      Get.put(AdminLucurersController());
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +70,6 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
               ),
               body: Column(
                 children: [
-                  CameraWidget(),
                   Container(
                     alignment: Alignment.center,
                     margin: const EdgeInsets.symmetric(
@@ -137,14 +137,18 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                   Container(
                     height: 140,
                     child: ListView.builder(
-                      itemCount: teachersController.filteredTeachers.length,
+                      itemCount: controller.lecturers.length,
                       padding: const EdgeInsets.only(left: 16),
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         return GestureDetector(
                           onTap: () {},
-                          child: LucturersCard(
-                            luctures:teachersController.teachers[index].user.name,
+                          child: Card(
+                            child: Column(
+                              children: [
+                                Text(controller.lecturers[index].user.name)
+                              ],
+                            ),
                           ),
                         );
                       },
@@ -157,12 +161,15 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
 }
 
 class LucturersCard extends StatelessWidget {
-   LucturersCard({ Key? key ,required this.luctures,}) : super(key: key);
-final String luctures;
+  LucturersCard({
+    Key? key,
+    required this.luctures,
+  }) : super(key: key);
+  final String luctures;
   @override
   Widget build(BuildContext context) {
     return Container(
-       margin: const EdgeInsets.all(10),
+      margin: const EdgeInsets.all(10),
       width: 120,
       height: 135,
       decoration: BoxDecoration(
@@ -198,6 +205,7 @@ final String luctures;
     );
   }
 }
+
 Padding buildInfo(String value, String description) {
   return Padding(
       padding: const EdgeInsets.all(16.0),

@@ -112,7 +112,8 @@ class TeacherNotification extends GetView {
                                                                   fontSize: 12),
                                                             ),
                                                           ],
-                                                        )),
+                                                        )
+                                                        ),
                                                     Divider(
                                                       thickness: 1,
                                                     ),
@@ -152,8 +153,7 @@ class TeacherNotification extends GetView {
                                                                 height:20.0,
                                                                 child: RaisedButton(
                                                                 onPressed: () =>
-                                                                    launchURL(
-                                                                        index),
+                                                                    launchURL(index),
                                                                 child: Text(
                                                                     'View',style: TextStyle(color: Colors.white),),
                                                               )
@@ -184,11 +184,15 @@ class TeacherNotification extends GetView {
                                                           color: Colors.black
                                                               .withOpacity(
                                                                   0.6)),
-                                                    )),
+                                                    )
+                                                    ),
                                                   ],
-                                                )),
+                                                )
+                                                ),
                                           ],
-                                        )),
+                                        )
+                                        
+                                        ),
                                   )),
                             );
                           })

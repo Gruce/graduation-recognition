@@ -17,7 +17,7 @@ class PersonProfileWidget extends GetView {
         title: 'Person Profile',
         child: SingleChildScrollView(
           child: GetBuilder<PersonProfileController>(
-              builder: (_) => controller.person.name.isNotEmpty
+              builder: (_) => controller.user.name.isNotEmpty
                   ? Column(
                       children: <Widget>[
                         Column(
@@ -43,7 +43,7 @@ class PersonProfileWidget extends GetView {
                                           children: <Widget>[
                                             ListTile(
                                                 title: Text(
-                                                    controller.person.name,
+                                                    controller.user.name,
                                                     style: const TextStyle(
                                                         fontSize: 22,
                                                         color:
@@ -55,7 +55,7 @@ class PersonProfileWidget extends GetView {
                                               contentPadding:
                                                   const EdgeInsets.all(0),
                                               title: Text(
-                                                  controller.person.typeString),
+                                                  controller.user.typeString),
                                               //You can add Subtitle here
                                             ),
                                           ],
@@ -68,7 +68,7 @@ class PersonProfileWidget extends GetView {
                                         children: <Widget>[
                                           Container(
                                               padding:
-                                                   EdgeInsets.symmetric(
+                                                   const EdgeInsets.symmetric(
                                                       horizontal: 0.1,
                                                       vertical: 0.1),
                                               decoration: BoxDecoration(
@@ -220,7 +220,7 @@ class PersonProfileWidget extends GetView {
                                   ListTile(
                                     title: const Text("Email"),
                                     subtitle:
-                                        Text(controller.person.user.email),
+                                        Text(controller.user.email),
                                     leading: const Icon(Icons.email,
                                         color: Color(0xff6875F5)),
                                   ),

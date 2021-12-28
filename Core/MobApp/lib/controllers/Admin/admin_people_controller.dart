@@ -11,8 +11,8 @@ import '../../config.dart';
 
 class AdminUsersController extends GetxController {
   late SharedPreferences prefs;
-  RxList people = <UserModel>[].obs;
-  RxList filteredPeople = <UserModel>[].obs;
+  RxList users = <UserModel>[].obs;
+  RxList filteredUsers = <UserModel>[].obs;
 
   @override
   void onInit() async {
@@ -22,7 +22,7 @@ class AdminUsersController extends GetxController {
 
   @override
   void dispose() {
-    filteredPeople.assignAll(people);
+    filteredUsers.assignAll(users);
     super.dispose();
   }
 
@@ -31,19 +31,19 @@ class AdminUsersController extends GetxController {
     if (res.statusCode == 200) {
       List response = json.decode(res.body)['data'];
       for (var element in response) {
-        people.add(UserModel.fromJson(element));
+        users.add(UserModel.fromJson(element));
       }
     }
-    filteredPeople.assignAll(people);
+    filteredUsers.assignAll(users);
     update();
   }
   void search(text) {
     if (text.isEmpty) {
-      filteredPeople.assignAll(people);
+      filteredUsers.assignAll(users);
     } else {
-      filteredPeople.assignAll(people
-          .where((person) =>
-              person.name.toLowerCase().contains(text.toLowerCase()))
+      filteredUsers.assignAll(users
+          .where((user) =>
+              user.name.toLowerCase().contains(text.toLowerCase()))
           .toList());
     }
     update();

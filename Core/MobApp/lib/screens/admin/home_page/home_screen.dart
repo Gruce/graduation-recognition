@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/Admin/admin_home_controller.dart';
 import 'package:graduaiton_app/controllers/Admin/admin_people_controller.dart';
 import 'package:graduaiton_app/controllers/Admin/admin_students_controller.dart';
+import 'package:graduaiton_app/controllers/Admin/admin_teachers_controller.dart';
 import 'package:graduaiton_app/routes/routes.dart';
 import 'package:graduaiton_app/screens/general/camera/camera.dart';
 import 'package:graduaiton_app/screens/general/luctures/lecture_widget.dart';
@@ -12,8 +13,9 @@ import '../layout.dart';
 
 class AdminHomeScreen extends GetView<AdminHomeController> {
   AdminHomeScreen({Key? key}) : super(key: key);
-  AdminUsersController controller1 = Get.put(AdminUsersController());
-  AdminStudentsController controller2 = Get.put(AdminStudentsController());
+  AdminUsersController usersController = Get.put(AdminUsersController());
+  AdminStudentsController studentsController = Get.put(AdminStudentsController());
+  AdminLucurersController teachersController = Get.put(AdminLucurersController());
 
   @override
   Widget build(BuildContext context) {
@@ -81,13 +83,13 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        buildInfo(controller1.people.length.toString(),
+                        buildInfo(usersController.users.length.toString(),
                             'Lucturers\nN.O'),
                         Container(
                             width: 1,
                             height: 50,
                             color: const Color(0xff6875F5)),
-                        buildInfo(controller2.students.length.toString(),
+                        buildInfo(studentsController.students.length.toString(),
                             'Students\nN.O'),
                         Container(
                             width: 1,
@@ -122,7 +124,7 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                                 color: Color(0xff6875F5),
                               ),
                               child: Text(
-                                controller1.people.length.toString(),
+                                usersController.users.length.toString(),
                                 style: const TextStyle(color: Colors.white),
                                 textAlign: TextAlign.center,
                               ),
@@ -135,14 +137,14 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                   Container(
                     height: 140,
                     child: ListView.builder(
-                      itemCount: 10,
+                      itemCount: teachersController.filteredTeachers.length,
                       padding: const EdgeInsets.only(left: 16),
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         return GestureDetector(
                           onTap: () {},
                           child: LucturersCard(
-                            luctures: 'Abdulkareem',
+                            luctures:teachersController.teachers[index].user.name,
                           ),
                         );
                       },
@@ -154,23 +156,13 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
   }
 }
 
-class LucturersCard extends StatefulWidget {
-  final String luctures;
-
-  LucturersCard({
-    Key? key,
-    required this.luctures,
-  }) : super(key: key);
-
-  @override
-  _LucturersCardState createState() => _LucturersCardState();
-}
-
-class _LucturersCardState extends State<LucturersCard> {
+class LucturersCard extends StatelessWidget {
+   LucturersCard({ Key? key ,required this.luctures,}) : super(key: key);
+final String luctures;
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(10),
+       margin: const EdgeInsets.all(10),
       width: 120,
       height: 135,
       decoration: BoxDecoration(
@@ -206,7 +198,6 @@ class _LucturersCardState extends State<LucturersCard> {
     );
   }
 }
-
 Padding buildInfo(String value, String description) {
   return Padding(
       padding: const EdgeInsets.all(16.0),

@@ -9,15 +9,13 @@ class CameraWidgetController extends GetxController {
 
   @override
   void onInit() async {
-    final videoPlayerController = VideoPlayerController.network(
+    VideoPlayerController videoPlayerController = VideoPlayerController.network(
         'http://stream.shabakaty.com:6001/movies/ch1/ch1_240.m3u8');
 
     await videoPlayerController.initialize();
 
     chewieController = ChewieController(
       videoPlayerController: videoPlayerController,
-      isLive: true,
-      aspectRatio: 3 / 2,
       autoPlay: true,
       looping: true,
     );

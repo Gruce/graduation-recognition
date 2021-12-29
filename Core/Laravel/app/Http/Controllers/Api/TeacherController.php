@@ -169,4 +169,12 @@ class TeacherController extends Controller
 
         return response()->json(['data' => $units_lectures], 200);
     }
+
+    public function current_lecture(){
+        $teacher = auth()->user()->teacher()->first();
+
+        $current_lecture = $teacher->current_lecture(); 
+
+        return response()->json(['data' => $current_lecture], 200);
+    }
 }

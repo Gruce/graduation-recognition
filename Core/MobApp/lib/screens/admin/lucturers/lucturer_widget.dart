@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class PersonWidget extends GetWidget {
-  PersonWidget(
-      {Key? key,
-      required this.name,
-      required this.type,
-      required this.camera,
-      required this.time,
-      required this.typeString})
-      : super(key: key);
+class TeacherWidget extends GetWidget {
+  TeacherWidget({
+    Key? key,
+    required this.name,
+    required this.type,
+    required this.speciality,
+    required this.sectionName,
+    required this.camera,
+    required this.time,
+  }) : super(key: key);
 
   String name;
   int type;
+  String speciality;
   String camera;
+  String sectionName;
   String time;
-  String typeString;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +41,8 @@ class PersonWidget extends GetWidget {
               children: [
                 Text(
                   name,
-                  style: const TextStyle(fontSize: 18,color: Color(0xff6875F5)),
+                  style:
+                      const TextStyle(fontSize: 18, color: Color(0xff6875F5)),
                 ),
                 Container(
                     padding: const EdgeInsets.all(5.0),
@@ -54,9 +57,10 @@ class PersonWidget extends GetWidget {
                           ),
                     ),
                     child: Text(
-                      typeString,
+                      speciality,
                       style: const TextStyle(
                         fontSize: 14,
+                        color: Color(0xff6875F5),
                       ),
                     ))
               ],
@@ -78,19 +82,47 @@ class PersonWidget extends GetWidget {
                       ),
                 ),
                 child: Row(
-                  children: [
-                    const Icon(
+                  children: const [
+                    Icon(
                       Icons.photo_camera_outlined,
                       size: 14,
                     ),
-                    const SizedBox(width: 5),
-                    Text(camera.isNotEmpty ? camera : "No camera",
-                        style: const TextStyle(
+                    SizedBox(width: 5),
+                    Text(
+                        // camera.isNotEmpty ? camera :
+                        "No camera",
+                        style: TextStyle(
                             fontSize: 10, fontWeight: FontWeight.bold))
                   ],
                 ),
               ),
-              const SizedBox(width: 15),
+              const SizedBox(width: 5),
+              Container(
+                padding: const EdgeInsets.all(5.0),
+                decoration: BoxDecoration(
+                  color: const Color.fromRGBO(235, 235, 235, .8),
+                  border: Border.all(
+                    color: const Color.fromRGBO(235, 235, 235, .8),
+                    width: 2.0,
+                  ),
+                  borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+                ),
+                child: Row(
+                  children: const [
+                    Icon(
+                      Icons.schedule,
+                      size: 14,
+                    ),
+                    SizedBox(width: 5),
+                    Text(
+                        // time.isNotEmpty ? time :
+                        "Not seen yet",
+                        style: TextStyle(
+                            fontSize: 10, fontWeight: FontWeight.bold))
+                  ],
+                ),
+              ),
+              const SizedBox(width: 5),
               Container(
                 padding: const EdgeInsets.all(5.0),
                 decoration: BoxDecoration(
@@ -104,11 +136,13 @@ class PersonWidget extends GetWidget {
                 child: Row(
                   children: [
                     const Icon(
-                      Icons.schedule,
+                      Icons.store_mall_directory_outlined,
                       size: 14,
                     ),
-                    const SizedBox(width: 5),
-                    Text(time.isNotEmpty ? time : "Not seen yet",
+                    SizedBox(width: 5),
+                    Text(
+                        // time.isNotEmpty ? time :
+                        sectionName,
                         style: const TextStyle(
                             fontSize: 10, fontWeight: FontWeight.bold))
                   ],

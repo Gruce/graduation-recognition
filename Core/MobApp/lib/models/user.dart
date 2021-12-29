@@ -1,3 +1,5 @@
+import 'package:graduaiton_app/models/tracking.dart';
+
 class UserModel {
   int id = 0;
   String name = '';
@@ -17,9 +19,14 @@ class UserModel {
       type = json['type'];
     }
     typeString = getTypeString(type);
+                                                  
+    // if (!json['trackings'].isEmpty) {                         
+    //   trackings = TrackingModel.fromJson(json['trackings'][0]);
+    // }
   }
+  
 
-  Map<dynamic, dynamic> toJson() {
+  Map<dynamic, dynamic> toJson() { 
     final Map<dynamic, dynamic> data = <dynamic, dynamic>{};
     data['id'] = id;
     data['name'] = name;

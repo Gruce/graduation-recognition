@@ -16,7 +16,7 @@ class AdminLecturesController extends GetxController {
   }
 
   void fetch() async {
-    var res = await Utilities.httpGet('lectures');
+    var res = await Utilities.httpGet('admin/lectures');
     if (res.statusCode == 200) {
       List response = json.decode(res.body)['data'];
       for (var element in response) {

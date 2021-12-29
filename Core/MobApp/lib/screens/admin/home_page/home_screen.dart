@@ -109,7 +109,7 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        const Text("Today's Luctures",
+                        const Text("Today's Lucturers",
                             style: TextStyle(
                                 color: Color(0xff6875F5), fontSize: 18)),
                         Row(

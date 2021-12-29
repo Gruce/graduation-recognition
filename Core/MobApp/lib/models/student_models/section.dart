@@ -11,7 +11,7 @@ class SectionModel {
     name = json['name'];
   }
 
-  Map<dynamic, dynamic> toJson(section) {
+  Map<dynamic, dynamic> toJson() {
     final Map<dynamic, dynamic> data = <dynamic, dynamic>{};
     data['id'] = id;
     data['name'] = name;

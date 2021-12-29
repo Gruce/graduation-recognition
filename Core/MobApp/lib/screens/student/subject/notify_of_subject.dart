@@ -6,24 +6,25 @@ import 'package:url_launcher/url_launcher.dart';
 
 class Notif extends GetView {
   @override
+ 
   SubjectsStudentController controller = Get.put(SubjectsStudentController());
   final api = Config.api;
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFEEEEEE),
       appBar: _appBar(context),
-      body: Padding(
-        padding: EdgeInsets.all(6),
-        child: Column(children: [
-          Expanded(
+      body:  Padding(
+          padding: EdgeInsets.all(6),
+          child: Column(
+            children: [
+              Expanded(
               child: GetBuilder<SubjectsStudentController>(
                   builder: (_) => controller.notification.isNotEmpty
                       ? ListView.builder(
                           itemCount: controller.notification.length,
                           itemBuilder: (BuildContext context, int index) {
                             return Padding(
-                              padding: const EdgeInsets.only(
-                                  bottom: 10, left: 10, right: 10),
+                              padding: const EdgeInsets.only(bottom: 10,left: 10,right: 10),
                               child: GestureDetector(
                                 child: Card(
                                     elevation: 0,
@@ -86,68 +87,49 @@ class Notif extends GetView {
                                                         controller
                                                                     .notification[
                                                                         index]
-                                                                    .created_at,
-                                                                style: TextStyle(
-                                                                    fontSize:
-                                                                        12),
-                                                              ),
-                                                            ],
-                                                          )),
-                                                      Divider(
-                                                        thickness: 1,
-                                                      ),
-                                                      Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .end,
-                                                        children: [
+                                                                    .files
+                                                                    .length >
+                                                                0
+                                                            ? 
+                                                            ButtonTheme(
+                                                                buttonColor: Color(0xff6976f5),
+                                                                
+                                                                height:20.0,
+                                                                child: RaisedButton(
+                                                                onPressed: () =>
+                                                                    launchURL(index),
+                                                                child: Text(
+                                                                    'View',style: TextStyle(color: Colors.white),),
+                                                              )
+                                                              ):Container()
+                                                      ],
+                                                    ),
+                                                    
+                                                  ],
+                                                ),
+                                                subtitle: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Expanded(
+                                                        child: Text(
                                                           controller
-                                                                      .notification[
-                                                                          index]
-                                                                      .files
-                                                                      .length >
-                                                                  0
-                                                              ? ButtonTheme(
-                                                                  buttonColor:
-                                                                      Color(
-                                                                          0xff6976f5),
-                                                                  height: 20.0,
-                                                                  child:
-                                                                      RaisedButton(
-                                                                    onPressed: () =>
-                                                                        launchURL(
-                                                                            index),
-                                                                    child: Text(
-                                                                      'View',
-                                                                      style: TextStyle(
-                                                                          color:
-                                                                              Colors.white),
-                                                                    ),
-                                                                  ))
-                                                              : Container()
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  subtitle: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Expanded(
-                                                          child: Text(
-                                                        controller
-                                                            .notification[index]
-                                                            .body,
-                                                        style: TextStyle(
-                                                            color: Colors.black
-                                                                .withOpacity(
-                                                                    0.6)),
-                                                      )),
-                                                    ],
-                                                  )),
-                                            ],
-                                          )),
+                                                              .notification[
+                                                                  index]
+                                                              .body,
+                                                      style: TextStyle(
+                                                          color: Colors.black
+                                                              .withOpacity(
+                                                                  0.6)),
+                                                    )
+                                                    ),
+                                                  ],
+                                                )
+                                                ),
+                                          ],
+                                        )
+                                          ),
                                     )),
                               ),
                             );
@@ -158,20 +140,22 @@ class Notif extends GetView {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 10.0, vertical: 5.0),
                               child: const Text('Not Found',
-                                  style: TextStyle(fontSize: 24))))))
-        ]),
-      ),
+                                  style: TextStyle(fontSize: 24))
+                                  )
+                                  )
+                                  )
+                                  )
+            ]),
+        ),
     );
   }
-
-  void launchURL(int index) async {
+void launchURL(int index) async {
     String x = await api;
-    x = x.replaceAll('/api', '');
+    x=x.replaceAll('/api', '');
     x += '/' + controller.notification[index].files[0].file_path;
     print(x);
     if (!await launch(x)) throw 'Could not launch';
   }
-
   _appBar(BuildContext) {
     return AppBar(
       title: Text(

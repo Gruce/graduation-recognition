@@ -17,7 +17,7 @@ class LectureModel {
   ClassroomModel classroom = ClassroomModel();
   CameraModel cameras = CameraModel();
   SubjectModel subject = SubjectModel();
-  // DayModel day = DayModel();
+  DayModel day = DayModel();
   TeacherModel teacher = TeacherModel();
 
   LectureModel({
@@ -53,9 +53,9 @@ class LectureModel {
     if (json.containsKey('classroom')) {
       classroom = ClassroomModel.fromJson(json['classroom']);
     }
-    // if (json.containsKey('day')) {
-    //   day = DayModel.fromJson(json['day']);
-    // }
+    if (json.containsKey('day')) {
+      day = DayModel.fromJson(json['day']);
+    }
     if (json.containsKey('unit')) {
       unit = UnitModel.fromJson(json['unit']);
       
@@ -78,7 +78,7 @@ class LectureModel {
     data['classroom'] = classroom;
     data['cameras'] = cameras;
     data['subject'] = subject;
-    // data['day'] = day;
+    data['day'] = day;
     data['unit'] = unit;
     return data;
   }

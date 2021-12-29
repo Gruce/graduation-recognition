@@ -16,7 +16,6 @@ class LucturesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     controller.filteredLectures.assignAll(lectures);
     controller.lectures.assignAll(lectures);
-    controller.oneTime();
 
     return Column(children: [
       today ? Container() :

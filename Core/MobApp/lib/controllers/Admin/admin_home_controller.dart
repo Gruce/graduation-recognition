@@ -4,7 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/config.dart';
 import 'package:graduaiton_app/models/camera.dart';
-import 'package:graduaiton_app/models/schedule/lecture.dart';
+import 'package:graduaiton_app/models/schedule/lectuer.dart';
 import 'package:graduaiton_app/util/utilities.dart';
 import 'package:intl/intl.dart';
 

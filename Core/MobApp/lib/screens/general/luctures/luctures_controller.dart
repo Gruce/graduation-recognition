@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:graduaiton_app/models/schedule/lecture.dart';
+import 'package:graduaiton_app/models/schedule/lectuer.dart';
 import 'package:graduaiton_app/screens/general/luctures/lucture_search_widget.dart';
 
 class Property {

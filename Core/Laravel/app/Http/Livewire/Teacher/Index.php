@@ -17,13 +17,15 @@ class Index extends Component
 
         $units_lectures = $teacher->get_lectures()->get();
 
-        $current_lecture = $teacher->current_lecture()->get(); 
+        $current_lecture = $teacher->current_lecture();
+        
+        // dd($current_lecture->toArray());
 
-        foreach($current_lecture as $lecture)
-            if($lecture->lectures->toArray()){
-                $this->current_lecture = $lecture;
-                $current_lecture = $lecture->toArray();
-            }
+        // foreach($current_lecture as $lecture)
+        //     if($lecture->lectures->toArray()){
+        //         $this->current_lecture = $lecture;
+        //         $current_lecture = $lecture->toArray();
+        //     }
 
         return view('livewire.teacher.index' , 
             [

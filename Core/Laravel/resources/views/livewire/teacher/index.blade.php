@@ -2,14 +2,16 @@
     <section class="text-gray-600 body-font">
         @if($current_lecture)
             <div class="container px-5 py-10 mx-auto bg-white rounded-lg max-w-7xl sm:px-6 lg:px-8">
-                {{$current_lecture['lectures'][0]['subject']['name']}}
+                {{-- {{$current_lecture['lectures'][0]['subject']['name']}}
                 <br>
                 {{date('h:i a', strtotime($current_lecture['lectures'][0]['start'])) }}
                 <br>
                 {{$current_lecture['stage']['name']}} - {{$current_lecture['name']}}
                 <br>
                 Classroom - {{$current_lecture['lectures'][0]['classroom']['name']}}
-                {{-- {{$current_lecture['lectures'][0]['subject']['name']}}  --}}
+                {{$current_lecture['lectures'][0]['subject']['name']}}  --}}
+                {{$current_lecture->subject->name}}
+                <br>
                 
             </div>
             <br>

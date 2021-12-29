@@ -51,7 +51,7 @@ class StudentHomeScreen extends GetView<StudentHomeController> {
                     // color: const Color.fromRGBO(0, 0, 0, 0.05),
                   ),
                   child: const Text(
-                    "Lectures of the week",
+                    "Lectures of Tody ",
                     style: TextStyle(color: Color(0xff6875F5), fontSize: 18),
                     textAlign: TextAlign.center,
                   )),
@@ -64,10 +64,15 @@ class StudentHomeScreen extends GetView<StudentHomeController> {
                   borderRadius: BorderRadius.circular(20),
                   color: const Color.fromRGBO(255, 255, 255, .5),
                 ),
-                child: ListView.builder(
-                            itemCount: 3,
+                child:Expanded(
+        
+                  child: GetBuilder<StudentLecturesController>(
+                   builder: (_) => controller1.lectures.isNotEmpty
+                     
+                  ?ListView.builder(
+                            itemCount: controller1.lectures.length,
                             itemBuilder: (BuildContext context, int index) {
-                              return Card(
+               return Card(
         elevation: 0,
         // shadowColor: Colors.black12,
         color: Colors.transparent,
@@ -129,6 +134,19 @@ class StudentHomeScreen extends GetView<StudentHomeController> {
         ));
                             },
                           )
+                     :SizedBox(
+                          width: double.infinity,
+                          child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10.0, vertical: 5.0),
+                              child: const Text('Not Found',
+                                  style: TextStyle(fontSize: 24)
+                                  )
+                                  )
+                                  ))
+                  
+                 )
+                
                                     
               )
               ),
@@ -211,9 +229,101 @@ class StudentHomeScreen extends GetView<StudentHomeController> {
                     )
                     )
                     ),
-                  
-           
+                    Expanded(
+                  child: Container(
+                // padding:
+                // const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: const Color.fromRGBO(255, 255, 255, .5),
+                ),
+                child:Expanded(
+        
+                  child: GetBuilder<StudentLecturesController>(
+                   builder: (_) => controller1.lectures.isNotEmpty
+                     
+                  ?ListView.builder(
+                            itemCount: controller1.lectures.length,
+                            itemBuilder: (BuildContext context, int index) {
+               return Card(
+        elevation: 0,
+        // shadowColor: Colors.black12,
+        color: Colors.transparent,
+        margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 24.0),
+        child: Column(
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height * 0.05,
+              width: MediaQuery.of(context).size.width * 0.93,
+              decoration: BoxDecoration(
+                color: Colors.grey.shade200,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20)),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(controller1.lectures[index].day.name.toString()),
+                  Text(controller1.lectures[index].subject.name.toString()),
+                  Text(controller1.lectures[index].start.toString())
+                ],
+              ),
+            ),
+            ListTile(
+                title: Container(
+                    margin: const EdgeInsets.only(bottom: 15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(children: [
+                          Text(controller1.lectures[index].unit.stage.name.toString()),
+                        ]),
+                        Text(controller1.lectures[index].unit.name.toString()),
+                      ],
+                    )),
+                subtitle: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                        child: Text(
+                      controller1.lectures[index].unit.section.name.toString(),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                    )),
+                    
+                    Text(
+                      'Hall: '+ controller1.lectures[index].classroom.name.toString(),
+                      
+                      style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                    ),
+                  ],
+                )),
+            Divider(
+              thickness: 0.3,
+            )
           ],
+        ));
+                            },
+                          )
+                     :SizedBox(
+                          width: double.infinity,
+                          child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10.0, vertical: 5.0),
+                              child: const Text('Not Found',
+                                  style: TextStyle(fontSize: 24)
+                                  )
+                                  )
+                                  ))
+                  
+                 )
+                
+                                    
+              )
+              ), 
+                   ],
         )
               ),
             ],

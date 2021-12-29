@@ -19,7 +19,7 @@ RxList lectures = <LectureModel>[].obs;
   }
 
   void fetch() async {
-    var res = await Utilities.httpGet('student/lectures/a');
+    var res = await Utilities.httpGet('student/lectures/today');
     if (res.statusCode == 200) {
       List response = json.decode(res.body)['data'];
 

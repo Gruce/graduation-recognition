@@ -66,7 +66,8 @@ class LucturesWidget extends StatelessWidget {
                             controller.filteredLectures[index].classroom.name,
                         startAt: controller.filteredLectures[index].start,
                         endAt: '',
-                        lucturerName: controller
+                        lucturerName: 
+                        controller
                             .filteredLectures[index].teacher.user.name,
                         section: controller
                             .filteredLectures[index].unit.section.name,

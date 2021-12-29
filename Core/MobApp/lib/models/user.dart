@@ -4,8 +4,8 @@ class UserModel {
   String email = '';
   int type = 0;
   String typeString = '';
-
-  UserModel({id, name, email, type});
+  String picture = '';
+  UserModel({id, name, email, type, picture});
 
   UserModel.fromJson(Map<dynamic, dynamic> json) {
     id = json['id'];
@@ -25,6 +25,7 @@ class UserModel {
     data['name'] = name;
     data['email'] = email;
     data['type'] = type;
+    data['profile_photo_url'] = picture;
     return data;
   }
 

@@ -55,7 +55,6 @@ class Notif extends GetView {
                                                            Expanded(
                                                           child: SingleChildScrollView(
                                                             child: Text(
-                                                               
                                                                   controller
                                                                       .notification[
                                                                           index]

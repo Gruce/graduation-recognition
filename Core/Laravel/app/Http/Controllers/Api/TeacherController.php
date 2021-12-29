@@ -163,6 +163,7 @@ class TeacherController extends Controller
     }
 
     public function lectures($day = null){
+        $day = $day ? date('l') : null;
         $teacher = auth()->user()->teacher()->first();
         
         $units_lectures = $teacher->get_lectures($day)->get();

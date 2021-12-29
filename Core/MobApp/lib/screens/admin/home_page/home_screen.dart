@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/Admin/admin_home_controller.dart';
 import 'package:graduaiton_app/controllers/Admin/admin_people_controller.dart';
 import 'package:graduaiton_app/controllers/Admin/admin_students_controller.dart';
+import 'package:graduaiton_app/controllers/Admin/admin_teachers_controller.dart';
 import 'package:graduaiton_app/routes/routes.dart';
 import 'package:graduaiton_app/screens/general/luctures/lecture_widget.dart';
 import 'package:graduaiton_app/screens/general/luctures/luctures_wiget.dart';
@@ -11,8 +12,11 @@ import '../layout.dart';
 
 class AdminHomeScreen extends GetView<AdminHomeController> {
   AdminHomeScreen({Key? key}) : super(key: key);
-  AdminPeopleController controller1 = Get.put(AdminPeopleController());
-  AdminStudentsController controller2 = Get.put(AdminStudentsController());
+  AdminUsersController usersController = Get.put(AdminUsersController());
+  AdminStudentsController studentsController =
+      Get.put(AdminStudentsController());
+  AdminLucurersController teachersController =
+      Get.put(AdminLucurersController());
 
   @override
   Widget build(BuildContext context) {
@@ -55,12 +59,13 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                         textAlign: TextAlign.center,
                       )),
                   Obx(() => controller.lectures.isNotEmpty
-                  ? Expanded(flex: 1,
-                    child: LucturesWidget(
-                      lectures: controller.lectures,
-                      today: true,
-                    )
-                  ): Container())
+                      ? Expanded(
+                          flex: 1,
+                          child: LucturesWidget(
+                            lectures: controller.lectures,
+                            today: true,
+                          ))
+                      : Container())
                 ],
               ),
               body: Column(
@@ -78,13 +83,13 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        buildInfo(controller1.people.length.toString(),
+                        buildInfo(teachersController.teachers.length.toString(),
                             'Lucturers\nN.O'),
                         Container(
                             width: 1,
                             height: 50,
                             color: const Color(0xff6875F5)),
-                        buildInfo(controller2.students.length.toString(),
+                        buildInfo(studentsController.students.length.toString(),
                             'Students\nN.O'),
                         Container(
                             width: 1,
@@ -94,9 +99,118 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                       ],
                     ),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      bottom: 13,
+                      top: 29,
+                      left: 30,
+                      right: 15,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        const Text("Today's Lucturers",
+                            style: TextStyle(
+                                color: Color(0xff6875F5), fontSize: 18)),
+                        Row(
+                          children: <Widget>[
+                            Container(
+                              alignment: Alignment.center,
+                              height: 20,
+                              width: 40,
+                              margin: const EdgeInsets.only(right: 6),
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Color(0xff6875F5),
+                              ),
+                              child: Text(
+                                controller.lecturers.length.toString(),
+                                style: const TextStyle(color: Colors.white),
+                                textAlign: TextAlign.center,
+                              ),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    height: 170,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                    child: ListView.builder(
+                      itemCount: controller.lecturers.length,
+                      padding: const EdgeInsets.all(10),
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () {},
+                          child: Card(
+                            child: Column(
+                              children: [
+                                LucturersCard(
+                                  luctures:
+                                      controller.lecturers[index].user.name,
+                                )
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
                 ],
               ),
             )));
+  }
+}
+
+class LucturersCard extends StatelessWidget {
+  LucturersCard({
+    Key? key,
+    required this.luctures,
+  }) : super(key: key);
+  final String luctures;
+  AdminLucurersController teachersController =
+      Get.put(AdminLucurersController());
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.all(10),
+      width: 115,
+      height: 115,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(25),
+        // boxShadow: const [
+        //   // BoxShadow(
+        //   //   color: Color(0xff6875F5),
+        //   //   blurRadius: 1,
+        //   //   spreadRadius: 1,
+        //   //   offset: Offset(2.0, 2.0),
+        //   // )
+        // ],
+        // color: Colors.white,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(
+            Icons.person,
+            color: Color(0xff6875F5),
+            size: 30,
+          ),
+          const SizedBox(
+            height: 9,
+          ),
+          Text(
+            luctures,
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontSize: 16, color: Color(0xff6875F5)),
+          )
+        ],
+      ),
+    );
   }
 }
 

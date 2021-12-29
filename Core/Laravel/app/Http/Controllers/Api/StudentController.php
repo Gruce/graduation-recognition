@@ -9,7 +9,8 @@ use App\Models\{
     Student,
     Subject,
     Task,
-    Lecture
+    Lecture,
+    Day,
 };
 
 class StudentController extends Controller
@@ -65,12 +66,48 @@ class StudentController extends Controller
     public function lectures($today = null){
         $today = $today ? date('l') : null;
         $student = auth()->user()->student()->first();
+
         $lectures = Lecture::whereHas('day' , function($day) use($today){
             return $day->where('name' , 'LIKE' , $today);
-        })->where('unit_id' , $student->unit_id)->get();
+        })->where('unit_id' , $student->unit_id)->with(
+            [
+                'classroom' => function($classroom){
+                    return $classroom->with('cameras')->get();
+                },
+                'subject:id,name',
+                'day:id,name',
+            ]
+        )->get();
 
         return response()->json(['data' => $lectures]);
 
+    }
+
+    public function current_lecture(){
+        $time = date('H:i:s');
+        $dayID = Day::where('name' , date('l'))->first()->id;
+
+        $student = auth()->user()->student()->first();
+        $unit = $student->unit()->first();
+
+        $lecture = $unit->lectures()->whereHas(
+            'day' , function($day) use ($dayID , $time){
+                return $day->where('id' , $dayID);
+            }
+        )->with(
+            [
+                'unit'=> function($unit){
+                    return $unit->with(['stage:id,name','section:id,name'])->get();
+                },
+                'classroom' => function($classroom){
+                    return $classroom->with('cameras')->get();
+                },
+                'subject:id,name',
+                'day:id,name',
+            ]
+        )->orderBy('start' , 'DESC')->first();
+                
+        return response()->json(['data' => $lecture]);
     }
 
 

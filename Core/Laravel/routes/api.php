@@ -95,6 +95,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/unit/{id}', [TeacherController::class, 'unit_student']);
         Route::get('/tasks' , [TeacherController::class, 'tasks']);
         Route::get('/lectures/{day?}' , [TeacherController::class, 'lectures']);
+        Route::get('/current-lecture' , [TeacherController::class, 'current_lecture']);
         Route::post('/send-task' , [TeacherController::class, 'send_task']);
     });
 
@@ -106,6 +107,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/subjects', [StudentController::class, 'subjects']);
         Route::get('/subject-tasks/{subject_id}/{teacher_id}', [StudentController::class, 'subject_tasks']);
         Route::get('/lectures/{today?}' , [StudentController::class, 'lectures']);
+        Route::get('/current-lecture' , [StudentController::class, 'current_lecture']);
     });
 
     #### End Student ####

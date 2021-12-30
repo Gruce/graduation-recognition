@@ -73,31 +73,49 @@ class Teacher extends Model
 
     public function current_lecture(){
         $time = date('H:i:s');
-        $day = Day::where('name' , date('l'))->first()->id;
+        $dayID = Day::where('name' , date('l'))->first()->id;
 
-        $lectures = $this->units()->with(
+        $lecture = $this->lectures()->whereHas(
+            'day' , function($day) use ($dayID , $time){
+                return $day->where('id' , $dayID);
+            }
+        )->where('start' , '<=' , $time)->with(
             [
-                'lectures' => function($lecture) use ($day , $time){
-                    return $lecture->whereHas('day' , function($q) use ($day){
-                        return $q->where('id' , $day);
-                    })->where('start' , '<=' , $time)->with(
-                        [
-                            'unit'=> function($unit){
-                                return $unit->with(['stage:id,name','section:id,name'])->get();
-                            },
-                            'classroom' => function($classroom){
-                                return $classroom->with('cameras')->get();
-                            },
-                            'subject:id,name',
-                            'day:id,name',
-                        ]
-                    )->orderBy('start' , 'DESC')->first();
+                'unit'=> function($unit){
+                    return $unit->with(['stage:id,name','section:id,name'])->get();
                 },
-                'section:id,name',
-                'stage:id,name',
+                'classroom' => function($classroom){
+                    return $classroom->with('cameras')->get();
+                },
+                'subject:id,name',
+                'day:id,name',
             ]
-        );
+        )->orderBy('start' , 'DESC')->first();
+        // dd($lecture->toArray());
 
-        return $lectures;
+        // $lectures = $this->units()->with(
+        //     [
+        //         'lectures' => function($lecture) use ($day , $time){
+        //             return $lecture->whereHas('day' , function($q) use ($day){
+        //                 return $q->where('id' , $day);
+        //             })->where('start' , '<=' , $time)->with(
+        //                 [
+        //                     'unit'=> function($unit){
+        //                         return $unit->with(['stage:id,name','section:id,name'])->get();
+        //                     },
+        //                     'classroom' => function($classroom){
+        //                         return $classroom->with('cameras')->get();
+        //                     },
+        //                     'subject:id,name',
+        //                     'day:id,name',
+        //                 ]
+        //             )->orderBy('start' , 'DESC')->first();
+        //         },
+        //         'section:id,name',
+        //         'stage:id,name',
+        //     ]
+        // );
+
+        return $lecture;
     }
 }

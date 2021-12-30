@@ -38,12 +38,26 @@ class reset extends Command
      */
     public function handle()
     {
+        $start = microtime(true);
+        
+        $migrateResetTime = microtime(true);
         Artisan::call('migrate:reset');
-        $this->info('Migrate Reseted.');
+        $migrateResetSeconds = number_format((microtime(true) - $migrateResetTime) * 1000);
+        $this->info('Migrate Reseted in : ' . $migrateResetSeconds . ' ms.');
+
+        $migrateTime = microtime(true);
         Artisan::call('migrate');
-        $this->info('Migrated.');
+        $migrateSeconds = number_format((microtime(true) - $migrateTime) * 1000);
+        $this->info('Migrated in ' . $migrateSeconds . ' ms.');
+
+        $seedTime = microtime(true);
         Artisan::call('db:seed');
-        $this->info('Database seeded.');
+        $seedeSeconds = number_format((microtime(true) - $seedTime) * 1000);
+        $this->info('Database seeded in ' . $seedeSeconds . ' ms.');
+
+        $total = number_format((microtime(true) - $start) , 2);
+        $this->info('Total Time : ' . $total . ' Seconds.');
+
         return 0;
     }
 }

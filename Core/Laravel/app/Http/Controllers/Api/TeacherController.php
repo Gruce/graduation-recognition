@@ -163,10 +163,19 @@ class TeacherController extends Controller
     }
 
     public function lectures($day = null){
+        $day = $day ? date('l') : null;
         $teacher = auth()->user()->teacher()->first();
         
         $units_lectures = $teacher->get_lectures($day)->get();
 
         return response()->json(['data' => $units_lectures], 200);
+    }
+
+    public function current_lecture(){
+        $teacher = auth()->user()->teacher()->first();
+
+        $current_lecture = $teacher->current_lecture(); 
+
+        return response()->json(['data' => $current_lecture], 200);
     }
 }

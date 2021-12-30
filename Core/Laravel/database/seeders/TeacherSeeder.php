@@ -38,7 +38,7 @@ class TeacherSeeder extends Seeder
         ];
 
         $teacher = Teacher::create($data);
-        $subjects_id = [4,5];
+        $subjects_id = [4];
         $teacher->subjects()->attach($subjects_id);
         $stages_id = [8];
         $teacher->stages()->attach($stages_id);

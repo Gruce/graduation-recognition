@@ -4,10 +4,17 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/models/schedule/lecture.dart';
+import 'package:graduaiton_app/models/student_models/section.dart';
+import 'package:graduaiton_app/models/student_models/stage.dart';
 import 'package:graduaiton_app/models/student_models/unit.dart';
 import 'package:graduaiton_app/util/utilities.dart';
 
 class AdminNotificationController extends GetxController {
+  RxBool allTeachersCheckbox = false.obs;
+  RxBool allStudentsCheckbox = false.obs;
+
+  RxList sections = <SectionModel>[].obs;
+
   // @override
   @override
   void onInit() async {
@@ -17,6 +24,7 @@ class AdminNotificationController extends GetxController {
     idsController = TextEditingController();
 
     fetch();
+    fetchSections();
 
     super.onInit();
   }
@@ -39,6 +47,16 @@ class AdminNotificationController extends GetxController {
       List response = json.decode(res.body)['data'];
       for (var element in response) {
         lectures.add(LectureModel.fromJson(element));
+      }
+    }
+  }
+
+  void fetchSections() async {
+    var res = await Utilities.httpGet('admin/sections/');
+    if (res.statusCode == 200) {
+      List response = json.decode(res.body)['data'];
+      for (var element in response) {
+        sections.add(SectionModel.fromJson(element));
       }
     }
   }

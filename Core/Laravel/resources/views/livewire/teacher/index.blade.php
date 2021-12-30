@@ -1,24 +1,27 @@
 <div class="mt-3" wire:poll.750ms>
     <section class="text-gray-600 body-font">
-        @if($current_lecture)
+        @livewire('actions' , ['folder' => 'teacher' , 'file' => 'add-lecture' , 'search' => 'Subject Name'])
+        @if($current_lecture && !$absence)
             <div class="container px-5 py-10 mx-auto bg-white rounded-lg max-w-7xl sm:px-6 lg:px-8">
-                {{$current_lecture['lectures'][0]['subject']['name']}}
+                {{$current_lecture->subject->name}}
                 <br>
-                {{date('h:i a', strtotime($current_lecture['lectures'][0]['start'])) }}
+                {{date('h:i a', strtotime($current_lecture->start)) }}
                 <br>
-                {{$current_lecture['stage']['name']}} - {{$current_lecture['name']}}
+                {{$current_lecture->unit->section->name}} - {{$current_lecture->unit->stage->name}} - {{$current_lecture->unit->name}}
                 <br>
-                Classroom - {{$current_lecture['lectures'][0]['classroom']['name']}}
-                {{-- {{$current_lecture['lectures'][0]['subject']['name']}}  --}}
-                
+                Classroom - {{$current_lecture->classroom->name}}
+                <br>
+                {{$current_lecture->subject->name}} 
             </div>
             <br>
-        @endif
-        <div class="container px-5 py-10 mx-auto bg-white rounded-lg max-w-7xl sm:px-6 lg:px-8">
-            <div class="flex flex-wrap">
-                <button wire:click="start" type="button" class="w-full py-3 text-base text-white transition duration-500 ease-in-out transform bg-blue-600 border-blue-600 rounded-md focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2 hover:bg-blue-800 "> Start  </button>
+            <div class="container px-5 py-10 mx-auto bg-white rounded-lg max-w-7xl sm:px-6 lg:px-8">
+                <div class="flex flex-wrap">
+                    <button wire:click="start({{$current_lecture->id}})" type="button" class="w-full py-3 text-base text-white transition duration-500 ease-in-out transform bg-blue-600 border-blue-600 rounded-md focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2 hover:bg-blue-800 "> Start  </button>
+                </div>
             </div>
-        </div>
+        @else
+            <h1>No lecture</h1>
+        @endif
         <br>
     </section>
     <section class="text-gray-600 body-font">
@@ -34,14 +37,15 @@
                             <th class="p-3 text-left">Classroom</th>
                             <th class="p-3 text-left">Stage</th>
                             <th class="p-3 text-left">Unit</th>
+                            <th class="p-3 text-left">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse($units_lectures  as $i => $unit_lectures)
                             @forelse ($unit_lectures->lectures as $j => $lecture)
-                            <tr class="@if(date('l') == $lecture->day->name) bg-red-50 @else bg-gray-50 @endif"  >
+                            <tr class="@if(date('l') == $lecture->day->name) bg-blue-50 @else bg-gray-50 @endif"  >
                                 <td class="p-3 text-center">
-                                    {{ $loop->iteration }}
+                                    #
                                 </td>
                                 <td class="p-3">
                                     <div class="flex align-items-center">
@@ -88,13 +92,18 @@
                                         </span>
                                     </div>
                                 </td>
+                                <td>
+                                    <button wire:click="delete('Lecture', '{{ $lecture->id}}')" class="text-red-500"> 
+                                        <i class="material-icons text-base">delete</i>
+                                    </button>
+                                </td>
                             </tr>
                             @empty
-                                <tr class="bg-red-100">
+                                {{-- <tr class="bg-red-100">
                                     <td colspan="8" class="p-3 text-center">
                                         No lectures
                                     </td>
-                                </tr>
+                                </tr> --}}
                             @endforelse
                         @empty
                             <tr class="bg-red-100">
@@ -110,3 +119,14 @@
         </div>
     </section>
 </div>
+<script>
+    function setup() {
+        return {
+        activeTab: -1,
+        tabs: [
+            '<span class="material-icons-outlined mr-2">add</span>New Lecture',
+            // '<span class="material-icons-outlined mr-2">search</span>Search',
+        ]
+        };
+    };
+</script>

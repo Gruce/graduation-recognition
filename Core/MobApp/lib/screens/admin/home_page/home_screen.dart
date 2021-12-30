@@ -101,7 +101,7 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                       ],
                     ),
                   ),
-                   Categories(),
+                  Categories(),
                   Padding(
                     padding: const EdgeInsets.only(
                       bottom: 13,
@@ -128,7 +128,8 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                               ),
                               child: Text(
                                 controller.lecturers.length.toString(),
-                                style: const TextStyle(color: Color(0xff6875F5)),
+                                style:
+                                    const TextStyle(color: Color(0xff6875F5)),
                                 textAlign: TextAlign.center,
                               ),
                             )

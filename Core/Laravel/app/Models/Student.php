@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Student extends Model
 {
     use HasFactory;
+    use \Staudenmeir\EloquentEagerLimit\HasEagerLimit;
 
     protected $fillable = ['section_id' , 'user_id' , 'stage_id' , 'unit_id'];
 
@@ -29,5 +30,9 @@ class Student extends Model
 
     public function tasks(){
         return $this->belongsToMany(Task::class)->withTimestamps();
+    }
+
+    public function absences(){
+        return $this->hasMany(Absence::class);
     }
 }

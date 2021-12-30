@@ -9,7 +9,7 @@ class Tracking extends Model
 {
     use HasFactory;
     use \Staudenmeir\EloquentEagerLimit\HasEagerLimit;
-    protected $fillable = ['user_id' , 'camera_id' , 'last_seen' , 'image_path'];
+    protected $fillable = ['user_id' , 'camera_id' , 'seen' , 'image_path'];
 
     public $timestamps = true;
 

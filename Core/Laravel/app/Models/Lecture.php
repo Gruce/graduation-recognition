@@ -30,4 +30,8 @@ class Lecture extends Model
     public function teacher(){
         return $this->belongsTo(Teacher::class);
     }
+
+    public function absences(){
+        return $this->hasMany(Absence::class);
+    }
 }

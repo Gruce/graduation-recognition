@@ -68,10 +68,10 @@ class StudentHomeScreen extends GetView<StudentHomeController> {
                         child: Expanded(
                             child: GetBuilder<StudentLecturesController>(
                                 builder: (_) => controller1
-                                        .lecturesWeek.isNotEmpty
+                                        .lecturesToday.isNotEmpty
                                     ? ListView.builder(
                                         itemCount:
-                                            controller1.lecturesWeek.length,
+                                            controller1.lecturesToday.length,
                                         itemBuilder:
                                             (BuildContext context, int index) {
                                           return Card(
@@ -118,13 +118,13 @@ class StudentHomeScreen extends GetView<StudentHomeController> {
                                                             .name
                                                             .toString()),
                                                         Text(controller1
-                                                            .lecturesWeek[
+                                                            .lecturesToday[
                                                                 index]
                                                             .subject
                                                             .name
                                                             .toString()),
                                                         Text(controller1
-                                                            .lecturesWeek[
+                                                            .lecturesToday[
                                                                 index]
                                                             .start
                                                             .toString())
@@ -144,7 +144,7 @@ class StudentHomeScreen extends GetView<StudentHomeController> {
                                                             children: [
                                                               Row(children: [
                                                                 Text(controller1
-                                                                    .lecturesWeek[
+                                                                    .lecturesToday[
                                                                         index]
                                                                     .unit
                                                                     .stage
@@ -152,7 +152,7 @@ class StudentHomeScreen extends GetView<StudentHomeController> {
                                                                     .toString()),
                                                               ]),
                                                               Text(controller1
-                                                                  .lecturesWeek[
+                                                                  .lecturesToday[
                                                                       index]
                                                                   .unit
                                                                   .name
@@ -167,7 +167,7 @@ class StudentHomeScreen extends GetView<StudentHomeController> {
                                                           Expanded(
                                                               child: Text(
                                                             controller1
-                                                                .lecturesWeek[
+                                                                .lecturesToday[
                                                                     index]
                                                                 .unit
                                                                 .section
@@ -186,7 +186,7 @@ class StudentHomeScreen extends GetView<StudentHomeController> {
                                                           Text(
                                                             'Hall: ' +
                                                                 controller1
-                                                                    .lecturesWeek[
+                                                                    .lecturesToday[
                                                                         index]
                                                                     .classroom
                                                                     .name
@@ -388,173 +388,7 @@ class StudentHomeScreen extends GetView<StudentHomeController> {
                                                     )
                                                     )
                                                     ),
-                Expanded(
-                    child: Container(
-                        // padding:
-                        // const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: const Color.fromRGBO(255, 255, 255, .5),
-                        ),
-                        child: Expanded(
-                            child: GetBuilder<StudentLecturesController>(
-                                builder: (_) => controller1
-                                        .lecturesWeek.isNotEmpty
-                                    ? ListView.builder(
-                                        itemCount:
-                                            controller1.lecturesWeek.length,
-                                        itemBuilder:
-                                            (BuildContext context, int index) {
-                                          return Card(
-                                            
-                                              elevation: 0,
-                                              // shadowColor: Colors.black12,
-                                              color: Colors.transparent,
-                                              margin:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 0,
-                                                      vertical: 23.0),
-                                              child: Column(
-                                                children: [
-                                                  Container(
-                                                    height:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .height *
-                                                            0.05,
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.93,
-                                                    decoration: BoxDecoration(
-                                                      color:
-                                                          Colors.grey.shade200,
-                                                      borderRadius:
-                                                          BorderRadius.only(
-                                                              topLeft: Radius
-                                                                  .circular(20),
-                                                              topRight: Radius
-                                                                  .circular(
-                                                                      20)),
-                                                    ),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceEvenly,
-                                                      children: [
-                                                        Text(controller1
-                                                            .lecturesWeek[
-                                                                index]
-                                                            .day
-                                                            .name
-                                                            .toString()),
-                                                        Text(controller1
-                                                            .lecturesWeek[
-                                                                index]
-                                                            .subject
-                                                            .name
-                                                            .toString()),
-                                                        Text(controller1
-                                                            .lecturesWeek[
-                                                                index]
-                                                            .start
-                                                            .toString())
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  ListTile(
-                                                      title: Container(
-                                                          margin:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  bottom: 15),
-                                                          child: Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .spaceBetween,
-                                                            children: [
-                                                              Row(children: [
-                                                                Text(controller1
-                                                                    .lecturesWeek[
-                                                                        index]
-                                                                    .unit
-                                                                    .stage
-                                                                    .name
-                                                                    .toString()),
-                                                              ]),
-                                                              Text(controller1
-                                                                  .lecturesWeek[
-                                                                      index]
-                                                                  .unit
-                                                                  .name
-                                                                  .toString()),
-                                                            ],
-                                                          )),
-                                                      subtitle: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          Expanded(
-                                                              child: Text(
-                                                            controller1
-                                                                .lecturesWeek[
-                                                                    index]
-                                                                .unit
-                                                                .section
-                                                                .name
-                                                                .toString(),
-                                                            overflow:
-                                                                TextOverflow
-                                                                    .ellipsis,
-                                                            maxLines: 1,
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .black
-                                                                    .withOpacity(
-                                                                        0.6)),
-                                                          )),
-                                                          Text(
-                                                            'Hall: ' +
-                                                                controller1
-                                                                    .lecturesWeek[
-                                                                        index]
-                                                                    .classroom
-                                                                    .name
-                                                                    .toString(),
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .black
-                                                                    .withOpacity(
-                                                                        0.6)),
-                                                          ),
-                                                        ],
-                                                      )),
-                                                      SizedBox(height: 40,),
-                                                  Divider(
-                                                    thickness: 0.3,
-                                                  ),
-                                                ],
-                                              ));
-                                        },
-                                      )
-                                    : SizedBox(
-                                        width: double.infinity,
-                                        child: Container(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 10.0,
-                                                vertical: 5.0),
-                                            child: const Text('Not Found',
-                                                style: TextStyle(
-                                                    fontSize: 24)
-                                                    )
-                                                    )
-                                                    )
-                                                    )
-                                                    )
-                                                    )
-                                                    ),
+               
                 
               ],
             )

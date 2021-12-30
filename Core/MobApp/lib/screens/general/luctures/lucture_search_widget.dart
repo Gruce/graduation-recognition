@@ -6,6 +6,7 @@ import 'luctures_controller.dart';
 class LuctureSearchWidget extends GetWidget {
   LuctureSearchWidget({Key? key, required this.controller}) : super(key: key);
   
+  @override
   LucturesController controller;
 
   @override

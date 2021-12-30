@@ -138,7 +138,7 @@ class LuctureWidget extends GetWidget {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   const Icon(
-                                    Icons.highlight_alt,
+                                    Icons.location_city,
                                     size: 14,
                                   ),
                                   const SizedBox(width: 3),

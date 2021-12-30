@@ -6,7 +6,9 @@ class StudentLayoutController extends GetxController {
 
   final List<Map<dynamic, dynamic>> tabs = [
     {"title": "Home", "icon": Icons.home, "route": '/student/'},
+    {"title": "Lectures", "icon": Icons.local_library, "route": '/student/lectures'},
     {"title": "Subject", "icon": Icons.local_library, "route": '/student/subjects'},
+   
 
   ].obs;
 

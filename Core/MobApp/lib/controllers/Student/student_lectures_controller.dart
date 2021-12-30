@@ -7,7 +7,7 @@ import 'package:graduaiton_app/util/utilities.dart';
 class StudentLecturesController extends GetxController {
   RxList lecturesToday = <LectureModel>[].obs;
   RxList lecturesWeek = <LectureModel>[].obs;
-  
+
   @override
   void onInit() async {
     fetch();
@@ -31,8 +31,6 @@ class StudentLecturesController extends GetxController {
     update();
   }
 
-  
-
   void fetchLecturesWeek() async {
     var res = await Utilities.httpGet('student/lectures');
     if (res.statusCode == 200) {
@@ -40,7 +38,7 @@ class StudentLecturesController extends GetxController {
 
       for (var element in response) {
         lecturesWeek.add(LectureModel.fromJson(element));
-        // print(element);
+        // print(lecturesWeek[0].subject.name);
         // print(
         //     '===============================================================');
       }

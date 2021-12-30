@@ -4,25 +4,21 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/models/student_models/section.dart';
 import 'package:graduaiton_app/models/student_models/stage.dart';
+import 'package:graduaiton_app/screens/general/luctures/luctures_controller.dart';
 import 'package:graduaiton_app/util/utilities.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
-import '../../../config.dart';
-import '../admin_students_controller.dart';
-import 'admin_stages_controller.dart';
-import 'admin_units_controller.dart';
+import 'lectures_stages_controller.dart';
+import 'lectures_units_controller.dart';
 
-class AdminSectionsController extends GetxController {
+class LecturesSectionsController extends GetxController {
   late SharedPreferences prefs;
   RxList sections = <SectionModel>[].obs;
   RxInt sectionSelectedIndex = 0.obs;
 
-  AdminStudentsController studentController =
-      Get.put(AdminStudentsController());
-  AdminStagesController stageController = Get.put(AdminStagesController());
-    AdminUnitsController unitController = Get.put(AdminUnitsController());
-
-  final api = Config.api;
+  LecturesStagesController stageController = Get.put(LecturesStagesController());
+  LecturesUnitsController unitController = Get.put(LecturesUnitsController());
+  LucturesController lucturesController = Get.put(LucturesController());
 
   @override
   void onInit() async {
@@ -37,7 +33,7 @@ class AdminSectionsController extends GetxController {
   }
 
   void fetchSections() async {
-    var res = await Utilities.httpGet('admin/sections/');
+    var res = await Utilities.httpGet('admin/sections');
     if (res.statusCode == 200) {
       List response = json.decode(res.body)['data'];
       sections.add(SectionModel.fromJson({"id": -1, "name": "All Sections"}));
@@ -45,11 +41,12 @@ class AdminSectionsController extends GetxController {
         sections.add(SectionModel.fromJson(element));
       }
     }
+    lucturesController.update();
     update();
   }
 
   void filterBySection(i) {
-    sectionSelectedIndex.value = i;
+   sectionSelectedIndex.value = i;
     SectionModel section = sections[i];
 
     stageController.filterBySection(section.id);
@@ -58,7 +55,7 @@ class AdminSectionsController extends GetxController {
     unitController.filterByStage(stage.id);
 
     stageController.update();
-    studentController.update();
+    lucturesController.update();
     update();
   }
 }

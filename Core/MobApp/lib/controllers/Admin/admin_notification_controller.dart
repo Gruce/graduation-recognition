@@ -14,6 +14,7 @@ class AdminNotificationController extends GetxController {
   RxBool allStudentsCheckbox = false.obs;
 
   RxList sections = <SectionModel>[].obs;
+  List stagesCheckBoxes = [];
 
   // @override
   @override
@@ -25,7 +26,6 @@ class AdminNotificationController extends GetxController {
 
     fetch();
     fetchSections();
-
     super.onInit();
   }
 
@@ -59,6 +59,7 @@ class AdminNotificationController extends GetxController {
         sections.add(SectionModel.fromJson(element));
       }
     }
+    update();
   }
 
   void pick_files() async {
@@ -107,4 +108,11 @@ class AdminNotificationController extends GetxController {
   void check(key, value) {
     lucturerCheckbox[key] = value!;
   }
+
+  void changeSectionVisibility(SectionModel section) {
+    section.visibility = !section.visibility;
+    update();
+  }
+
+  void stagesCheckBoxeToggle(StageModel stage) {}
 }

@@ -7,6 +7,8 @@ class SectionModel {
   String name = '';
   List<StageModel> stages = [];
 
+  bool visibility = false;
+
   SectionModel({id, name});
 
   SectionModel.fromJson(Map<dynamic, dynamic> json) {

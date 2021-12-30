@@ -101,7 +101,7 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                       ],
                     ),
                   ),
-                   Categories(),
+                   ShortcutsWidget(),
                   Padding(
                     padding: const EdgeInsets.only(
                       bottom: 13,

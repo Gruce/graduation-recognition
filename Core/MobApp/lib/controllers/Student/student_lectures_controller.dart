@@ -32,7 +32,7 @@ class StudentLecturesController extends GetxController {
   }
 
   void fetchLecturesWeek() async {
-    var res = await Utilities.httpGet('student/lectures');
+    var res = await Utilities.httpGet('student/lectures/');
     if (res.statusCode == 200) {
       List response = json.decode(res.body)['data'];
 

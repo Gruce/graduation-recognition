@@ -75,13 +75,14 @@ class StudentHomeScreen extends GetView<StudentHomeController> {
                                         itemBuilder:
                                             (BuildContext context, int index) {
                                           return Card(
+                                            
                                               elevation: 0,
                                               // shadowColor: Colors.black12,
                                               color: Colors.transparent,
                                               margin:
                                                   const EdgeInsets.symmetric(
                                                       horizontal: 0,
-                                                      vertical: 24.0),
+                                                      vertical: 23.0),
                                               child: Column(
                                                 children: [
                                                   Container(
@@ -97,7 +98,7 @@ class StudentHomeScreen extends GetView<StudentHomeController> {
                                                             0.93,
                                                     decoration: BoxDecoration(
                                                       color:
-                                                          Colors.grey.shade200,
+                                                           Colors.grey.shade200,
                                                       borderRadius:
                                                           BorderRadius.only(
                                                               topLeft: Radius
@@ -112,7 +113,7 @@ class StudentHomeScreen extends GetView<StudentHomeController> {
                                                               .spaceEvenly,
                                                       children: [
                                                         Text(controller1
-                                                            .lecturesWeek[
+                                                            .lecturesToday[
                                                                 index]
                                                             .day
                                                             .name
@@ -138,53 +139,26 @@ class StudentHomeScreen extends GetView<StudentHomeController> {
                                                                       .only(
                                                                   bottom: 15),
                                                           child: Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .spaceBetween,
+                                                            mainAxisAlignment: MainAxisAlignment.center,
                                                             children: [
                                                               Row(children: [
                                                                 Text(controller1
                                                                     .lecturesToday[
                                                                         index]
-                                                                    .unit
-                                                                    .stage
+                                                                    
+                                                                    .teacher.user
                                                                     .name
                                                                     .toString()),
                                                               ]),
-                                                              Text(controller1
-                                                                  .lecturesToday[
-                                                                      index]
-                                                                  .unit
-                                                                  .name
-                                                                  .toString()),
+                                                             
                                                             ],
                                                           )),
                                                       subtitle: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
+                                                       mainAxisAlignment: MainAxisAlignment.center,
                                                         children: [
-                                                          Expanded(
-                                                              child: Text(
-                                                            controller1
-                                                                .lecturesToday[
-                                                                    index]
-                                                                .unit
-                                                                .section
-                                                                .name
-                                                                .toString(),
-                                                            overflow:
-                                                                TextOverflow
-                                                                    .ellipsis,
-                                                            maxLines: 1,
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .black
-                                                                    .withOpacity(
-                                                                        0.6)),
-                                                          )),
+                                                        
                                                           Text(
-                                                            'Hall: ' +
+                                                            'classroom: ' +
                                                                 controller1
                                                                     .lecturesToday[
                                                                         index]
@@ -199,9 +173,10 @@ class StudentHomeScreen extends GetView<StudentHomeController> {
                                                           ),
                                                         ],
                                                       )),
+                                                  
                                                   Divider(
                                                     thickness: 0.3,
-                                                  )
+                                                  ),
                                                 ],
                                               ));
                                         },
@@ -364,7 +339,7 @@ class StudentHomeScreen extends GetView<StudentHomeController> {
                                                           ),
                                                         ],
                                                       )),
-                                                      SizedBox(height: 40,),
+                                                      
                                                   Divider(
                                                     thickness: 0.3,
                                                   ),

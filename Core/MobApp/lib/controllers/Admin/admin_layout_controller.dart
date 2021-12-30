@@ -15,6 +15,8 @@ class AdminLayoutController extends GetxController {
     {"title": "People", "icon": Icons.groups, "route": '/admin/people/'},
     {"title": "Students", "icon": Icons.people, "route": '/admin/students/'},
     {"title": "Lectures", "icon": Icons.schedule, "route": '/admin/lectures/'},
+    {"title": "users", "icon": Icons.supervised_user_circle_outlined, "route": '/admin/users/'},
+
   ].obs;
 
   void tabIndex(String route) {

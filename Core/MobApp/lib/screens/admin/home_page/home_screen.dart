@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/Admin/admin_home_controller.dart';
@@ -8,6 +9,7 @@ import 'package:graduaiton_app/screens/general/luctures/lecture_widget.dart';
 import 'package:graduaiton_app/screens/general/luctures/luctures_wiget.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import '../layout.dart';
+import 'shortcut_widget.dart';
 
 class AdminHomeScreen extends GetView<AdminHomeController> {
   AdminHomeScreen({Key? key}) : super(key: key);
@@ -55,12 +57,13 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                         textAlign: TextAlign.center,
                       )),
                   Obx(() => controller.lectures.isNotEmpty
-                  ? Expanded(flex: 1,
-                    child: LucturesWidget(
-                      lectures: controller.lectures,
-                      today: true,
-                    )
-                  ): Container())
+                      ? Expanded(
+                          flex: 1,
+                          child: LucturesWidget(
+                            lectures: controller.lectures,
+                            today: true,
+                          ))
+                      : Container())
                 ],
               ),
               body: Column(
@@ -94,9 +97,120 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                       ],
                     ),
                   ),
+                  Categories(),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      bottom: 13,
+                      top: 10,
+                      left: 15,
+                      right: 15,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        const Text("Today's Lucturers",
+                            style: TextStyle(
+                                color: Color(0xff6875F5), fontSize: 18)),
+                        Row(
+                          children: <Widget>[
+                            Container(
+                              alignment: Alignment.center,
+                              height: 25,
+                              width: 40,
+                              margin: const EdgeInsets.only(right: 6),
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.white,
+                              ),
+                              child: Text(
+                                controller.lecturers.length.toString(),
+                                style:
+                                    const TextStyle(color: Color(0xff6875F5)),
+                                textAlign: TextAlign.center,
+                              ),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    height: 160,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                    child: ListView.builder(
+                      itemCount: controller.lecturers.length,
+                      padding: const EdgeInsets.all(10),
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () {},
+                          child: Card(
+                            child: Column(
+                              children: [
+                                LucturersCard(
+                                  luctures:
+                                      controller.lecturers[index].user.name,
+                                )
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
                 ],
               ),
             )));
+  }
+}
+
+class LucturersCard extends StatelessWidget {
+  LucturersCard({
+    Key? key,
+    required this.luctures,
+  }) : super(key: key);
+  final String luctures;
+  AdminLucurersController teachersController =
+      Get.put(AdminLucurersController());
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.all(10),
+      width: 105,
+      height: 100,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(25),
+        // boxShadow: const [
+        //   // BoxShadow(
+        //   //   color: Color(0xff6875F5),
+        //   //   blurRadius: 1,
+        //   //   spreadRadius: 1,
+        //   //   offset: Offset(2.0, 2.0),
+        //   // )
+        // ],
+        // color: Colors.white,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(
+            Icons.person,
+            color: Color(0xff6875F5),
+            size: 30,
+          ),
+          const SizedBox(
+            height: 9,
+          ),
+          Text(
+            luctures,
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontSize: 16, color: Color(0xff6875F5)),
+          )
+        ],
+      ),
+    );
   }
 }
 

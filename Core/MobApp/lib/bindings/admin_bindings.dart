@@ -40,3 +40,9 @@ class AdminLucurersBinding extends Bindings {
     Get.lazyPut(() => AdminLucurersController());
   }
 }
+  class AdminUsersBinding extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut(() => AdminUsersController());
+  }
+}

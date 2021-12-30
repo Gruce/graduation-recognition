@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/Admin/admin_home_controller.dart';
@@ -9,6 +10,7 @@ import 'package:graduaiton_app/screens/general/luctures/lecture_widget.dart';
 import 'package:graduaiton_app/screens/general/luctures/luctures_wiget.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import '../layout.dart';
+import 'shortcut_widget.dart';
 
 class AdminHomeScreen extends GetView<AdminHomeController> {
   AdminHomeScreen({Key? key}) : super(key: key);
@@ -99,11 +101,12 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                       ],
                     ),
                   ),
+                   Categories(),
                   Padding(
                     padding: const EdgeInsets.only(
                       bottom: 13,
-                      top: 29,
-                      left: 30,
+                      top: 10,
+                      left: 15,
                       right: 15,
                     ),
                     child: Row(
@@ -116,16 +119,16 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                           children: <Widget>[
                             Container(
                               alignment: Alignment.center,
-                              height: 20,
+                              height: 25,
                               width: 40,
                               margin: const EdgeInsets.only(right: 6),
                               decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Color(0xff6875F5),
+                                color: Colors.white,
                               ),
                               child: Text(
                                 controller.lecturers.length.toString(),
-                                style: const TextStyle(color: Colors.white),
+                                style: const TextStyle(color: Color(0xff6875F5)),
                                 textAlign: TextAlign.center,
                               ),
                             )
@@ -135,7 +138,7 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                     ),
                   ),
                   Container(
-                    height: 170,
+                    height: 160,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25),
                     ),
@@ -178,8 +181,8 @@ class LucturersCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(10),
-      width: 115,
-      height: 115,
+      width: 105,
+      height: 100,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
         // boxShadow: const [

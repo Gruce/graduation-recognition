@@ -126,55 +126,70 @@ class AdminNotification extends GetView {
                                 controller.update()
                               },
                             ),
-                            Column(
-                              children:
-                                  List.from(controller.sections).map((section) {
-                                return Card(
-                                  clipBehavior: Clip.antiAlias,
-                                  elevation: 0,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15.0),
+                            controller.allStudentsCheckbox.value
+                                ? Container()
+                                : Column(
+                                    children: List.from(controller.sections)
+                                        .map((section) {
+                                      return Card(
+                                        clipBehavior: Clip.antiAlias,
+                                        elevation: 0,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(15.0),
+                                        ),
+                                        child: ListTile(
+                                          title: GestureDetector(
+                                              onTap: () => controller
+                                                  .changeSectionVisibility(
+                                                      section),
+                                              child: Text(
+                                                "${section.name}",
+                                                style: const TextStyle(
+                                                    fontSize: 15),
+                                              )),
+                                          subtitle: section.visibility
+                                              ? GridView.count(
+                                                  childAspectRatio: 3,
+                                                  shrinkWrap: true,
+                                                  crossAxisCount: 2,
+                                                  children:
+                                                      List.from(section.stages)
+                                                          .map((stage) =>
+                                                              CheckboxListTile(
+                                                                contentPadding:
+                                                                    const EdgeInsets
+                                                                        .all(0),
+                                                                title: Text(
+                                                                  "${stage.name}",
+                                                                  style: const TextStyle(
+                                                                      fontSize:
+                                                                          12.5),
+                                                                ),
+                                                                value: controller.stagesCheckBoxes.indexWhere((id) =>
+                                                                            id ==
+                                                                            stage.id) ==
+                                                                        -1
+                                                                    ? false
+                                                                    : true,
+                                                                activeColor:
+                                                                    const Color(
+                                                                        0xff6875F5),
+                                                                checkColor:
+                                                                    Colors
+                                                                        .white,
+                                                                onChanged: (bool?
+                                                                        value) =>
+                                                                    controller
+                                                                        .stagesCheckBoxeToggle(
+                                                                            stage),
+                                                              ))
+                                                          .toList())
+                                              : Text('Click to select'),
+                                        ),
+                                      );
+                                    }).toList(),
                                   ),
-                                  child: ListTile(
-                                    title: GestureDetector(
-                                        onTap: () => controller
-                                            .changeSectionVisibility(section),
-                                        child: Text(
-                                          "${section.name}",
-                                          style: const TextStyle(fontSize: 15),
-                                        )),
-                                    subtitle: section.visibility
-                                        ? GridView.count(
-                                            childAspectRatio: 3,
-                                            shrinkWrap: true,
-                                            crossAxisCount: 2,
-                                            children: List.from(section.stages)
-                                                .map((stage) =>
-                                                    CheckboxListTile(
-                                                      contentPadding:
-                                                          const EdgeInsets.all(
-                                                              0),
-                                                      title: Text(
-                                                        "${stage.name}",
-                                                        style: const TextStyle(
-                                                            fontSize: 12.5),
-                                                      ),
-                                                      value: false,
-                                                      activeColor: const Color(
-                                                          0xff6875F5),
-                                                      checkColor: Colors.white,
-                                                      onChanged: (bool?
-                                                              value) =>
-                                                          controller
-                                                              .allStudentsCheckbox
-                                                              .value = value!,
-                                                    ))
-                                                .toList())
-                                        : Container(),
-                                  ),
-                                );
-                              }).toList(),
-                            ),
                           ])),
                   const SizedBox(
                     height: 15,

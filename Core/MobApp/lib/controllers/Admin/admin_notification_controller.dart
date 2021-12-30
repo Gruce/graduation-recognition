@@ -75,20 +75,15 @@ class AdminNotificationController extends GetxController {
   }
 
   void send_notification() async {
-    List _teachers = [];
-
-    lucturerCheckbox.forEach((key, value) {
-      if (value == true) {
-        _teachers.add(lectures[key].id);
-      }
-    });
     await Utilities.httpFilesPost(
-        'teacher/send-task',
+        'admin/send-task',
         {
           'title': titleController.text,
           'body': bodyController.text,
-          'to': '1',
-          'ids': _teachers.toString(),
+          'teachers': allTeachersCheckbox.value ? '1' : '0',
+          'students': allStudentsCheckbox.value ? '1' : '0',
+          'stages': jsonEncode(stagesCheckBoxes),
+          // 'ids': _teachers.toString(),
         },
         files_path);
     files.clear();
@@ -114,5 +109,10 @@ class AdminNotificationController extends GetxController {
     update();
   }
 
-  void stagesCheckBoxeToggle(StageModel stage) {}
+  void stagesCheckBoxeToggle(StageModel stage) {
+    stagesCheckBoxes.indexWhere((id) => id == stage.id) == -1
+        ? stagesCheckBoxes.add(stage.id)
+        : stagesCheckBoxes.remove(stage.id);
+    update();
+  }
 }

@@ -14,6 +14,7 @@ class AdminNotificationController extends GetxController {
   RxBool allStudentsCheckbox = false.obs;
 
   RxList sections = <SectionModel>[].obs;
+  List stagesCheckBoxes = [];
 
   // @override
   @override
@@ -25,7 +26,6 @@ class AdminNotificationController extends GetxController {
 
     fetch();
     fetchSections();
-
     super.onInit();
   }
 
@@ -59,6 +59,7 @@ class AdminNotificationController extends GetxController {
         sections.add(SectionModel.fromJson(element));
       }
     }
+    update();
   }
 
   void pick_files() async {
@@ -74,20 +75,15 @@ class AdminNotificationController extends GetxController {
   }
 
   void send_notification() async {
-    List _teachers = [];
-
-    lucturerCheckbox.forEach((key, value) {
-      if (value == true) {
-        _teachers.add(lectures[key].id);
-      }
-    });
     await Utilities.httpFilesPost(
-        'teacher/send-task',
+        'admin/send-task',
         {
           'title': titleController.text,
           'body': bodyController.text,
-          'to': '1',
-          'ids': _teachers.toString(),
+          'teachers': allTeachersCheckbox.value ? '1' : '0',
+          'students': allStudentsCheckbox.value ? '1' : '0',
+          'stages': jsonEncode(stagesCheckBoxes),
+          // 'ids': _teachers.toString(),
         },
         files_path);
     files.clear();
@@ -106,5 +102,17 @@ class AdminNotificationController extends GetxController {
 
   void check(key, value) {
     lucturerCheckbox[key] = value!;
+  }
+
+  void changeSectionVisibility(SectionModel section) {
+    section.visibility = !section.visibility;
+    update();
+  }
+
+  void stagesCheckBoxeToggle(StageModel stage) {
+    stagesCheckBoxes.indexWhere((id) => id == stage.id) == -1
+        ? stagesCheckBoxes.add(stage.id)
+        : stagesCheckBoxes.remove(stage.id);
+    update();
   }
 }

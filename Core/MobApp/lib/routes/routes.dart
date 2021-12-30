@@ -7,7 +7,8 @@ import 'package:graduaiton_app/bindings/teacher_bindings.dart';
 import 'package:graduaiton_app/controllers/Admin/admin_lectures_controller.dart';
 import 'package:graduaiton_app/screens/admin/home_page/home_screen.dart';
 import 'package:graduaiton_app/screens/admin/lectures/lectures_screen.dart';
-import 'package:graduaiton_app/screens/admin/people/people_screen.dart';
+import 'package:graduaiton_app/screens/admin/lucturers/lucturers_screen.dart';
+import 'package:graduaiton_app/screens/admin/notification/notification.dart';
 import 'package:graduaiton_app/screens/admin/profile/profile_screen.dart';
 import 'package:graduaiton_app/screens/admin/students/students_screen.dart';
 import 'package:graduaiton_app/screens/admin/users/users_screen.dart';
@@ -30,7 +31,7 @@ class Routes {
   //Admin Routes
   static const adminMain = '/admin/';
   static const adminProfile = '/admin/profile/';
-  static const adminPeople = '/admin/people/';
+  static const adminLucurers = '/admin/lucurers/';
   static const adminStudents = '/admin/students/';
   static const adminNotification = '/admin/notification/';
   static const adminLectures = '/admin/lectures/';
@@ -76,19 +77,19 @@ class Routes {
         binding: AdminProfileBinding()),
 
     GetPage(
-        name: adminPeople,
-        page: () => AdminPeopleScreen(),
-        binding: AdminProfileBinding()),
-
-    GetPage(
         name: adminStudents,
         page: () => AdminStudentsScreen(),
         binding: AdminProfileBinding()),
 
     GetPage(
         name: adminNotification,
-        page: () => GeneralNotification(),
+        page: () => AdminNotification(),
         binding: AdminProfileBinding()),
+
+    GetPage(
+        name: adminLucurers,
+        page: () => AdminLucurersScreen(),
+        binding: AdminLucurersBinding()),
 
     GetPage(
         name: adminLectures,
@@ -127,11 +128,10 @@ class Routes {
         page: () => StudentHomeScreen(),
         binding: StudentHomeBinding()),
 
-     GetPage(
-        name: subjectsStudent,
-        page: () => SubjectStudentScreen(),
-        binding: SubjectsStudentBinding()),
-
+    //  GetPage(
+    //     name: subjectsStudent,
+    //     page: () => SubjectStudentScreen(),
+    //     binding: SubjectsStudentBinding()),
 
     GetPage(
         name: studentProfile,

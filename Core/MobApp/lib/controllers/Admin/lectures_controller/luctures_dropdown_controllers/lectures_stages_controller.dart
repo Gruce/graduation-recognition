@@ -1,23 +1,20 @@
 import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/models/student_models/stage.dart';
+import 'package:graduaiton_app/screens/general/luctures/luctures_controller.dart';
 import 'package:graduaiton_app/util/utilities.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
-import '../../../config.dart';
-import '../admin_students_controller.dart';
-import 'admin_units_controller.dart';
+import 'lectures_units_controller.dart';
 
-class AdminStagesController extends GetxController {
+class LecturesStagesController extends GetxController {
   late SharedPreferences prefs;
   RxList stages = <StageModel>[].obs;
   RxList filteredStages = <StageModel>[].obs;
   RxInt stageSelectedIndex = 0.obs;
-  AdminStudentsController studentController =
-      Get.put(AdminStudentsController());
-  AdminUnitsController unitController = Get.put(AdminUnitsController());
 
-  final api = Config.api;
+  LecturesUnitsController unitController = Get.put(LecturesUnitsController());
+  LucturesController lecturesController = Get.put(LucturesController());
 
   @override
   void onInit() async {
@@ -32,7 +29,7 @@ class AdminStagesController extends GetxController {
   }
 
   void fetchStages() async {
-    var res = await Utilities.httpGet('admin/stages/');
+    var res = await Utilities.httpGet('admin/stages');
     if (res.statusCode == 200) {
       List response = json.decode(res.body)['data'];
       stages.add(StageModel.fromJson({"id": -1, "name": "All Stages"}));
@@ -50,17 +47,16 @@ class AdminStagesController extends GetxController {
 
     unitController.filterByStage(stage.id);
     if (stage.id == -1) {
-      studentController.filteredStudents.assignAll(studentController.students);
+      lecturesController.filteredLectures.assignAll(lecturesController.lectures);
     } else {
-      studentController.filteredStudents.assignAll(studentController.students
-          .where((student) => student.stage_id == stage.id));
+      lecturesController.filteredLectures.assignAll(lecturesController.lectures
+          .where((lecture) => lecture.unit.stage_id == stage.id));
     }
 
     unitController.update();
-    studentController.update();
+    lecturesController.update();
     update();
   }
-
   void filterBySection(id) {
     stageSelectedIndex.value = 0;
     if (id == -1) {

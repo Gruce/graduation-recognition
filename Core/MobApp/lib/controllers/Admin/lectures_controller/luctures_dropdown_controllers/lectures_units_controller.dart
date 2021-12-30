@@ -1,22 +1,20 @@
 import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/models/student_models/unit.dart';
+import 'package:graduaiton_app/screens/general/luctures/luctures_controller.dart';
 import 'package:graduaiton_app/util/utilities.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
-import '../../../config.dart';
-import '../admin_students_controller.dart';
-import 'admin_stages_controller.dart';
+import 'lectures_stages_controller.dart';
 
-class AdminUnitsController extends GetxController {
+class LecturesUnitsController extends GetxController {
   late SharedPreferences prefs;
   RxList units = <UnitModel>[].obs;
   RxInt unitSelectedIndex = 0.obs;
   RxList filteredUnits = <UnitModel>[].obs;
-  AdminStudentsController studentController =
-      Get.put(AdminStudentsController());
+ 
+  LucturesController lucturesController = Get.put(LucturesController());
 
-  final api = Config.api;
 
   @override
   void onInit() async {
@@ -39,24 +37,25 @@ class AdminUnitsController extends GetxController {
         units.add(UnitModel.fromJson(element));
       }
       filteredUnits.assignAll(units);
+      lucturesController.update();
     }
     update();
   }
-
+  
   void filterByUnit(index) {
     unitSelectedIndex.value = index;
     UnitModel unit = filteredUnits[index];
     if (unit.id == -1) {
-      studentController.filteredStudents.assignAll(studentController.students);
+      lucturesController.filteredLectures.assignAll(lucturesController.lectures);
     } else {
-      studentController.filteredStudents.assignAll(studentController.students
+      lucturesController.filteredLectures.assignAll(lucturesController.lectures
           .where((student) => student.unit_id == unit.id));
     }
-    studentController.update();
+    lucturesController.update();
     update();
   }
 
-  void filterByStage(id) {
+void filterByStage(id) {
     unitSelectedIndex.value = 0;
     if (id == -1) {
       filteredUnits.assignAll(units);

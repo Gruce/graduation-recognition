@@ -98,19 +98,70 @@ class AdminNotification extends GetView {
                     ),
                   ),
                   const SizedBox(height: 5),
-                 Column(children: [
-                        Obx(() =>  CheckboxListTile(
+                  Obx(() => Column(children: [
+                        CheckboxListTile(
                           title: const Text(
                             "All Teachers",
                             style: TextStyle(fontSize: 15),
                           ),
-                          value: false,
+                          value: controller.allTeachersCheckbox.value,
                           activeColor: const Color(0xff6875F5),
                           checkColor: Colors.white,
                           onChanged: (bool? value) =>
-                              controller.check(key, value),
-                        ),)
-                      ]),
+                              controller.allTeachersCheckbox.value = value!,
+                        ),
+                        CheckboxListTile(
+                          title: const Text(
+                            "All Students",
+                            style: TextStyle(fontSize: 15),
+                          ),
+                          value: controller.allStudentsCheckbox.value,
+                          activeColor: const Color(0xff6875F5),
+                          checkColor: Colors.white,
+                          onChanged: (bool? value) =>
+                              controller.allStudentsCheckbox.value = value!,
+                        ),
+                        Column(
+                          children:
+                              List.from(controller.sections).map((section) {
+                            return Card(
+                              clipBehavior: Clip.antiAlias,
+                              elevation: 0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15.0),
+                              ),
+                              child: ListTile(
+                                title: Text(
+                                  "${section.name}",
+                                  style: const TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                subtitle: GridView.count(
+                                    shrinkWrap: true,
+                                    crossAxisCount: 1,
+                                    children: List.from(section.stages)
+                                        .map((stage) => CheckboxListTile(
+                                              contentPadding: EdgeInsets.all(0),
+                                              title: Text(
+                                                "${stage.name}",
+                                                style: const TextStyle(
+                                                    fontSize: 15),
+                                              ),
+                                              value: false,
+                                              activeColor:
+                                                  const Color(0xff6875F5),
+                                              checkColor: Colors.white,
+                                              onChanged: (bool? value) =>
+                                                  controller.allStudentsCheckbox
+                                                      .value = value!,
+                                            ))
+                                        .toList()),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ])),
                   const SizedBox(
                     height: 15,
                   ),

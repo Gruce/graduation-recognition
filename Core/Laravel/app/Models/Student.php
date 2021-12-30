@@ -35,4 +35,5 @@ class Student extends Model
     public function absences(){
         return $this->hasMany(Absence::class);
     }
+
 }

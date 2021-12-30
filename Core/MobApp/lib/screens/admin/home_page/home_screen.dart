@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/Admin/admin_home_controller.dart';
-import 'package:graduaiton_app/controllers/Admin/admin_people_controller.dart';
+import 'package:graduaiton_app/controllers/Admin/admin_users_controller.dart';
 import 'package:graduaiton_app/controllers/Admin/admin_students_controller.dart';
 import 'package:graduaiton_app/controllers/Admin/admin_teachers_controller.dart';
 import 'package:graduaiton_app/routes/routes.dart';
@@ -101,7 +101,7 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                       ],
                     ),
                   ),
-                  Categories(),
+                   Categories(),
                   Padding(
                     padding: const EdgeInsets.only(
                       bottom: 13,
@@ -128,8 +128,7 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                               ),
                               child: Text(
                                 controller.lecturers.length.toString(),
-                                style:
-                                    const TextStyle(color: Color(0xff6875F5)),
+                                style: const TextStyle(color: Color(0xff6875F5)),
                                 textAlign: TextAlign.center,
                               ),
                             )

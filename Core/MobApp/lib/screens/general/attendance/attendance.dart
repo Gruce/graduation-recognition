@@ -15,7 +15,7 @@ class Attendance extends GetWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-          margin: const EdgeInsets.only(left: 10, right: 10, top: 30),
+          margin: EdgeInsets.only(left: 10, right: 10, top: 30),
           child: Column(
             children: [
               Container(
@@ -29,7 +29,7 @@ class Attendance extends GetWidget {
                           fontWeight: FontWeight.bold,
                           color: Colors.grey[400]),
                     ),
-                    const Text(
+                    Text(
                       "Today",
                       style: TextStyle(
                         fontSize: 30,
@@ -51,7 +51,7 @@ class Attendance extends GetWidget {
                                   elevation: 0,
                                   clipBehavior: Clip.antiAlias,
                                   shape: RoundedRectangleBorder(
-                                    side: const BorderSide(
+                                    side: BorderSide(
                                         color: Color.fromRGBO(249, 249, 249, 1),
                                         width: 0.6),
                                     borderRadius: BorderRadius.circular(8),
@@ -128,15 +128,14 @@ class Attendance extends GetWidget {
                                                       height: 20,
                                                       width: 100,
                                                       decoration: BoxDecoration(
-                                                        color: const Color
-                                                                .fromRGBO(
+                                                        color: Color.fromRGBO(
                                                             243, 243, 243, 1),
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(6.0),
                                                       ),
                                                       child: Row(
-                                                        children: const [
+                                                        children: [
                                                           Text(
                                                             ' Absences : ',
                                                             style: TextStyle(

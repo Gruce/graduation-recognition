@@ -7,7 +7,7 @@ import 'package:graduaiton_app/util/utilities.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PersonProfileController extends GetxController {
-  UserModel user = UserModel();
+  PersonModel person = PersonModel();
   RxString imageURL = ''.obs;
 
   void onInit() async {
@@ -15,11 +15,12 @@ class PersonProfileController extends GetxController {
   }
 
   void getUser(int id) async{
-    var res = await Utilities.httpPost("admin/users/", {"id": id.toString()});
+    var res = await Utilities.httpPost("person", {"id": id.toString()});
     if (res.statusCode == 200) {
       Map data = jsonDecode(res.body)['data'];
-      user = UserModel.fromJson(data);
+      person = PersonModel.fromJson(data);
       imageURL.value = jsonDecode(res.body)['image'];
+      print(person.user.email);
     }
     update();
   }

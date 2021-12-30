@@ -12,7 +12,6 @@ class AdminController extends Controller
     {
         $teachers = Teacher::with(
             [
-                'section',
                 'user:id,name,email',
                 'units' => function($unit){
                     return $unit->with(

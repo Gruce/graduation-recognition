@@ -37,11 +37,9 @@ class SubjectsStudentController extends GetxController {
     if (res.statusCode == 200) {
       List response = json.decode(res.body)['data'];
 
-      print('===============================================================');
+      
       for (var element in response) {
-        print(element);
-        print(
-            '===============================================================');
+   
         notification.add(Notif.fromJson(element));
       }
     }

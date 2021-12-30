@@ -7,13 +7,12 @@ class SearchWidget extends GetView {
   SearchWidget({Key? key}) : super(key: key);
 
   @override
-  AdminUsersController controller = Get.put(AdminUsersController());
+  AdminPeopleController controller = Get.put(AdminPeopleController());
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(15),
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(1),
         border: Border.all(
@@ -25,7 +24,7 @@ class SearchWidget extends GetView {
       child: Row(
         children: <Widget>[
           const Padding(
-            padding: EdgeInsets.all(8),
+            padding: EdgeInsets.only(left: 8),
             child: Icon(
               Icons.search,
               color: Colors.grey,

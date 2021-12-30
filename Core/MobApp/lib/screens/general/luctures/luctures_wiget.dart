@@ -16,7 +16,6 @@ class LucturesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     controller.filteredLectures.assignAll(lectures);
     controller.lectures.assignAll(lectures);
-    controller.oneTime();
 
     return Column(children: [
       today ? Container() :
@@ -67,7 +66,8 @@ class LucturesWidget extends StatelessWidget {
                             controller.filteredLectures[index].classroom.name,
                         startAt: controller.filteredLectures[index].start,
                         endAt: '',
-                        lucturerName: controller
+                        lucturerName: 
+                        controller
                             .filteredLectures[index].teacher.user.name,
                         section: controller
                             .filteredLectures[index].unit.section.name,

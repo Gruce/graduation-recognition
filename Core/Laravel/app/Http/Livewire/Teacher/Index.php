@@ -17,12 +17,33 @@ use App\Models\{
 class Index extends Component
 {
     use LivewireAlert;
-    protected $listeners = ['$refresh', 'search'];
+    protected $listeners = ['$refresh'];
     public $absence = false;
 
-    // public $lecture;
+    public $students;
+    public $studentID = [];
+    public $studentsAbsenceId = [] ;
+
+    public function save($lectureID){
+        $studentID = \array_diff($this->studentID, [false]);
+        $studentID = array_keys($studentID);
+        $lecture = Lecture::find($lectureID);
 
 
+        foreach($studentID as $id)
+            Absence::create(
+                [
+                    'lecture_id' => $lecture->id,
+                    'subject_id' => $lecture->subject_id, 
+                    'student_id'=> $id
+                ]
+            );
+        
+        $this->absence = !$this->absence;
+
+        $this->alert('success' , 'Done');
+        $this->emitTo('livewire.teacher.index', '$refresh');
+    }
 
     public function start($lectureID){
         $lecture = Lecture::find($lectureID);
@@ -31,24 +52,23 @@ class Index extends Component
         $unit = Unit::find($lecture->unit_id);
         
         $students_tracking = Student::whereHas('user.trackings' , function($track) use($start_time){
-            return $track->where('seen' ,'>' , $start_time);
+            return $track->where('created_at' ,'>' , $start_time);
         })->where('unit_id' , $unit->id)->get();
 
         $students = Student::where('unit_id' , $unit->id)->get();
 
+        $students_absence = [] ;
+
         foreach($students as $student)
-            if(!in_array($student->toArray() , $students_tracking->toArray()))
-                Absence::create(
-                    [
-                        'lecture_id' => $lecture->id,
-                        'subject_id' => $lecture->subject_id, 
-                        'student_id'=> $student->toArray()['id']
-                    ]
-                );
+            if(!in_array($student->toArray() , $students_tracking->toArray())){
+                $this->studentID[$student['id']] = true;
+                array_push($students_absence , $student->id);
+            }
+
+        $this->studentsAbsenceId = $students_absence;
+        $this->students = Student::where('unit_id' , $unit->id)->with('user:id,name,email')->get();
                 
         $this->absence = !$this->absence;
-        $this->alert('success' , 'Done');
-        $this->emitTo('livewire.teacher.index', '$refresh');
     }
 
     public function delete($model , $id){

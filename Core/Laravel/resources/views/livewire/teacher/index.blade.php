@@ -24,6 +24,57 @@
         @endif
         <br>
     </section>
+    @if($absence)
+        <section class="text-gray-600 body-font">
+            <div class="container px-5 py-10 mx-auto bg-white rounded-lg max-w-7xl sm:px-6 lg:px-8">
+                <div class="flex justify-center">
+                    <table class="table text-gray-400 border-separate space-y-6 w-full text-sm">
+                        <thead class="bg-gray-200 text-gray-500">
+                            <tr>
+                                <th class="p-3">#</th>
+                                <th class="p-3 text-left">Name</th>
+                                <th class="p-3 text-left">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($students as $student)
+                                <tr class="@if(in_array($student->id , $studentsAbsenceId)) bg-red-50 @else bg-gray-50 @endif" >
+                                    <td class="p-3 text-center">
+                                        {{$loop->index + 1}}
+                                    </td>
+                                    <td class="p-3">
+                                        <div class="flex align-items-center">
+                                            <div class="ml-3">
+                                                <div>
+                                                    <span class="font-bold text-gray-500">
+                                                        {{ $student->user->name }}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                    </td>
+                                    <td class="p-3">
+                                        <div>
+                                            <span class="text-gray-500">
+                                                <input type="checkbox" id="studentID-{{$student->id}}" wire:model="studentID.{{$student->id}}">
+                                            </span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+
+                            @endforelse
+                    </tbody>
+                </table>
+                </div>
+                <div class="container px-5 py-10 mx-auto bg-white rounded-lg max-w-7xl sm:px-6 lg:px-8">
+                    <div class="flex flex-wrap">
+                        <button wire:click="save({{$current_lecture->id}})" type="button" class="w-full py-3 text-base text-white transition duration-500 ease-in-out transform bg-blue-600 border-blue-600 rounded-md focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2 hover:bg-blue-800 "> Save  </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <br>
+    @endif
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-10 mx-auto bg-white rounded-lg max-w-7xl sm:px-6 lg:px-8">
             <div class="flex justify-center">

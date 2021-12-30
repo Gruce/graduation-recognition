@@ -74,6 +74,9 @@ class StudentController extends Controller
                 'classroom' => function($classroom){
                     return $classroom->with('cameras')->get();
                 },
+                'teacher' => function($teacher){
+                    return $teacher->with('user:id,name,email')->get();
+                },
                 'subject:id,name',
                 'day:id,name',
             ]
@@ -102,6 +105,9 @@ class StudentController extends Controller
                 'classroom' => function($classroom){
                     return $classroom->with('cameras')->get();
                 },
+                'teacher' => function($teacher){
+                    return $teacher->with('user:id,name,email')->get();
+                },
                 'subject:id,name',
                 'day:id,name',
             ]
@@ -110,5 +116,19 @@ class StudentController extends Controller
         return response()->json(['data' => $lecture]);
     }
 
+    public function info()
+    {
+        $student = auth()->user()->student()->with(
+            [
+                'user:id,name,email',
+                'section:id,name',
+                'stage:id,name',
+                'unit:id,name',
+                'absences' => function ($abs){
+                    return $abs->with('subject:id,name')->get();
+                }
+            ])->first();
 
+        return response()->json(['data' => $student]);
+    }
 }

@@ -34,7 +34,7 @@ class TrackingController extends Controller
 
             $track              = new Tracking;
             $track->user_id   = $person;
-            $track->seen = now();
+            // $track->seen = now();
             $track->camera_id   = $req->id;
             $track->image_path  = $file;
             $track->save();

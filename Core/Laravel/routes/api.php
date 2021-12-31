@@ -107,6 +107,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     #### Student ####
     Route::group(['prefix' => 'student' , 'middleware' => 'student'] ,function(){
+        Route::get('/info', [StudentController::class, 'info']);
         Route::get('/subjects', [StudentController::class, 'subjects']);
         Route::get('/subject-tasks/{subject_id}/{teacher_id}', [StudentController::class, 'subject_tasks']);
         Route::get('/lectures/{today?}' , [StudentController::class, 'lectures']);

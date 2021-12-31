@@ -25,7 +25,8 @@ class ScheduleAdd extends Component
     public $day;
     public $subject;
     public $teacher;
-    public $time;
+    public $start;
+    public $end;
     public $classroom;
 
     public function save()
@@ -35,7 +36,8 @@ class ScheduleAdd extends Component
                 'unit_id' => $this->unit,
                 'teacher_id' => $this->teacher,
                 'subject_id' => $this->subject,
-                'start' => $this->time,
+                'start' => $this->start,
+                'end' => $this->end,
                 'classroom_id' => $this->classroom,
                 'day_id' => $this->day,
             ]

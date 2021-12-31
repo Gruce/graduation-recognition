@@ -18,19 +18,20 @@ class TeacherSeeder extends Seeder
 
         // ID 1
         $data = [
-            'user_id' => 1,
-            'section_id' => 1,
+            'user_id' => 6,
+            'section_id' => 2,
             'speciality' => 'PHP',
         ];
 
         $teacher = Teacher::create($data);
-        $subjects_id = [1,3];
+        $subjects_id = [5];
         $teacher->subjects()->attach($subjects_id);
-        $stages_id = [1,4];
+        $stages_id = [8];
         $teacher->stages()->attach($stages_id);
-        $units_id = [1,2,7,8];
+        $units_id = [15,16];
         $teacher->units()->attach($units_id);
 
+        // ID : 2
         $data = [
             'user_id' => 5,
             'section_id' => 2,
@@ -43,20 +44,6 @@ class TeacherSeeder extends Seeder
         $stages_id = [8];
         $teacher->stages()->attach($stages_id);
         $units_id = [15,16];
-        $teacher->units()->attach($units_id);
-
-        $data = [
-            'user_id' => 6,
-            'section_id' => 1,
-            'speciality' => 'HTML',
-        ];
-
-        $teacher = Teacher::create($data);
-        $subjects_id = [1];
-        $teacher->subjects()->attach($subjects_id);
-        $stages_id = [1];
-        $teacher->stages()->attach($stages_id);
-        $units_id = [1,2];
         $teacher->units()->attach($units_id);
 
     }

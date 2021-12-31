@@ -25,6 +25,7 @@ use App\Http\Livewire\Admin\{
     Sections\Sections,
     Train\TrainNew,
     Settings,
+    JoinRequest\JoinRequests,
 };
     ## END ADMIN ##
 
@@ -45,6 +46,8 @@ use App\Http\Livewire\Students\{
     ChangeUnit,
 };
     ## END STUDENT ##
+
+use App\Http\Livewire\Admin\Join;
 ###### End Livewire ######
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
@@ -114,6 +117,11 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
         ## End Settings ##
 
+        # JoinRequests #
+        Route::group(['prefix' => 'join'] ,function(){
+            Route::get('/requests', JoinRequests::class)->name('join_requests');
+        });
+
     });
     #### END ADMIN ####
 
@@ -141,4 +149,9 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     #### END STUDENT ####
 
 });
+
+
+Route::get('/join', [ActionController::class, 'join_req'])->name('join-req');
+Route::post('/join-send', [ActionController::class, 'join'])->name('join');
+
 

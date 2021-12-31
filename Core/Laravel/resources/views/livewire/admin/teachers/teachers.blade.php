@@ -71,9 +71,11 @@
                                             <div class="text-gray-600 focus-within:text-gray-400">
                                                 <select wire:keydown.enter="save()" wire:model="teachers.{{ $i }}.section_id" class="py-3 block w-full text-sm text-gray-400 bg-gray-100 rounded-md px-5 focus:outline-none focus:bg-gray-50 focus:text-gray-900">
                                                     <option value="">Please select</option>
-                                                    @foreach ($sections as $section)
-                                                    <option value="{{$section->id}}">{{$section->name}}</option>
-                                                    @endforeach
+                                                    @if($sections)
+                                                        @foreach ($sections as $section)
+                                                        <option value="{{$section->id}}">{{$section->name}}</option>
+                                                        @endforeach
+                                                    @endif
                                                 </select>
                                             </div>
                                         </div>

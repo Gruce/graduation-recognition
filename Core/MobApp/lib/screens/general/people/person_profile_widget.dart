@@ -10,7 +10,7 @@ class PersonProfileWidget extends GetView {
 
   @override
   PersonProfileController controller = Get.put(PersonProfileController());
-  AdminUsersController userController = Get.put(AdminUsersController());
+  // AdminUsersController userController = Get.put(AdminUsersController());
   @override
   Widget build(BuildContext context) {
     controller.getUser(Get.arguments);

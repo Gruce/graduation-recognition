@@ -13,14 +13,10 @@ import 'package:intl/intl.dart';
 class TeacherAttendanceScreen extends GetView {
   TeacherAttendanceScreen({Key? key}) : super(key: key);
   @override
-  int _toggleValue = 0;
-  TeacherStudentsUnitController controller =
-      Get.put(TeacherStudentsUnitController());
-  AttendanceStudentsController controller2 =
+  AttendanceStudentsController controller =
       Get.put(AttendanceStudentsController());
   @override
   Widget build(BuildContext context) {
-    controller.fetch(15);
     return TeacherLayoutScreen(
         title: 'Lectures of the Week',
         child: Column(
@@ -103,13 +99,13 @@ class TeacherAttendanceScreen extends GetView {
                                                             ],
                                                             onToggleCallback:
                                                                 (value) {
-                                                              controller2.toggleAbsentStudent(
+                                                              controller.toggleAbsentStudent(
                                                                   controller
                                                                       .filteredStudent[
                                                                           index]
                                                                       .id,
                                                                   value);
-                                                              print(controller2
+                                                              print(controller
                                                                   .absentStudents);
                                                             },
                                                             buttonColor:

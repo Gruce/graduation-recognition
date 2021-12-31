@@ -26,9 +26,15 @@ class StudentModel {
   StudentModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     user_id = json['user_id'];
-    section_id = json['section_id'];
-    stage_id = json['stage_id'];
-    unit_id = json['unit_id'];
+    if (json.containsKey('section_id')) {
+      section_id = json['section_id'];
+    }
+    if (json.containsKey('stage_id')) {
+      stage_id = json['stage_id'];
+    }
+    if (json.containsKey('unit_id')) {
+      unit_id = json['unit_id'];
+    }
     if (json.containsKey('user')) {
       user = UserModel.fromJson(json['user']);
     }

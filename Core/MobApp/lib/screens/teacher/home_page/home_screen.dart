@@ -4,7 +4,9 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:graduaiton_app/config.dart';
+import 'package:graduaiton_app/controllers/Teacher/attendance_students.dart';
 import 'package:graduaiton_app/controllers/Teacher/teacher_home_controller.dart';
+import 'package:graduaiton_app/routes/routes.dart';
 import 'package:graduaiton_app/screens/teacher/home_page/widgets/button.dart';
 import 'package:intl/intl.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
@@ -17,6 +19,7 @@ class TeacherHomeScreen extends GetView<TeacherHomeController> {
 
   @override
   TeacherHomeController controller = Get.put(TeacherHomeController());
+  AttendanceStudentsController controller2 = Get.put(AttendanceStudentsController());
 
   @override
   Widget build(BuildContext context) {
@@ -203,19 +206,21 @@ class TeacherHomeScreen extends GetView<TeacherHomeController> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceAround,
                                         children: [
-                                          
-                                              
-                                             
-                                            Text(controller.currentLecture[0]
-                                                  .subject.name),
+                                          Text(controller
+                                              .currentLecture[0].subject.name),
                                           Text(
-                                            DateFormat.jm().format(DateFormat("hh:mm:ss").parse(controller
-                                                  .currentLecture[0].start))
-                                            
-                                             +
-                                              ' To ' +
-                                              DateFormat.jm().format(DateFormat("hh:mm:ss").parse(controller
-                                                  .currentLecture[0].end)),)
+                                            DateFormat.jm().format(
+                                                    DateFormat("hh:mm:ss")
+                                                        .parse(controller
+                                                            .currentLecture[0]
+                                                            .start)) +
+                                                ' To ' +
+                                                DateFormat.jm().format(
+                                                    DateFormat("hh:mm:ss")
+                                                        .parse(controller
+                                                            .currentLecture[0]
+                                                            .end)),
+                                          )
                                         ],
                                       ),
                                     ),
@@ -235,7 +240,10 @@ class TeacherHomeScreen extends GetView<TeacherHomeController> {
                                                       .stage
                                                       .name),
                                                 ]),
-                                                Text(controller.currentLecture[0].unit.name),
+                                                Text(controller
+                                                    .currentLecture[0]
+                                                    .unit
+                                                    .name),
                                               ],
                                             )),
                                         subtitle: Row(
@@ -244,7 +252,8 @@ class TeacherHomeScreen extends GetView<TeacherHomeController> {
                                           children: [
                                             Expanded(
                                                 child: Text(
-                                              controller.currentLecture[0].day.name,
+                                              controller
+                                                  .currentLecture[0].day.name,
                                               overflow: TextOverflow.ellipsis,
                                               maxLines: 1,
                                               style: TextStyle(
@@ -252,7 +261,9 @@ class TeacherHomeScreen extends GetView<TeacherHomeController> {
                                                       .withOpacity(0.6)),
                                             )),
                                             Text(
-                                              'classroom : '+controller.currentLecture[0].classroom.name,
+                                              'classroom : ' +
+                                                  controller.currentLecture[0]
+                                                      .classroom.name,
                                               style: TextStyle(
                                                   color: Colors.black
                                                       .withOpacity(0.6)),
@@ -266,8 +277,11 @@ class TeacherHomeScreen extends GetView<TeacherHomeController> {
                         ),
                         Text("Not started"),
                         MyButton(
-                            label: "Start Lecture",
-                            onTap: controller.startLecture),
+                            label: "Take Attendance",
+                            onTap: () => {
+
+                              Get.toNamed(Routes.teachAttendance)
+                            }),
                       ],
                     )),
               ],

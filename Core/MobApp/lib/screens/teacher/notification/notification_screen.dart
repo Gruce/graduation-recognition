@@ -129,7 +129,7 @@ class TeacherNotification extends GetView {
                                                           child: SingleChildScrollView(
                                                             
                                                             child: Text(
-                                                              'Subject : ' +
+                                                              'Title : ' +
                                                                   controller
                                                                       .notifications[
                                                                           index]
@@ -175,7 +175,7 @@ class TeacherNotification extends GetView {
                                                   children: [
                                                     Expanded(
                                                         child: Text(
-                                                      'Text : ' +
+                                                      'Note : ' +
                                                           controller
                                                               .notifications[
                                                                   index]

@@ -132,7 +132,7 @@ class ApiController extends Controller
 
     public function sections(){
         return response()->json([
-            'data' => Section::get(['id','name'])
+            'data' => Section::with('stages')->get(['id','name'])
         ], 200);
     }
     public function stages(){

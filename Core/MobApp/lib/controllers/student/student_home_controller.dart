@@ -2,13 +2,11 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:graduaiton_app/config.dart';
-import 'package:graduaiton_app/models/schedule/lectuer.dart';
-import 'package:graduaiton_app/util/utilities.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 class StudentHomeController extends GetxController {
-  RxList currentLectures = <LectureModel>[].obs;
+  
   RxBool showns = false.obs;
   var listsearch = [];
   late SharedPreferences prefs;
@@ -17,7 +15,6 @@ class StudentHomeController extends GetxController {
 
   @override
   void onInit() async {
-    fetchCurrentLectures();
     prefs = await SharedPreferences.getInstance();
     getData();
     super.onInit();
@@ -35,21 +32,6 @@ class StudentHomeController extends GetxController {
     }
   }
 
-  void fetchCurrentLectures() async {
-    var res = await Utilities.httpGet('student/current-lecture');
-    if (res.statusCode == 200) {
-      var response = json.decode(res.body)['data'];
-       
-      
-        currentLectures.add(LectureModel.fromJson(response));
-       print(currentLectures[0].id);
-      print('===============================================================');
-      
-
-    }
-
-    update();
-  }
   // void startLecture(){
   //   isLectureStarted.value = !isLectureStarted.value;
   // }

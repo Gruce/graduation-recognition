@@ -65,7 +65,7 @@ class StudentWidget extends GetWidget {
                                 const SizedBox(width: 2),
                                 Text(camera,
                                     style: const TextStyle(
-                                        fontSize: 11,
+                                        fontSize: 10,
                                        ))
                               ],
                             ),
@@ -79,7 +79,7 @@ class StudentWidget extends GetWidget {
                                 const SizedBox(width: 2),
                                 Text(time,
                                     style: const TextStyle(
-                                        fontSize: 11,
+                                        fontSize: 10,
                                       )),
                               ],
                             ),

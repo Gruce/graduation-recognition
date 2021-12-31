@@ -108,7 +108,7 @@ class AdminStudentsScreen extends GetView {
                                                   .user
                                                   .trackings[0]
                                                   .created_at
-                                              : "No Camera",
+                                              : "No Time",
                                           user_id: controller
                                               .filteredStudents[index].user_id,
                                         ));

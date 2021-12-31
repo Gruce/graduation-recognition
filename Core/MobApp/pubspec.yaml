@@ -34,7 +34,8 @@ dependencies:
   shared_preferences:
   get:
   video_player:
-  file_picker:  
+  file_picker:
+  animated_text_kit: ^4.2.1  
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2

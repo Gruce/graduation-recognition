@@ -179,7 +179,7 @@ class TeacherHomeScreen extends GetView<TeacherHomeController> {
                             children: [
                               Text('Next Lucter'),
                               Text('PHP'),
-                              Text('Time : 10 AM')
+                              Text(controller.currentLecture[0].start+'-'+controller.currentLecture[0].end)
                             ],
                           ),
                         ),

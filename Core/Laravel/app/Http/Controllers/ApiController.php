@@ -31,7 +31,7 @@ class ApiController extends Controller
     public function person(Request $req){
         $person = Person::with('trackings.camera')->with('user')->find($req->id);
 
-        $images = [];
+        $images = []; 
         $image = '';
         
         foreach (glob(Storage::disk('public')->path('db/' . $person->id) . '/*.png') as $filename) {

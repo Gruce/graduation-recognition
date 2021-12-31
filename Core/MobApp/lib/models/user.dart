@@ -6,7 +6,7 @@ class UserModel {
   String email = '';
   int type = 0;
   String typeString = '';
-  // TrackingModel trackings = TrackingModel();
+  List<TrackingModel> trackings = [];
 
   UserModel({id, name, email, type});
 
@@ -20,14 +20,15 @@ class UserModel {
       type = json['type'];
     }
     typeString = getTypeString(type);
-                                                  
-    // if (!json['trackings'].isEmpty) {                         
-    //   trackings = TrackingModel.fromJson(json['trackings'][0]);
-    // }
-  }
-  
 
-  Map<dynamic, dynamic> toJson() { 
+    if (json.containsKey('trackings')) {
+      for (var tracking in json['trackings']) {
+        trackings.add(TrackingModel.fromJson(tracking));
+      }
+    }
+  }
+
+  Map<dynamic, dynamic> toJson() {
     final Map<dynamic, dynamic> data = <dynamic, dynamic>{};
     data['id'] = id;
     data['name'] = name;

@@ -46,6 +46,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['prefix' => 'users'] ,function(){
             Route::get('/', [UserController::class, 'users']);
             Route::post('/new' , [UserController::class , 'new_user']);
+
         });
 
         ## END USER ##
@@ -66,6 +67,7 @@ Route::group(['middleware' => 'auth'], function () {
         ## Students ##
         Route::group(['prefix' => 'students'] ,function(){
             Route::get('/', [StudentController::class, 'students']);
+            Route::get('/{student_id}' , [StudentController::class , 'get_student']);
         });
 
         ## End Students ##
@@ -99,6 +101,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/tasks' , [TeacherController::class, 'tasks']);
         Route::get('/lectures/{day?}' , [TeacherController::class, 'lectures']);
         Route::get('/current-lecture' , [TeacherController::class, 'current_lecture']);
+        Route::get('/students-absence/{lecture_id}' , [TeacherController::class, 'students_absence']);
         Route::post('/send-task' , [TeacherController::class, 'send_task']);
     });
 

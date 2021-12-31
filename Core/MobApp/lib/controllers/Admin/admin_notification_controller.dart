@@ -12,6 +12,7 @@ import 'package:graduaiton_app/util/utilities.dart';
 class AdminNotificationController extends GetxController {
   RxBool allTeachersCheckbox = false.obs;
   RxBool allStudentsCheckbox = false.obs;
+  int userId = -1;
 
   RxList sections = <SectionModel>[].obs;
   List stagesCheckBoxes = [];
@@ -83,6 +84,7 @@ class AdminNotificationController extends GetxController {
           'teachers': allTeachersCheckbox.value ? '1' : '0',
           'students': allStudentsCheckbox.value ? '1' : '0',
           'stages': jsonEncode(stagesCheckBoxes),
+          'user': userId,
           // 'ids': _teachers.toString(),
         },
         files_path);

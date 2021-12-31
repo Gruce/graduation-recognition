@@ -127,6 +127,7 @@ class CameraWidget(QtWidgets.QWidget):
         self.description = description
 
         self.total_faces = []
+        self.counter = 60
 
         # Flag to check if camera is valid/working
         self.online = False
@@ -189,35 +190,36 @@ class CameraWidget(QtWidgets.QWidget):
         
         while True:
             try:
-                frameId = self.capture.get(1)
-
                 if self.capture.isOpened() and self.online:
                     # Read next frame from stream and insert into deque
                     status, frame = self.capture.read()
                     if status:
                         # Any modifications to frame
+                        self.counter += 1
                         
                         # type = 0 : FastMTCNN
                         # type = 1 : HaarCascade
                         boxes = self.detect(frame, type=0)
                         # Draw faces
+
                         if boxes is not None:
                             for (x1, y1, x2, y2) in boxes:
                                 # x1, y1, x2, y2 = box.astype(int)
-
-                                if (frameId % math.floor(self.fps)*2 == 0):
+                                if (self.counter % math.floor(60*2) == 0):
+                                    self.counter = 0
                                     image = numpy.array(frame[int(y1):int(y2), int(x1):int(x2)])
                                     if image.any():
                                         cprint("[Detection] Camera " + str(self.camera_id) + " Collecting facing", 'green')
-                                        if self.isFaceAdded(image):
-                                            cprint('[Detection] Camera ' + str(self.camera_id) + ' No new Faces', 'green')
-                                        else:
-                                            self.total_faces.append(image)
-                                            cprint('[Detection] Camera ' + str(self.camera_id) + ' New face detected. Total faces collected: ' + str(len(self.total_faces)), 'green')
+                                        # if self.isFaceAdded(image):
+                                        #     cprint('[Detection] Camera ' + str(self.camera_id) + ' No new Faces', 'green')
+                                        # else:
+                                        #     self.total_faces.append(image)
+                                        #     cprint('[Detection] Camera ' + str(self.camera_id) + ' New face detected. Total faces collected: ' + str(len(self.total_faces)), 'green')
+                                        self.total_faces.append(image)
                                
                                     
                                 cv2.rectangle(frame, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 2)
-                        if (frameId % math.floor(self.fps*4) == 0) or len(self.total_faces) >= 5:
+                        if (self.counter % math.floor(60*6) == 0) or len(self.total_faces) >= 5:
                             if len(self.total_faces) >= 1:
                                 try:
                                     cprint('[Detection] Camera ' + str(self.camera_id) + " Saving collected faces images to collected path.", 'green')

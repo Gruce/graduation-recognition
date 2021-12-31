@@ -18,7 +18,11 @@ class StudentController extends Controller
     public function students(){
         $students = Student::with(
             [
-                'user:id,name,email,type',
+                'user' => function ($user){
+                    return $user->with(['trackings' => function ($trackings) {
+                        return $trackings->with('camera')->latest()->take(1);
+                    }])->get();
+                },
                 'section:id,name',
                 'stage:id,name,section_id',
                 'unit:id,name,stage_id,section_id'
@@ -33,6 +37,32 @@ class StudentController extends Controller
         );
 
         return response()->json(['data' => $students]);
+
+    }
+
+    public function get_student($student_id){
+        $student = Student::with(
+            [
+                'user' => function ($user){
+                    return $user->with(['trackings' => function ($trackings) {
+                        return $trackings->with('camera')->latest()->take(1);
+                    }])->get();
+                },
+                'section:id,name',
+                'stage:id,name,section_id',
+                'unit:id,name,stage_id,section_id',
+                'absences.lecture.subject'
+            ])->get(
+            [
+                'id',
+                'user_id',
+                'section_id',
+                'stage_id',
+                'unit_id',
+            ]
+        )->find($student_id);
+
+        return response()->json(['data' => $student]);
 
     }
 

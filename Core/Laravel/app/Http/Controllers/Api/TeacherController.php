@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\{
     Stage,
     Unit,
-    Subject
+    Subject,
+    Student,
+    Lecture,
 };
 use File;
 
@@ -177,5 +179,29 @@ class TeacherController extends Controller
         $current_lecture = $teacher->current_lecture(); 
 
         return response()->json(['data' => $current_lecture], 200);
+    }
+
+    public function students_absence($lecture_id){
+        $lecture = Lecture::with(['classroom' => function($classroom){
+            return $classroom->with('cameras')->get();
+        }])->find($lecture_id);
+
+    
+        $start_time = date('Y-m-d') . ' ' . $lecture->start;
+
+        $camera_ids = $lecture->classroom->cameras->pluck('id')->toArray();
+
+        $unit = Unit::find($lecture->unit_id);
+        
+        $students_tracking = Student::whereHas('user.trackings' , function($track) use($start_time , $camera_ids){
+            return $track->where('created_at' ,'>=' , $start_time)
+                            ->whereIn('camera_id' , $camera_ids);
+        })->where('unit_id' , $unit->id)->pluck('id');
+
+        $students_tracking = $students_tracking ? $students_tracking->toArray() : null;
+
+        $students = Student::with('user:id,name,email')->where('unit_id' , $unit->id)->get();
+
+        return response()->json(['data' => $students , 'ids' => $students_tracking], 200);
     }
 }

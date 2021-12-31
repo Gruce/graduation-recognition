@@ -17,8 +17,8 @@ import 'package:graduaiton_app/screens/student/home_page/home_screen.dart';
 import 'package:graduaiton_app/screens/student/lectures/lectures_of_week.dart';
 import 'package:graduaiton_app/screens/student/profile/profile_screen.dart';
 import 'package:graduaiton_app/screens/student/subject/subjects_student.dart';
-import 'package:graduaiton_app/screens/teacher/Attendance/attendance_screen.dart';
 import 'package:graduaiton_app/screens/teacher/home_page/home_screen.dart';
+import 'package:graduaiton_app/screens/teacher/notification/notification_screen.dart';
 import 'package:graduaiton_app/screens/teacher/profile/profile_screen.dart';
 import 'package:graduaiton_app/screens/teacher/units/units_screen.dart';
 
@@ -39,7 +39,7 @@ class Routes {
   //Teach Routes
   static const teacherMain = '/teacher/';
   static const teachTables = '/teacher/tables/';
-  static const teachAttendance = '/teacher/attendance/';
+  static const teacherNotification = '/teacher/notification/';
   static const teachUnits = '/teacher/units/';
   static const teachProfile = '/teacher/profile/';
 
@@ -103,9 +103,9 @@ class Routes {
         binding: TeacherHomeBinding()),
 
     GetPage(
-        name: teachAttendance,
-        page: () =>  TeacherAttendanceScreen(),
-        binding: TeacherAttendanceBinding()),
+        name: teacherNotification,
+        page: () =>  TeacherNotification(),
+        binding: TeacherNotificationBinding()),
 
     GetPage(
         name: teachProfile,

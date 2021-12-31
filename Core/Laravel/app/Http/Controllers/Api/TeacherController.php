@@ -11,6 +11,7 @@ use App\Models\{
     Subject,
     Student,
     Lecture,
+    Absence,
 };
 use File;
 
@@ -167,7 +168,7 @@ class TeacherController extends Controller
     public function lectures($day = null){
         $day = $day ? date('l') : null;
         $teacher = auth()->user()->teacher()->first();
-        
+
         $units_lectures = $teacher->get_lectures($day)->get();
 
         return response()->json(['data' => $units_lectures], 200);
@@ -176,7 +177,7 @@ class TeacherController extends Controller
     public function current_lecture(){
         $teacher = auth()->user()->teacher()->first();
 
-        $current_lecture = $teacher->current_lecture(); 
+        $current_lecture = $teacher->current_lecture();
 
         return response()->json(['data' => $current_lecture], 200);
     }
@@ -186,13 +187,13 @@ class TeacherController extends Controller
             return $classroom->with('cameras')->get();
         }])->find($lecture_id);
 
-    
+
         $start_time = date('Y-m-d') . ' ' . $lecture->start;
 
         $camera_ids = $lecture->classroom->cameras->pluck('id')->toArray();
 
         $unit = Unit::find($lecture->unit_id);
-        
+
         $students_tracking = Student::whereHas('user.trackings' , function($track) use($start_time , $camera_ids){
             return $track->where('created_at' ,'>=' , $start_time)
                             ->whereIn('camera_id' , $camera_ids);
@@ -203,5 +204,26 @@ class TeacherController extends Controller
         $students = Student::with('user:id,name,email')->where('unit_id' , $unit->id)->get();
 
         return response()->json(['data' => $students , 'ids' => $students_tracking], 200);
+    }
+
+    public function send_absence(Request $req ,$lecture_id)
+    {
+
+          $x= str_replace('[','',$req->ids);
+          $x= str_replace(']','',$x);
+          $ids=array_map('intval', explode(',', $x));
+          $lecture=Lecture::find($lecture_id);
+          foreach($ids as $id)
+          Absence::create(
+              [
+                  'lecture_id' => $lecture->id,
+                  'subject_id' => $lecture->subject_id,
+                  'student_id'=> $id
+              ]
+          );
+      return response()->json(['data' => 'Done' ], 200);
+
+     
+
     }
 }

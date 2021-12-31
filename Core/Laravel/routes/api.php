@@ -97,7 +97,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/lectures/{day?}' , [TeacherController::class, 'lectures']);
         Route::get('/current-lecture' , [TeacherController::class, 'current_lecture']);
         Route::get('/students-absence/{lecture_id}' , [TeacherController::class, 'students_absence']);
+        Route::post('/send-students-absence/{lecture_id}' , [TeacherController::class, 'send_absence']);
         Route::post('/send-task' , [TeacherController::class, 'send_task']);
+
     });
 
     #### END Teachers ####

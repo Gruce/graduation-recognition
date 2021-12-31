@@ -46,7 +46,7 @@ class TeacherSidebarScreen extends GetWidget {
                               }
                             },
                           ),
-                          onTap: () {},
+                          
 
                           subtitle: Text(
                             controller1.teacher.value.speciality,

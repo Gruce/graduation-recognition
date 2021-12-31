@@ -7,6 +7,7 @@ import 'package:graduaiton_app/config.dart';
 import 'package:graduaiton_app/controllers/Teacher/attendance_students.dart';
 import 'package:graduaiton_app/controllers/Teacher/teacher_home_controller.dart';
 import 'package:graduaiton_app/routes/routes.dart';
+import 'package:graduaiton_app/screens/teacher/Attendance/attendance_screen.dart';
 import 'package:graduaiton_app/screens/teacher/home_page/widgets/button.dart';
 import 'package:intl/intl.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
@@ -19,7 +20,6 @@ class TeacherHomeScreen extends GetView<TeacherHomeController> {
 
   @override
   TeacherHomeController controller = Get.put(TeacherHomeController());
-  AttendanceStudentsController controller2 = Get.put(AttendanceStudentsController());
 
   @override
   Widget build(BuildContext context) {
@@ -179,109 +179,150 @@ class TeacherHomeScreen extends GetView<TeacherHomeController> {
                     ),
                     child: Column(
                       children: [
-                        Card(
-                            elevation: 0,
-                            clipBehavior: Clip.antiAlias,
-                            child: Container(
-                                padding: const EdgeInsets.all(2),
-                                decoration: BoxDecoration(
-                                  color: const Color(0xffF7F7F7),
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.05,
-                                      width: MediaQuery.of(context).size.width *
-                                          1.93,
-                                      decoration: BoxDecoration(
-                                        color: const Color(0xffC1C1C1),
-                                        borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(20),
-                                            topRight: Radius.circular(20)),
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
-                                        children: [
-                                          Text(controller
-                                              .currentLecture[0].subject.name),
-                                          Text(
-                                            DateFormat.jm().format(
-                                                    DateFormat("hh:mm:ss")
-                                                        .parse(controller
-                                                            .currentLecture[0]
-                                                            .start)) +
-                                                ' To ' +
-                                                DateFormat.jm().format(
-                                                    DateFormat("hh:mm:ss")
-                                                        .parse(controller
-                                                            .currentLecture[0]
-                                                            .end)),
-                                          )
-                                        ],
-                                      ),
+                        controller.currentLecture.isNotEmpty
+                            ? Card(
+                                elevation: 0,
+                                clipBehavior: Clip.antiAlias,
+                                child: Container(
+                                    padding: const EdgeInsets.all(2),
+                                    decoration: BoxDecoration(
+                                      color: const Color(0xffF7F7F7),
+                                      borderRadius: BorderRadius.circular(20),
                                     ),
-                                    ListTile(
-                                        title: Container(
-                                            margin: const EdgeInsets.only(
-                                                bottom: 15),
-                                            child: Row(
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.05,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              1.93,
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xffC1C1C1),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(20),
+                                                topRight: Radius.circular(20)),
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Text(controller.currentLecture[0]
+                                                  .subject.name),
+                                              Text(
+                                                DateFormat.jm().format(
+                                                        DateFormat("hh:mm:ss")
+                                                            .parse(controller
+                                                                .currentLecture[
+                                                                    0]
+                                                                .start)) +
+                                                    ' To ' +
+                                                    DateFormat.jm().format(
+                                                        DateFormat("hh:mm:ss")
+                                                            .parse(controller
+                                                                .currentLecture[
+                                                                    0]
+                                                                .end)),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                        ListTile(
+                                            title: Container(
+                                                margin: const EdgeInsets.only(
+                                                    bottom: 15),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Row(children: [
+                                                      Text(controller
+                                                          .currentLecture[0]
+                                                          .unit
+                                                          .stage
+                                                          .name),
+                                                    ]),
+                                                    Text(controller
+                                                        .currentLecture[0]
+                                                        .unit
+                                                        .name),
+                                                  ],
+                                                )),
+                                            subtitle: Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Row(children: [
-                                                  Text(controller
-                                                      .currentLecture[0]
-                                                      .unit
-                                                      .stage
-                                                      .name),
-                                                ]),
-                                                Text(controller
-                                                    .currentLecture[0]
-                                                    .unit
-                                                    .name),
+                                                Expanded(
+                                                    child: Text(
+                                                  controller.currentLecture[0]
+                                                      .day.name,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  maxLines: 1,
+                                                  style: TextStyle(
+                                                      color: Colors.black
+                                                          .withOpacity(0.6)),
+                                                )),
+                                                Text(
+                                                  'classroom : ' +
+                                                      controller
+                                                          .currentLecture[0]
+                                                          .classroom
+                                                          .name,
+                                                  style: TextStyle(
+                                                      color: Colors.black
+                                                          .withOpacity(0.6)),
+                                                ),
                                               ],
                                             )),
-                                        subtitle: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Expanded(
-                                                child: Text(
-                                              controller
-                                                  .currentLecture[0].day.name,
-                                              overflow: TextOverflow.ellipsis,
-                                              maxLines: 1,
-                                              style: TextStyle(
-                                                  color: Colors.black
-                                                      .withOpacity(0.6)),
-                                            )),
-                                            Text(
-                                              'classroom : ' +
-                                                  controller.currentLecture[0]
-                                                      .classroom.name,
-                                              style: TextStyle(
-                                                  color: Colors.black
-                                                      .withOpacity(0.6)),
-                                            ),
-                                          ],
-                                        )),
-                                  ],
-                                ))),
+                                      ],
+                                    )))
+                            : Container(),
                         SizedBox(
                           height: 30,
                         ),
                         Text("Not started"),
+                       
                         MyButton(
                             label: "Take Attendance",
-                            onTap: () => {
-
-                              Get.toNamed(Routes.teachAttendance)
-                            }),
+                            onTap: () => showDialog<String>(
+                                  context: context,
+                                  builder: (BuildContext context) =>
+                                      AlertDialog(
+                                    title: const Text('Take Attendance'),
+                                    content: const Text(
+                                      'are you sure?',
+                                    ),
+                                    actions: <Widget>[
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(context, 'Cancel'),
+                                        child: const Text('Cancel'),
+                                      ),
+                                      TextButton(
+                                        onPressed: () => 
+                                        Get.to(TeacherAttendanceScreen()),
+                                        child: const Text('OK'),
+                                      ),
+                                    ],
+                                  ),
+                                ).then((returnVal) {
+                                  if (returnVal != null) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content:
+                                            Text('You clicked: $returnVal'),
+                                        action: SnackBarAction(
+                                            label: 'OK', onPressed: () {}),
+                                      ),
+                                    );
+                                  }
+                                })),
                       ],
                     )),
               ],

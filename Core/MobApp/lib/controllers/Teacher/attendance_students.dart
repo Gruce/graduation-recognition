@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:isolate';
 
 import 'package:get/get.dart';
+import 'package:graduaiton_app/models/schedule/lectuer.dart';
 import 'package:graduaiton_app/models/student_models/student.dart';
 import 'package:graduaiton_app/util/utilities.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,11 +15,20 @@ class AttendanceStudentsController extends GetxController {
 
   @override
   void onInit() {
+    fetch();
     super.onInit();
   }
 
   void fetch() async {
-    var res = await Utilities.httpGet('teacher/unit/');
+    String currentLecture = '';
+    var res = await Utilities.httpGet('teacher/current-lecture');
+    if (res.statusCode == 200) {
+      var response = json.decode(res.body)['data'];
+      LectureModel lecture = LectureModel.fromJson(response);
+      currentLecture = lecture.id.toString();
+    }
+
+    res = await Utilities.httpGet('teacher/students-absence/' + currentLecture);
     if (res.statusCode == 200) {
       List _students = json.decode(res.body)['data'];
       List _absentStudents = json.decode(res.body)['ids'];
@@ -30,6 +41,27 @@ class AttendanceStudentsController extends GetxController {
         students.add(student_);
       }
     }
+
+    print("========================");
+    for (StudentModel st in students) {
+      print(st.user.name);
+    }
+    update();
+  }
+
+  void send() async {
+    String currentLecture = '';
+    var res = await Utilities.httpGet('teacher/current-lecture');
+    if (res.statusCode == 200) {
+      var response = json.decode(res.body)['data'];
+      LectureModel lecture = LectureModel.fromJson(response);
+      currentLecture = lecture.id.toString();
+    }
+
+    var res1 = await Utilities.httpPost(
+        'teacher/send-students-absence/' + currentLecture,
+        {'ids': jsonEncode(absentStudents)});
+    Get.snackbar('Sucssful', 'rfgd');
     update();
   }
 
@@ -40,5 +72,6 @@ class AttendanceStudentsController extends GetxController {
     } else {
       absentStudents.removeAt(i);
     }
+    update();
   }
 }

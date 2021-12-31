@@ -7,26 +7,27 @@ class AnimatedToggle extends StatefulWidget {
   final Color backgroundColor;
   final Color buttonColor;
   final Color textColor;
+  final bool value;
 
-  AnimatedToggle({
-    required this.values,
-    required this.onToggleCallback,
-    this.backgroundColor = const Color(0xFFe7e7e8),
-    this.buttonColor = const Color(0xFF61BA67),
-    this.textColor = const Color(0xFF000000),
-  });
+  AnimatedToggle(
+      {required this.values,
+      required this.onToggleCallback,
+      this.backgroundColor = const Color(0xFFe7e7e8),
+      this.buttonColor = const Color(0xFF61BA67),
+      this.textColor = const Color(0xFF000000),
+      required this.value});
   @override
   _AnimatedToggleState createState() => _AnimatedToggleState();
 }
 
 class _AnimatedToggleState extends State<AnimatedToggle> {
-  bool initialPosition = true;
   @override
   Widget build(BuildContext context) {
+    bool initialPosition = widget.value;
+
     return Container(
       width: Get.width * 0.33,
       height: Get.width * 0.083,
-      
       child: Stack(
         children: <Widget>[
           GestureDetector(
@@ -49,7 +50,6 @@ class _AnimatedToggleState extends State<AnimatedToggle> {
                 ),
               ),
               child: Row(
-                
                 children: List.generate(
                   widget.values.length,
                   (index) => Padding(
@@ -88,7 +88,6 @@ class _AnimatedToggleState extends State<AnimatedToggle> {
                   fontFamily: 'Rubik',
                   fontSize: Get.width * 0.030,
                   color: widget.textColor,
-                  
                 ),
               ),
               alignment: Alignment.center,

@@ -11,7 +11,7 @@ import 'package:graduaiton_app/screens/teacher/home_page/widgets/input_field.dar
 import 'package:graduaiton_app/screens/teacher/notification/button.dart';
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
-import 'package:locally/locally.dart';
+
 class TeacherAttendanceScreen extends GetView {
   TeacherAttendanceScreen({Key? key}) : super(key: key);
   @override

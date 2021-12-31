@@ -63,7 +63,7 @@ class StudentController extends Controller
         return response()->json(['data' => $tasks]);
     }
 
-    public function lectures($today = null){
+    public static function lectures($today = null){
         $today = $today ? date('l') : null;
         $student = auth()->user()->student()->first();
 
@@ -86,9 +86,14 @@ class StudentController extends Controller
 
     }
 
-    public function current_lecture(){
+    public static function current_lecture(){
         $time = date('H:i:s');
-        $dayID = Day::where('name' , date('l'))->first()->id;
+        $dayID = Day::where('name' , date('l'))->first();
+
+        $dayID = $dayID ? $dayID->id : null;
+
+        if(!$dayID)
+            return response()->json(['error' => 'No current lecture'] , 400);
 
         $student = auth()->user()->student()->first();
         $unit = $student->unit()->first();
@@ -97,7 +102,7 @@ class StudentController extends Controller
             'day' , function($day) use ($dayID , $time){
                 return $day->where('id' , $dayID);
             }
-        )->with(
+        )->where('start' , '<=' , $time)->where('end' , '>=' , $time)->with(
             [
                 'unit'=> function($unit){
                     return $unit->with(['stage:id,name','section:id,name'])->get();

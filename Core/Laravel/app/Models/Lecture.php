@@ -9,7 +9,7 @@ class Lecture extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['subject_id' , 'start' , 'classroom_id' , 'day_id' , 'unit_id' , 'teacher_id'];
+    protected $fillable = ['subject_id' , 'start' , 'end' , 'classroom_id' , 'day_id' , 'unit_id' , 'teacher_id'];
     
     public function subject(){
         return $this->belongsTo(Subject::class);

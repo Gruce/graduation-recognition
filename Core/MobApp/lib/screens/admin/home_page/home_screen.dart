@@ -48,6 +48,7 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                         ? Icons.expand_more
                         : Icons.expand_less,
                     size: 30,
+                    color: Colors.black54,
                   ),
                   Container(
                       decoration: BoxDecoration(
@@ -56,8 +57,11 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                       ),
                       child: const Text(
                         "Today's Lectures",
-                        style:
-                            TextStyle(color: Color(0xff6875F5), fontSize: 18),
+                        style: TextStyle(
+                          color: Color(0xff6875F5),
+                          fontSize: 18,
+                          fontFamily: "Avenir",
+                        ),
                         textAlign: TextAlign.center,
                       )),
                   Obx(() => controller.lectures.isNotEmpty
@@ -86,22 +90,14 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         buildInfo(teachersController.teachers.length.toString(),
-                            'Lucturers\nN.O'),
-                        Container(
-                            width: 1,
-                            height: 50,
-                            color: const Color(0xff6875F5)),
+                            'Lucturers'),
                         buildInfo(studentsController.students.length.toString(),
-                            'Students\nN.O'),
-                        Container(
-                            width: 1,
-                            height: 50,
-                            color: const Color(0xff6875F5)),
-                        buildInfo('15', 'Cameras\nN.O'),
+                            'Students'),
+                        buildInfo('15', 'Cameras'),
                       ],
                     ),
                   ),
-                   ShortcutsWidget(),
+                  ShortcutsWidget(),
                   Padding(
                     padding: const EdgeInsets.only(
                       bottom: 13,
@@ -114,7 +110,10 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                       children: <Widget>[
                         const Text("Today's Lucturers",
                             style: TextStyle(
-                                color: Color(0xff6875F5), fontSize: 18)),
+                              color: Colors.black54,
+                              fontSize: 18,
+                              fontFamily: "Avenir",
+                            )),
                         Row(
                           children: <Widget>[
                             Container(
@@ -128,7 +127,7 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                               ),
                               child: Text(
                                 controller.lecturers.length.toString(),
-                                style: const TextStyle(color: Color(0xff6875F5)),
+                                style: const TextStyle(color: Colors.black54),
                                 textAlign: TextAlign.center,
                               ),
                             )
@@ -150,6 +149,10 @@ class AdminHomeScreen extends GetView<AdminHomeController> {
                         return GestureDetector(
                           onTap: () {},
                           child: Card(
+                            elevation: 0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
                             child: Column(
                               children: [
                                 LucturersCard(
@@ -181,7 +184,7 @@ class LucturersCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(10),
-      width: 105,
+      width: 120,
       height: 100,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
@@ -201,7 +204,7 @@ class LucturersCard extends StatelessWidget {
           const Icon(
             Icons.person,
             color: Color(0xff6875F5),
-            size: 30,
+            size: 45,
           ),
           const SizedBox(
             height: 9,
@@ -219,7 +222,7 @@ class LucturersCard extends StatelessWidget {
 
 Padding buildInfo(String value, String description) {
   return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
       child: Column(children: <Widget>[
         Text(
           value,
@@ -235,9 +238,8 @@ Padding buildInfo(String value, String description) {
           textAlign: TextAlign.center,
           style: const TextStyle(
             fontFamily: "Avenir",
-            fontWeight: FontWeight.w500,
             fontSize: 12,
-            color: Color(0xff6875F5),
+            color: Colors.black54,
           ),
         )
       ]));

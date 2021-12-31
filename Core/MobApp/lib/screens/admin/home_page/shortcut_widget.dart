@@ -7,7 +7,7 @@ import 'package:graduaiton_app/screens/admin/students/students_screen.dart';
 import 'package:graduaiton_app/screens/general/luctures/luctures_controller.dart';
 
 class ShortcutsWidget extends StatelessWidget {
-   ShortcutsWidget({Key? key}) : super(key: key);
+  ShortcutsWidget({Key? key}) : super(key: key);
 
   AdminShortcutController controller = Get.put(AdminShortcutController());
 
@@ -21,7 +21,7 @@ class ShortcutsWidget extends StatelessWidget {
       child: Row(
         children: [
           GestureDetector(
-           onTap: () => {controller.onItemTap(0)},
+            onTap: () => {controller.onItemTap(0)},
             child: SizedBox(
               // width: 60,
               child: Column(
@@ -34,21 +34,28 @@ class ShortcutsWidget extends StatelessWidget {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: const Icon(Icons.group_work_outlined, color: Color(0xff6875F5)),
+                    child: const Icon(Icons.group_work_outlined,
+                        color: Color(0xff6875F5)),
                   ),
                   const SizedBox(height: 10),
                   const Text(
                     "All Users",
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: Color(0xff6875F5)),
+                    style: TextStyle(
+                      color: Colors.black54,
+                      fontFamily: "Avenir",
+                      fontSize: 12,
+                    ),
                   ),
                 ],
               ),
             ),
           ),
-          const SizedBox(width: 40,),
+          const SizedBox(
+            width: 40,
+          ),
           GestureDetector(
-             onTap: () => {controller.onItemTap(1)},
+            onTap: () => {controller.onItemTap(1)},
             child: SizedBox(
               // width: 60,
               child: Column(
@@ -61,21 +68,28 @@ class ShortcutsWidget extends StatelessWidget {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: const Icon(Icons.groups_outlined, color: Color(0xff6875F5)),
+                    child: const Icon(Icons.groups_outlined,
+                        color: Color(0xff6875F5)),
                   ),
                   const SizedBox(height: 10),
                   const Text(
                     "Lucturers",
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: Color(0xff6875F5)),
+                    style: TextStyle(
+                      color: Colors.black54,
+                      fontFamily: "Avenir",
+                      fontSize: 12,
+                    ),
                   ),
                 ],
               ),
             ),
           ),
-          const SizedBox(width: 40,),
-           GestureDetector(
-           onTap: () => {controller.onItemTap(2)},
+          const SizedBox(
+            width: 40,
+          ),
+          GestureDetector(
+            onTap: () => {controller.onItemTap(2)},
             child: SizedBox(
               // width: 60,
               child: Column(
@@ -88,22 +102,28 @@ class ShortcutsWidget extends StatelessWidget {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: const Icon(Icons.group_outlined, color: Color(0xff6875F5)),
+                    child: const Icon(Icons.group_outlined,
+                        color: Color(0xff6875F5)),
                   ),
                   const SizedBox(height: 10),
                   const Text(
                     "Students",
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: Color(0xff6875F5)),
+                    style: TextStyle(
+                      color: Colors.black54,
+                      fontFamily: "Avenir",
+                      fontSize: 12,
+                    ),
                   ),
                 ],
               ),
             ),
           ),
-          const SizedBox(width: 40,),
-
-           GestureDetector(
-           onTap: () => {controller.onItemTap(3)},
+          const SizedBox(
+            width: 40,
+          ),
+          GestureDetector(
+            onTap: () => {controller.onItemTap(3)},
             child: SizedBox(
               // width: 60,
               child: Column(
@@ -116,13 +136,18 @@ class ShortcutsWidget extends StatelessWidget {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child:const Icon(Icons.speaker_group_outlined, color: Color(0xff6875F5)),
+                    child: const Icon(Icons.speaker_group_outlined,
+                        color: Color(0xff6875F5)),
                   ),
                   const SizedBox(height: 10),
                   const Text(
                     "Lectures",
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: Color(0xff6875F5)),
+                    style: TextStyle(
+                      color: Colors.black54,
+                      fontFamily: "Avenir",
+                      fontSize: 12,
+                    ),
                   ),
                 ],
               ),

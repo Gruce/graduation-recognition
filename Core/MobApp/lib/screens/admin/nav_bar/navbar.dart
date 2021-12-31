@@ -11,6 +11,7 @@ class AdminBottomNavigationBar extends GetWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() => BottomNavigationBar(
+          elevation: 0,
           currentIndex: controller.selectedIndex.value,
           onTap: (index) => controller.onItemTap(index),
           selectedItemColor: const Color(0xff6875F5),

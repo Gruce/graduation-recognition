@@ -26,12 +26,34 @@ class AdminNotification extends GetView {
               child: Column(
                 children: [
                   Container(
+                      height: 30,
+                      margin: const EdgeInsets.only(
+                          left: 5, right: 5, top: 4, bottom: 10),
+                      alignment: Alignment.centerLeft,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color:const Color(0xff6875F5),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Text(
+                            "Fill The Notification Details",
+                            style: TextStyle(color: Colors.white),
+                            textAlign: TextAlign.start,
+                          ),
+                        ],
+                      )),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Container(
                     margin: const EdgeInsets.only(
                         left: 5, right: 5, top: 4, bottom: 10),
                     decoration: BoxDecoration(
                       borderRadius:
                           const BorderRadius.all(Radius.circular(10.0)),
-                      color: Colors.grey[200],
+                      color: Colors.grey[100],
                     ),
                     child: TextField(
                       minLines: 1,
@@ -42,7 +64,7 @@ class AdminNotification extends GetView {
                         labelText: 'Subject',
                         labelStyle: TextStyle(color: Colors.black54),
                         hintText: 'enter the subject',
-                        hintStyle: TextStyle(color: Colors.black38),
+                        hintStyle: TextStyle(color: Colors.black54),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                           borderSide:
@@ -67,7 +89,7 @@ class AdminNotification extends GetView {
                     decoration: BoxDecoration(
                       borderRadius:
                           const BorderRadius.all(Radius.circular(10.0)),
-                      color: Colors.grey[200],
+                      color: Colors.grey[100],
                     ),
                     child: TextField(
                       minLines: 3,
@@ -77,8 +99,8 @@ class AdminNotification extends GetView {
                       decoration: const InputDecoration(
                         labelText: 'Text',
                         labelStyle: TextStyle(color: Colors.black54),
-                        hintText: 'enter the Text',
-                        hintStyle: TextStyle(color: Colors.black38),
+                        hintText: 'enter the text',
+                        hintStyle: TextStyle(color: Colors.black54),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                           borderSide:
@@ -97,102 +119,8 @@ class AdminNotification extends GetView {
                       controller: controller.bodyController,
                     ),
                   ),
-                  const SizedBox(height: 5),
-                  GetBuilder<AdminNotificationController>(
-                      builder: (_) => Column(children: [
-                            CheckboxListTile(
-                              title: const Text(
-                                "All Teachers",
-                                style: TextStyle(fontSize: 15),
-                              ),
-                              value: controller.allTeachersCheckbox.value,
-                              activeColor: const Color(0xff6875F5),
-                              checkColor: Colors.white,
-                              onChanged: (bool? value) => {
-                                controller.allTeachersCheckbox.value = value!,
-                                controller.update()
-                              },
-                            ),
-                            CheckboxListTile(
-                              title: const Text(
-                                "All Students",
-                                style: TextStyle(fontSize: 15),
-                              ),
-                              value: controller.allStudentsCheckbox.value,
-                              activeColor: const Color(0xff6875F5),
-                              checkColor: Colors.white,
-                              onChanged: (bool? value) => {
-                                controller.allStudentsCheckbox.value = value!,
-                                controller.update()
-                              },
-                            ),
-                            controller.allStudentsCheckbox.value
-                                ? Container()
-                                : Column(
-                                    children: List.from(controller.sections)
-                                        .map((section) {
-                                      return Card(
-                                        clipBehavior: Clip.antiAlias,
-                                        elevation: 0,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(15.0),
-                                        ),
-                                        child: ListTile(
-                                          title: GestureDetector(
-                                              onTap: () => controller
-                                                  .changeSectionVisibility(
-                                                      section),
-                                              child: Text(
-                                                "${section.name}",
-                                                style: const TextStyle(
-                                                    fontSize: 15),
-                                              )),
-                                          subtitle: section.visibility
-                                              ? GridView.count(
-                                                  childAspectRatio: 3,
-                                                  shrinkWrap: true,
-                                                  crossAxisCount: 2,
-                                                  children:
-                                                      List.from(section.stages)
-                                                          .map((stage) =>
-                                                              CheckboxListTile(
-                                                                contentPadding:
-                                                                    const EdgeInsets
-                                                                        .all(0),
-                                                                title: Text(
-                                                                  "${stage.name}",
-                                                                  style: const TextStyle(
-                                                                      fontSize:
-                                                                          12.5),
-                                                                ),
-                                                                value: controller.stagesCheckBoxes.indexWhere((id) =>
-                                                                            id ==
-                                                                            stage.id) ==
-                                                                        -1
-                                                                    ? false
-                                                                    : true,
-                                                                activeColor:
-                                                                    const Color(
-                                                                        0xff6875F5),
-                                                                checkColor:
-                                                                    Colors
-                                                                        .white,
-                                                                onChanged: (bool?
-                                                                        value) =>
-                                                                    controller
-                                                                        .stagesCheckBoxeToggle(
-                                                                            stage),
-                                                              ))
-                                                          .toList())
-                                              : Text('Click to select'),
-                                        ),
-                                      );
-                                    }).toList(),
-                                  ),
-                          ])),
                   const SizedBox(
-                    height: 15,
+                    height: 5,
                   ),
                   Obx(() => Column(
                         children: [
@@ -202,43 +130,29 @@ class AdminNotification extends GetView {
                               margin: const EdgeInsets.only(left: 5, right: 5),
                               padding: const EdgeInsets.only(left: 5),
                               decoration: BoxDecoration(
-                                  color: Colors.grey[200],
+                                  color: Colors.grey[100],
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(15))),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(15),
-                                        color: Colors.grey[200],
+                                  Row(
+                                    children: [
+                                      const Text("Select file",
+                                          style: TextStyle(
+                                              color: Color(0xff6875F5))),
+                                      IconButton(
+                                        onPressed: () =>
+                                            controller.pick_files(),
+                                        icon: const Icon(
+                                          Icons.upload_file,
+                                          color: Color(0xff6875F5),
+                                        ),
                                       ),
-                                      child: Row(
-                                        children: [
-                                          const Text("Select file",
-                                              style: TextStyle(
-                                                  color: Color(0xff6875F5))),
-                                          IconButton(
-                                            onPressed: () =>
-                                                controller.pick_files(),
-                                            icon: const Icon(
-                                              Icons.upload_file,
-                                              color: Color(0xff6875F5),
-                                            ),
-                                          ),
-                                        ],
-                                      )),
-                                  Container(
-                                    margin: const EdgeInsets.all(10),
-                                    padding: const EdgeInsets.all(10),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15),
-                                      color: Colors.grey[200],
-                                    ),
-                                    child: Text(
-                                        controller.files.length.toString() +
-                                            ' File selected'),
+                                    ],
                                   ),
+                                  Text(controller.files.length.toString() +
+                                      ' File selected'),
                                 ],
                               ),
                             ),
@@ -272,8 +186,138 @@ class AdminNotification extends GetView {
                                   ),
                                 )
                               : Container(),
+                          const SizedBox(height: 15),
+                          Container(
+                              height: 30,
+                              margin: const EdgeInsets.only(
+                                  left: 5, right: 5, top: 4, bottom: 10),
+                              alignment: Alignment.centerLeft,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: const Color(0xff6875F5),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const [
+                                  Text(
+                                    "Select The Receiver",
+                                    style: TextStyle(color: Colors.white),
+                                    textAlign: TextAlign.start,
+                                  ),
+                                ],
+                              )),
+                          const SizedBox(height: 5),
+                          GetBuilder<AdminNotificationController>(
+                              builder: (_) => Column(children: [
+                                    CheckboxListTile(
+                                      title: const Text(
+                                        "All Teachers",
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            color: Colors.black87),
+                                      ),
+                                      value:
+                                          controller.allTeachersCheckbox.value,
+                                      activeColor: const Color(0xff6875F5),
+                                      checkColor: Colors.white,
+                                      onChanged: (bool? value) => {
+                                        controller.allTeachersCheckbox.value =
+                                            value!,
+                                        controller.update()
+                                      },
+                                    ),
+                                    CheckboxListTile(
+                                      title: const Text(
+                                        "All Students",
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            color: Colors.black87),
+                                      ),
+                                      value:
+                                          controller.allStudentsCheckbox.value,
+                                      activeColor: const Color(0xff6875F5),
+                                      checkColor: Colors.white,
+                                      onChanged: (bool? value) => {
+                                        controller.allStudentsCheckbox.value =
+                                            value!,
+                                        controller.update()
+                                      },
+                                    ),
+                                    controller.allStudentsCheckbox.value
+                                        ? Container()
+                                        : Column(
+                                            children:
+                                                List.from(controller.sections)
+                                                    .map((section) {
+                                              return Card(
+                                                clipBehavior: Clip.antiAlias,
+                                                elevation: 0,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          15.0),
+                                                ),
+                                                child: ListTile(
+                                                  title: GestureDetector(
+                                                      onTap: () => controller
+                                                          .changeSectionVisibility(
+                                                              section),
+                                                      child: Text(
+                                                        "${section.name}",
+                                                        style: const TextStyle(
+                                                            fontSize: 15,
+                                                            color: Color(
+                                                                0xff6875F5)),
+                                                      )),
+                                                  subtitle: section.visibility
+                                                      ? GridView.count(
+                                                          childAspectRatio: 3,
+                                                          shrinkWrap: true,
+                                                          crossAxisCount: 2,
+                                                          children: List.from(
+                                                                  section
+                                                                      .stages)
+                                                              .map((stage) =>
+                                                                  CheckboxListTile(
+                                                                    contentPadding:
+                                                                        const EdgeInsets
+                                                                            .all(0),
+                                                                    title: Text(
+                                                                      "${stage.name}",
+                                                                      style: const TextStyle(
+                                                                          fontSize:
+                                                                              12.5),
+                                                                    ),
+                                                                    value: controller.stagesCheckBoxes.indexWhere((id) =>
+                                                                                id ==
+                                                                                stage.id) ==
+                                                                            -1
+                                                                        ? false
+                                                                        : true,
+                                                                    activeColor:
+                                                                        const Color(
+                                                                            0xff6875F5),
+                                                                    checkColor:
+                                                                        Colors
+                                                                            .white,
+                                                                    onChanged: (bool?
+                                                                            value) =>
+                                                                        controller
+                                                                            .stagesCheckBoxeToggle(stage),
+                                                                  ))
+                                                              .toList())
+                                                      : const Text(
+                                                          'click to show stages',
+                                                          textAlign:
+                                                              TextAlign.justify,
+                                                        ),
+                                                ),
+                                              );
+                                            }).toList(),
+                                          ),
+                                  ])),
                           const SizedBox(
-                            height: 15,
+                            height: 10,
                           ),
                           MyButton(
                             label: 'Send',
@@ -292,7 +336,7 @@ class AdminNotification extends GetView {
     return AppBar(
         centerTitle: true,
         title: const Text(
-          'Notification Details',
+          'Notification',
           style: TextStyle(color: Colors.black54),
         ),
         elevation: 0,

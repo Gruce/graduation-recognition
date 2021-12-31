@@ -73,13 +73,15 @@ class Teacher extends Model
 
     public function current_lecture(){
         $time = date('H:i:s');
-        $dayID = Day::where('name' , date('l'))->first()->id;
+        $dayID = Day::where('name' , date('l'))->first();
+
+        $dayID = $dayID ? $dayID->id : null;
 
         $lecture = $this->lectures()->whereHas(
             'day' , function($day) use ($dayID , $time){
                 return $day->where('id' , $dayID);
             }
-        )->where('start' , '<=' , $time)->with(
+        )->where('start' , '<=' , $time)->where('end' , '>=' , $time)->with(
             [
                 'unit'=> function($unit){
                     return $unit->with(['stage:id,name','section:id,name'])->get();

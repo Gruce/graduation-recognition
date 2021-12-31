@@ -19,7 +19,8 @@ class AddLecture extends Component
     public $unitID;
     public $subjectID;
     public $classroomID;
-    public $time;
+    public $start;
+    public $end;
 
     public function add(){
         $teacher = auth()->user()->teacher()->first();
@@ -28,7 +29,8 @@ class AddLecture extends Component
             'unit_id' => $this->unitID,
             'classroom_id' => $this->classroomID,
             'day_id' => $this->dayID,
-            'start' => $this->time,
+            'start' => $this->start,
+            'end' => $this->end,
         ];
         $lecture = $teacher->lectures()->create($data);
         $this->alert('success' , 'Done');

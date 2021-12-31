@@ -21,6 +21,7 @@ class CreateLecturesTable extends Migration
             $table->foreignId('classroom_id')->nullable()->constrained('classrooms')->onDelete('cascade'); 
             $table->foreignId('day_id')->nullable()->constrained('days')->onDelete('cascade'); 
             $table->time('start');
+            $table->time('end');
             $table->timestamps();
         });
     }

@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
             ScheduleSeeder::class,
             LectureSeeder::class,
             AbsenceSeeder::class,
+            CodeSeeder::class,
         ]);
     }
 }

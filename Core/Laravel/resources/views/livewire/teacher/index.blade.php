@@ -3,15 +3,62 @@
         @livewire('actions' , ['folder' => 'teacher' , 'file' => 'add-lecture' , 'search' => 'Subject Name'])
         @if($current_lecture && !$absence)
             <div class="container px-5 py-10 mx-auto bg-white rounded-lg max-w-7xl sm:px-6 lg:px-8">
-                {{$current_lecture->subject->name}}
-                <br>
-                {{date('h:i a', strtotime($current_lecture->start)) }}
-                <br>
-                {{$current_lecture->unit->section->name}} - {{$current_lecture->unit->stage->name}} - {{$current_lecture->unit->name}}
-                <br>
-                Classroom - {{$current_lecture->classroom->name}}
-                <br>
-                {{$current_lecture->subject->name}} 
+                <table class="table text-gray-400 border-separate space-y-6 w-full text-sm">
+                    <thead class="bg-gray-200 text-gray-500">
+                        <tr>
+                            <th class="p-3 text-left">Subject Name</th>
+                            <th class="p-3 text-left">Teacher Name</th>
+                            <th class="p-3 text-left">Classroom</th>
+                            <th class="p-3 text-left">Start - End</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <td class="p-3">
+                            <div class="flex align-items-center">
+                                <div class="ml-3">
+                                    <div>
+                                        <span class="font-bold text-gray-500">
+                                            {{ $current_lecture->subject->name }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="p-3">
+                            <div class="flex align-items-center">
+                                <div class="ml-3">
+                                    <div>
+                                        <span class="font-bold text-gray-500">
+                                            {{ $current_lecture->teacher->user->name }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="p-3">
+                            <div class="flex align-items-center">
+                                <div class="ml-3">
+                                    <div>
+                                        <span class="font-bold text-gray-500">
+                                            {{ $current_lecture->classroom->name }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="p-3">
+                            <div class="flex align-items-center">
+                                <div class="ml-3">
+                                    <div>
+                                        <span class="font-bold text-gray-500">
+                                            {{date('h:i a', strtotime($current_lecture->start)) }} - {{date('h:i a', strtotime($current_lecture->end)) }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tbody>
+                </table> 
             </div>
             <br>
             <div class="container px-5 py-10 mx-auto bg-white rounded-lg max-w-7xl sm:px-6 lg:px-8">
@@ -84,7 +131,7 @@
                             <th class="p-3">#</th>
                             <th class="p-3 text-left">Name</th>
                             <th class="p-3 text-left">Day</th>
-                            <th class="p-3 text-left">Start</th>
+                            <th class="p-3 text-left">Start - End</th>
                             <th class="p-3 text-left">Classroom</th>
                             <th class="p-3 text-left">Stage</th>
                             <th class="p-3 text-left">Unit</th>
@@ -118,7 +165,7 @@
                                 <td class="p-3">
                                     <div>
                                         <span class="text-gray-500">
-                                            {{ date('h:i a', strtotime($lecture->start)) }}
+                                            {{ date('h:i a', strtotime($lecture->start)) }} - {{ date('h:i a', strtotime($lecture->end)) }}
                                         </span>
                                     </div>
                                 </td>

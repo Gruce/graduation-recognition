@@ -90,6 +90,11 @@
                         'route' => 'student_task',
                         'active' => isRoute('student_task'),
                     ],
+                    [
+                        'name' => 'Change Unit',
+                        'route' => 'change_unit',
+                        'active' => isRoute('change_unit'),
+                    ],
                 ];
             } break;
             

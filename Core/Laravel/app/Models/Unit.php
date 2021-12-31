@@ -38,4 +38,8 @@ class Unit extends Model
     public function lectures(){
         return $this->hasMany(Lecture::class);
     }
+
+    public function code(){
+        return $this->hasOne(Code::class);
+    }
 }

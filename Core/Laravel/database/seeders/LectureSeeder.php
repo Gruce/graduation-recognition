@@ -20,6 +20,7 @@ class LectureSeeder extends Seeder
                 'teacher_id' => 2,
                 'subject_id' => 4,
                 'start' => '8:00 AM',
+                'end' => '9:00 AM',
                 'classroom_id' => 5,
                 'day_id' => 2,
             ]
@@ -31,6 +32,7 @@ class LectureSeeder extends Seeder
                 'teacher_id' => 2,
                 'subject_id' => 4,
                 'start' => '10:00 AM',
+                'end' => '11:00 AM',
                 'classroom_id' => 5,
                 'day_id' => 2,
             ]
@@ -41,7 +43,8 @@ class LectureSeeder extends Seeder
                 'unit_id' => 16,
                 'teacher_id' => 2,
                 'subject_id' => 4,
-                'start' => '12:00 AM',
+                'start' => '12:00 PM',
+                'end' => '1:00 PM',
                 'classroom_id' => 5,
                 'day_id' => 2,
             ]

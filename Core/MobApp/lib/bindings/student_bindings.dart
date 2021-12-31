@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:graduaiton_app/controllers/Student/lectures_week_screen_controller.dart';
 import 'package:graduaiton_app/controllers/Student/student_subject_controller.dart';
 import 'package:graduaiton_app/controllers/student/student_home_controller.dart';
 import 'package:graduaiton_app/controllers/student/student_layout_controller.dart';
@@ -25,6 +26,14 @@ class SubjectsStudentBinding extends Bindings {
     Get.lazyPut(() => SubjectsStudentController());
   }
 }
+
+class LecturesWeekScreenBinding extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut(() => LecturesWeekScreenController());
+  }
+}
+
 
 class StudentProfileBinding extends Bindings {
   @override

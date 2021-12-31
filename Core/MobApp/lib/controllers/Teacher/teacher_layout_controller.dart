@@ -7,9 +7,9 @@ class TeacherLayoutController extends GetxController {
   final List<Map<dynamic, dynamic>> tabs = [
     {"title": "Home", "icon": Icons.home, "route": '/teacher/'},
     {
-      "title": "teacher_schedule",
+      "title": "Attendance",
       "icon": Icons.schedule,
-      "route": '/teacher/schedule/'
+      "route": '/teacher/attendance/'
     },
     {"title": "Units", "icon": Icons.local_library, "route": '/teacher/units/'},
   ].obs;

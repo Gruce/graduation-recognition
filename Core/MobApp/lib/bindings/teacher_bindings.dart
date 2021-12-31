@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:graduaiton_app/controllers/Teacher/attendance_students.dart';
 import 'package:graduaiton_app/controllers/Teacher/teacher_home_controller.dart';
 import 'package:graduaiton_app/controllers/Teacher/teacher_layout_controller.dart';
 import 'package:graduaiton_app/controllers/Teacher/teacher_profile_controller.dart';
@@ -32,6 +33,13 @@ class TeacherScheduleScrBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut(() => TeacherScheduleController());
+  }
+}
+
+class TeacherAttendanceBinding extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut(() => AttendanceStudentsController());
   }
 }
 

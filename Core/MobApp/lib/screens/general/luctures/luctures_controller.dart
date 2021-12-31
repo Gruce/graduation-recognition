@@ -66,9 +66,7 @@ class LucturesController extends GetxController {
     filteredLectures.assignAll(lectures);
   }
 
-
   void filter() {
-      
     // LecturesSectionsController _sectionController = Get.put(LecturesSectionsController());
     // LecturesStagesController _stageController = Get.put(LecturesStagesController());
     // LecturesUnitsController _unitController = Get.put(LecturesUnitsController());
@@ -88,7 +86,7 @@ class LucturesController extends GetxController {
     // _sectionController.filterBySection(sectionIndex);
     // _stageController.filterByStage(stageIndex);
     // _unitController.filterByUnit(unitIndex);
-    
+
     update();
   }
 

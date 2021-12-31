@@ -6,8 +6,8 @@ import 'package:graduaiton_app/screens/admin/lectures/lectures_screen.dart';
 import 'package:graduaiton_app/screens/admin/students/students_screen.dart';
 import 'package:graduaiton_app/screens/general/luctures/luctures_controller.dart';
 
-class Categories extends StatelessWidget {
-   Categories({Key? key}) : super(key: key);
+class ShortcutsWidget extends StatelessWidget {
+   ShortcutsWidget({Key? key}) : super(key: key);
 
   AdminShortcutController controller = Get.put(AdminShortcutController());
 
@@ -61,7 +61,7 @@ class Categories extends StatelessWidget {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: const Icon(Icons.group_work_outlined, color: Color(0xff6875F5)),
+                    child: const Icon(Icons.groups_outlined, color: Color(0xff6875F5)),
                   ),
                   const SizedBox(height: 10),
                   const Text(

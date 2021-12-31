@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/Admin/admin_notification_controller.dart';
 import 'package:graduaiton_app/controllers/Admin/structure/admin_sections_controller.dart';
+import 'package:graduaiton_app/models/user.dart';
 import 'package:graduaiton_app/screens/teacher/home_page/widgets/button.dart';
 
 class AdminNotification extends GetView {
@@ -16,6 +17,11 @@ class AdminNotification extends GetView {
   //     Get.put(AdminSectionsController());
 
   Widget build(BuildContext context) {
+    UserModel user = UserModel();
+    if (Get.arguments != null) {
+      user = Get.arguments;
+      controller.userId = user.id;
+    }
     return Scaffold(
         appBar: _appBar(context),
         body: SingleChildScrollView(
@@ -98,63 +104,66 @@ class AdminNotification extends GetView {
                     ),
                   ),
                   const SizedBox(height: 5),
-                  GetBuilder<AdminNotificationController>(
-                      builder: (_) => Column(children: [
-                            CheckboxListTile(
-                              title: const Text(
-                                "All Teachers",
-                                style: TextStyle(fontSize: 15),
-                              ),
-                              value: controller.allTeachersCheckbox.value,
-                              activeColor: const Color(0xff6875F5),
-                              checkColor: Colors.white,
-                              onChanged: (bool? value) => {
-                                controller.allTeachersCheckbox.value = value!,
-                                controller.update()
-                              },
-                            ),
-                            CheckboxListTile(
-                              title: const Text(
-                                "All Students",
-                                style: TextStyle(fontSize: 15),
-                              ),
-                              value: controller.allStudentsCheckbox.value,
-                              activeColor: const Color(0xff6875F5),
-                              checkColor: Colors.white,
-                              onChanged: (bool? value) => {
-                                controller.allStudentsCheckbox.value = value!,
-                                controller.update()
-                              },
-                            ),
-                            controller.allStudentsCheckbox.value
-                                ? Container()
-                                : Column(
-                                    children: List.from(controller.sections)
-                                        .map((section) {
-                                      return Card(
-                                        clipBehavior: Clip.antiAlias,
-                                        elevation: 0,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(15.0),
-                                        ),
-                                        child: ListTile(
-                                          title: GestureDetector(
-                                              onTap: () => controller
-                                                  .changeSectionVisibility(
-                                                      section),
-                                              child: Text(
-                                                "${section.name}",
-                                                style: const TextStyle(
-                                                    fontSize: 15),
-                                              )),
-                                          subtitle: section.visibility
-                                              ? GridView.count(
-                                                  childAspectRatio: 3,
-                                                  shrinkWrap: true,
-                                                  crossAxisCount: 2,
-                                                  children:
-                                                      List.from(section.stages)
+                  user.name.isEmpty
+                      ? GetBuilder<AdminNotificationController>(
+                          builder: (_) => Column(children: [
+                                CheckboxListTile(
+                                  title: const Text(
+                                    "All Teachers",
+                                    style: TextStyle(fontSize: 15),
+                                  ),
+                                  value: controller.allTeachersCheckbox.value,
+                                  activeColor: const Color(0xff6875F5),
+                                  checkColor: Colors.white,
+                                  onChanged: (bool? value) => {
+                                    controller.allTeachersCheckbox.value =
+                                        value!,
+                                    controller.update()
+                                  },
+                                ),
+                                CheckboxListTile(
+                                  title: const Text(
+                                    "All Students",
+                                    style: TextStyle(fontSize: 15),
+                                  ),
+                                  value: controller.allStudentsCheckbox.value,
+                                  activeColor: const Color(0xff6875F5),
+                                  checkColor: Colors.white,
+                                  onChanged: (bool? value) => {
+                                    controller.allStudentsCheckbox.value =
+                                        value!,
+                                    controller.update()
+                                  },
+                                ),
+                                controller.allStudentsCheckbox.value
+                                    ? Container()
+                                    : Column(
+                                        children: List.from(controller.sections)
+                                            .map((section) {
+                                          return Card(
+                                            clipBehavior: Clip.antiAlias,
+                                            elevation: 0,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15.0),
+                                            ),
+                                            child: ListTile(
+                                              title: GestureDetector(
+                                                  onTap: () => controller
+                                                      .changeSectionVisibility(
+                                                          section),
+                                                  child: Text(
+                                                    "${section.name}",
+                                                    style: const TextStyle(
+                                                        fontSize: 15),
+                                                  )),
+                                              subtitle: section.visibility
+                                                  ? GridView.count(
+                                                      childAspectRatio: 3,
+                                                      shrinkWrap: true,
+                                                      crossAxisCount: 2,
+                                                      children: List.from(
+                                                              section.stages)
                                                           .map((stage) =>
                                                               CheckboxListTile(
                                                                 contentPadding:
@@ -185,12 +194,13 @@ class AdminNotification extends GetView {
                                                                             stage),
                                                               ))
                                                           .toList())
-                                              : Text('Click to select'),
-                                        ),
-                                      );
-                                    }).toList(),
-                                  ),
-                          ])),
+                                                  : Text('Click to select'),
+                                            ),
+                                          );
+                                        }).toList(),
+                                      ),
+                              ]))
+                      : Text("Sending to " + user.name),
                   const SizedBox(
                     height: 15,
                   ),

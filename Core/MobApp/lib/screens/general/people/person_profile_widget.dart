@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:graduaiton_app/routes/routes.dart';
+import 'package:graduaiton_app/screens/teacher/home_page/widgets/button.dart';
 
 import '../../admin/layout.dart';
 import 'person_profile_controller.dart';
@@ -17,7 +19,7 @@ class PersonProfileWidget extends GetView {
         title: 'Person Profile',
         child: SingleChildScrollView(
           child: GetBuilder<PersonProfileController>(
-              builder: (_) => controller.user.name.isNotEmpty
+              builder: (_) => controller.student.user.name.isNotEmpty
                   ? Column(
                       children: <Widget>[
                         Column(
@@ -43,7 +45,8 @@ class PersonProfileWidget extends GetView {
                                           children: <Widget>[
                                             ListTile(
                                                 title: Text(
-                                                    controller.user.name,
+                                                    controller
+                                                        .student.user.name,
                                                     style: const TextStyle(
                                                         fontSize: 22,
                                                         color:
@@ -54,8 +57,20 @@ class PersonProfileWidget extends GetView {
                                             ListTile(
                                               contentPadding:
                                                   const EdgeInsets.all(0),
-                                              title: Text(
-                                                  controller.user.typeString),
+                                              title: Row(
+                                                children: [
+                                                  Text(controller
+                                                      .student.user.typeString),
+                                                  MyButton(
+                                                      label:
+                                                          'Send Notification',
+                                                      onTap: () => Get.toNamed(
+                                                          Routes
+                                                              .adminNotification,
+                                                          arguments: controller
+                                                              .student.user))
+                                                ],
+                                              ),
                                               //You can add Subtitle here
                                             ),
                                           ],
@@ -68,7 +83,7 @@ class PersonProfileWidget extends GetView {
                                         children: <Widget>[
                                           Container(
                                               padding:
-                                                   const EdgeInsets.symmetric(
+                                                  const EdgeInsets.symmetric(
                                                       horizontal: 0.1,
                                                       vertical: 0.1),
                                               decoration: BoxDecoration(
@@ -87,17 +102,17 @@ class PersonProfileWidget extends GetView {
                                                       child: const Text(
                                                           "        5\nAbsences",
                                                           style: TextStyle(
-                                                              color:
-                                                                 Color(0xff6875f5),
+                                                              color: Color(
+                                                                  0xff6875f5),
                                                               fontSize:
                                                                   11.5))))),
                                           Container(
                                               padding:
                                                   const EdgeInsets.symmetric(
-                                                     horizontal: 0.1,
+                                                      horizontal: 0.1,
                                                       vertical: 0.1),
                                               decoration: BoxDecoration(
-                                                color:Color(0xffe4e6fd),
+                                                color: Color(0xffe4e6fd),
                                                 border: Border.all(
                                                   color: Colors.white
                                                       .withOpacity(1),
@@ -112,14 +127,14 @@ class PersonProfileWidget extends GetView {
                                                       child: const Text(
                                                           "        2\nInfractions",
                                                           style: TextStyle(
-                                                              color:
-                                                                  Color(0xff6875f5),
+                                                              color: Color(
+                                                                  0xff6875f5),
                                                               fontSize:
                                                                   11.5))))),
                                           Container(
                                               padding:
                                                   const EdgeInsets.symmetric(
-                                                     horizontal: 0.1,
+                                                      horizontal: 0.1,
                                                       vertical: 0.1),
                                               decoration: BoxDecoration(
                                                 color: Color(0xffe4e6fd),
@@ -137,13 +152,14 @@ class PersonProfileWidget extends GetView {
                                                       child: const Text(
                                                           "        3\nActivities",
                                                           style: TextStyle(
-                                                              color:
-                                                                  Color(0xff6875f5),
+                                                              color: Color(
+                                                                  0xff6875f5),
                                                               fontSize:
                                                                   11.5))))),
                                           Container(
-                                               padding: const EdgeInsets.symmetric(
-                                                     horizontal: 0.1,
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 0.1,
                                                       vertical: 0.1),
                                               decoration: BoxDecoration(
                                                 color: Color(0xffe4e6fd),
@@ -161,8 +177,8 @@ class PersonProfileWidget extends GetView {
                                                       child: const Text(
                                                           "        1\nWarnings",
                                                           style: TextStyle(
-                                                              color:
-                                                                  Color(0xff6875f5),
+                                                              color: Color(
+                                                                  0xff6875f5),
                                                               fontSize:
                                                                   11.5))))),
                                         ],
@@ -220,7 +236,7 @@ class PersonProfileWidget extends GetView {
                                   ListTile(
                                     title: const Text("Email"),
                                     subtitle:
-                                        Text(controller.user.email),
+                                        Text(controller.student.user.email),
                                     leading: const Icon(Icons.email,
                                         color: Color(0xff6875F5)),
                                   ),

@@ -74,9 +74,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['prefix' => 'teachers'] ,function(){
             Route::get('/', [AdminController::class, 'teachers']);
         });
-        
-        Route::post('/send-task' , [AdminController::class, 'send_task']);
-
 
         ## End teachers ##
 

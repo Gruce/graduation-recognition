@@ -15,6 +15,8 @@ class AdminStudentsController extends GetxController {
   RxBool searchToggle = false.obs;
   RxBool filterToggle = false.obs;
 
+  final api = Config.api;
+
   @override
   void onInit() async {
     fetch();
@@ -28,7 +30,7 @@ class AdminStudentsController extends GetxController {
   }
 
   void fetch() async {
-    var res = await Utilities.httpGet('admin/students');
+    var res = await Utilities.httpGet('students');
     if (res.statusCode == 200) {
       List response = json.decode(res.body)['data'];
       for (var element in response) {

@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:graduaiton_app/controllers/auth_controller.dart';
+
 
 class LoginScreen extends GetView<LoginController> {
   const LoginScreen({Key? key}) : super(key: key);
@@ -40,7 +42,7 @@ class LoginScreen extends GetView<LoginController> {
                     children: [
                       Text(
                         "Login",
-                        style: TextStyle(
+                        style: GoogleFonts.openSans(
                           color: Colors.white,
                           fontSize: 46.0,
                           fontWeight: FontWeight.w800,
@@ -51,7 +53,7 @@ class LoginScreen extends GetView<LoginController> {
                       ),
                       Text(
                         "Welcome To Smart Tracker App",
-                        style: TextStyle(
+                        style: GoogleFonts.openSans(
                           color: Colors.white,
                           fontSize: 22.0,
                           fontWeight: FontWeight.w300,
@@ -147,7 +149,7 @@ class LoginScreen extends GetView<LoginController> {
                             onPressed: () async => await controller.login(),
                             child: Text(
                               "Login",
-                              style: TextStyle(
+                              style: GoogleFonts.openSans(
                                 fontSize: 23,
                                 fontWeight: FontWeight.w700,
                                 fontStyle: FontStyle.normal,

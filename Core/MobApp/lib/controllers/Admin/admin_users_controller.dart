@@ -6,7 +6,6 @@ import 'package:graduaiton_app/models/user.dart';
 import 'package:graduaiton_app/util/utilities.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
-import '../../config.dart';
 
 
 class AdminUsersController extends GetxController {

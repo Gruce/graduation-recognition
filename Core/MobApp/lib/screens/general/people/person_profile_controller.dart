@@ -16,6 +16,7 @@ class PersonProfileController extends GetxController {
 
   void getUser(int id) async{
     var res = await Utilities.httpPost("admin/users/", {"id": id.toString()});
+    print(id);
     if (res.statusCode == 200) {
       Map data = jsonDecode(res.body)['data'];
       user = UserModel.fromJson(data);

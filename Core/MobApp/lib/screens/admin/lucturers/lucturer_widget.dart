@@ -92,7 +92,7 @@ class TeacherWidget extends GetWidget {
                         // camera.isNotEmpty ? camera :
                         "No camera",
                         style: TextStyle(
-                            fontSize: 10, fontWeight: FontWeight.bold))
+                            fontSize: 10,))
                   ],
                 ),
               ),
@@ -118,7 +118,7 @@ class TeacherWidget extends GetWidget {
                         // time.isNotEmpty ? time :
                         "Not seen yet",
                         style: TextStyle(
-                            fontSize: 10, fontWeight: FontWeight.bold))
+                            fontSize: 10))
                   ],
                 ),
               ),
@@ -144,7 +144,7 @@ class TeacherWidget extends GetWidget {
                         // time.isNotEmpty ? time :
                         sectionName,
                         style: const TextStyle(
-                            fontSize: 10, fontWeight: FontWeight.bold))
+                            fontSize: 10,))
                   ],
                 ),
               ),

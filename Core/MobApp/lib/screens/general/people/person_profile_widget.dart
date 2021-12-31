@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:graduaiton_app/controllers/Admin/admin_users_controller.dart';
 
 import '../../admin/layout.dart';
 import 'person_profile_controller.dart';
@@ -9,7 +10,7 @@ class PersonProfileWidget extends GetView {
 
   @override
   PersonProfileController controller = Get.put(PersonProfileController());
-
+  AdminUsersController userController = Get.put(AdminUsersController());
   @override
   Widget build(BuildContext context) {
     controller.getUser(Get.arguments);
@@ -72,7 +73,7 @@ class PersonProfileWidget extends GetView {
                                                       horizontal: 0.1,
                                                       vertical: 0.1),
                                               decoration: BoxDecoration(
-                                                color: Color(0xffe4e6fd),
+                                                color: const Color(0xffe4e6fd),
                                                 border: Border.all(
                                                   color: Colors.white
                                                       .withOpacity(1),

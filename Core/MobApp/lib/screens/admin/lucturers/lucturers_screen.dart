@@ -29,6 +29,7 @@ class AdminLucurersScreen extends GetView {
 
             Expanded(
                 child: Container(
+                  margin: const EdgeInsets.all(1),
               padding:
                   const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
               decoration: BoxDecoration(

@@ -28,8 +28,9 @@ Rx<StudentModel> student = StudentModel().obs;
   void fetch() async {
     final res = await Utilities.httpGet('student/info');
     if (res.statusCode == 200) {
+        
       student.value = StudentModel.fromJson(json.decode(res.body)['data'][0]);
-      // print(teacher.value.user.type);
+      print(student.value);
     }
     update();
   }

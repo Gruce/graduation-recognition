@@ -138,8 +138,8 @@ class Notif extends GetView {
                           width: double.infinity,
                           child: Container(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 10.0, vertical: 5.0),
-                              child: const Text('Not Found',
+                                  horizontal: 50.0, vertical: 250.0),
+                              child: const Text('There are no notifications',
                                   style: TextStyle(fontSize: 24))
                                   )
                                   )

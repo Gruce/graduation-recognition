@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/config.dart';
 import 'package:graduaiton_app/models/schedule/lectuer.dart';
@@ -14,9 +15,10 @@ class StudentHomeController extends GetxController {
   late SharedPreferences prefs;
 
   final api = Config.api;
-
+  late TextEditingController codeController;
   @override
   void onInit() async {
+    codeController = TextEditingController();
     fetchCurrentLectures();
     prefs = await SharedPreferences.getInstance();
     getData();
@@ -39,15 +41,22 @@ class StudentHomeController extends GetxController {
     var res = await Utilities.httpGet('student/current-lecture');
     if (res.statusCode == 200) {
       var response = json.decode(res.body)['data'];
-       
-      
-        currentLectures.add(LectureModel.fromJson(response));
-       print(currentLectures[0].id);
-      print('===============================================================');
-      
 
+      currentLectures.add(LectureModel.fromJson(response));
+      print(currentLectures[0].id);
+      print('===============================================================');
     }
 
+    update();
+  }
+
+  void changeUnit() async {
+    var res = await Utilities.httpPost('student/change-unit/', {
+      'code': codeController.text
+    });
+    Get.snackbar('Sucssful', 'rfgd',
+        backgroundColor: Colors.red, icon: Icon(Icons.close));
+    if (res.statusCode == 200) {}
     update();
   }
   // void startLecture(){

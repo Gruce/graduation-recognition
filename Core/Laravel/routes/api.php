@@ -112,6 +112,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/subject-tasks/{subject_id}/{teacher_id}', [StudentController::class, 'subject_tasks']);
         Route::get('/lectures/{today?}' , [StudentController::class, 'lectures']);
         Route::get('/current-lecture' , [StudentController::class, 'current_lecture']);
+        Route::post('/change-unit' , [StudentController::class, 'change_unit']);
     });
 
     #### End Student ####

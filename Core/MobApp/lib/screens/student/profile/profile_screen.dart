@@ -60,7 +60,7 @@ class StudentProfileScreen extends GetView {
                                         ),
                                         SizedBox(height: 10,),
                                         Text(
-                                          'j',
+                                           controller.student.value.section.name,
                                           style: TextStyle(
                                             fontSize: 14
                                           ),

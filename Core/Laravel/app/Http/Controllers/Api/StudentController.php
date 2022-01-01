@@ -11,6 +11,7 @@ use App\Models\{
     Task,
     Lecture,
     Day,
+    Unit,
 };
 
 class StudentController extends Controller
@@ -117,7 +118,7 @@ class StudentController extends Controller
                 'day:id,name',
             ]
         )->orderBy('start' , 'DESC')->first();
-                
+
         return response()->json(['data' => $lecture]);
     }
 
@@ -135,5 +136,15 @@ class StudentController extends Controller
             ])->first();
 
         return response()->json(['data' => $student]);
+    }
+
+    public function change_unit( Request $req )
+    {
+      info($req->toArray());
+      $code=$req->code;
+      $unit=Unit::whereHas('code',function($q)use($code){
+        return $q->where('code',$code);
+      })->first();
+     info($unit);
     }
 }

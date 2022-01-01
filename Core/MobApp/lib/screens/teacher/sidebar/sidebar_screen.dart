@@ -46,7 +46,6 @@ class TeacherSidebarScreen extends GetWidget {
                               }
                             },
                           ),
-                          
 
                           subtitle: Text(
                             controller1.teacher.value.speciality,
@@ -92,14 +91,7 @@ class TeacherSidebarScreen extends GetWidget {
                                       color: Colors.white,
                                     ),
                                     selected: true,
-                                    onTap: () => {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                TeacherNotification()),
-                                      )
-                                    },
+                                    onTap: () => {controller.onItemTap(i)},
                                   ),
                                 )),
                         Card(

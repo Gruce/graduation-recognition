@@ -287,7 +287,6 @@ class TeacherHomeScreen extends GetView<TeacherHomeController> {
                           height: 30,
                         ),
                         Text("Not started"),
-                       
                         MyButton(
                             label: "Take Attendance",
                             onTap: () => showDialog<String>(
@@ -305,8 +304,8 @@ class TeacherHomeScreen extends GetView<TeacherHomeController> {
                                         child: const Text('Cancel'),
                                       ),
                                       TextButton(
-                                        onPressed: () => 
-                                        Get.to(TeacherAttendanceScreen()),
+                                        onPressed: () => Get.off(
+                                            TeacherAttendanceScreen()),
                                         child: const Text('OK'),
                                       ),
                                     ],

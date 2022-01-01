@@ -9,7 +9,7 @@ class TeacherLayoutController extends GetxController {
     
     {"title": "Units", "icon": Icons.local_library, "route": '/teacher/units/'},
     {
-      "title": "Attendance",
+      "title": "Notification",
       "icon": Icons.mail,
       "route": '/teacher/notification/'
     },

@@ -160,28 +160,28 @@ class LoginScreen extends GetView<LoginController> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 30,),
-                         Material(
-                          elevation: 5.0,
-                          borderRadius: BorderRadius.circular(30.0),
-                          color: Color(0xff6875F5),
-                          child: MaterialButton(
-                            minWidth: MediaQuery.of(context).size.width,
-                            padding:
-                                EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                            onPressed: () =>Get.to(RegisterScreen()),
-                            child: Text(
-                              "Register",
-                              style: GoogleFonts.openSans(
-                                fontSize: 23,
-                                fontWeight: FontWeight.w700,
-                                fontStyle: FontStyle.normal,
-                                height: 1.5,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ),
+                        // SizedBox(height: 30,),
+                        //  Material(
+                        //   elevation: 5.0,
+                        //   borderRadius: BorderRadius.circular(30.0),
+                        //   color: Color(0xff6875F5),
+                        //   child: MaterialButton(
+                        //     minWidth: MediaQuery.of(context).size.width,
+                        //     padding:
+                        //         EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                        //     onPressed: () =>Get.to(RegisterScreen()),
+                        //     child: Text(
+                        //       "Register",
+                        //       style: GoogleFonts.openSans(
+                        //         fontSize: 23,
+                        //         fontWeight: FontWeight.w700,
+                        //         fontStyle: FontStyle.normal,
+                        //         height: 1.5,
+                        //         color: Colors.white,
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),

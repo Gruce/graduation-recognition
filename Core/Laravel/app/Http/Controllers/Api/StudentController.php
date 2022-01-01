@@ -140,11 +140,22 @@ class StudentController extends Controller
 
     public function change_unit( Request $req )
     {
-      info($req->toArray());
       $code=$req->code;
+
       $unit=Unit::whereHas('code',function($q)use($code){
         return $q->where('code',$code);
       })->first();
-     info($unit);
+
+     if(!$unit)
+      return response()->json(['message' => 'code not working'],400);
+
+      $student=auth()->user()->student()->first();
+      $student->update([
+        'section_id'=>$unit->section_id,
+        'stage_id'=>$unit->stage_id,
+        'unit_id'=>$unit->id,
+      ]);
+      
+      return response()->json(['message' => 'Done'],200);
     }
 }

@@ -60,7 +60,7 @@ class StudentProfileScreen extends GetView {
                                         ),
                                         SizedBox(height: 10,),
                                         Text(
-                                           controller.student.value.section.name,
+                                           '==========================',
                                           style: TextStyle(
                                             fontSize: 14
                                           ),
@@ -99,7 +99,7 @@ class StudentProfileScreen extends GetView {
                                 child: FlatButton(
                                     onPressed: () {},
                                     child:
-                                        const Text("        2\nInfractions"))),
+                                         Text(controller.student.value.stage.name))),
                             Expanded(
                                 child: FlatButton(
                                     onPressed: () {},

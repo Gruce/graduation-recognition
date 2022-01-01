@@ -44,7 +44,7 @@ class AttendanceStudentsController extends GetxController {
 
     print("========================");
     for (StudentModel st in students) {
-      print(st.user.name);
+      // print(st.user.name);
     }
     update();
   }

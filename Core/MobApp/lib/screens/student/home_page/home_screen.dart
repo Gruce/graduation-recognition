@@ -351,32 +351,7 @@ class StudentHomeScreen extends GetView<StudentHomeController> {
                                                           style: TextStyle(
                                                               fontSize:
                                                                   24)))))))),
-                                                  Container(
-                                                    
-                                                    width: MediaQuery.of(context).size.width,
-                                                    child: Card(
-                                                      color:Colors.white,
-                                                      child: Container(
-                                                        padding: EdgeInsets.all(10.0),
-                                                        child: Column(
-                                                          children: <Widget>[
-                                                            const Text(
-                                                              "Enter your code",
-                                                            ),
-                                                             SizedBox(
-                                                              width: 150,
-                                                              child: TextField(
-                                                                  controller: controller.codeController,
-                                                              ),
-                                                            ),
-                                                            const SizedBox(height: 20,),
-                                                            ElevatedButton(
-                                                                onPressed: ()=>controller.changeUnit(), child: Text('data'))
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  )
+                                                  
                 ],
               )),
         ));

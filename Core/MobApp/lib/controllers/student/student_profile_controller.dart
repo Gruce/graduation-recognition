@@ -1,5 +1,3 @@
-
-
 import 'dart:convert';
 
 import 'package:get/get.dart';
@@ -8,12 +6,11 @@ import 'package:graduaiton_app/models/teacher/teacher.dart';
 import 'package:graduaiton_app/models/user.dart';
 import 'package:graduaiton_app/util/utilities.dart';
 
-
 import 'package:shared_preferences/shared_preferences.dart';
 
 class StudentProfileController extends GetxController {
   late SharedPreferences prefs;
-Rx<StudentModel> student = StudentModel().obs;
+  Rx<StudentModel> student = StudentModel().obs;
   void onInit() async {
     fetch();
     super.onInit();
@@ -27,12 +24,12 @@ Rx<StudentModel> student = StudentModel().obs;
 
   void fetch() async {
     final res = await Utilities.httpGet('student/info');
-    if (res.statusCode == 200) {
-        
-      student.value = StudentModel.fromJson(json.decode(res.body)['data'][0]);
-      print(student.value);
-    }
+    print('11111111111111111111111111');
+    // if (res.statusCode == 200) {
+     student.value = StudentModel.fromJson(json.decode(res.body)['data'][0]);
+    print('============================================');
+    print(student.value);
+    // }
     update();
   }
-
 }

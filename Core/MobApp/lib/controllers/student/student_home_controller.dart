@@ -54,9 +54,14 @@ class StudentHomeController extends GetxController {
     var res = await Utilities.httpPost('student/change-unit/', {
       'code': codeController.text
     });
-    Get.snackbar('Sucssful', 'rfgd',
-        backgroundColor: Colors.red, icon: Icon(Icons.close));
-    if (res.statusCode == 200) {}
+   
+    if (res.statusCode == 200) {
+ Get.snackbar('Successful', 'Done',
+        backgroundColor: Colors.green[200], icon: Icon(Icons.done));
+    }else{
+      Get.snackbar('Erroe', "Your code does not working",
+        backgroundColor: Colors.red[200], icon: Icon(Icons.close));
+    }
     update();
   }
   // void startLecture(){

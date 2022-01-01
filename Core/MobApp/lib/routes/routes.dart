@@ -13,6 +13,8 @@ import 'package:graduaiton_app/screens/admin/students/students_screen.dart';
 import 'package:graduaiton_app/screens/general/notification/general_notification.dart';
 import 'package:graduaiton_app/screens/general/people/person_profile_widget.dart';
 import 'package:graduaiton_app/screens/login_screen.dart';
+import 'package:graduaiton_app/screens/student/changeStage/change_Stage.dart';
+import 'package:graduaiton_app/screens/student/changeStage/change_Stage_layout.dart';
 import 'package:graduaiton_app/screens/student/home_page/home_screen.dart';
 import 'package:graduaiton_app/screens/student/lectures/lectures_of_week.dart';
 import 'package:graduaiton_app/screens/student/profile/profile_screen.dart';
@@ -48,6 +50,7 @@ class Routes {
   static const studentProfile = '/student/profile';
   static const studentLectures = '/student/lectures';
   static const subjectsStudent = '/student/subjects';
+  static const x = '/student/x';
   
   static final routes = [
     // Auth Routes
@@ -132,6 +135,11 @@ class Routes {
         name: studentLectures,
         page: () => LecturesWeekScreen(),
         binding: LecturesWeekScreenBinding()),
+
+      GetPage(
+        name: x,
+        page: () => ChangeStageScreen(),
+        binding: ChangeStageScreenBinding()),
 
 
     GetPage(

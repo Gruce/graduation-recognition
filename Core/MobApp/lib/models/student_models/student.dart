@@ -1,4 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
+import 'package:graduaiton_app/models/absences.dart';
+
 import '../user.dart';
 import 'section.dart';
 import 'stage.dart';
@@ -14,6 +16,7 @@ class StudentModel {
   SectionModel section = SectionModel();
   StageModel stage = StageModel();
   UnitModel unit = UnitModel();
+  AbsencesModel absences = AbsencesModel();
 
   StudentModel({
     id,
@@ -40,6 +43,9 @@ class StudentModel {
     }
     if (json.containsKey('unit')) {
       unit = UnitModel.fromJson(json['unit']);
+    }
+    if (json.containsKey('absences')) {
+      absences = AbsencesModel.fromJson(json['absences']);
     }
   }
 

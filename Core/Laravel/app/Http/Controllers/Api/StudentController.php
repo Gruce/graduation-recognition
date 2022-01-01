@@ -179,6 +179,17 @@ class StudentController extends Controller
             ]
         )->find($student_id);
 
-        info ($student->toArray());
+        $subjects =[];
+        if(count($student->absences)>0){
+            foreach($student->absences as $item){
+                if(in_array($item['subject']['name'],array_keys($subjects))){
+                    $subjects[$item['subject']['name']]++;
+                }
+                else{
+                    $subjects[$item['subject']['name']]=1;
+                }
+            }
+        }
+        return response()->json(['data' => $student , 'subjects'=> $subjects]);
     }
 }

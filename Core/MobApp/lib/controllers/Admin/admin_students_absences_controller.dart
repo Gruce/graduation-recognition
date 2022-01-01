@@ -24,8 +24,9 @@ class AdminStudentsAbsencesController extends GetxController {
 
   void fetch(id) async {
     var res = await Utilities.httpGet('admin/students/absences/'+ id.toString());
+          print(res.body.subjects);
     if (res.statusCode == 200) {
-      List response = json.decode(res.body)['data'];
+      List response = json.decode(res.body)['data'][0];
       for (var element in response) {
         students.add(StudentModel.fromJson(element));
       }

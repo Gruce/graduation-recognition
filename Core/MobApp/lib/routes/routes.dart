@@ -14,6 +14,7 @@ import 'package:graduaiton_app/screens/admin/students/students_screen.dart';
 import 'package:graduaiton_app/screens/admin/users/users_screen.dart';
 import 'package:graduaiton_app/screens/general/notification/general_notification.dart';
 import 'package:graduaiton_app/screens/general/people/person_profile_widget.dart';
+import 'package:graduaiton_app/screens/general/people/student_absences_widget.dart';
 import 'package:graduaiton_app/screens/login_screen.dart';
 import 'package:graduaiton_app/screens/student/home_page/home_screen.dart';
 import 'package:graduaiton_app/screens/student/lectures/lectures_of_week.dart';
@@ -36,6 +37,7 @@ class Routes {
   static const adminLucurers = '/admin/lucurers/';
   static const adminStudents = '/admin/students/';
   static const adminNotification = '/admin/notification/';
+  static const adminStudentAbsences ='/general/student/Absences';
   static const adminLectures = '/admin/lectures/';
   static const adminUsers = '/admin/users/';
 
@@ -87,6 +89,11 @@ class Routes {
     GetPage(
         name: adminNotification,
         page: () => AdminNotification(),
+        binding: AdminProfileBinding()),
+
+    GetPage(
+        name: adminStudentAbsences,
+        page: () => AdminStudentAbsences(),
         binding: AdminProfileBinding()),
 
     GetPage(

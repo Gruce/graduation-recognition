@@ -8,6 +8,7 @@ import 'package:graduaiton_app/util/utilities.dart';
 
 class AdminLecturesController extends GetxController {
   RxList lectures = <LectureModel>[].obs;
+  RxInt lectureSelectedIndex = 0.obs;
 
   @override
   void onInit() async {
@@ -23,5 +24,14 @@ class AdminLecturesController extends GetxController {
         lectures.add(LectureModel.fromJson(element));
       }
     }
+  }
+  void filterByLecture(i) {
+    lectureSelectedIndex.value = i;
+    if (i == -1) {
+      lectures.assignAll(lectures);
+    } else {
+      lectures.assignAll(lectures.where((subject) => subject.subject_id == i));
+    }
+    update();
   }
 }

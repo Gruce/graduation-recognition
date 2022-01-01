@@ -139,7 +139,7 @@ class TeacherWidget extends GetWidget {
                       Icons.store_mall_directory_outlined,
                       size: 14,
                     ),
-                    SizedBox(width: 5),
+                    const SizedBox(width: 5),
                     Text(
                         // time.isNotEmpty ? time :
                         sectionName,

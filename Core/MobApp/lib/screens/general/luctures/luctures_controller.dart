@@ -6,6 +6,7 @@ import 'package:graduaiton_app/controllers/Admin/lectures_controller/luctures_dr
 import 'package:graduaiton_app/models/schedule/lecture.dart';
 import 'package:graduaiton_app/models/student_models/stage.dart';
 import 'package:graduaiton_app/screens/general/luctures/lucture_search_widget.dart';
+import 'package:graduaiton_app/screens/general/people/lectures_absences_filter_widget.dart';
 
 import 'lecture_days_filter_widget.dart';
 import 'lecture_dropdown_widget.dart';
@@ -60,6 +61,12 @@ class LucturesController extends GetxController {
         value: false,
         icon: const Icon(Icons.date_range),
         widget: LuctureDaysFilterWidget(controller2: this),
+      ),
+      Property(
+        name: 'lectures',
+        value: false,
+        icon: const Icon(Icons.date_range),
+        widget: LectureAbsencesFilterWidget(lecturesController: this),
       ),
     ]);
 

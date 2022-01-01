@@ -166,4 +166,19 @@ class StudentController extends Controller
 
         return response()->json(['data' => $student]);
     }
+    public function get_absences($student_id)
+    {
+        $student = Student::with(
+            [   
+                'absences'=> function ($abs){
+                    return $abs->with('subject:id,name')->get();
+                },
+                'section:id,name',
+                'stage:id,name',
+                'unit:id,name'
+            ]
+        )->find($student_id);
+
+        info ($student->toArray());
+    }
 }

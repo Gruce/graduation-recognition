@@ -20,6 +20,11 @@ class AdminSidebarController extends GetxController {
       "icon": Icons.notification_add,
       "route": '/admin/notification/'
     },
+    {
+      "title": "Absences",
+      "icon": Icons.warning_amber_sharp,
+      "route": '/general/student/Absences/'
+    },
   ];
 
   late SharedPreferences prefs;

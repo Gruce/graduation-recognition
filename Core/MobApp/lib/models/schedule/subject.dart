@@ -2,6 +2,7 @@
 
 class SubjectModel {
   int id = 0;
+  int absencesCount = 0;
   String name = '';
   // List<TeacherModel> teachers = [];
   SubjectModel({id, name});

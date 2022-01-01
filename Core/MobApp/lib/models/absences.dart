@@ -30,8 +30,8 @@ class AbsencesModel {
     lecture_id = json['lecture_id'];
     subject_id = json['subject_id'];
     student_id = json['student_id'];
-    if (json.containsKey('subjects')) {
-      subject = SubjectModel.fromJson(json['subjects']);
+    if (json.containsKey('subject')) {
+      subject = SubjectModel.fromJson(json['subject']);
     }
 
   

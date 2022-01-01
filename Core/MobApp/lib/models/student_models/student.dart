@@ -16,7 +16,7 @@ class StudentModel {
   SectionModel section = SectionModel();
   StageModel stage = StageModel();
   UnitModel unit = UnitModel();
-  AbsencesModel absences = AbsencesModel();
+  List<AbsencesModel> absences = [];
 
   StudentModel({
     id,
@@ -45,7 +45,9 @@ class StudentModel {
       unit = UnitModel.fromJson(json['unit']);
     }
     if (json.containsKey('absences')) {
-      absences = AbsencesModel.fromJson(json['absences']);
+      for(var absence in json['absences']){
+        absences.add(AbsencesModel.fromJson(absence));
+      }
     }
   }
 

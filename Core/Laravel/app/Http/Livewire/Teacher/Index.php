@@ -49,10 +49,12 @@ class Index extends Component
         $lecture = Lecture::find($lectureID);
         $start_time = date('Y-m-d') . ' ' . $lecture->start;
 
+        $camera_ids = $lecture->classroom->cameras->pluck('id')->toArray();
+
         $unit = Unit::find($lecture->unit_id);
         
-        $students_tracking = Student::whereHas('user.trackings' , function($track) use($start_time){
-            return $track->where('created_at' ,'>' , $start_time);
+        $students_tracking = Student::whereHas('user.trackings' , function($track) use($start_time , $camera_ids){
+            return $track->where('created_at' ,'>' , $start_time)->whereIn('camera_id' , $camera_ids);
         })->where('unit_id' , $unit->id)->get();
 
         $students = Student::where('unit_id' , $unit->id)->get();

@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin\People;
 use Livewire\Component;
 use App\Models\User;
 use Livewire\WithPagination;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use App\Http\Controllers\{
     ActionController,
     Api\UserController,
@@ -13,7 +14,7 @@ use App\Http\Controllers\{
 class People extends Component
 {
     use WithPagination;
-
+    use LivewireAlert;
     protected $listeners = ['$refresh', 'search'];
     
     public $editingPerson = -1;

@@ -42,6 +42,11 @@
                         'active' => isRoute('trainNew'),
                     ],
                     [
+                        'name' => 'Join Requests',
+                        'route' => 'join_requests',
+                        'active' => isRoute('join_requests'),
+                    ],
+                    [
                         'name' => 'Settings',
                         'route' => 'settings',
                         'active' => isRoute('settings'),

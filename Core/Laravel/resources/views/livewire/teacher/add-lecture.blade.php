@@ -28,7 +28,7 @@
                 </div>
                 <div class="relative pt-4">
                     <label class="text-base leading-7 text-gray-600">
-                        Unit
+                        Subject
                     </label> 
                     <select wire:model="subjectID" class="w-full px-4 py-2 mt-2 mr-4 text-base text-black transition duration-500 ease-in-out transform rounded-lg bg-gray-100 focus:border-gray-600 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2">
                         <option value="0">Select Subject</option>
@@ -52,7 +52,7 @@
             <div class="grid grid-cols-2 gap-4">
                 <div class="relative pt-4">
                     <label class="text-base leading-7 text-gray-600">
-                        Unit
+                        Day
                     </label> 
                     <select wire:model="dayID" class="w-full px-4 py-2 mt-2 mr-4 text-base text-black transition duration-500 ease-in-out transform rounded-lg bg-gray-100 focus:border-gray-600 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2">
                         <option value="0">Select Day</option>

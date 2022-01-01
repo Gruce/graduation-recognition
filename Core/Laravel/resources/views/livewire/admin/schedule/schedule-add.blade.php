@@ -56,11 +56,17 @@
                         @endif
                     </select>
                 </div>
-                <div class="relative mt-4">
+                <div class="relative pt-4">
                     <label for="name" class="text-base leading-7 text-gray-600">
-                        Time
+                        Start
                     </label>
-                    <input wire:model="time" type="time" class="w-full px-4 py-2 mt-2 text-base text-black transition duration-500 ease-in-out transform rounded-lg bg-gray-100 focus:border-gray-600 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2">
+                    <input wire:model="start" type="time" class="w-full px-4 py-2 mt-2 text-base text-black transition duration-500 ease-in-out transform rounded-lg bg-gray-100 focus:border-gray-600 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2">
+                </div>
+                <div class="relative pt-4">
+                    <label for="name" class="text-base leading-7 text-gray-600">
+                        End
+                    </label>
+                    <input wire:model="end" type="time" class="w-full px-4 py-2 mt-2 text-base text-black transition duration-500 ease-in-out transform rounded-lg bg-gray-100 focus:border-gray-600 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2">
                 </div>
                 <div class="relative pt-4">
                     <label for="name" class="text-base leading-7 text-gray-600">

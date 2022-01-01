@@ -20,7 +20,7 @@ class DaySeeder extends Seeder
         Day::create(['name' => 'Tuesday']);
         Day::create(['name' => 'Wednesday']);
         Day::create(['name' => 'Thursday']);
-        // Day::create(['name' => 'Friday']);
+        Day::create(['name' => 'Friday']);
 
     }
 }

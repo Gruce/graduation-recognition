@@ -47,11 +47,24 @@ class TeacherProfileScreen extends GetView {
                                     if (snapshot.hasData) {
                                       UserModel user =
                                           snapshot.data as UserModel;
-                                      return Text(
-                                        user.name,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline5,
+                                      return Column(
+                                        
+                                        children: [
+                                        Text(
+                                          user.name,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline5,
+                                        ),
+                                        SizedBox(height: 10,),
+                                        Text(
+                                          controller.teacher.value.speciality,
+                                          style: TextStyle(
+                                            fontSize: 14
+                                          ),
+                                        ),
+                                        ],
+                                         
                                       );
                                     } else {
                                       return const Center(
@@ -111,10 +124,9 @@ class TeacherProfileScreen extends GetView {
                         ),
                       ],
                       borderRadius: BorderRadius.circular(10),
-                      // image: const DecorationImage(
-                      //   image: AssetImage(
-                      //     "me.png",
-                      //   ),
+                      // image:  DecorationImage(
+                      //   image: NetworkImage(controller.teacher.value.user.picture,),
+                        
                       //   fit: BoxFit.cover,
                       // ),
                     ),
@@ -130,14 +142,24 @@ class TeacherProfileScreen extends GetView {
                   borderRadius: BorderRadius.circular(5),
                 ),
                 child: Column(
-                  children: const <Widget>[
+                  children:  <Widget>[
                     ListTile(
                       title: Text("Person Information"),
                     ),
                     Divider(),
                     ListTile(
+                      title: Text("Department"),
+                      subtitle: Text(controller.teacher.value.section.name),
+                      leading: Icon(Icons.computer),
+                    ),
+                    ListTile(
+                      title: Text("Study type"),
+                      subtitle: Text("Evening"),
+                      leading: Icon(Icons.event),
+                    ),
+                    ListTile(
                       title: Text("Email"),
-                      subtitle: Text("karm.99zo@gmail.com"),
+                      subtitle: Text(controller.teacher.value.user.email),
                       leading: Icon(Icons.email),
                     ),
                     ListTile(
@@ -148,7 +170,7 @@ class TeacherProfileScreen extends GetView {
                     ListTile(
                       title: Text("About"),
                       subtitle: Text(
-                          "Abdulkareem mgbel farhan al-khalifa.\nbla bla bla bla bla bla bla bla bla bla bla."),
+                          "Hassan Hazim html bla bla bla bla Hassan Hazim html bla bla bla bla Hassan Hazim html bla bla bla bla "),
                       leading: Icon(Icons.format_align_center),
                     ),
                     ListTile(
@@ -161,21 +183,8 @@ class TeacherProfileScreen extends GetView {
                       subtitle: Text("11 November 2018"),
                       leading: Icon(Icons.calendar_view_day),
                     ),
-                    ListTile(
-                      title: Text("graduation Date"),
-                      subtitle: Text("6 Jul 2022"),
-                      leading: Icon(Icons.calendar_view_month),
-                    ),
-                    ListTile(
-                      title: Text("Department"),
-                      subtitle: Text("Computer Sicnce"),
-                      leading: Icon(Icons.computer),
-                    ),
-                    ListTile(
-                      title: Text("Study type"),
-                      subtitle: Text("Evening"),
-                      leading: Icon(Icons.event),
-                    ),
+                   
+                    
                   ],
                 ),
               ),

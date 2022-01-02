@@ -7,20 +7,20 @@ import 'package:graduaiton_app/bindings/teacher_bindings.dart';
 import 'package:graduaiton_app/controllers/Admin/admin_lectures_controller.dart';
 import 'package:graduaiton_app/screens/admin/home_page/home_screen.dart';
 import 'package:graduaiton_app/screens/admin/lectures/lectures_screen.dart';
-import 'package:graduaiton_app/screens/admin/lucturers/lucturers_screen.dart';
-import 'package:graduaiton_app/screens/admin/notification/notification.dart';
+import 'package:graduaiton_app/screens/admin/people/people_screen.dart';
 import 'package:graduaiton_app/screens/admin/profile/profile_screen.dart';
 import 'package:graduaiton_app/screens/admin/students/students_screen.dart';
-import 'package:graduaiton_app/screens/admin/users/users_screen.dart';
 import 'package:graduaiton_app/screens/general/notification/general_notification.dart';
 import 'package:graduaiton_app/screens/general/people/person_profile_widget.dart';
 import 'package:graduaiton_app/screens/login_screen.dart';
+import 'package:graduaiton_app/screens/student/changeStage/change_Stage.dart';
+import 'package:graduaiton_app/screens/student/changeStage/change_Stage_layout.dart';
 import 'package:graduaiton_app/screens/student/home_page/home_screen.dart';
 import 'package:graduaiton_app/screens/student/lectures/lectures_of_week.dart';
 import 'package:graduaiton_app/screens/student/profile/profile_screen.dart';
 import 'package:graduaiton_app/screens/student/subject/subjects_student.dart';
-import 'package:graduaiton_app/screens/teacher/Attendance/attendance_screen.dart';
 import 'package:graduaiton_app/screens/teacher/home_page/home_screen.dart';
+import 'package:graduaiton_app/screens/teacher/notification/notification_screen.dart';
 import 'package:graduaiton_app/screens/teacher/profile/profile_screen.dart';
 import 'package:graduaiton_app/screens/teacher/units/units_screen.dart';
 
@@ -33,16 +33,15 @@ class Routes {
   //Admin Routes
   static const adminMain = '/admin/';
   static const adminProfile = '/admin/profile/';
-  static const adminLucurers = '/admin/lucurers/';
+  static const adminPeople = '/admin/people/';
   static const adminStudents = '/admin/students/';
   static const adminNotification = '/admin/notification/';
   static const adminLectures = '/admin/lectures/';
-  static const adminUsers = '/admin/users/';
 
   //Teach Routes
   static const teacherMain = '/teacher/';
   static const teachTables = '/teacher/tables/';
-  static const teachAttendance = '/teacher/attendance/';
+  static const teacherNotification = '/teacher/notification/';
   static const teachUnits = '/teacher/units/';
   static const teachProfile = '/teacher/profile/';
 
@@ -51,7 +50,8 @@ class Routes {
   static const studentProfile = '/student/profile';
   static const studentLectures = '/student/lectures';
   static const subjectsStudent = '/student/subjects';
-
+  static const x = '/student/x';
+  
   static final routes = [
     // Auth Routes
     GetPage(
@@ -80,29 +80,24 @@ class Routes {
         binding: AdminProfileBinding()),
 
     GetPage(
+        name: adminPeople,
+        page: () => AdminPeopleScreen(),
+        binding: AdminProfileBinding()),
+
+    GetPage(
         name: adminStudents,
         page: () => AdminStudentsScreen(),
         binding: AdminProfileBinding()),
 
     GetPage(
         name: adminNotification,
-        page: () => AdminNotification(),
+        page: () => GeneralNotification(),
         binding: AdminProfileBinding()),
-
-    GetPage(
-        name: adminLucurers,
-        page: () => AdminLucurersScreen(),
-        binding: AdminLucurersBinding()),
 
     GetPage(
         name: adminLectures,
         page: () => AdminLecturesScreen(),
         binding: AdminLecturesBinding()),
-
-    GetPage(
-        name: adminUsers,
-        page: () => AdminUsersScreen(),
-        binding: AdminUsersBinding()),
 
     // Teacher Routes
     GetPage(
@@ -111,9 +106,9 @@ class Routes {
         binding: TeacherHomeBinding()),
 
     GetPage(
-        name: teachAttendance,
-        page: () => TeacherAttendanceScreen(),
-        binding: TeacherAttendanceBinding()),
+        name: teacherNotification,
+        page: () =>  TeacherNotification(),
+        binding: TeacherNotificationBinding()),
 
     GetPage(
         name: teachProfile,
@@ -131,19 +126,21 @@ class Routes {
     //     page: () => StudentHomeScreen(),
     //     binding: StudentHomeBinding()),
 
-    //  GetPage(
-    //     name: subjectsStudent,
-    //     page: () => SubjectStudentScreen(),
-    //     binding: SubjectsStudentBinding()),
-    GetPage(
+     GetPage(
         name: subjectsStudent,
         page: () => SubjectStudentScreen(),
         binding: SubjectsStudentBinding()),
 
-    GetPage(
+     GetPage(
         name: studentLectures,
         page: () => LecturesWeekScreen(),
         binding: LecturesWeekScreenBinding()),
+
+      GetPage(
+        name: x,
+        page: () => ChangeStageScreen(),
+        binding: ChangeStageScreenBinding()),
+
 
     GetPage(
         name: studentProfile,

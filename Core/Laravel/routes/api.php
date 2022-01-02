@@ -76,9 +76,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['prefix' => 'teachers'] ,function(){
             Route::get('/', [AdminController::class, 'teachers']);
         });
-        
-        Route::post('/send-task' , [AdminController::class, 'send_task']);
-
 
         ## End teachers ##
 
@@ -102,7 +99,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/lectures/{day?}' , [TeacherController::class, 'lectures']);
         Route::get('/current-lecture' , [TeacherController::class, 'current_lecture']);
         Route::get('/students-absence/{lecture_id}' , [TeacherController::class, 'students_absence']);
+        Route::post('/send-students-absence/{lecture_id}' , [TeacherController::class, 'send_absence']);
         Route::post('/send-task' , [TeacherController::class, 'send_task']);
+
     });
 
     #### END Teachers ####
@@ -115,6 +114,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/subject-tasks/{subject_id}/{teacher_id}', [StudentController::class, 'subject_tasks']);
         Route::get('/lectures/{today?}' , [StudentController::class, 'lectures']);
         Route::get('/current-lecture' , [StudentController::class, 'current_lecture']);
+        Route::post('/change-unit' , [StudentController::class, 'change_unit']);
     });
 
     #### End Student ####

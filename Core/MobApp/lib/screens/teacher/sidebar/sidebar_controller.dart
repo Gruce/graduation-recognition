@@ -4,13 +4,15 @@ import 'package:graduaiton_app/controllers/Teacher/teacher_layout_controller.dar
 import 'package:graduaiton_app/routes/routes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 class TeacherSidebarController extends GetxController {
   final List<Map<dynamic, dynamic>> tabs = [
-    
-    {"title": "Notification", "icon": Icons.notification_add, "route": '/teacher/notification/'},
+    {"title": "Profile", "icon": Icons.person, "route": '/teacher/profile/'},
+    {
+      "title": "Notification",
+      "icon": Icons.notification_add,
+      "route": '/teacher/notification/'
+    },
   ];
-
 
   void onItemTap(int index) {
     //Notify Bottom Navbar
@@ -19,6 +21,7 @@ class TeacherSidebarController extends GetxController {
 
     Get.offAndToNamed(tabs[index]['route']);
   }
+
   void logOut() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('jwt', '');

@@ -17,7 +17,7 @@ class CreateTasksTable extends Migration
             $table->id();
             $table->foreignId('teacher_id')->nullable()->constrained('teachers')->onDelete('cascade'); 
             $table->foreignId('subject_id')->nullable()->constrained('subjects')->onDelete('cascade'); 
-            $table->integer('to')->nullable(); // 1 => to unit , 2 to stage , 3 to section , 4 to student //
+            $table->integer('to')->default(1); // 1 => to unit , 2 to stage , 3 to section , 4 to student //
             // $table->string('ids');
             $table->string('title');
             $table->text('body')->nullable();

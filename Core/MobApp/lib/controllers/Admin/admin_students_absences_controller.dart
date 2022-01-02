@@ -12,6 +12,7 @@ import '../../config.dart';
 class AdminStudentsAbsencesController extends GetxController {
   late SharedPreferences prefs;
   StudentModel student = StudentModel();
+  SubjectModel subject = SubjectModel();
   // RxList subjects = [].obs;
   RxBool loaded = true.obs;
   int id = 0;

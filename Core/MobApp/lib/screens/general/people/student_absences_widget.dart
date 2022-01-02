@@ -56,7 +56,7 @@ class AdminStudentAbsences extends GetView {
                                         children: [
                                           Text(
                                             absence.subject.name,
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 fontSize: 18,
                                                 color: Color(0xff6875F5)),
                                           ),

@@ -8,6 +8,7 @@ class LuctureWidget extends GetWidget {
     required this.classroom,
     required this.startAt,
     required this.endAt,
+    required this.day,
     required this.lucturerName,
     required this.section,
     required this.stage,
@@ -18,6 +19,7 @@ class LuctureWidget extends GetWidget {
   String classroom;
   String startAt;
   String endAt;
+  String day;
   String lucturerName;
   String section;
   String stage;
@@ -131,7 +133,27 @@ class LuctureWidget extends GetWidget {
                                           )),
                                     ],
                                   ),
+                                  
                                 ])),
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.view_day,
+                                        color: Colors.black54,
+                                        size: 14,
+                                      ),
+                                      const SizedBox(width: 3),
+                                      Text(
+                                          day.isNotEmpty
+                                              ? day
+                                              : "No day",
+                                          style: const TextStyle(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black54,
+                                          )),
+                                    ],
+                                  ),
                             Expanded(
                               flex: 2,
                               child: Row(

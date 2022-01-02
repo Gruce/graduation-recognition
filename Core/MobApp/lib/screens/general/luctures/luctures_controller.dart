@@ -44,30 +44,30 @@ class LucturesController extends GetxController {
         icon: const Icon(Icons.search),
         widget: LuctureSearchWidget(controller: this),
       ),
-      Property(
-        name: 'stage',
-        value: false,
-        icon: const Icon(Icons.storage),
-        widget: LuctureDropDownWidget(controller1: this),
-      ),
-      Property(
-        name: 'unit',
-        value: false,
-        icon: const Icon(Icons.ac_unit),
-        widget: LuctureSearchWidget(controller: this),
-      ),
+      // Property(
+      //   name: 'stage',
+      //   value: false,
+      //   icon: const Icon(Icons.storage),
+      //   widget: LuctureDropDownWidget(controller1: this),
+      // ),
+      // Property(
+      //   name: 'unit',
+      //   value: false,
+      //   icon: const Icon(Icons.ac_unit),
+      //   widget: LuctureSearchWidget(controller: this),
+      // ),
       Property(
         name: 'days',
         value: false,
         icon: const Icon(Icons.date_range),
         widget: LuctureDaysFilterWidget(controller2: this),
       ),
-      Property(
-        name: 'lectures',
-        value: false,
-        icon: const Icon(Icons.date_range),
-        widget: LectureAbsencesFilterWidget(lecturesController: this),
-      ),
+      // Property(
+      //   name: 'lectures',
+      //   value: false,
+      //   icon: const Icon(Icons.date_range),
+      //   widget: LectureAbsencesFilterWidget(lecturesController: this),
+      // ),
     ]);
 
     filteredLectures.assignAll(lectures);

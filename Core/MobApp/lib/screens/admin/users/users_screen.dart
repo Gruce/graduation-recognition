@@ -45,11 +45,18 @@ class AdminUsersScreen extends GetView {
                                         controller.filteredUsers[index].id),
                                     name: controller.filteredUsers[index].name,
                                     type: controller.filteredUsers[index].type,
-                                    camera:"camera",
-                                    //  controller.filteredPeople[index].trackings.camera.description,
-                                    time:"time",
-                                    // controller.filteredPeople[index].trackings.seen,
-                                    typeString: controller.filteredUsers[index].typeString));
+                                    camera: controller.filteredUsers[index].user
+                                            .trackings.isNotEmpty
+                                        ? controller.filteredUsers[index].user
+                                            .trackings.camera.description
+                                        : "No Camera",
+                                    time: controller.filteredUsers[index].user
+                                            .trackings.isNotEmpty
+                                        ? controller.filteredUsers[index].user
+                                            .trackings[0].seen
+                                        : "No Time",
+                                    typeString: controller
+                                        .filteredUsers[index].typeString));
                           },
                         )
                       : SizedBox(

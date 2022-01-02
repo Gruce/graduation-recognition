@@ -1,3 +1,4 @@
+import 'package:graduaiton_app/models/camera.dart';
 import 'package:graduaiton_app/models/tracking.dart';
 
 class UserModel {

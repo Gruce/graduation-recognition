@@ -22,14 +22,11 @@ class AdminLucurersScreen extends GetView {
         title: 'Lucturers',
         child: Column(
           children: [
-            // Search Container
-
             SearchWidget(),
             const SizedBox(height: 10),
-
             Expanded(
                 child: Container(
-                  margin: const EdgeInsets.all(1),
+              margin: const EdgeInsets.all(1),
               padding:
                   const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
               decoration: BoxDecoration(
@@ -44,15 +41,24 @@ class AdminLucurersScreen extends GetView {
                                 onTap: () => Get.toNamed(Routes.personProfile,
                                     arguments:
                                         controller.filteredTeachers[index].id),
-                                child: TeacherWidget(
+                                child: LycturerWidget(
                                     key: ObjectKey(
                                         controller.filteredTeachers[index].id),
                                     name: controller
                                         .filteredTeachers[index].user.name,
-                                    type: 2,
-                                    camera: "camera",
-                                    //  controller.filteredPeople[index].trackings.camera.description,
-                                    time: "time",
+                                    type: controller
+                                        .filteredTeachers[index].user.type,
+                                    camera: controller.filteredTeachers[index]
+                                            .user.trackings.isNotEmpty
+                                        ? controller.filteredTeachers[index]
+                                            .user.trackings.camera.description
+                                        : "No Camera",
+                                    //  controller.filteredTeachers[index].trackings.camera.description,
+                                    time: controller.filteredTeachers[index]
+                                            .user.trackings.isNotEmpty
+                                        ? controller.filteredTeachers[index]
+                                            .user.trackings[0].created_at
+                                        : "No Time",
                                     sectionName: controller
                                         .filteredTeachers[index].section.name,
                                     // controller.filteredPeople[index].trackings.seen,

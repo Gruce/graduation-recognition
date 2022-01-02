@@ -37,7 +37,7 @@ class LuctureSearchWidget extends GetWidget {
               keyboardType: TextInputType.text,
               decoration: const InputDecoration(
                 border: InputBorder.none,
-                hintText: "Search by Name",
+                hintText: "Search by Lucturer Name",
                 hintStyle: TextStyle(color: Colors.grey),
                 contentPadding:
                     EdgeInsets.symmetric(vertical: 8, horizontal: 8),
@@ -49,6 +49,7 @@ class LuctureSearchWidget extends GetWidget {
               ),
             ),
           ),
+          const SizedBox(height: 5,)
         ],
       ),
     );

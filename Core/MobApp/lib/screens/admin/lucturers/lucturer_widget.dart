@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class TeacherWidget extends GetWidget {
-  TeacherWidget({
+class LycturerWidget extends GetWidget {
+  LycturerWidget({
     Key? key,
     required this.name,
     required this.type,
@@ -82,17 +82,16 @@ class TeacherWidget extends GetWidget {
                       ),
                 ),
                 child: Row(
-                  children: const [
+                  children: [
                     Icon(
                       Icons.photo_camera_outlined,
                       size: 14,
                     ),
                     SizedBox(width: 5),
-                    Text(
-                        // camera.isNotEmpty ? camera :
-                        "No camera",
+                    Text(camera,
                         style: TextStyle(
-                            fontSize: 10,))
+                          fontSize: 10,
+                        ))
                   ],
                 ),
               ),
@@ -108,17 +107,13 @@ class TeacherWidget extends GetWidget {
                   borderRadius: const BorderRadius.all(Radius.circular(5.0)),
                 ),
                 child: Row(
-                  children: const [
+                  children: [
                     Icon(
                       Icons.schedule,
                       size: 14,
                     ),
                     SizedBox(width: 5),
-                    Text(
-                        // time.isNotEmpty ? time :
-                        "Not seen yet",
-                        style: TextStyle(
-                            fontSize: 10))
+                    Text(time, style: TextStyle(fontSize: 10))
                   ],
                 ),
               ),
@@ -144,7 +139,8 @@ class TeacherWidget extends GetWidget {
                         // time.isNotEmpty ? time :
                         sectionName,
                         style: const TextStyle(
-                            fontSize: 10,))
+                          fontSize: 10,
+                        ))
                   ],
                 ),
               ),

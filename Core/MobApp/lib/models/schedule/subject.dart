@@ -1,4 +1,4 @@
-// import 'package:graduaiton_app/models/teacher/teacher.dart';
+import 'package:graduaiton_app/models/teacher/teacher.dart';
 
 class SubjectModel {
   int id = 0;

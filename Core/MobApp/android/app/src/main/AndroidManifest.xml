@@ -24,7 +24,6 @@
       </intent>
     </queries>
    <application
-        android:usesCleartextTraffic="true"
         android:label="graduaiton_app"
         android:icon="@mipmap/ic_launcher">
         <activity

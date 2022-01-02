@@ -28,7 +28,8 @@ class AdminStudentAbsences extends GetView {
     return Scaffold(
       appBar: _appBar(context),
       // body: StudentAbsence(),
-      body: Obx(() => absenceController.student.value.absences.isNotEmpty
+      body:Column(children: [
+           Obx(() => absenceController.student.value.absences.isNotEmpty
           ? Column(
               children: List.from(absenceController.student.value.absences)
                   .map(
@@ -129,16 +130,15 @@ class AdminStudentAbsences extends GetView {
                                       Radius.circular(5.0)),
                                 ),
                                 child: Row(
-                                  children: const [
-                                    Icon(
+                                  children: [
+                                   const Icon(
                                       Icons.schedule,
                                       size: 14,
                                     ),
-                                    SizedBox(width: 5),
-                                    Text(
-                                        // time.isNotEmpty ? time :
-                                        "Stage",
-                                        style: TextStyle(fontSize: 12))
+                                   const SizedBox(width: 5),
+                                    Text( absenceController
+                                            .student.value.stage.name,
+                                        style: const TextStyle(fontSize: 12))
                                   ],
                                 ),
                               ),
@@ -157,16 +157,15 @@ class AdminStudentAbsences extends GetView {
                                       Radius.circular(5.0)),
                                 ),
                                 child: Row(
-                                  children: const [
-                                    Icon(
+                                  children: [
+                                   const Icon(
                                       Icons.store_mall_directory_outlined,
                                       size: 14,
                                     ),
-                                    SizedBox(width: 5),
-                                    Text(
-                                        // time.isNotEmpty ? time :
-                                        "Unit",
-                                        style: TextStyle(
+                                   const SizedBox(width: 5),
+                                    Text(absenceController
+                                            .student.value.unit.name,
+                                        style:const TextStyle(
                                           fontSize: 12,
                                         ))
                                   ],
@@ -177,31 +176,34 @@ class AdminStudentAbsences extends GetView {
                         ),
                       ),
                     ),
-                  )
-                  .toList(),
+                  ).toList(),
             )
-          : Text('bye')),
+          :const Text('Not Found')),
 
-      // SizedBox(height: 10,),
-      // Container(
-      //     padding: const EdgeInsets.only(left: 10, right: 10),
-      //     decoration: BoxDecoration(
-      //       color: Colors.grey[200],
-      //       border: Border.all(
-      //         color: Colors.white.withOpacity(1),
-      //         width: 1.0,
-      //       ),
-      //       borderRadius: BorderRadius.circular(10),
-      //     ),
-      //     child: Expanded(
-      //         child: FlatButton(
-      //             onPressed: () => Get.toNamed(Routes.adminNotification,
-      //                 arguments: studentController.student.user),
-      //             child: const Text("Send Attention",
-      //                 textAlign: TextAlign.center,
-      //                 style: TextStyle(
+        const SizedBox(height: 10,),
+      Container(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          decoration: BoxDecoration(
+            color: Colors.grey[200],
+            border: Border.all(
+              color: Colors.white.withOpacity(1),
+              width: 1.0,
+            ),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Expanded(
+              child: FlatButton(
+                  onPressed: () => Get.toNamed(Routes.adminNotification,
+                      arguments: studentController.student.user),
+                  child: const Text("Send Attention",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
 
-      //                     color: Color(0xff8892f7), fontSize: 14))))),
+                          color: Color(0xff8892f7), fontSize: 14))))),
+
+      ],)
+      
+      
     );
   }
 

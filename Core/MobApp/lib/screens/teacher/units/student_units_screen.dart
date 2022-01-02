@@ -21,6 +21,7 @@ class StudentsUnitsScreen extends GetView {
         title: 'Students',
         child: Column(children: [
           StudentSearchWidget(),
+          SizedBox(height:10),
           // const Text("data"),
           Expanded(
               child: GetBuilder<TeacherStudentsUnitController>(
@@ -38,7 +39,7 @@ class StudentsUnitsScreen extends GetView {
                                       padding: const EdgeInsets.all(15),
                                       decoration: BoxDecoration(
                                         color: const Color(0xffd4d8ff),
-                                        borderRadius: BorderRadius.circular(20),
+                                        borderRadius: BorderRadius.circular(7),
                                       ),
                                       child: Column(
                                         children: [

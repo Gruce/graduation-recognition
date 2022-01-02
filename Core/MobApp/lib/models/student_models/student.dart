@@ -44,8 +44,9 @@ class StudentModel {
     if (json.containsKey('unit')) {
       unit = UnitModel.fromJson(json['unit']);
     }
+
     if (json.containsKey('absences')) {
-      for(var absence in json['absences']){
+      for (var absence in json['absences']) {
         absences.add(AbsencesModel.fromJson(absence));
       }
     }

@@ -18,8 +18,8 @@ class TeacherUnitsController extends GetxController {
     if (res.statusCode == 200) {
       List response = json.decode(res.body)['data'][0]['units'];
       for (var element in response) {
-        units.add(UnitModel.fromJson(element));
         
+        units.add(UnitModel.fromJson(element));
       }
     }
     update();

@@ -19,7 +19,6 @@ import 'package:graduaiton_app/screens/login_screen.dart';
 import 'package:graduaiton_app/screens/student/home_page/home_screen.dart';
 import 'package:graduaiton_app/screens/student/lectures/lectures_of_week.dart';
 import 'package:graduaiton_app/screens/student/profile/profile.dart';
-import 'package:graduaiton_app/screens/student/profile/profile_screen.dart';
 import 'package:graduaiton_app/screens/student/subject/subjects_student.dart';
 import 'package:graduaiton_app/screens/teacher/Attendance/attendance_screen.dart';
 import 'package:graduaiton_app/screens/teacher/home_page/home_screen.dart';
@@ -38,7 +37,7 @@ class Routes {
   static const adminLucurers = '/admin/lucurers/';
   static const adminStudents = '/admin/students/';
   static const adminNotification = '/admin/notification/';
-  static const adminStudentAbsences ='/general/student/Absences';
+  static const adminStudentAbsences = '/general/student/Absences';
   static const adminLectures = '/admin/lectures/';
   static const adminUsers = '/admin/users/';
 

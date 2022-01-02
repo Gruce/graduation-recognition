@@ -78,15 +78,13 @@ class PersonWidget extends GetWidget {
                       ),
                 ),
                 child: Row(
-                  children: const [
+                  children:[
                     Icon(
                       Icons.photo_camera_outlined,
                       size: 14,
                     ),
                     SizedBox(width: 5),
-                    Text(
-                      // camera.isNotEmpty ? camera :
-                       "No camera",
+                    Text(camera,
                         style: TextStyle(
                             fontSize: 10, fontWeight: FontWeight.bold))
                   ],
@@ -104,15 +102,13 @@ class PersonWidget extends GetWidget {
                   borderRadius: const BorderRadius.all(Radius.circular(5.0)),
                 ),
                 child: Row(
-                  children: const [
+                  children: [
                     Icon(
                       Icons.schedule,
                       size: 14,
                     ),
                     SizedBox(width: 5),
-                    Text(
-                      // time.isNotEmpty ? time :
-                     "Not seen yet",
+                    Text( time,
                         style: TextStyle(
                             fontSize: 10, fontWeight: FontWeight.bold))
                   ],

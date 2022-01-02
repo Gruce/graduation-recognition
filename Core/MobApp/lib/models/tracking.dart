@@ -16,6 +16,11 @@ class TrackingModel {
     if (!json['camera'].isEmpty) {
       camera = CameraModel.fromJson(json['camera']);
     }
+    // if (json.containsKey('camera')) {
+    //   for (var camera in json['camera']) {
+    //     camera.add(CameraModel.fromJson(camera));
+    //   }
+    // }
   }
 
   Map<dynamic, dynamic> toJson() {

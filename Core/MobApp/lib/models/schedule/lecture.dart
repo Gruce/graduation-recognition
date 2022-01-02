@@ -70,6 +70,9 @@ class LectureModel {
     if (json.containsKey('teacher')) {
       teacher = TeacherModel.fromJson(json['teacher']);
     }
+    if (json.containsKey('day')) {
+      day = DayModel.fromJson(json['day']);
+    }
   }
 
   Map<dynamic, dynamic> toJson() {
@@ -81,6 +84,7 @@ class LectureModel {
     data['classroom_id'] = classroom_id;
     data['day_id'] = day_id;
     data['start'] = start;
+    data['end'] = end;
     data['classroom'] = classroom;
     data['cameras'] = cameras;
     data['subject'] = subject;

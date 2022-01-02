@@ -232,7 +232,7 @@ class PersonProfileWidget extends GetView {
                                     title: const Text("Unit"),
                                     subtitle:
                                         Text(controller.student.unit.name),
-                                    leading: const Icon(Icons.event,
+                                    leading: const Icon(Icons.ac_unit,
                                         color: Color(0xff8892f7)),
                                   ),
                                 ],

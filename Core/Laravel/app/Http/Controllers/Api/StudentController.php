@@ -15,56 +15,6 @@ use App\Models\{
 
 class StudentController extends Controller
 {
-    public function students(){
-        $students = Student::with(
-            [
-                'user' => function ($user){
-                    return $user->with(['trackings' => function ($trackings) {
-                        return $trackings->with('camera')->latest()->take(1);
-                    }])->get();
-                },
-                'section:id,name',
-                'stage:id,name,section_id',
-                'unit:id,name,stage_id,section_id'
-            ])->get(
-            [
-                'id',
-                'user_id',
-                'section_id',
-                'stage_id',
-                'unit_id',
-            ]
-        );
-
-        return response()->json(['data' => $students]);
-
-    }
-
-    public function get_student($student_id){
-        $student = Student::with(
-            [
-                'user' => function ($user){
-                    return $user->with(['trackings' => function ($trackings) {
-                        return $trackings->with('camera')->latest()->take(1);
-                    }])->get();
-                },
-                'section:id,name',
-                'stage:id,name,section_id',
-                'unit:id,name,stage_id,section_id',
-                'absences.lecture.subject'
-            ])->get(
-            [
-                'id',
-                'user_id',
-                'section_id',
-                'stage_id',
-                'unit_id',
-            ]
-        )->find($student_id);
-
-        return response()->json(['data' => $student]);
-
-    }
 
     public function subjects(){
         $student = auth()->user()->student()->first();
@@ -166,30 +116,29 @@ class StudentController extends Controller
 
         return response()->json(['data' => $student]);
     }
-    public function get_absences($student_id)
-    {
-        $student = Student::with(
-            [   
-                'absences'=> function ($abs){
-                    return $abs->with('subject:id,name')->get();
-                },
-                'section:id,name',
-                'stage:id,name',
-                'unit:id,name'
-            ]
-        )->find($student_id);
+
+    public function absences(){
+        $student = auth()->user()->student()->first();
+        $absences = $student->absences()->with('subject')->get();
 
         $subjects =[];
-        if(count($student->absences)>0){
-            foreach($student->absences as $item){
-                if(in_array($item['subject']['name'],array_keys($subjects))){
-                    $subjects[$item['subject']['name']]++;
-                }
-                else{
-                    $subjects[$item['subject']['name']]=1;
-                }
-            }
-        }
-        return response()->json(['data' => $student , 'subjects'=> $subjects]);
+
+        if(count($absences)>0)
+            foreach($absences as $item)
+                if(in_array($item->subject->name,array_keys($subjects)))
+                    $subjects[$item->subject->name]++;
+                else
+                    $subjects[$item->subject->name] = 1;
+
+        $subjects_name = array_keys($subjects);
+
+        $data = [];
+        $count = 0 ;
+
+        foreach($subjects as $subject)
+            array_push($data , (object)['name' => $subjects_name[$count++] , 'count' => $subject]);
+
+        return response()->json(['data' => $data]);
     }
+
 }

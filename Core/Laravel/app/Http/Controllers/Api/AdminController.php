@@ -9,6 +9,11 @@ use App\Models\{
     Task,
     Student,
 };
+use App\Models\{
+    Subject,
+    Lecture,
+    Day,
+};
 
 use Validator;
 
@@ -36,6 +41,85 @@ class AdminController extends Controller
 
         return response()->json(['data' => $teachers], 200);
 
+    }
+
+    public function students(){
+        $students = Student::with(
+            [
+                'user' => function ($user){
+                    return $user->with(['trackings' => function ($trackings) {
+                        return $trackings->with('camera')->latest()->take(1);
+                    }])->get();
+                },
+                'section:id,name',
+                'stage:id,name,section_id',
+                'unit:id,name,stage_id,section_id'
+            ])->get(
+            [
+                'id',
+                'user_id',
+                'section_id',
+                'stage_id',
+                'unit_id',
+            ]
+        );
+
+        return response()->json(['data' => $students]);
+
+    }
+
+    
+    public function get_student($student_id){
+        $student = Student::with(
+            [
+                'user' => function ($user){
+                    return $user->with(['trackings' => function ($trackings) {
+                        return $trackings->with('camera')->latest()->take(1);
+                    }])->get();
+                },
+                'section:id,name',
+                'stage:id,name,section_id',
+                'unit:id,name,stage_id,section_id',
+                'absences.lecture.subject'
+            ])->get(
+            [
+                'id',
+                'user_id',
+                'section_id',
+                'stage_id',
+                'unit_id',
+            ]
+        )->find($student_id);
+
+        return response()->json(['data' => $student]);
+
+    }
+
+    public function get_absences($student_id)
+    {
+        $student = Student::with(
+            [   
+                'absences'=> function ($abs){
+                    return $abs->with('subject:id,name')->get();
+                },
+                'section:id,name',
+                'stage:id,name',
+                'unit:id,name'
+            ]
+        )->find($student_id);
+
+        $subjects =[];
+        if(count($student->absences)>0){
+            foreach($student->absences as $item){
+                if(in_array($item['subject']['name'],array_keys($subjects))){
+                    $subjects[$item['subject']['name']]++;
+                }
+                else{
+                    $subjects[$item['subject']['name']]=1;
+                }
+            }
+        }
+        return response()->json(['data' => $student , 'subjects'=> $subjects]);
     }
 
     public static function send_task(Request $req){

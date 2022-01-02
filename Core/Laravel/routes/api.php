@@ -66,9 +66,9 @@ Route::group(['middleware' => 'auth'], function () {
 
         ## Students ##
         Route::group(['prefix' => 'students'] ,function(){
-            Route::get('/', [StudentController::class, 'students']);
-            Route::get('/{student_id}' , [StudentController::class , 'get_student']);
-            Route::get('/absences/{student_id}' , [StudentController::class , 'get_absences']);
+            Route::get('/', [AdminController::class, 'students']);
+            Route::get('/{student_id}' , [AdminController::class , 'get_student']);
+            Route::get('/absences/{student_id}' , [AdminController::class , 'get_absences']);
         });
 
         ## End Students ##
@@ -116,6 +116,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/subject-tasks/{subject_id}/{teacher_id}', [StudentController::class, 'subject_tasks']);
         Route::get('/lectures/{today?}' , [StudentController::class, 'lectures']);
         Route::get('/current-lecture' , [StudentController::class, 'current_lecture']);
+        Route::get('/absences' , [StudentController::class, 'absences']);
     });
 
     #### End Student ####
@@ -143,3 +144,4 @@ Route::group(['middleware' => 'auth'], function () {
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+

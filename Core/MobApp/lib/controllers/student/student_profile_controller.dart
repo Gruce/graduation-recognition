@@ -25,11 +25,11 @@ class StudentProfileController extends GetxController {
   void fetch() async {
     final res = await Utilities.httpGet('student/info');
     print('11111111111111111111111111');
-    // if (res.statusCode == 200) {
+     if (res.statusCode == 200) {
      student.value = StudentModel.fromJson(json.decode(res.body)['data'][0]);
     print('============================================');
-    print(student.value);
-    // }
+    print(student.value.id);
+     }
     update();
   }
 }

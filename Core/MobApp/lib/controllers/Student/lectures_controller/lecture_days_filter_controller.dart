@@ -35,7 +35,7 @@ class DayFilterController extends GetxController {
       List response = json.decode(res.body)['data'];
 
       days.add(DayModel.fromJson({"id": -1, "name": "Weekly"}));
-      
+
       for (var element in response) {
         
         days.add(DayModel.fromJson(element));

@@ -22,13 +22,14 @@ class ChangeStageScreen extends GetView {
             Container(
                 width: MediaQuery.of(context).size.width,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.07,
                     ),
                     Text(
                       'If you have the code to skip the stage enter it below',
-                      style: TextStyle(fontSize: 18),
+                      style: TextStyle(fontSize: 16),
                     ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.1,

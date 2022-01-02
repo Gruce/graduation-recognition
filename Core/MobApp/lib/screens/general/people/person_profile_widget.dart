@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:graduaiton_app/routes/routes.dart';
+import 'package:graduaiton_app/screens/teacher/home_page/widgets/button.dart';
 
 import '../../admin/layout.dart';
 import 'person_profile_controller.dart';
@@ -17,7 +19,7 @@ class PersonProfileWidget extends GetView {
         title: 'Person Profile',
         child: SingleChildScrollView(
           child: GetBuilder<PersonProfileController>(
-              builder: (_) => controller.user.name.isNotEmpty
+              builder: (_) => controller.student.user.name.isNotEmpty
                   ? Column(
                       children: <Widget>[
                         Column(
@@ -43,7 +45,8 @@ class PersonProfileWidget extends GetView {
                                           children: <Widget>[
                                             ListTile(
                                                 title: Text(
-                                                    controller.user.name,
+                                                    controller
+                                                        .student.user.name,
                                                     style: const TextStyle(
                                                         fontSize: 22,
                                                         color:
@@ -53,9 +56,13 @@ class PersonProfileWidget extends GetView {
                                                 ),
                                             ListTile(
                                               contentPadding:
-                                                  const EdgeInsets.all(0),
-                                              title: Text(
-                                                  controller.user.typeString),
+                                                  const EdgeInsets.only(left: 20),
+                                              title: Row(
+                                                children: [
+                                                  Text(controller
+                                                      .student.user.typeString),
+                                                ],
+                                              ),
                                               //You can add Subtitle here
                                             ),
                                           ],
@@ -64,13 +71,11 @@ class PersonProfileWidget extends GetView {
                                       const SizedBox(
                                         height: 10,
                                       ),
-                                      Row(
+                                      Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: <Widget>[
                                           Container(
                                               padding:
-                                                   const EdgeInsets.symmetric(
-                                                      horizontal: 0.1,
-                                                      vertical: 0.1),
+                                                  const EdgeInsets.all(1),
                                               decoration: BoxDecoration(
                                                 color: Color(0xffe4e6fd),
                                                 border: Border.all(
@@ -79,92 +84,68 @@ class PersonProfileWidget extends GetView {
                                                   width: 1.0,
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(30),
+                                                    BorderRadius.circular(0),
                                               ),
                                               child: Expanded(
                                                   child: FlatButton(
                                                       onPressed: () {},
                                                       child: const Text(
-                                                          "        5\nAbsences",
+                                                          "Absences",
                                                           style: TextStyle(
-                                                              color:
-                                                                 Color(0xff6875f5),
+                                                              color: Color(
+                                                                  0xff6875f5),
                                                               fontSize:
-                                                                  11.5))))),
+                                                                  14))))),
                                           Container(
                                               padding:
-                                                  const EdgeInsets.symmetric(
-                                                     horizontal: 0.1,
-                                                      vertical: 0.1),
+                                                  const EdgeInsets.all(1),
                                               decoration: BoxDecoration(
-                                                color:Color(0xffe4e6fd),
+                                                color: Color(0xffe4e6fd),
                                                 border: Border.all(
                                                   color: Colors.white
                                                       .withOpacity(1),
                                                   width: 1.0,
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(30),
+                                                    BorderRadius.circular(0),
                                               ),
                                               child: Expanded(
                                                   child: FlatButton(
                                                       onPressed: () {},
                                                       child: const Text(
-                                                          "        2\nInfractions",
+                                                          "Infractions",
                                                           style: TextStyle(
-                                                              color:
-                                                                  Color(0xff6875f5),
+                                                              color: Color(
+                                                                  0xff6875f5),
                                                               fontSize:
-                                                                  11.5))))),
+                                                                  14))))),
                                           Container(
                                               padding:
-                                                  const EdgeInsets.symmetric(
-                                                     horizontal: 0.1,
-                                                      vertical: 0.1),
+                                                  const EdgeInsets.all(1),
                                               decoration: BoxDecoration(
-                                                color: Color(0xffe4e6fd),
+                                                color: const Color(0xffe4e6fd),
                                                 border: Border.all(
                                                   color: Colors.white
                                                       .withOpacity(1),
                                                   width: 1.0,
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(30),
+                                                    BorderRadius.circular(0),
                                               ),
                                               child: Expanded(
                                                   child: FlatButton(
-                                                      onPressed: () {},
+                                                      onPressed: ()=> Get.toNamed(
+                                                          Routes
+                                                              .adminNotification,
+                                                          arguments: controller
+                                                              .student.user),
                                                       child: const Text(
-                                                          "        3\nActivities",
+                                                          "Send Notification",
                                                           style: TextStyle(
-                                                              color:
-                                                                  Color(0xff6875f5),
+                                                              color: Color(
+                                                                  0xff6875f5),
                                                               fontSize:
-                                                                  11.5))))),
-                                          Container(
-                                               padding: const EdgeInsets.symmetric(
-                                                     horizontal: 0.1,
-                                                      vertical: 0.1),
-                                              decoration: BoxDecoration(
-                                                color: Color(0xffe4e6fd),
-                                                border: Border.all(
-                                                  color: Colors.white
-                                                      .withOpacity(1),
-                                                  width: 1,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(30),
-                                              ),
-                                              child: Expanded(
-                                                  child: FlatButton(
-                                                      onPressed: () {},
-                                                      child: const Text(
-                                                          "        1\nWarnings",
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Color(0xff6875f5),
-                                                              fontSize:
-                                                                  11.5))))),
+                                                                  14))))),
                                         ],
                                       )
                                     ],
@@ -220,51 +201,29 @@ class PersonProfileWidget extends GetView {
                                   ListTile(
                                     title: const Text("Email"),
                                     subtitle:
-                                        Text(controller.user.email),
+                                        Text(controller.student.user.email),
                                     leading: const Icon(Icons.email,
                                         color: Color(0xff6875F5)),
                                   ),
-                                  const ListTile(
-                                    title: Text("Phone Number"),
-                                    subtitle: Text("07701111111"),
-                                    leading: Icon(Icons.phone,
+                                  ListTile(
+                                    title: const Text("Department"),
+                                    subtitle:
+                                        Text(controller.student.section.name),
+                                    leading: const Icon(Icons.computer,
                                         color: Color(0xff6875F5)),
                                   ),
-                                  const ListTile(
-                                    title: Text("About"),
-                                    subtitle: Text(
-                                        "bla bla bla bla bla bla bla bla bla bla\nbla bla bla bla bla bla bla bla bla bla bla."),
-                                    leading: Icon(Icons.format_align_center,
+                                  ListTile(
+                                    title: const Text("Stage"),
+                                    subtitle:
+                                        Text(controller.student.stage.name),
+                                    leading: const Icon(Icons.event,
                                         color: Color(0xff6875F5)),
                                   ),
-                                  const ListTile(
-                                    title: Text("Living Location"),
-                                    subtitle: Text("AL-Hartha - Basra"),
-                                    leading: Icon(Icons.location_city,
-                                        color: Color(0xff6875F5)),
-                                  ),
-                                  const ListTile(
-                                    title: Text("Joined Date"),
-                                    subtitle: Text("11 November 2018"),
-                                    leading: Icon(Icons.calendar_view_day,
-                                        color: Color(0xff6875F5)),
-                                  ),
-                                  const ListTile(
-                                    title: Text("graduation Date"),
-                                    subtitle: Text("6 Jul 2022"),
-                                    leading: Icon(Icons.calendar_view_month,
-                                        color: Color(0xff6875F5)),
-                                  ),
-                                  const ListTile(
-                                    title: Text("Department"),
-                                    subtitle: Text("Computer Sicnce"),
-                                    leading: Icon(Icons.computer,
-                                        color: Color(0xff6875F5)),
-                                  ),
-                                  const ListTile(
-                                    title: Text("Study type"),
-                                    subtitle: Text("Evening"),
-                                    leading: Icon(Icons.event,
+                                  ListTile(
+                                    title: const Text("Unit"),
+                                    subtitle:
+                                        Text(controller.student.unit.name),
+                                    leading: const Icon(Icons.event,
                                         color: Color(0xff6875F5)),
                                   ),
                                 ],

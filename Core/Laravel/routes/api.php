@@ -46,6 +46,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['prefix' => 'users'] ,function(){
             Route::get('/', [UserController::class, 'users']);
             Route::post('/new' , [UserController::class , 'new_user']);
+
         });
 
         ## END USER ##
@@ -66,6 +67,7 @@ Route::group(['middleware' => 'auth'], function () {
         ## Students ##
         Route::group(['prefix' => 'students'] ,function(){
             Route::get('/', [StudentController::class, 'students']);
+            Route::get('/{student_id}' , [StudentController::class , 'get_student']);
         });
 
         ## End Students ##

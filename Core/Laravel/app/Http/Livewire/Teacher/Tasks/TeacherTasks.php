@@ -31,7 +31,15 @@ class TeacherTasks extends Component
     {
         $search = '%' . $this->search . '%';
         $teacher = auth()->user()->teacher()->first();
-        $tasks = $teacher->tasks()->with('files')->where('title' , 'LIKE' , $search)->paginate(15);
+        $tasks = $teacher->tasks()->with(
+            [
+                'files',
+                'units' => function($unit) {
+                    return $unit->with(['section:id,name' , 'stage:id,name']);
+                }
+            ]
+        )->where('title' , 'LIKE' , $search)->paginate(15);
+
         return view('livewire.teacher.tasks.teacher-tasks' , ['tasks' => $tasks]);
     }
 }

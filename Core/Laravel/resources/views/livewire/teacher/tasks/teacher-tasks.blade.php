@@ -22,7 +22,8 @@
                                 <th class="p-3">#</th>
                                 <th class="p-3 text-left">Title</th>
                                 <th class="p-3 text-left">Body</th>
-                                <th class="p-3 text-left">Photo</th>
+                                <th class="p-3 text-left">Section - Stage - Unit</th>
+                                <th class="p-3 text-left">File</th>
                                 <th class="p-3 text-left">Actions</th>
                             </tr>
                         </thead>
@@ -45,44 +46,35 @@
                                 <td class="p-3">
                                     <div>
                                         <span class="text-gray-500">
-                                            {{ $task->body }} ,
-                                            {{-- {{$task->files[0]->file_path}} --}}
+                                            {{ $task->body }}
                                         </span>
                                     </div>
                                 </td>
                                 <td class="p-3">
                                     <div>
                                         <span class="text-gray-500">
-                                            {{-- <img src="{{asset($task->files[0]->file_path)}}"> --}}
+                                            {{$task->units[0]->section->name}} - 
+                                            {{$task->units[0]->stage->name}} - [
+                                                @foreach ($task->units as $unit)
+                                                    {{ $unit->name }} ,
+                                                @endforeach
+                                            ]
                                         </span>
-                                    </div>
-                                </td>
-                                {{-- <td class="p-3">
-                                    <div x-data="{ show: false }">
-                                        <span x-show="!show" @click="show = !show" class="text-gray-500">
-                                            {{ $unit->stage->name }}
-                                        </span>
-                                        <div x-show="show">
-                                            <div class="text-gray-600 focus-within:text-gray-400">
-                                                <select wire:keydown.enter="save()" wire:model="units.{{ $i }}.stage_id" class="py-3 block w-full text-sm text-gray-400 bg-gray-100 rounded-md px-5 focus:outline-none focus:bg-gray-50 focus:text-gray-900">
-                                                    <option value="">Please select</option>
-                                                    @foreach ($stages as $stage)
-                                                    @if($stage->section_id == $unit->section_id)
-                                                    <option value="{{$stage->id}}">{{$stage->name}}</option>
-                                                    @endif
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
                                     </div>
                                 </td>
                                 <td class="p-3">
                                     <div>
                                         <span class="text-gray-500">
-                                            {{ $unit->students_count }}
+                                            @if(count($task->files) > 0 )
+                                                <a href="{{route('task_show' , ['task_id' => $task->id])}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                                                    Show Files
+                                                </a>
+                                            @else 
+                                                No File
+                                            @endif
                                         </span>
                                     </div>
-                                </td> --}}
+                                </td>
                                 <td>
                                     <button wire:click="delete('Task', '{{ $task->id}}')" class="text-red-500"> 
                                         <i class="material-icons text-base">delete</i>

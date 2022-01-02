@@ -102,7 +102,7 @@ class TeacherController extends Controller
         $file_paths = [];
 
         $validator = Validator::make($req->all(), [
-            'files*' => 'file|mimes:jpeg,png,jpg,pdf,docx,doc,rar,zip|max:10000',
+            // 'files*' => 'file|mimes:jpeg,png,jpg,pdf,docx,doc,rar,zip|max:10000',
             'ids' => 'required',
             'title' => 'required',
         ]);
@@ -131,8 +131,9 @@ class TeacherController extends Controller
 
         $task = $teacher->tasks()->create($data);
         if($req->livewire)
-            foreach ($req->toArray()['files'] as $key => $file)
-                self::add_file($task , $file , $teacher->id);
+            if($req->toArray()['files'])
+                foreach ($req->toArray()['files'] as $key => $file)
+                    self::add_file($task , $file , $teacher->id);
 
         elseif ($req->hasFile('files'))
             foreach($req->file('files') as $i => $file)

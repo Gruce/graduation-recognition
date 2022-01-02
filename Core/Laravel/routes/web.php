@@ -36,6 +36,7 @@ use App\Http\Livewire\Teacher\{
     Units\TeacherUnits,
     Tasks\TeacherTasks,
     Tasks\TaskSend,
+    Tasks\TaskShow,
 };
     ## END TEACHER ##
 
@@ -121,7 +122,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         Route::group(['prefix' => 'join'] ,function(){
             Route::get('/requests', JoinRequests::class)->name('join_requests');
         });
-
     });
     #### END ADMIN ####
 
@@ -133,6 +133,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         Route::get('/students/{unitID?}', TeacherStudents::class)->name('teacher_students');
         Route::get('/units', TeacherUnits::class)->name('teacher_unit');
         Route::get('/tasks', TeacherTasks::class)->name('teacher_task');
+        Route::get('/task-Show/{task_id}', TaskShow::class)->name('task_show');
     });
 
     #### END TEACHER ####

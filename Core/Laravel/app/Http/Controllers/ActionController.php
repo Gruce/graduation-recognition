@@ -6,11 +6,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\{
     Section,
-    JoinRequest
+    JoinRequest,
+    Task,
 };
+use Route;
+use View;
 
 class ActionController extends Controller
 {
+
     public static function delete($model , $id){
         $delete = null;
         $msg = 'Error';

@@ -1,52 +1,56 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
+import 'package:graduaiton_app/controllers/Student/student_lectures_controller.dart';
+import 'package:graduaiton_app/controllers/Student/student_subject_controller.dart';
 import 'package:graduaiton_app/controllers/Teacher/attendance_students.dart';
-import 'package:graduaiton_app/controllers/Teacher/notification_controller.dart';
-import 'package:graduaiton_app/screens/teacher/Attendance/toggle_button.dart';
-import 'package:graduaiton_app/screens/teacher/Attendance/layout_attendance.dart';
-import 'package:graduaiton_app/screens/teacher/home_page/home_screen.dart';
-import 'package:graduaiton_app/screens/teacher/home_page/widgets/button.dart';
-import 'package:graduaiton_app/screens/teacher/home_page/widgets/input_field.dart';
-import 'package:graduaiton_app/screens/teacher/notification/button.dart';
-import 'package:http/http.dart';
+import 'package:graduaiton_app/controllers/Teacher/students_unit_controller.dart';
+import 'package:graduaiton_app/screens/general/attendance/toggle_button.dart';
+import 'package:graduaiton_app/screens/student/layout.dart';
+import 'package:graduaiton_app/screens/teacher/layout.dart';
 import 'package:intl/intl.dart';
 
 class TeacherAttendanceScreen extends GetView {
   TeacherAttendanceScreen({Key? key}) : super(key: key);
   @override
-  AttendanceStudentsController controller =
+  int _toggleValue = 0;
+  TeacherStudentsUnitController controller =
+      Get.put(TeacherStudentsUnitController());
+  AttendanceStudentsController controller2 =
       Get.put(AttendanceStudentsController());
   @override
   Widget build(BuildContext context) {
-    return AttendancLayoutScreen(
+    controller.fetch(15);
+    return TeacherLayoutScreen(
         title: 'Lectures of the Week',
         child: Column(
           children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  DateFormat.yMMMMd().format(DateTime.now()),
-                  style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey[400]),
-                ),
-                const Text(
-                  "Today",
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
+            Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    DateFormat.yMMMMd().format(DateTime.now()),
+                    style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey[400]),
                   ),
-                )
-              ],
+                  const Text(
+                    "Today",
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )
+                ],
+              ),
             ),
             Expanded(
-                child: GetBuilder<AttendanceStudentsController>(
-                    builder: (_) => controller.students.isNotEmpty
+                child: GetBuilder<TeacherStudentsUnitController>(
+                    builder: (_) => controller.filteredStudent.isNotEmpty
                         ? ListView.builder(
-                            itemCount: controller.students.length,
+                            itemCount: controller.filteredStudent.length,
                             itemBuilder: (BuildContext context, int index) {
                               return GestureDetector(
                                 // onTap: () => Get.to(() => StudentsProfileWidget(),
@@ -76,7 +80,8 @@ class TeacherAttendanceScreen extends GetView {
                                                               .spaceBetween,
                                                       children: [
                                                         Text(controller
-                                                            .students[index]
+                                                            .filteredStudent[
+                                                                index]
                                                             .user
                                                             .name),
                                                         Container(
@@ -92,27 +97,19 @@ class TeacherAttendanceScreen extends GetView {
                                                                         6.0),
                                                           ),
                                                           child: AnimatedToggle(
-                                                            value: controller.absentStudents.indexWhere((id) =>
-                                                                        id ==
-                                                                        controller
-                                                                            .students[index]
-                                                                            .id) ==
-                                                                    -1
-                                                                ? true
-                                                                : false,
                                                             values: const [
                                                               'Present',
                                                               'Absent'
                                                             ],
                                                             onToggleCallback:
                                                                 (value) {
-                                                              controller.toggleAbsentStudent(
+                                                              controller2.toggleAbsentStudent(
                                                                   controller
-                                                                      .students[
+                                                                      .filteredStudent[
                                                                           index]
                                                                       .id,
                                                                   value);
-                                                              print(controller
+                                                              print(controller2
                                                                   .absentStudents);
                                                             },
                                                             buttonColor:
@@ -175,17 +172,7 @@ class TeacherAttendanceScreen extends GetView {
                                         ))),
                               );
                             })
-                        : Container())),
-                        
-            FloatingActionButton.extended(
-              backgroundColor: Color(0xff6875F5),
-              onPressed: () => {controller.send(),Get.to(TeacherHomeScreen()),},
-              icon: Icon(Icons.save),
-              label: Text("Save"),
-            ),
-            SizedBox(
-              height: 10,
-            )
+                        : Container()))
           ],
         ));
   }

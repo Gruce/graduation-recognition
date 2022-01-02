@@ -39,13 +39,16 @@ class TeacherStudentsUnitController extends GetxController {
   }
 
   void search(text) {
+    
     if (text.isEmpty) {
       filteredStudent.assignAll(students);
     } else {
+      
       filteredStudent.assignAll(students
           .where((student) =>
               student.user.name.toLowerCase().contains(text.toLowerCase()))
           .toList());
+    
     }
     update();
   }

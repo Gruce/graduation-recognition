@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/config.dart';
 import 'package:graduaiton_app/controllers/Teacher/notification_controller.dart';
+import 'package:graduaiton_app/screens/general/attendance/attendance.dart';
 
 import 'package:graduaiton_app/screens/teacher/layout.dart';
 import 'package:file_picker/file_picker.dart';
@@ -20,7 +21,9 @@ class TeacherNotification extends GetView {
     return TeacherLayoutScreen(
         title: 'Notification',
         child: Column(children: [
-         
+          IconButton(
+              onPressed: () => Get.to(Attendance()),
+              icon: Icon(Icons.one_x_mobiledata)),
           GestureDetector(
             onTap: () => Get.to(Notif()),
             child: Container(
@@ -126,7 +129,7 @@ class TeacherNotification extends GetView {
                                                           child: SingleChildScrollView(
                                                             
                                                             child: Text(
-                                                              'Subject : ' +
+                                                              'Title : ' +
                                                                   controller
                                                                       .notifications[
                                                                           index]
@@ -172,7 +175,7 @@ class TeacherNotification extends GetView {
                                                   children: [
                                                     Expanded(
                                                         child: Text(
-                                                      'Text : ' +
+                                                      'Note : ' +
                                                           controller
                                                               .notifications[
                                                                   index]

@@ -11,7 +11,6 @@ use App\Models\{
     Task,
     Lecture,
     Day,
-    Unit,
 };
 
 class StudentController extends Controller
@@ -148,7 +147,7 @@ class StudentController extends Controller
                 'day:id,name',
             ]
         )->orderBy('start' , 'DESC')->first();
-
+                
         return response()->json(['data' => $lecture]);
     }
 
@@ -167,7 +166,6 @@ class StudentController extends Controller
 
         return response()->json(['data' => $student]);
     }
-
     public function get_absences($student_id)
     {
         $student = Student::with(
@@ -193,26 +191,5 @@ class StudentController extends Controller
             }
         }
         return response()->json(['data' => $student , 'subjects'=> $subjects]);
-    }
-
-    public function change_unit( Request $req )
-    {
-      $code=$req->code;
-
-      $unit=Unit::whereHas('code',function($q)use($code){
-        return $q->where('code',$code);
-      })->first();
-
-     if(!$unit)
-      return response()->json(['message' => 'code not working'],400);
-
-      $student=auth()->user()->student()->first();
-      $student->update([
-        'section_id'=>$unit->section_id,
-        'stage_id'=>$unit->stage_id,
-        'unit_id'=>$unit->id,
-      ]);
-      
-      return response()->json(['message' => 'Done'],200);
     }
 }

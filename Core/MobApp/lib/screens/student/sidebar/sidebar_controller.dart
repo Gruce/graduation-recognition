@@ -9,7 +9,6 @@ class StudentSidebarController extends GetxController {
   final List<Map<dynamic, dynamic>> tabs = [
     
     {"title": "Profile", "icon": Icons.person, "route": '/student/profile/'},
-    {"title": "X", "icon": Icons.person, "route": '/student/x/'},
   ];
 
 

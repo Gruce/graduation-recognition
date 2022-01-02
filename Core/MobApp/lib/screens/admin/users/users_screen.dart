@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:graduaiton_app/controllers/Admin/admin_people_controller.dart';
+import 'package:graduaiton_app/controllers/Admin/admin_users_controller.dart';
 import 'package:graduaiton_app/routes/routes.dart';
-import 'package:graduaiton_app/screens/admin/people/search_widget.dart';
+import 'package:graduaiton_app/screens/admin/users/search_widget.dart';
 
 import '../layout.dart';
 import 'person_widget.dart';
 
-class AdminPeopleScreen extends GetView {
-  AdminPeopleScreen({Key? key}) : super(key: key);
+class AdminUsersScreen extends GetView {
+  AdminUsersScreen({Key? key}) : super(key: key);
 
   @override
-  AdminPeopleController controller = Get.put(AdminPeopleController());
+  AdminUsersController controller = Get.put(AdminUsersController());
 
   @override
   Widget build(BuildContext context) {
     return AdminLayoutScreen(
-        title: 'People',
+        title: 'Users',
         child: Column(
           children: [
             // Search Container
@@ -31,25 +31,25 @@ class AdminPeopleScreen extends GetView {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: const Color.fromRGBO(255, 255, 255, .5)),
-              child: GetBuilder<AdminPeopleController>(
-                  builder: (_) => controller.filteredPeople.isNotEmpty
+              child: GetBuilder<AdminUsersController>(
+                  builder: (_) => controller.filteredUsers.isNotEmpty
                       ? ListView.builder(
-                          itemCount: controller.filteredPeople.length,
+                          itemCount: controller.filteredUsers.length,
                           itemBuilder: (BuildContext context, int index) {
                             return GestureDetector(
                                 onTap: () => Get.toNamed(Routes.personProfile,
                                     arguments:
-                                        controller.filteredPeople[index].id),
+                                        controller.filteredUsers[index].id),
                                 child: PersonWidget(
                                     key: ObjectKey(
-                                        controller.filteredPeople[index].id),
-                                    name: controller.filteredPeople[index].name,
-                                    type: controller.filteredPeople[index].type,
-                                    camera: controller
-                                        .filteredPeople[index].trackings.camera.description,
-                                    time: controller
-                                        .filteredPeople[index].trackings.seen,
-                                    typeString: controller.filteredPeople[index].typeString));
+                                        controller.filteredUsers[index].id),
+                                    name: controller.filteredUsers[index].name,
+                                    type: controller.filteredUsers[index].type,
+                                    camera:"camera",
+                                    //  controller.filteredPeople[index].trackings.camera.description,
+                                    time:"time",
+                                    // controller.filteredPeople[index].trackings.seen,
+                                    typeString: controller.filteredUsers[index].typeString));
                           },
                         )
                       : SizedBox(

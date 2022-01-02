@@ -9,9 +9,6 @@ import 'package:graduaiton_app/screens/student/layout.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 // ignore: must_be_immutable
-import 'package:graduaiton_app/screens/teacher/home_page/widgets/button.dart';
-import 'package:sliding_up_panel/sliding_up_panel.dart';
-
 class StudentHomeScreen extends GetView<StudentHomeController> {
   StudentHomeScreen({Key? key}) : super(key: key);
 

@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/Admin/admin_users_controller.dart';
-import 'package:graduaiton_app/controllers/Teacher/students_unit_controller.dart';
 
 // ignore: must_be_immutable
-class StudentSearchWidget extends GetView {
-  StudentSearchWidget({Key? key}) : super(key: key);
+class SearchWidget extends GetView {
+  SearchWidget({Key? key}) : super(key: key);
 
   @override
-  TeacherStudentsUnitController controller = Get.put(TeacherStudentsUnitController());
-  
+  AdminUsersController controller = Get.put(AdminUsersController());
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      margin: EdgeInsets.all(15),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(1),
         border: Border.all(
@@ -25,7 +25,7 @@ class StudentSearchWidget extends GetView {
       child: Row(
         children: <Widget>[
           const Padding(
-            padding: EdgeInsets.only(left: 8),
+            padding: EdgeInsets.all(8),
             child: Icon(
               Icons.search,
               color: Colors.grey,
@@ -49,9 +49,8 @@ class StudentSearchWidget extends GetView {
                 color: Colors.black,
               ),
             ),
-          ),
+          )
         ],
-        
       ),
     );
   }

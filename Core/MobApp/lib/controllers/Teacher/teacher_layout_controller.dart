@@ -6,13 +6,12 @@ class TeacherLayoutController extends GetxController {
 
   final List<Map<dynamic, dynamic>> tabs = [
     {"title": "Home", "icon": Icons.home, "route": '/teacher/'},
-    
-    {"title": "Units", "icon": Icons.local_library, "route": '/teacher/units/'},
     {
-      "title": "Notification",
-      "icon": Icons.mail,
-      "route": '/teacher/notification/'
+      "title": "Attendance",
+      "icon": Icons.schedule,
+      "route": '/teacher/attendance/'
     },
+    {"title": "Units", "icon": Icons.local_library, "route": '/teacher/units/'},
   ].obs;
 
   void tabIndex(String route) {

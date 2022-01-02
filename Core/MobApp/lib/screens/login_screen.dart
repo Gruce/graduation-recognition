@@ -2,10 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:graduaiton_app/controllers/auth_controller.dart';
-import 'package:graduaiton_app/screens/register_screen.dart';
-
 
 class LoginScreen extends GetView<LoginController> {
   const LoginScreen({Key? key}) : super(key: key);
@@ -43,7 +40,7 @@ class LoginScreen extends GetView<LoginController> {
                     children: [
                       Text(
                         "Login",
-                        style: GoogleFonts.openSans(
+                        style: TextStyle(
                           color: Colors.white,
                           fontSize: 46.0,
                           fontWeight: FontWeight.w800,
@@ -54,7 +51,7 @@ class LoginScreen extends GetView<LoginController> {
                       ),
                       Text(
                         "Welcome To Smart Tracker App",
-                        style: GoogleFonts.openSans(
+                        style: TextStyle(
                           color: Colors.white,
                           fontSize: 22.0,
                           fontWeight: FontWeight.w300,
@@ -150,29 +147,7 @@ class LoginScreen extends GetView<LoginController> {
                             onPressed: () async => await controller.login(),
                             child: Text(
                               "Login",
-                              style: GoogleFonts.openSans(
-                                fontSize: 23,
-                                fontWeight: FontWeight.w700,
-                                fontStyle: FontStyle.normal,
-                                height: 1.5,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 30,),
-                         Material(
-                          elevation: 5.0,
-                          borderRadius: BorderRadius.circular(30.0),
-                          color: Color(0xff6875F5),
-                          child: MaterialButton(
-                            minWidth: MediaQuery.of(context).size.width,
-                            padding:
-                                EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                            onPressed: () =>Get.to(RegisterScreen()),
-                            child: Text(
-                              "Register",
-                              style: GoogleFonts.openSans(
+                              style: TextStyle(
                                 fontSize: 23,
                                 fontWeight: FontWeight.w700,
                                 fontStyle: FontStyle.normal,

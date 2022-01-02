@@ -2,14 +2,13 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:graduaiton_app/config.dart';
-import 'package:graduaiton_app/models/schedule/lectuer.dart';
+import 'package:graduaiton_app/models/schedule/lecture.dart';
 import 'package:graduaiton_app/util/utilities.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 class TeacherHomeController extends GetxController {
   RxBool showns = false.obs;
-  RxList currentLecture = <LectureModel>[].obs;
   RxBool isLectureStarted = false.obs;
   RxList lectures = <LectureModel>[].obs;
 
@@ -20,7 +19,6 @@ class TeacherHomeController extends GetxController {
 
   @override
   void onInit() async {
-    currentLectureFetch();
     fetch();
     prefs = await SharedPreferences.getInstance();
     getData();
@@ -40,26 +38,14 @@ class TeacherHomeController extends GetxController {
   }
 
   void fetch() async {
-    var res = await Utilities.httpGet('teacher/current-lecture');
+    var res = await Utilities.httpGet('teacher/lectures');
     if (res.statusCode == 200) {
-      var response = json.decode(res.body)['data'];
-
-      currentLecture.add(LectureModel.fromJson(response));
-       print(currentLecture[0].start);
-      print('===============================================================');
-      
-    }
-
-    update();
-  }
-
-  void currentLectureFetch() async {
-    var res = await Utilities.httpGet('teacher/current-lecture');
-    if (res.statusCode == 200) {
-      List response = json.decode(res.body)['data'];
+      List response = json.decode(res.body)['data'][0]['lectures'];
 
       for (var element in response) {
+        
         lectures.add(LectureModel.fromJson(element));
+        
       }
     }
 

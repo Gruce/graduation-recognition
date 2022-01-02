@@ -24,7 +24,7 @@ class TeacherProfileController extends GetxController {
     final res = await Utilities.httpGet('teacher/info');
     if (res.statusCode == 200) {
       teacher.value = TeacherModel.fromJson(json.decode(res.body)['data'][0]);
-      
+      // print(teacher.value.user.type);
     }
     update();
   }

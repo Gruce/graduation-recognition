@@ -4,7 +4,6 @@ import 'package:graduaiton_app/bindings/auth_binding.dart';
 import 'package:graduaiton_app/bindings/general_bindings.dart';
 import 'package:graduaiton_app/bindings/student_bindings.dart';
 import 'package:graduaiton_app/bindings/teacher_bindings.dart';
-import 'package:graduaiton_app/controllers/Admin/admin_lectures_controller.dart';
 import 'package:graduaiton_app/screens/admin/home_page/home_screen.dart';
 import 'package:graduaiton_app/screens/admin/lectures/lectures_screen.dart';
 import 'package:graduaiton_app/screens/admin/lucturers/lucturers_screen.dart';
@@ -12,16 +11,16 @@ import 'package:graduaiton_app/screens/admin/notification/notification.dart';
 import 'package:graduaiton_app/screens/admin/profile/profile_screen.dart';
 import 'package:graduaiton_app/screens/admin/students/students_screen.dart';
 import 'package:graduaiton_app/screens/admin/users/users_screen.dart';
-import 'package:graduaiton_app/screens/general/notification/general_notification.dart';
 import 'package:graduaiton_app/screens/general/people/person_profile_widget.dart';
 import 'package:graduaiton_app/screens/general/people/student_absences_widget.dart';
 import 'package:graduaiton_app/screens/login_screen.dart';
+import 'package:graduaiton_app/screens/student/changeStage/change_Stage.dart';
 import 'package:graduaiton_app/screens/student/home_page/home_screen.dart';
 import 'package:graduaiton_app/screens/student/lectures/lectures_of_week.dart';
 import 'package:graduaiton_app/screens/student/profile/profile.dart';
 import 'package:graduaiton_app/screens/student/subject/subjects_student.dart';
-import 'package:graduaiton_app/screens/teacher/Attendance/attendance_screen.dart';
 import 'package:graduaiton_app/screens/teacher/home_page/home_screen.dart';
+import 'package:graduaiton_app/screens/teacher/notification/notification_screen.dart';
 import 'package:graduaiton_app/screens/teacher/profile/profile_screen.dart';
 import 'package:graduaiton_app/screens/teacher/units/units_screen.dart';
 
@@ -41,10 +40,10 @@ class Routes {
   static const adminLectures = '/admin/lectures/';
   static const adminUsers = '/admin/users/';
 
-  //Teach Routes
+//Teach Routes
   static const teacherMain = '/teacher/';
   static const teachTables = '/teacher/tables/';
-  static const teachAttendance = '/teacher/attendance/';
+  static const teacherNotification = '/teacher/notification/';
   static const teachUnits = '/teacher/units/';
   static const teachProfile = '/teacher/profile/';
 
@@ -53,6 +52,7 @@ class Routes {
   static const studentProfile = '/student/profile';
   static const studentLectures = '/student/lectures';
   static const subjectsStudent = '/student/subjects';
+  static const x = '/student/x';
 
   static final routes = [
     // Auth Routes
@@ -118,9 +118,9 @@ class Routes {
         binding: TeacherHomeBinding()),
 
     GetPage(
-        name: teachAttendance,
-        page: () => TeacherAttendanceScreen(),
-        binding: TeacherAttendanceBinding()),
+        name: teacherNotification,
+        page: () => TeacherNotification(),
+        binding: TeacherNotificationBinding()),
 
     GetPage(
         name: teachProfile,
@@ -133,15 +133,11 @@ class Routes {
         binding: TeacherUnitsBinding()),
 
     // Student Routes
-    // GetPage(
-    //     name: studentMain,
-    //     page: () => StudentHomeScreen(),
-    //     binding: StudentHomeBinding()),
+    GetPage(
+        name: studentMain,
+        page: () => StudentHomeScreen(),
+        binding: StudentHomeBinding()),
 
-    //  GetPage(
-    //     name: subjectsStudent,
-    //     page: () => SubjectStudentScreen(),
-    //     binding: SubjectsStudentBinding()),
     GetPage(
         name: subjectsStudent,
         page: () => SubjectStudentScreen(),
@@ -151,6 +147,11 @@ class Routes {
         name: studentLectures,
         page: () => LecturesWeekScreen(),
         binding: LecturesWeekScreenBinding()),
+
+    GetPage(
+        name: x,
+        page: () => ChangeStageScreen(),
+        binding: ChangeStageScreenBinding()),
 
     GetPage(
         name: studentProfile,

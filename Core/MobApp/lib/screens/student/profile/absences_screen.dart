@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/Student/student_absences_controller.dart';
 import 'package:graduaiton_app/controllers/Student/student_profile_controller.dart';
 import 'package:graduaiton_app/screens/student/profile/layout_absences.dart';
+import 'package:graduaiton_app/screens/teacher/Attendance/layout_attendance.dart';
 import 'package:intl/intl.dart';
 
 class AbsencesScreen extends GetView {
@@ -10,6 +11,7 @@ class AbsencesScreen extends GetView {
   @override
   AbsencesController controller = Get.put(AbsencesController());
   @override
+  
   Widget build(BuildContext context) {
     var dateFormat = DateFormat('yyyy-MM-dd HH:mm:ss');
     var formattedDate = dateFormat.format;
@@ -66,11 +68,14 @@ class AbsencesScreen extends GetView {
                                                                     .circular(
                                                                         6.0),
                                                           ),
-                                                          child: Text(controller
-                                                              .student
-                                                              .value
-                                                              .absences[index]
-                                                              .created_at),
+                                                          child: Text(
+                                                            controller
+                                                                      .student
+                                                                      .value
+                                                                      .absences[
+                                                                          index]
+                                                                      .created_at
+                                                                  ),
                                                         ),
                                                       ],
                                                     )),

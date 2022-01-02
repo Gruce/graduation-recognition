@@ -6,9 +6,9 @@ import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:graduaiton_app/controllers/Student/student_lectures_controller.dart';
 import 'package:graduaiton_app/controllers/student/student_home_controller.dart';
 import 'package:graduaiton_app/screens/student/layout.dart';
+import 'package:graduaiton_app/screens/teacher/home_page/widgets/button.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
-// ignore: must_be_immutable
 class StudentHomeScreen extends GetView<StudentHomeController> {
   StudentHomeScreen({Key? key}) : super(key: key);
 
@@ -351,6 +351,7 @@ class StudentHomeScreen extends GetView<StudentHomeController> {
                                                           style: TextStyle(
                                                               fontSize:
                                                                   24)))))))),
+                                                  
                 ],
               )),
         ));

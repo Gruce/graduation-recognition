@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'dart:isolate';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:graduaiton_app/models/schedule/lecture.dart';
 import 'package:graduaiton_app/models/student_models/student.dart';
 import 'package:graduaiton_app/util/utilities.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -9,7 +11,7 @@ import 'package:http/http.dart' as http;
 import '../../config.dart';
 
 class AttendanceStudentsController extends GetxController {
-  late SharedPreferences prefs;
+  RxList students = <StudentModel>[].obs;
   List absentStudents = [];
 
   @override
@@ -72,5 +74,6 @@ class AttendanceStudentsController extends GetxController {
     } else {
       absentStudents.removeAt(i);
     }
+    update();
   }
 }

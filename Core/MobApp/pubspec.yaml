@@ -52,6 +52,9 @@ dependencies:
   sliding_up_panel:
   syncfusion_flutter_gauges:
   url_launcher:
+  animated_text_kit: ^4.2.1
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -15,6 +15,7 @@ class AbsencesModel {
   int subject_id = 0;
   int student_id = 0;
   SubjectModel subject = SubjectModel();
+  String created_at = "";
   // DayModel day = DayModel();
 
   AbsencesModel({
@@ -30,11 +31,14 @@ class AbsencesModel {
     lecture_id = json['lecture_id'];
     subject_id = json['subject_id'];
     student_id = json['student_id'];
+
     if (json.containsKey('subject')) {
       subject = SubjectModel.fromJson(json['subject']);
     }
 
-  
+    if (json.containsKey('created_at')) {
+      created_at = json['created_at'];
+    }
   }
 
   Map<dynamic, dynamic> toJson() {

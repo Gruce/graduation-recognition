@@ -38,7 +38,7 @@ class TeacherHomeController extends GetxController {
   }
 
   void fetch() async {
-    var res = await Utilities.httpGet('teacher/lectures');
+    var res = await Utilities.httpGet('teacher/current-lecture');
     if (res.statusCode == 200) {
       var response = json.decode(res.body)['data'];
 

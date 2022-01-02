@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
 import 'package:graduaiton_app/controllers/Teacher/attendance_students.dart';
+import 'package:graduaiton_app/controllers/Teacher/notification_controller.dart';
 import 'package:graduaiton_app/controllers/Teacher/teacher_home_controller.dart';
 import 'package:graduaiton_app/controllers/Teacher/teacher_layout_controller.dart';
 import 'package:graduaiton_app/controllers/Teacher/teacher_profile_controller.dart';
 import 'package:graduaiton_app/controllers/Teacher/teacher_schedule_controller.dart';
 import 'package:graduaiton_app/controllers/Teacher/teacher_units_controller.dart';
-
 
 class TeacherLayoutBinding extends Bindings {
   @override
@@ -21,14 +21,13 @@ class TeacherHomeBinding extends Bindings {
   }
 }
 
-
-
 class TeacherProfileBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut(() => TeacherProfileController());
   }
 }
+
 class TeacherScheduleScrBinding extends Bindings {
   @override
   void dependencies() {
@@ -36,10 +35,10 @@ class TeacherScheduleScrBinding extends Bindings {
   }
 }
 
-class TeacherAttendanceBinding extends Bindings {
+class TeacherNotificationBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => AttendanceStudentsController());
+    Get.lazyPut(() => NotificationController());
   }
 }
 
@@ -49,5 +48,3 @@ class TeacherUnitsBinding extends Bindings {
     Get.lazyPut(() => TeacherUnitsController());
   }
 }
-
-

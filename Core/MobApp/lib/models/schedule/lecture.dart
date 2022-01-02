@@ -13,11 +13,12 @@ class LectureModel {
   int classroom_id = 0;
   int day_id = 0;
   String start = '';
+  String end = '';
   UnitModel unit = UnitModel();
   ClassroomModel classroom = ClassroomModel();
   CameraModel cameras = CameraModel();
   SubjectModel subject = SubjectModel();
-  // DayModel day = DayModel();
+  DayModel day = DayModel();
   TeacherModel teacher = TeacherModel();
 
   LectureModel({
@@ -28,6 +29,7 @@ class LectureModel {
     classroom_id,
     day_id,
     start,
+    end,
     classroom,
     cameras,
     subject,
@@ -42,7 +44,13 @@ class LectureModel {
     unit_id = json['unit_id'];
     classroom_id = json['classroom_id'];
     day_id = json['day_id'];
-    start = json['start'];
+
+    if (json.containsKey('start')) {
+      start = json['start'];
+    }
+    if (json.containsKey('end')) {
+      end = json['end'];
+    }
     if (json.containsKey('subject')) {
       subject = SubjectModel.fromJson(json['subject']);
     }
@@ -53,16 +61,14 @@ class LectureModel {
     if (json.containsKey('classroom')) {
       classroom = ClassroomModel.fromJson(json['classroom']);
     }
-    // if (json.containsKey('day')) {
-    //   day = DayModel.fromJson(json['day']);
-    // }
+    if (json.containsKey('day')) {
+      day = DayModel.fromJson(json['day']);
+    }
     if (json.containsKey('unit')) {
       unit = UnitModel.fromJson(json['unit']);
-      
     }
     if (json.containsKey('teacher')) {
       teacher = TeacherModel.fromJson(json['teacher']);
-      
     }
   }
 

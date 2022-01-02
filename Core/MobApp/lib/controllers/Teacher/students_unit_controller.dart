@@ -29,7 +29,9 @@ class TeacherStudentsUnitController extends GetxController {
     var res = await Utilities.httpGet('teacher/unit/' + id.toString());
     if (res.statusCode == 200) {
       List response = json.decode(res.body)['data'][0]['units'][0]['students'];
+
       for (var element in response) {
+        print(element);
         students.add(StudentModel.fromJson(element));
       }
     }

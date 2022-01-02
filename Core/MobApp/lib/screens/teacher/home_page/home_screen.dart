@@ -65,106 +65,139 @@ class TeacherHomeScreen extends GetView<TeacherHomeController> {
                   height: 20,
                 ),
                 Expanded(
-                    child: Container(
-                        // padding:
-                        // const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: const Color.fromRGBO(255, 255, 255, .5),
-                        ),
-                        child: ListView.builder(
-                          itemCount: controller.lectures.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Card(
-                                elevation: 0,
-                                // shadowColor: Colors.black12,
-                                color: Colors.transparent,
-                                margin: const EdgeInsets.symmetric(
-                                    horizontal: 0, vertical: 24.0),
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.05,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.93,
-                                      decoration: BoxDecoration(
-                                        color: Colors.grey.shade200,
-                                        borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(20),
-                                            topRight: Radius.circular(20)),
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Text(controller
-                                              .lectures[index].day.name
-                                              .toString()),
-                                          Text(controller
-                                              .lectures[index].subject.name
-                                              .toString()),
-                                          Text(controller.lectures[index].start
-                                              .toString())
-                                        ],
-                                      ),
-                                    ),
-                                    ListTile(
-                                        title: Container(
-                                            margin: const EdgeInsets.only(
-                                                bottom: 15),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
+                          child: GetBuilder<TeacherHomeController>(
+                              builder: (_) => controller
+                                      .lectures.isNotEmpty
+                                  ? ListView.builder(
+                                      itemCount:
+                                          controller.lectures.length,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        return Card(
+                                            elevation: 0,
+                                            // shadowColor: Colors.black12,
+                                            color: Colors.transparent,
+                                            margin: const EdgeInsets.symmetric(
+                                                horizontal: 0, vertical: 23.0),
+                                            child: Column(
                                               children: [
-                                                Row(children: [
-                                                  Text(controller
-                                                      .lectures[index]
-                                                      .unit
-                                                      .stage
-                                                      .name
-                                                      .toString()),
-                                                ]),
-                                                Text(controller
-                                                    .lectures[index].unit.name
-                                                    .toString()),
+                                                Container(
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.05,
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.93,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.grey.shade200,
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                            topLeft: Radius
+                                                                .circular(20),
+                                                            topRight:
+                                                                Radius.circular(
+                                                                    20)),
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceEvenly,
+                                                    children: [
+                                                      Text(controller
+                                                          .lectures[index]
+                                                          .day
+                                                          .name
+                                                          .toString()),
+                                                      Text(controller
+                                                          .lectures[index]
+                                                          .subject
+                                                          .name
+                                                          .toString()),
+                                                     Text(
+                                                DateFormat.jm().format(
+                                                        DateFormat("hh:mm:ss")
+                                                            .parse(controller
+                                                                .lectures[
+                                                                    0]
+                                                                .start)) +
+                                                    ' - ' +
+                                                    DateFormat.jm().format(
+                                                        DateFormat("hh:mm:ss")
+                                                            .parse(controller
+                                                                .lectures[
+                                                                    0]
+                                                                .end)),
+                                              )
+                                                    ],
+                                                  ),
+                                                ),
+                                                ListTile(
+                                                    title: Container(
+                                                        margin: const EdgeInsets
+                                                            .only(bottom: 15),
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Row(children: [
+                                                              Text(controller
+                                                                  .lectures[
+                                                                      index]
+                                                                  .unit.stage
+                                                                  
+                                                                  .name
+                                                                  .toString()+'- '+controller
+                                                                  .lectures[
+                                                                      index]
+                                                                  .unit
+                                                                  
+                                                                  .name
+                                                                  .toString()),
+                                                            ]),
+                                                          ],
+                                                        )),
+                                                    subtitle: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Text(
+                                                          'classroom: ' +
+                                                              controller
+                                                                  .lectures[
+                                                                      index]
+                                                                  .classroom
+                                                                  .name
+                                                                  .toString(),
+                                                          style: TextStyle(
+                                                              color: Colors
+                                                                  .black
+                                                                  .withOpacity(
+                                                                      0.6)),
+                                                        ),
+                                                      ],
+                                                    )),
+                                                Divider(
+                                                  thickness: 0.3,
+                                                ),
                                               ],
-                                            )),
-                                        subtitle: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Expanded(
-                                                child: Text(
-                                              controller.lectures[index].unit
-                                                  .section.name
-                                                  .toString(),
-                                              overflow: TextOverflow.ellipsis,
-                                              maxLines: 1,
-                                              style: TextStyle(
-                                                  color: Colors.black
-                                                      .withOpacity(0.6)),
-                                            )),
-                                            Text(
-                                              'Hall: ' +
-                                                  controller.lectures[index]
-                                                      .classroom.name
-                                                      .toString(),
-                                              style: TextStyle(
-                                                  color: Colors.black
-                                                      .withOpacity(0.6)),
-                                            ),
-                                          ],
-                                        )),
-                                    Divider(
-                                      thickness: 0.3,
+                                            ));
+                                      },
                                     )
-                                  ],
-                                ));
-                          },
-                        ))),
+                                  : SizedBox(
+                                      width: double.infinity,
+                                      child: Container(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 10.0, vertical: 5.0),
+                                          child: const Text('Not Found',
+                                              style: TextStyle(
+                                                  fontSize: 24))
+                                                  )
+                                                  ))
+                                                  )
               ],
             ),
             body: Column(
@@ -190,7 +223,27 @@ class TeacherHomeScreen extends GetView<TeacherHomeController> {
                                       borderRadius: BorderRadius.circular(20),
                                     ),
                                     child: Column(
+                                      
                                       children: [
+                                        SizedBox(
+                                            
+                                            child: DefaultTextStyle(
+                                              style: const TextStyle(
+                                                fontSize: 18.0,
+                                                fontWeight: FontWeight.bold,
+                                                color: Color(0xff6875F5),
+                                              ),
+                                              child: AnimatedTextKit(
+                                                animatedTexts: [
+                                                  FadeAnimatedText('Next Lecture!'),
+                                                  FadeAnimatedText(controller.currentLecture[0]
+                                                  .subject.name),
+                                                ],
+                                                isRepeatingAnimation: true,
+                                              ),
+                                            ),
+                                        ),
+                                        SizedBox(height: 30,),
                                         Container(
                                           height: MediaQuery.of(context)
                                                   .size
@@ -286,7 +339,7 @@ class TeacherHomeScreen extends GetView<TeacherHomeController> {
                         SizedBox(
                           height: 30,
                         ),
-                        Text("Not started"),
+                        controller.currentLecture.isNotEmpty?
                         MyButton(
                             label: "Take Attendance",
                             onTap: () => showDialog<String>(
@@ -321,7 +374,7 @@ class TeacherHomeScreen extends GetView<TeacherHomeController> {
                                       ),
                                     );
                                   }
-                                })),
+                                })):Text('There is no current lecture yet !')
                       ],
                     )),
               ],

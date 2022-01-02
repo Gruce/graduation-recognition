@@ -8,7 +8,7 @@ import 'package:graduaiton_app/util/utilities.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-class StudentProfileController extends GetxController {
+class AbsencesController extends GetxController {
   late SharedPreferences prefs;
   Rx<StudentModel> student = StudentModel().obs;
   void onInit() async {

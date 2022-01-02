@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:isolate';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graduaiton_app/models/schedule/lectuer.dart';
 import 'package:graduaiton_app/models/student_models/student.dart';
@@ -61,7 +62,8 @@ class AttendanceStudentsController extends GetxController {
     var res1 = await Utilities.httpPost(
         'teacher/send-students-absence/' + currentLecture,
         {'ids': jsonEncode(absentStudents)});
-    Get.snackbar('Sucssful', 'rfgd');
+    Get.snackbar(' Done ', 'Attendance have been taken Successfully',
+        backgroundColor: Colors.green[200], icon: Icon(Icons.done));
     update();
   }
 

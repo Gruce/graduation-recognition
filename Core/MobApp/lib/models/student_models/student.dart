@@ -55,9 +55,13 @@ class StudentModel {
     if (json.containsKey('unit')) {
       unit = UnitModel.fromJson(json['unit']);
     }
-     for (var absence in json['absences']) {
+
+    if (json.containsKey('absences')) {
+        for (var absence in json['absences']) {
       absences.add(AbsencesModel.fromJson(absence));
     }
+    }
+    
   }
 
   Map<dynamic, dynamic> toJson() {

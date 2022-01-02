@@ -17,6 +17,7 @@ import 'package:graduaiton_app/screens/student/changeStage/change_Stage.dart';
 import 'package:graduaiton_app/screens/student/changeStage/change_Stage_layout.dart';
 import 'package:graduaiton_app/screens/student/home_page/home_screen.dart';
 import 'package:graduaiton_app/screens/student/lectures/lectures_of_week.dart';
+import 'package:graduaiton_app/screens/student/profile/profile.dart';
 import 'package:graduaiton_app/screens/student/profile/profile_screen.dart';
 import 'package:graduaiton_app/screens/student/subject/subjects_student.dart';
 import 'package:graduaiton_app/screens/teacher/home_page/home_screen.dart';
@@ -144,7 +145,7 @@ class Routes {
 
     GetPage(
         name: studentProfile,
-        page: () => StudentProfileScreen(),
+        page: () => StudentsProfileScreen(),
         binding: StudentProfileBinding()),
   ];
 }

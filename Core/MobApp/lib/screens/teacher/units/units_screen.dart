@@ -37,7 +37,7 @@ class TeacherUnitsScreen extends GetView {
                                             controller.units[index].name == 'A'
                                                 ? Color(0xffd4d8ff)
                                                 : Color(0xffFBEDEE),
-                                        borderRadius: BorderRadius.circular(20),
+                                        borderRadius: BorderRadius.circular(7),
                                       ),
                                       child: Column(
                                         children: [
@@ -88,8 +88,8 @@ class TeacherUnitsScreen extends GetView {
                                                             .section
                                                             .name),
                                                       ]),
-                                                      const Text(
-                                                          'Subject Title'),
+                                                       Text(
+                                                          'h'),
                                                     ],
                                                   )),
                                               subtitle: Row(
@@ -97,7 +97,7 @@ class TeacherUnitsScreen extends GetView {
                                                     MainAxisAlignment
                                                         .spaceBetween,
                                                 children: [
-                                                  Text(
+                                                  Text('Number of student: '+
                                                     controller.units[index]
                                                         .students_count
                                                         .toString(),

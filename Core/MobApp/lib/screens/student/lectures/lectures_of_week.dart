@@ -143,7 +143,11 @@ class LecturesWeekScreen extends GetView {
                                               horizontal: 10.0, vertical: 5.0),
                                           child: const Text('Not Found',
                                               style: TextStyle(
-                                                  fontSize: 24)))))))),
+                                                  fontSize: 24))
+                                                  )
+                                                  ))
+                                                  )
+                                                  )),
             )
           ],
         ));

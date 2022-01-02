@@ -15,7 +15,7 @@ class StudentIndex extends Component
 
         $response = StudentController::current_lecture();
         if($response->getStatusCode() == 200)
-            $current_lecture = $response2->getData()->data;
+            $current_lecture = $response->getData()->data;
         else $current_lecture = [];
 
         return view('livewire.students.student-index' , 

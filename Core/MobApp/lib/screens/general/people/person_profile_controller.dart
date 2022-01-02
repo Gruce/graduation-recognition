@@ -11,7 +11,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 class PersonProfileController extends GetxController {
   StudentModel student = StudentModel();
   RxString imageURL = ''.obs;
-  AdminStudentsAbsencesController absenceController = AdminStudentsAbsencesController();
+  AdminStudentsAbsencesController absenceController =
+      AdminStudentsAbsencesController();
 
   void onInit() async {
     super.onInit();
@@ -25,9 +26,5 @@ class PersonProfileController extends GetxController {
       // imageURL.value = jsonDecode(res.body)['image'];
     }
     update();
-  }
-
-  void getStudentId(int id){
-      absenceController.getStudentId(id);
   }
 }

@@ -23,201 +23,186 @@ class AdminStudentAbsences extends GetView {
       AdminStudentsAbsencesController();
 
   Widget build(BuildContext context) {
+    absenceController.fetch(Get.arguments);
+
     return Scaffold(
-        appBar: _appBar(context),
-        // body: StudentAbsence(),
-        body: Column(
-          children: [
-            GetBuilder<AdminStudentsAbsencesController>(
-                builder: (_) => absenceController.loaded.value
-                    ? Column(
-                        children: List.from(absenceController.student.absences)
-                            .map(
-                              (absence) => Card(
-                                elevation: 0,
-                                color: Colors.transparent,
-                                margin: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 5.0),
-                                child: Container(
-                                  padding: const EdgeInsets.all(5.0),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
+      appBar: _appBar(context),
+      // body: StudentAbsence(),
+      body: Obx(() => absenceController.student.value.absences.isNotEmpty
+          ? Column(
+              children: List.from(absenceController.student.value.absences)
+                  .map(
+                    (absence) => Card(
+                      elevation: 0,
+                      color: Colors.transparent,
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 5.0),
+                      child: Container(
+                        padding: const EdgeInsets.all(5.0),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: const Color.fromRGBO(255, 255, 255, 1)),
+                        child: ListTile(
+                          contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 25.0, vertical: 10.0),
+                          title: Container(
+                            margin: const EdgeInsets.only(bottom: 10.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  absence.subject.name,
+                                  style: const TextStyle(
+                                      fontSize: 18, color: Color(0xff6875F5)),
+                                ),
+                                Container(
+                                    padding: const EdgeInsets.all(5.0),
+                                    decoration: BoxDecoration(
                                       color: const Color.fromRGBO(
-                                          255, 255, 255, 1)),
-                                  child: ListTile(
-                                    contentPadding: const EdgeInsets.symmetric(
-                                        horizontal: 25.0, vertical: 10.0),
-                                    title: Container(
-                                      margin:
-                                          const EdgeInsets.only(bottom: 10.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            absence.subject.name,
-                                            style: const TextStyle(
-                                                fontSize: 18,
-                                                color: Color(0xff6875F5)),
-                                          ),
-                                          Container(
-                                              padding:
-                                                  const EdgeInsets.all(5.0),
-                                              decoration: BoxDecoration(
-                                                color: const Color.fromRGBO(
-                                                    235, 235, 235, .8),
-                                                border: Border.all(
-                                                  color: const Color.fromRGBO(
-                                                      235, 235, 235, .8),
-                                                  width: 2.0,
-                                                ),
-                                                borderRadius: const BorderRadius
-                                                        .all(
-                                                    Radius.circular(
-                                                        5.0) //                 <--- border radius here
-                                                    ),
-                                              ),
-                                              child: Text(
-                                                absence.subject.absencesCount,
-                                                style: const TextStyle(
-                                                  fontSize: 15,
-                                                  color: Color(0xff6875F5),
-                                                ),
-                                              ))
-                                        ],
+                                          235, 235, 235, .8),
+                                      border: Border.all(
+                                        color: const Color.fromRGBO(
+                                            235, 235, 235, .8),
+                                        width: 2.0,
                                       ),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(
+                                              5.0) //                 <--- border radius here
+                                          ),
                                     ),
-                                    subtitle: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: <Widget>[
-                                        Container(
-                                          padding: const EdgeInsets.all(5.0),
-                                          decoration: BoxDecoration(
-                                            color: const Color.fromRGBO(
-                                                235, 235, 235, .8),
-                                            border: Border.all(
-                                              color: const Color.fromRGBO(
-                                                  235, 235, 235, .8),
-                                              width: 2.0,
-                                            ),
-                                            borderRadius: const BorderRadius
-                                                    .all(
-                                                Radius.circular(
-                                                    5.0) //                 <--- border radius here
-                                                ),
-                                          ),
-                                          child: Row(
-                                            children: const [
-                                              Icon(
-                                                Icons.photo_camera_outlined,
-                                                size: 14,
-                                              ),
-                                              SizedBox(width: 5),
-                                              Text(
-                                                  // camera.isNotEmpty ? camera :
-                                                  "Section",
-                                                  style: TextStyle(
-                                                    fontSize: 12,
-                                                  ))
-                                            ],
-                                          ),
-                                        ),
-                                        const SizedBox(width: 15),
-                                        Container(
-                                          padding: const EdgeInsets.all(5.0),
-                                          decoration: BoxDecoration(
-                                            color: const Color.fromRGBO(
-                                                235, 235, 235, .8),
-                                            border: Border.all(
-                                              color: const Color.fromRGBO(
-                                                  235, 235, 235, .8),
-                                              width: 2.0,
-                                            ),
-                                            borderRadius:
-                                                const BorderRadius.all(
-                                                    Radius.circular(5.0)),
-                                          ),
-                                          child: Row(
-                                            children: const [
-                                              Icon(
-                                                Icons.schedule,
-                                                size: 14,
-                                              ),
-                                              SizedBox(width: 5),
-                                              Text(
-                                                  // time.isNotEmpty ? time :
-                                                  "Stage",
-                                                  style:
-                                                      TextStyle(fontSize: 12))
-                                            ],
-                                          ),
-                                        ),
-                                        const SizedBox(width: 15),
-                                        Container(
-                                          padding: const EdgeInsets.all(5.0),
-                                          decoration: BoxDecoration(
-                                            color: const Color.fromRGBO(
-                                                235, 235, 235, .8),
-                                            border: Border.all(
-                                              color: const Color.fromRGBO(
-                                                  235, 235, 235, .8),
-                                              width: 2.0,
-                                            ),
-                                            borderRadius:
-                                                const BorderRadius.all(
-                                                    Radius.circular(5.0)),
-                                          ),
-                                          child: Row(
-                                            children: const [
-                                              Icon(
-                                                Icons
-                                                    .store_mall_directory_outlined,
-                                                size: 14,
-                                              ),
-                                              SizedBox(width: 5),
-                                              Text(
-                                                  // time.isNotEmpty ? time :
-                                                  "Unit",
-                                                  style: TextStyle(
-                                                    fontSize: 12,
-                                                  ))
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    // trailing: const Icon(Icons.keyboard_arrow_right, size: 30.0)
+                                    child: Text(
+                                      absence.subject.absencesCount.toString(),
+                                      style: const TextStyle(
+                                        fontSize: 15,
+                                        color: Color(0xff6875F5),
+                                      ),
+                                    ))
+                              ],
+                            ),
+                          ),
+                          subtitle: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                padding: const EdgeInsets.all(5.0),
+                                decoration: BoxDecoration(
+                                  color:
+                                      const Color.fromRGBO(235, 235, 235, .8),
+                                  border: Border.all(
+                                    color:
+                                        const Color.fromRGBO(235, 235, 235, .8),
+                                    width: 2.0,
                                   ),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(
+                                          5.0) //                 <--- border radius here
+                                      ),
+                                ),
+                                child: Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.photo_camera_outlined,
+                                      size: 14,
+                                    ),
+                                    const SizedBox(width: 5),
+                                    Text(
+                                        absenceController
+                                            .student.value.section.name,
+                                        style: const TextStyle(
+                                          fontSize: 12,
+                                        ))
+                                  ],
                                 ),
                               ),
-                            )
-                            .toList(),
-                      )
-                    : Container()),
+                              const SizedBox(width: 15),
+                              Container(
+                                padding: const EdgeInsets.all(5.0),
+                                decoration: BoxDecoration(
+                                  color:
+                                      const Color.fromRGBO(235, 235, 235, .8),
+                                  border: Border.all(
+                                    color:
+                                        const Color.fromRGBO(235, 235, 235, .8),
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(5.0)),
+                                ),
+                                child: Row(
+                                  children: const [
+                                    Icon(
+                                      Icons.schedule,
+                                      size: 14,
+                                    ),
+                                    SizedBox(width: 5),
+                                    Text(
+                                        // time.isNotEmpty ? time :
+                                        "Stage",
+                                        style: TextStyle(fontSize: 12))
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(width: 15),
+                              Container(
+                                padding: const EdgeInsets.all(5.0),
+                                decoration: BoxDecoration(
+                                  color:
+                                      const Color.fromRGBO(235, 235, 235, .8),
+                                  border: Border.all(
+                                    color:
+                                        const Color.fromRGBO(235, 235, 235, .8),
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(5.0)),
+                                ),
+                                child: Row(
+                                  children: const [
+                                    Icon(
+                                      Icons.store_mall_directory_outlined,
+                                      size: 14,
+                                    ),
+                                    SizedBox(width: 5),
+                                    Text(
+                                        // time.isNotEmpty ? time :
+                                        "Unit",
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                        ))
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ), // trailing: const Icon(Icons.keyboard_arrow_right, size: 30.0)
+                        ),
+                      ),
+                    ),
+                  )
+                  .toList(),
+            )
+          : Text('bye')),
 
-            // SizedBox(height: 10,),
-            // Container(
-            //     padding: const EdgeInsets.only(left: 10, right: 10),
-            //     decoration: BoxDecoration(
-            //       color: Colors.grey[200],
-            //       border: Border.all(
-            //         color: Colors.white.withOpacity(1),
-            //         width: 1.0,
-            //       ),
-            //       borderRadius: BorderRadius.circular(10),
-            //     ),
-            //     child: Expanded(
-            //         child: FlatButton(
-            //             onPressed: () => Get.toNamed(Routes.adminNotification,
-            //                 arguments: studentController.student.user),
-            //             child: const Text("Send Attention",
-            //                 textAlign: TextAlign.center,
-            //                 style: TextStyle(
+      // SizedBox(height: 10,),
+      // Container(
+      //     padding: const EdgeInsets.only(left: 10, right: 10),
+      //     decoration: BoxDecoration(
+      //       color: Colors.grey[200],
+      //       border: Border.all(
+      //         color: Colors.white.withOpacity(1),
+      //         width: 1.0,
+      //       ),
+      //       borderRadius: BorderRadius.circular(10),
+      //     ),
+      //     child: Expanded(
+      //         child: FlatButton(
+      //             onPressed: () => Get.toNamed(Routes.adminNotification,
+      //                 arguments: studentController.student.user),
+      //             child: const Text("Send Attention",
+      //                 textAlign: TextAlign.center,
+      //                 style: TextStyle(
 
-            //                     color: Color(0xff8892f7), fontSize: 14))))),
-          ],
-        ));
+      //                     color: Color(0xff8892f7), fontSize: 14))))),
+    );
   }
 
   _appBar(BuildContext) {

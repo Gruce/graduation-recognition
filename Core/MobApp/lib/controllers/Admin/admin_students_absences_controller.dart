@@ -11,43 +11,23 @@ import '../../config.dart';
 
 class AdminStudentsAbsencesController extends GetxController {
   late SharedPreferences prefs;
-  StudentModel student = StudentModel();
-  SubjectModel subject = SubjectModel();
-  // RxList subjects = [].obs;
-  RxBool loaded = true.obs;
+  Rx<StudentModel> student = StudentModel().obs;
   int id = 0;
-  int userId = -1;
-  @override
-  void onInit() async {
-    fetch(id);
-    super.onInit();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
 
   void fetch(id) async {
-    var res = await Utilities.httpGet('admin/students/absences/'+ id.toString());
+    var res =
+        await Utilities.httpGet('admin/students/absences/' + id.toString());
     if (res.statusCode == 200) {
-      // print(res.body);
       var response = json.decode(res.body)['data'];
-      student = StudentModel.fromJson(response);
+      StudentModel s = StudentModel.fromJson(response);
       var response2 = json.decode(res.body)['subjects'];
-      // print(response2['DATA WHEREHOUSE']);
-      for(AbsencesModel absence in student.absences){
-         if (response2.containsKey(absence.subject.name)){
-           absence.subject.absencesCount = response2[absence.subject.name];
-         }
+      for (AbsencesModel absence in s.absences) {
+        if (response2.containsKey(absence.subject.name)) {
+          absence.subject.absencesCount = response2[absence.subject.name];
+        }
       }
+      student.value = s;
     }
-    loaded.value = true ;
     update();
   }
-
-  void getStudentId(int id){
-    fetch(id);
-  }
-
 }

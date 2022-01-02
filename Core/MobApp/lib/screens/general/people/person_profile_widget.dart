@@ -64,12 +64,14 @@ class PersonProfileWidget extends GetView {
                                               title: Row(
                                                 children: [
                                                   Container(
-                                                    width: 80,
-                                                    height: 30,
+                                                      width: 80,
+                                                      height: 30,
                                                       padding:
-                                                          const EdgeInsets.only(top: 5),
+                                                          const EdgeInsets.only(
+                                                              top: 5),
                                                       decoration: BoxDecoration(
-                                                        color: const Color(0xff8892f7),
+                                                        color: const Color(
+                                                            0xff8892f7),
                                                         border: Border.all(
                                                           color: Colors.white
                                                               .withOpacity(1),
@@ -83,9 +85,12 @@ class PersonProfileWidget extends GetView {
                                                         child: Text(
                                                           controller.student
                                                               .user.typeString,
-                                                          style:const TextStyle(
-                                                              color:
-                                                                  Colors.white),textAlign: TextAlign.center,
+                                                          style:
+                                                              const TextStyle(
+                                                                  color: Colors
+                                                                      .white),
+                                                          textAlign:
+                                                              TextAlign.center,
                                                         ),
                                                       )),
                                                 ],
@@ -103,9 +108,10 @@ class PersonProfileWidget extends GetView {
                                             MainAxisAlignment.spaceBetween,
                                         children: <Widget>[
                                           Container(
-                                            padding:const EdgeInsets.only(left: 15,right: 15),
+                                              padding: const EdgeInsets.only(
+                                                  left: 15, right: 15),
                                               decoration: BoxDecoration(
-                                                color:  Colors.grey[200],
+                                                color: Colors.grey[200],
                                                 border: Border.all(
                                                   color: Colors.white
                                                       .withOpacity(1),
@@ -116,24 +122,24 @@ class PersonProfileWidget extends GetView {
                                               ),
                                               child: Expanded(
                                                   child: FlatButton(
-                                                      onPressed: () => { controller.getStudentId(controller.student.id),
-                                                      Get.toNamed(
+                                                      onPressed: () => Get.toNamed(
                                                           Routes
                                                               .adminStudentAbsences,
                                                           arguments: controller
-                                                              .student.user),
-                                                              },
-                                                                                                              
+                                                              .student.id),
                                                       child: const Text(
-                                                          "Show Absences",textAlign: TextAlign.center,
+                                                          "Show Absences",
+                                                          textAlign:
+                                                              TextAlign.center,
                                                           style: TextStyle(
                                                               color:
                                                                   Color(0xff8892f7),
                                                               fontSize: 14))))),
                                           Container(
-                                            padding:const EdgeInsets.only(left: 15,right: 15),
+                                              padding: const EdgeInsets.only(
+                                                  left: 15, right: 15),
                                               decoration: BoxDecoration(
-                                                color:  Colors.grey[200],
+                                                color: Colors.grey[200],
                                                 border: Border.all(
                                                   color: Colors.white
                                                       .withOpacity(1),
@@ -150,10 +156,12 @@ class PersonProfileWidget extends GetView {
                                                           arguments: controller
                                                               .student.user),
                                                       child: const Text(
-                                                          "Send Notification",textAlign: TextAlign.center,
+                                                          "Send Notification",
+                                                          textAlign:
+                                                              TextAlign.center,
                                                           style: TextStyle(
                                                               color:
-                                                                   Color(0xff8892f7),
+                                                                  Color(0xff8892f7),
                                                               fontSize: 14))))),
                                         ],
                                       )

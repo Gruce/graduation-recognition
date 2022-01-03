@@ -64,6 +64,11 @@
                         'active' => isRoute('dashboard'),
                     ],
                     [
+                        'name' => 'Subjects',
+                        'route' => 'teacher_subjects',
+                        'active' => isRoute('teacher_subjects'),
+                    ],
+                    [
                         'name' => 'Students',
                         'route' => 'teacher_students',
                         'active' => isRoute('teacher_students'),
@@ -165,4 +170,8 @@
 
     function isRoute($route){
         return str_contains(Route::getCurrentRoute()->getPrefix(), $route);
+    }
+
+    function dg($data){
+        \Debugbar::info($data);
     }

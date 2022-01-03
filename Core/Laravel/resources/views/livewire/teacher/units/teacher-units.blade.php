@@ -4,12 +4,14 @@
             My Units
         </h2>
     </x-slot>
-    @livewire('actions' , ['folder' => null , 'file' => null , 'search' => 'Unit name'])
+    @livewire('actions' , ['folder' => 'teacher.units' , 'file' => 'add-unit' , 'search' => 'Unit name'])
     <div class="mt-3">
         <section class="text-gray-600 body-font">
-            <div class="container mx-auto">
-                <div class="flex flex-wrap text-center">
+                <div class="flex justify-center">
                     @forelse($units as $unit)
+                        <button wire:click="delete({{ $unit->id}})" class="text-red-500"> 
+                            <i class="material-icons text-base">delete</i>
+                        </button>
                         <div class="w-1/3 p-1 pl-0" >
                             <a href="{{route('teacher_students' , ['unitID' => $unit->id])}}">
                                 <div class="p-6 bg-white rounded-lg transition duration-300 ease-in-out border border-transparent hover:border-gray-300">
@@ -23,7 +25,6 @@
                         <p>No Units</p>
                     @endforelse
                 </div>
-            </div>
         </section>
 
     </div>
@@ -34,7 +35,7 @@
         return {
         activeTab: -1,
         tabs: [
-            // '<span class="material-icons-outlined mr-2">add</span>New Student',
+            '<span class="material-icons-outlined mr-2">add</span>New Unit',
             '<span class="material-icons-outlined mr-2">search</span>Search',
         ]
         };

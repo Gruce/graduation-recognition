@@ -40,6 +40,9 @@ class TeacherTasks extends Component
             ]
         )->where('title' , 'LIKE' , $search)->paginate(15);
 
+
+        // dd($tasks);
+
         return view('livewire.teacher.tasks.teacher-tasks' , ['tasks' => $tasks]);
     }
 }

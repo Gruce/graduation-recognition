@@ -90,8 +90,8 @@
                                 <tr class="bg-gray-100 text-gray-400">
                                     <th class="p-3" colspan="5">{{$day->name}}</th>
                                 </tr>
-                                
                                 @forelse($lectures as $i => $lecture)
+                                @if($lecture->day->name == $day->name)
                                 <tr class="@if(date('l') == $lecture->day->name) bg-blue-50 @else bg-gray-50 @endif">
                                     <td class="p-3 text-center">
                                         {{ $loop->iteration }}
@@ -140,59 +140,7 @@
                                             </div>
                                         </div>
                                     </td>
-                                    {{-- <td class="p-3">
-                                        <div>
-                                            <span class="text-gray-500">
-                                                {{ $task->body }} 
-                                            </span>
-                                        </div>
-                                    </td>
-                                    <td class="p-3">
-                                        <div>
-                                            <span class="text-gray-500">
-                                                {{ $task->deadline }}
-                                            </span>
-                                        </div>
-                                    </td>
-                                    <td class="p-3">
-                                        <div>
-                                            <span class="text-gray-500">
-                                                <button class="flex items-center text-white px-4 w-auto h-12 bg-blue-600 rounded hover:bg-blue-800 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none"> 
-                                                    عرض
-                                                </button>
-                                            </span>
-                                        </div>
-                                    </td>  --}}
-                                    {{-- <td class="p-3">
-                                        <div x-data="{ show: false }">
-                                            <span x-show="!show" @click="show = !show" class="text-gray-500">
-                                                {{ $unit->stage->name }}
-                                            </span>
-                                            <div x-show="show">
-                                                <div class="text-gray-600 focus-within:text-gray-400">
-                                                    <select wire:keydown.enter="save()" wire:model="units.{{ $i }}.stage_id" class="py-3 block w-full text-sm text-gray-400 bg-gray-100 rounded-md px-5 focus:outline-none focus:bg-gray-50 focus:text-gray-900">
-                                                        <option value="">Please select</option>
-                                                        @foreach ($stages as $stage)
-                                                        @if($stage->section_id == $unit->section_id)
-                                                        <option value="{{$stage->id}}">{{$stage->name}}</option>
-                                                        @endif
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="p-3">
-                                        <div>
-                                            <span class="text-gray-500">
-                                                {{ $unit->students_count }}
-                                            </span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                    fh
-                                    </td>
-                                </tr>--}}
+                                @endif
                                 @empty
                                 <tr class="bg-red-100">
                                     <td colspan="8" class="p-3 text-center">
@@ -201,12 +149,9 @@
                                 </tr>
                                 @endforelse
                             @endforeach
-
-
                         </tbody>
                     </table>
                 </div>
-                {{-- {{ $units->links() }} --}}
             </div>
         </section>
 

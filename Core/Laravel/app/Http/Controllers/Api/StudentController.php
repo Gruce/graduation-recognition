@@ -117,7 +117,7 @@ class StudentController extends Controller
         return response()->json(['data' => $student]);
     }
 
-    public function absences(){
+    public static function absences(){
         $student = auth()->user()->student()->first();
         $absences = $student->absences()->with('subject')->get();
 

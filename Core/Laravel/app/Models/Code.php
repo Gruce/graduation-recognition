@@ -9,6 +9,8 @@ class Code extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['unit_id' , 'code'];
+
     public function unit(){
         return $this->belongsTo(Unit::class);
     }

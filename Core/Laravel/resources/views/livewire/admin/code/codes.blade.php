@@ -7,18 +7,26 @@
     <div class="mt-3">
         <section class="text-gray-600 body-font">
             <div class="container px-5 py-10 mx-auto bg-white rounded-lg max-w-7xl sm:px-6 lg:px-8">
+                <div>
+                    <button wire:click="new_codes" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                        New Codes
+                    </button>  
+                    <button wire:click="delete_all" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
+                        Delete All Codes 
+                    </button>                      
+                </div>
                 <div class="flex justify-center">
                     <table class="table text-gray-400 border-separate space-y-6 w-full text-sm">
                         <thead class="bg-gray-200 text-gray-500">
                             <tr>
                                 <th class="p-3">#</th>
-                                <th class="p-3 text-left">Title</th>
-                                <th class="p-3 text-left">Body</th>
-                                <th class="p-3 text-left">File</th>
+                                <th class="p-3 text-left">Code</th>
+                                <th class="p-3 text-left">Section - Stage - Unit</th>
+                                <th class="p-3 text-left">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse($tasks as $i => $task)
+                            @forelse($codes as $i => $code)
                             <tr class="bg-gray-50">
                                 <td class="p-3 text-center">
                                     {{ $loop->iteration }}
@@ -28,7 +36,7 @@
                                         <div class="ml-3">
                                             <div>
                                                 <span class="font-bold text-gray-500">
-                                                    {{ $task->title }}
+                                                    {{ $code->code }}
                                                 </span>
                                             </div>
                                         </div>
@@ -37,28 +45,22 @@
                                 <td class="p-3">
                                     <div>
                                         <span class="text-gray-500">
-                                            {{ $task->body }}
+                                            {{ $code->unit->section->name }} -
+                                            {{ $code->unit->stage->name }} -
+                                            {{ $code->unit->name }}
                                         </span>
                                     </div>
                                 </td>
                                 <td class="p-3">
-                                    <div>
-                                        <span class="text-gray-500">
-                                            @if(count($task->files) > 0 )
-                                                <a href="{{route('task_show' , ['task_id' => $task->id])}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-                                                    Show Files
-                                                </a>
-                                            @else 
-                                                No File
-                                            @endif
-                                        </span>
-                                    </div>
+                                    <button wire:click="delete('Code', '{{ $code->id}}')" class="text-red-500"> 
+                                        <i class="material-icons text-base">delete</i>
+                                    </button>
                                 </td>
                             </tr>
                             @empty
                             <tr class="bg-red-100">
                                 <td colspan="8" class="p-3 text-center">
-                                    No Tasks
+                                    No Codes
                                 </td>
                             </tr>
                             @endforelse
@@ -66,7 +68,6 @@
                         </tbody>
                     </table>
                 </div>
-                {{ $tasks->links() }}
             </div>
         </section>
 

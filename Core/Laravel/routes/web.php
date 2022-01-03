@@ -26,6 +26,7 @@ use App\Http\Livewire\Admin\{
     Train\TrainNew,
     Settings,
     JoinRequest\JoinRequests,
+    Code\Codes,
 };
     ## END ADMIN ##
 
@@ -44,6 +45,8 @@ use App\Http\Livewire\Teacher\{
 use App\Http\Livewire\Students\{
     StudentIndex,
     StudentTasks,
+    StudentTaskShow,
+    StudentAbsences,
     ChangeUnit,
 };
     ## END STUDENT ##
@@ -114,6 +117,11 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
             Route::group(['prefix' => 'schedule'] ,function(){
                 Route::get('/', Schedules::class)->name('schedule');
             });
+
+            # schedule #
+            Route::group(['prefix' => 'codes'] ,function(){
+                Route::get('/', Codes::class)->name('codes');
+            });
         });
 
         ## End Settings ##
@@ -145,6 +153,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::group(['prefix' => 'student' , 'middleware' => 'student'] ,function(){
         Route::get('/tasks', StudentTasks::class)->name('student_task');
         Route::get('/change-unit', ChangeUnit::class)->name('change_unit');
+        Route::get('/task-Show/{task_id}', StudentTaskShow::class)->name('task_show');
+        Route::get('/absences', StudentAbsences::class)->name('student_absences');
     });
 
     #### END STUDENT ####

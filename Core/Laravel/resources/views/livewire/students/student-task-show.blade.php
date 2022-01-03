@@ -14,7 +14,6 @@
                                 <tr>
                                     <th class="p-3 text-left">Title</th>
                                     <th class="p-3 text-left">Body</th>
-                                    <th class="p-3 text-left">Section - Stage - Units</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -36,22 +35,6 @@
                                                 <div>
                                                     <span class="font-bold text-gray-500">
                                                         {{ $task->body }}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="p-3">
-                                        <div class="flex align-items-center">
-                                            <div class="ml-3">
-                                                <div>
-                                                    <span class="font-bold text-gray-500">
-                                                        {{ $task->units[0]->section->name }} - 
-                                                        {{ $task->units[0]->stage->name }} - [
-                                                        @foreach($task->units as $unit)
-                                                            {{$unit->name}} ,
-                                                        @endforeach
-                                                        ]
                                                     </span>
                                                 </div>
                                             </div>
@@ -107,7 +90,6 @@
                 </div>
             </div>
         </section>
-        {{-- <img src="{{asset($task->files[0]->file_path)}}"> --}}
     </div>
 
 </div>

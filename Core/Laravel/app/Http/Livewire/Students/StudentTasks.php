@@ -13,10 +13,9 @@ class StudentTasks extends Component
     public function render()
     {
         $student = auth()->user()->student()->first();
-        $unit = $student->unit()->with(['tasks' => function ($task){
-            return $task->with('files')->paginate(10);
-        }])->first();
+        $unit = $student->unit()->first();
+        $tasks = $unit->tasks()->with('files')->paginate(15);
 
-        return view('livewire.students.student-tasks' , ['units' => $unit]);
+        return view('livewire.students.student-tasks' , ['tasks' => $tasks]);
     }
 }

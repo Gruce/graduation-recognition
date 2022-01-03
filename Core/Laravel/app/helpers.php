@@ -96,6 +96,11 @@
                         'active' => isRoute('student_task'),
                     ],
                     [
+                        'name' => 'Absences',
+                        'route' => 'student_absences',
+                        'active' => isRoute('student_absences'),
+                    ],
+                    [
                         'name' => 'Change Unit',
                         'route' => 'change_unit',
                         'active' => isRoute('change_unit'),
@@ -140,6 +145,11 @@
                         'name' => 'Schedule',
                         'route' => 'schedule',
                         'active' => isRoute('schedule'),
+                    ],
+                    [
+                        'name' => 'Codes',
+                        'route' => 'codes',
+                        'active' => isRoute('codes'),
                     ],
                 ];
             }break;

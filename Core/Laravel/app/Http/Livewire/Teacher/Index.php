@@ -86,6 +86,8 @@ class Index extends Component
 
         $units_lectures = $teacher->get_lectures()->get();
 
+        // dd($units_lectures->toArray());
+
         $current_lecture = $teacher->current_lecture();
 
         $this->lecture = $current_lecture;

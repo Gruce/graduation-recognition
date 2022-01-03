@@ -23,7 +23,13 @@ class ChangeUnit extends Component
 
         if($unit){
             $student = auth()->user()->student()->first();
-            $update = $student->update(['unit_id' => $unit->id]);
+            $update = $student->update(
+                [
+                    'section_id' => $unit->section_id,
+                    'stage_id' => $unit->stage_id,
+                    'unit_id' => $unit->id
+                ]
+            );
             $this->alert('success' , 'Done');
         } else {
             $this->alert('warning' , 'Code Not Working!');
@@ -31,6 +37,9 @@ class ChangeUnit extends Component
     }
     public function render()
     {
-        return view('livewire.students.change-unit');
+        $codes = Code::get();
+        $code_state = count($codes) > 0 ? true : false;
+
+        return view('livewire.students.change-unit' , ['code_state' => $code_state]);
     }
 }

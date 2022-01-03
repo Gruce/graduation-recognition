@@ -119,7 +119,7 @@ class AdminProfileScreen extends GetView {
                               borderRadius: BorderRadius.circular(5),
                             ),
                             child: Column(
-                              children: const <Widget>[
+                              children: <Widget>[
                                 ListTile(
                                   title: Text("Person Information",
                                       style: TextStyle(color: Color(0xff6875F5))),
@@ -132,33 +132,36 @@ class AdminProfileScreen extends GetView {
                                 ),
                                 ListTile(
                                   title: Text("Email"),
-                                  subtitle: Text("karm.99zo@gmail.com"),
+                                  subtitle: controller.user.value.name.isNotEmpty
+                                                  ? Text(
+                                                controller.user.value.email,
+                                      ):Text("no email"),
                                   leading: Icon(Icons.email, color: Color(0xff6875F5)),
                                 ),
-                                ListTile(
-                                  title: Text("Phone Number"),
-                                  subtitle: Text("07701111111"),
-                                  leading: Icon(Icons.phone, color: Color(0xff6875F5)),
-                                ),
-                                ListTile(
-                                  title: Text("About"),
-                                  subtitle: Text(
-                                      "Abdulkareem mgbel farhan al-khalifa.\nbla bla bla bla bla bla bla bla bla bla bla."),
-                                  leading: Icon(Icons.format_align_center,
-                                      color: Color(0xff6875F5)),
-                                ),
-                                ListTile(
-                                  title: Text("Living Location"),
-                                  subtitle: Text("AL-Hartha - Basra"),
-                                  leading:
-                                  Icon(Icons.location_city, color: Color(0xff6875F5)),
-                                ),
-                                ListTile(
-                                  title: Text("Joined College"),
-                                  subtitle: Text("11 November 2018"),
-                                  leading: Icon(Icons.calendar_view_day,
-                                      color: Color(0xff6875F5)),
-                                ),
+                                // ListTile(
+                                //   title: Text("Phone Number"),
+                                //   subtitle: Text("07701111111"),
+                                //   leading: Icon(Icons.phone, color: Color(0xff6875F5)),
+                                // ),
+                                // ListTile(
+                                //   title: Text("About"),
+                                //   subtitle: Text(
+                                //       "Abdulkareem mgbel farhan al-khalifa.\nbla bla bla bla bla bla bla bla bla bla bla."),
+                                //   leading: Icon(Icons.format_align_center,
+                                //       color: Color(0xff6875F5)),
+                                // ),
+                                // ListTile(
+                                //   title: Text("Living Location"),
+                                //   subtitle: Text("AL-Hartha - Basra"),
+                                //   leading:
+                                //   Icon(Icons.location_city, color: Color(0xff6875F5)),
+                                // ),
+                                // ListTile(
+                                //   title: Text("Joined College"),
+                                //   subtitle: Text("11 November 2018"),
+                                //   leading: Icon(Icons.calendar_view_day,
+                                //       color: Color(0xff6875F5)),
+                                // ),
 
                                 // ListTile(
                                 //   title: Text("Department"),

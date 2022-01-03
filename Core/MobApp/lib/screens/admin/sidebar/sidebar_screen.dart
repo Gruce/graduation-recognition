@@ -57,7 +57,7 @@ class AdminSidebarScreen extends GetWidget {
                         Divider(
                           height: 50,
                           thickness: 0.6,
-                          color: Colors.white.withOpacity(0.7),
+                          color: Colors.white.withOpacity(0.5),
                           indent: 22,
                           endIndent: 32,
                         ),
@@ -84,6 +84,13 @@ class AdminSidebarScreen extends GetWidget {
                                     onTap: () => {controller.onItemTap(i)},
                                   ),
                                 )),
+                        Divider(
+                          height: 50,
+                          thickness: 0.8,
+                          color: Colors.white.withOpacity(0.8),
+                          indent: 22,
+                          endIndent: 32,
+                        ),
                         Card(
                           elevation: 0,
                           color: const Color(0xff6875F5),

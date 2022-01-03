@@ -8,7 +8,6 @@ import 'package:graduaiton_app/screens/general/luctures/luctures_controller.dart
 import 'package:graduaiton_app/screens/general/people/lectures_absences_filter_widget.dart';
 import 'package:graduaiton_app/screens/general/people/person_profile_controller.dart';
 
-import 'student_absence.dart';
 
 class AdminStudentAbsences extends GetView {
   AdminStudentAbsences({Key? key}) : super(key: key);

@@ -17,6 +17,19 @@ class TeacherUnits extends Component
     public function getUnitStudents($id){
         $this->emit('unitID', $id);
     }
+
+    public function delete($id)
+    {
+        $teacher = auth()->user()->teacher()->first();
+        $teacherID = $teacher->id;
+        $unit = $teacher->units()->wherePivot('unit_id' , $id)->first();
+        $tasks = $unit->tasks()->where('teacher_id' , $teacherID)->get();
+        foreach($tasks as $task)
+            $task->units()->detach($id);
+            
+        $unit = $teacher->units()->detach($id);
+    }
+
     public function render()
     {
         $search = '%' . $this->search . '%';
@@ -26,6 +39,7 @@ class TeacherUnits extends Component
                 ->with(['section:id,name' , 'stage:id,name'])
                 ->where('name' , 'LIKE' , $search)
                 ->get();
+
         return view('livewire.teacher.units.teacher-units' , ['units' => $units]);
     }
 }

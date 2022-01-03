@@ -59,7 +59,7 @@
                                     <div>
                                         <span class="text-gray-500">
                                             @if(count($task->files) > 0 )
-                                                <a href="{{route('task_show' , ['task_id' => $task->id])}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                                                <a href="{{route('teacher_task_show' , ['task_id' => $task->id])}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
                                                     Show Files
                                                 </a>
                                             @else 

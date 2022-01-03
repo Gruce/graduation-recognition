@@ -141,7 +141,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         Route::get('/students/{unitID?}', TeacherStudents::class)->name('teacher_students');
         Route::get('/units', TeacherUnits::class)->name('teacher_unit');
         Route::get('/tasks', TeacherTasks::class)->name('teacher_task');
-        Route::get('/task-Show/{task_id}', TaskShow::class)->name('task_show');
+        Route::get('/task-Show/{task_id}', TaskShow::class)->name('teacher_task_show');
     });
 
     #### END TEACHER ####

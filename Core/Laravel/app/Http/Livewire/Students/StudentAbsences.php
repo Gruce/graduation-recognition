@@ -11,7 +11,10 @@ class StudentAbsences extends Component
     {
         $response = StudentController::absences();
         $subjects = $response->getData()->data;
-        
+
+        \Debugbar::info($subjects);
+
+
         return view('livewire.students.student-absences' , ['subjects' => $subjects]);
     }
 }

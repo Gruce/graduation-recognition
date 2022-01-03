@@ -166,3 +166,7 @@
     function isRoute($route){
         return str_contains(Route::getCurrentRoute()->getPrefix(), $route);
     }
+
+    function dg($data){
+        \Debugbar::info($data);
+    }

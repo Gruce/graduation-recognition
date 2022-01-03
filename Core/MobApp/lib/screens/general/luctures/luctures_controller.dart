@@ -32,10 +32,6 @@ class LucturesController extends GetxController {
   RxInt stageIndex = (-1).obs;
   RxInt unitIndex = (-1).obs;
 
-  // List<LectureModel> filteredStages = <LectureModel>[];
-  // RxList stages = <StageModel>[].obs;
-  // RxInt stageSelectedIndex = 0.obs;
-
   void oneTime() {
     properties.assignAll([
       Property(
@@ -62,24 +58,13 @@ class LucturesController extends GetxController {
         icon: const Icon(Icons.date_range),
         widget: LuctureDaysFilterWidget(controller2: this),
       ),
-      // Property(
-      //   name: 'lectures',
-      //   value: false,
-      //   icon: const Icon(Icons.date_range),
-      //   widget: LectureAbsencesFilterWidget(lecturesController: this),
-      // ),
     ]);
 
     filteredLectures.assignAll(lectures);
   }
 
   void filter() {
-    // LecturesSectionsController _sectionController = Get.put(LecturesSectionsController());
-    // LecturesStagesController _stageController = Get.put(LecturesStagesController());
-    // LecturesUnitsController _unitController = Get.put(LecturesUnitsController());
-
     filteredLectures.assignAll(lectures);
-
     // Search Filter
     if (textSearch.value.isNotEmpty) {
       filteredLectures.assignAll(lectures
@@ -88,12 +73,6 @@ class LucturesController extends GetxController {
               .contains(textSearch.value.toLowerCase()))
           .toList());
     }
-
-    // Another Filter
-    // _sectionController.filterBySection(sectionIndex);
-    // _stageController.filterByStage(stageIndex);
-    // _unitController.filterByUnit(unitIndex);
-
     update();
   }
 
@@ -102,18 +81,4 @@ class LucturesController extends GetxController {
     properties[i].value = !properties[i].value;
     update();
   }
-
-  // void filterByStage(index) {
-  //   stageSelectedIndex.value = index;
-  //   LectureModel stage = filteredStages[index];
-  //   print(filteredStages);
-
-  //   if (stage.id == -1) {
-  //     filteredLectures.assignAll(lectures);
-  //   } else {
-  //     filteredLectures.assignAll(lectures
-  //         .where((lecture) => lecture.unit.stage_id == stage.id));
-  //   }
-  //   update();
-  // }
 }

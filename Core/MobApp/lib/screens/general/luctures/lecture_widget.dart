@@ -133,27 +133,22 @@ class LuctureWidget extends GetWidget {
                                           )),
                                     ],
                                   ),
-                                  
                                 ])),
-                                  Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.view_day,
-                                        color: Colors.black54,
-                                        size: 14,
-                                      ),
-                                      const SizedBox(width: 3),
-                                      Text(
-                                          day.isNotEmpty
-                                              ? day
-                                              : "No day",
-                                          style: const TextStyle(
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.black54,
-                                          )),
-                                    ],
-                                  ),
+                            Row(
+                              children: [
+                                const Icon(
+                                  Icons.view_day,
+                                  color: Colors.black54,
+                                  size: 14,
+                                ),
+                                Text(day.isNotEmpty ? day : "No day",
+                                    style: const TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black54,
+                                    )),
+                              ],
+                            ),
                             Expanded(
                               flex: 2,
                               child: Row(
@@ -163,7 +158,6 @@ class LuctureWidget extends GetWidget {
                                     Icons.location_on_outlined,
                                     size: 14,
                                   ),
-                                  const SizedBox(width: 3),
                                   Text(
                                       classroom.isNotEmpty
                                           ? classroom

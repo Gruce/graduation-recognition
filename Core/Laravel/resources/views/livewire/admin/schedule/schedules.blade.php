@@ -1,7 +1,7 @@
 <div>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            People
+            Schedule
         </h2>
     </x-slot>
     @livewire('actions' , ['folder' => 'admin.schedule' , 'file' => 'schedule-add' , 'search' => 'Teacher name'])

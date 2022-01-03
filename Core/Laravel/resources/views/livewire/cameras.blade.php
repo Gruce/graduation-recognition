@@ -1,4 +1,27 @@
 <div class="mt-3" wire:poll.750ms>
+  <div>
+    <div class="py-12">
+        <div class="flex justify-center items-center w-full">
+            <div class="flex-grow container px-5 mx-auto rounded-lg max-w-7xl sm:px-6 lg:px-8" x-data="setup()">
+                <ul class="flex justify-left items-center my-4">
+                    <template class="flex-grow" x-for="(tab, index) in tabs" :key="index">
+                        <li class="cursor-pointer py-2 px-4 text-gray-500 border-b-8 flex"
+                            :class="activeTab===index ? 'text-gray-500 border-gray-500' : ''" @click="activeTab = index"
+                            x-html="tab"></li>
+                    </template>
+                </ul>
+                <div x-show="activeTab!==-1">
+                    <div class="container px-5 py-10 mx-auto bg-white rounded-lg max-w-7xl sm:px-6 lg:px-8">
+                        <div x-show="activeTab===0">
+                          @livewire('camera-add')
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
   <section class="text-gray-600 body-font">
     <div class="container px-5 py-10 mx-auto bg-white rounded-lg max-w-7xl sm:px-6 lg:px-8">
       @if ($personId)
@@ -54,7 +77,7 @@
                 {{ $camera->description }}
               </h1>
               <p class="leading-relaxed mb-3">
-                {{-- ### --}}
+                Classroom : {{ $camera->classroom->name }}
               </p>
               <div class="flex items-center flex-wrap">
                 <a href="{{ route('trackings', [$camera->id, $personId] ) }}" class="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">
@@ -106,3 +129,16 @@
     </div>
   </section>
 </div>
+
+<script>
+  function setup() {
+      return {
+      activeTab: -1,
+      tabs: [
+          '<span class="material-icons-outlined mr-2">add</span>New Camera',
+          // '<span class="material-icons-outlined mr-2">search</span>Search',
+      ]
+      };
+  };
+
+</script>

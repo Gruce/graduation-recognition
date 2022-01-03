@@ -5,17 +5,10 @@
         </h2>
     </x-slot>
     @livewire('actions' , ['folder' => 'admin.subjects' , 'file' => 'subject-add' , 'search' => 'Subject name'])
-    {{-- @livewire('subjects.subject-action') --}}
+
     <div class="mt-3">
         <section class="text-gray-600 body-font">
             <div class="container px-5 py-10 mx-auto bg-white rounded-lg max-w-7xl sm:px-6 lg:px-8">
-
-                {{-- <div class="w-full" wire:loading>
-                    <div class="flex justify-center items-center">
-                        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-300"></div>
-                    </div>
-                </div> --}}
-
                 <div class="flex justify-center">
                     <table class="table text-gray-400 border-separate space-y-6 w-full text-sm">
                         <thead class="bg-gray-200 text-gray-500">
@@ -98,7 +91,6 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <button>ADD TEACHER</button>
                                     <button wire:click="delete('Subject', '{{ $subject->id}}')" class="text-red-500"> 
                                         <i class="material-icons text-base">delete</i>
                                     </button>

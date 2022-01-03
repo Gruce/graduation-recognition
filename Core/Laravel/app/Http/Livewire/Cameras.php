@@ -37,7 +37,7 @@ class Cameras extends Component
 
     public function render()
     {
-        $cameras = Camera::with('trackings')->get();
+        $cameras = Camera::with(['trackings' , 'classroom'])->get();
         $person = null;
         if ($this->personId)
             $person = User::find($this->personId);

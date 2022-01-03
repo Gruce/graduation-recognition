@@ -9,22 +9,32 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AdminSidebarController extends GetxController {
   final List<Map<dynamic, dynamic>> tabs = [
-    {"title": "People", "icon": Icons.groups_sharp, "route": '/admin/people/'},
+    {"title": "Users", "icon": Icons.groups_sharp, "route": '/admin/users/'},
     {
       "title": "Students",
       "icon": Icons.people_sharp,
       "route": '/admin/students/'
     },
     {
+      "title": "Lucturers",
+      "icon": Icons.person_outlined,
+      "route": '/admin/lucurers/'
+    },
+    {
+      "title": "Lectures",
+      "icon": Icons.layers_outlined,
+      "route": '/admin/lectures/'
+    },
+    {
       "title": "Notification",
       "icon": Icons.notification_add,
       "route": '/admin/notification/'
     },
-    {
-      "title": "Absences",
-      "icon": Icons.warning_amber_sharp,
-      "route": '/general/student/Absences/'
-    },
+    // {
+    //   "title": "Absences",
+    //   "icon": Icons.warning_amber_sharp,
+    //   "route": '/general/student/Absences/'
+    // },
   ];
 
   late SharedPreferences prefs;

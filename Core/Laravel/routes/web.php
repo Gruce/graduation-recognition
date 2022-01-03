@@ -38,6 +38,7 @@ use App\Http\Livewire\Teacher\{
     Tasks\TeacherTasks,
     Tasks\TaskSend,
     Tasks\TaskShow,
+    Subjects\TeacherSubject,
 };
     ## END TEACHER ##
 
@@ -140,6 +141,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::group(['prefix' => 'teacher' , 'middleware' => 'teacher'] ,function(){
         Route::get('/students/{unitID?}', TeacherStudents::class)->name('teacher_students');
         Route::get('/units', TeacherUnits::class)->name('teacher_unit');
+        Route::get('/subjects', TeacherSubject::class)->name('teacher_subjects');
         Route::get('/tasks', TeacherTasks::class)->name('teacher_task');
         Route::get('/task-Show/{task_id}', TaskShow::class)->name('teacher_task_show');
     });

@@ -4,7 +4,7 @@
             My Units
         </h2>
     </x-slot>
-    @livewire('actions' , ['folder' => null , 'file' => null , 'search' => 'Unit name'])
+    @livewire('actions' , ['folder' => 'teacher.units' , 'file' => 'add-unit' , 'search' => 'Unit name'])
     <div class="mt-3">
         <section class="text-gray-600 body-font">
                 <div class="flex justify-center">
@@ -21,7 +21,6 @@
                                 </div>
                             </a>
                         </div>
-        
                     @empty
                         <p>No Units</p>
                     @endforelse
@@ -36,7 +35,7 @@
         return {
         activeTab: -1,
         tabs: [
-            // '<span class="material-icons-outlined mr-2">add</span>New Student',
+            '<span class="material-icons-outlined mr-2">add</span>New Unit',
             '<span class="material-icons-outlined mr-2">search</span>Search',
         ]
         };

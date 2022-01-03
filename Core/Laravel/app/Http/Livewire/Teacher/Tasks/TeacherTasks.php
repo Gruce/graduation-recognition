@@ -38,10 +38,10 @@ class TeacherTasks extends Component
                     return $unit->with(['section:id,name' , 'stage:id,name']);
                 }
             ]
-        )->where('title' , 'LIKE' , $search)->get();
+        )->where('title' , 'LIKE' , $search)->paginate(15);
 
 
-        dd($tasks);
+        // dd($tasks);
 
         return view('livewire.teacher.tasks.teacher-tasks' , ['tasks' => $tasks]);
     }

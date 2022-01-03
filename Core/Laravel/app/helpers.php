@@ -64,6 +64,11 @@
                         'active' => isRoute('dashboard'),
                     ],
                     [
+                        'name' => 'Subjects',
+                        'route' => 'teacher_subjects',
+                        'active' => isRoute('teacher_subjects'),
+                    ],
+                    [
                         'name' => 'Students',
                         'route' => 'teacher_students',
                         'active' => isRoute('teacher_students'),

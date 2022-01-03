@@ -72,8 +72,6 @@
                             <div class="md:w-1/2 px-4 mb-8 md:mb-0">
                                 <img class="rounded shadow-md" src="{{asset($file->file_path)}}" alt="{{$task->title}}">
                             </div>
-                        @else 
-                            <span>No Photo</span>
                         @endif
                     @endforeach
                 </div>
@@ -87,8 +85,6 @@
                             <div class="md:w-1/2 px-4 mb-8 md:mb-0">
                                 <a href="{{asset($file->file_path)}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"> Download pdf {{$loop->iteration}}</a>
                             </div>
-                        @else 
-                            <span>No Files</span>
                         @endif
                     @endforeach
                 </div>

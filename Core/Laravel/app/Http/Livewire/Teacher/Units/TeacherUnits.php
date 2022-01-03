@@ -24,10 +24,15 @@ class TeacherUnits extends Component
         $teacherID = $teacher->id;
         $unit = $teacher->units()->wherePivot('unit_id' , $id)->first();
         $tasks = $unit->tasks()->where('teacher_id' , $teacherID)->get();
+
         foreach($tasks as $task)
-            $task->units()->detach($id);
-            
+            if(count($task->units()->get()->toArray()) == 1) 
+                $task->delete();
+            else $task->units()->detach($id);
+
         $unit = $teacher->units()->detach($id);
+        
+        $this->emitTo('teacher.tasks.teacher-tasks', '$refresh');
     }
 
     public function render()

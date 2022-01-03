@@ -24,7 +24,6 @@
                                 <th class="p-3 text-left">Section</th>
                                 <th class="p-3 text-left">Stage</th>
                                 <th class="p-3 text-left">Unit</th>
-                                <th class="p-3 text-left">Actions </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -72,9 +71,6 @@
                                                     {{ $student->unit->name }}
                                                 </span>
                                             </div>
-                                        </td>
-                                        <td>
-                                            something
                                         </td>
                                     </tr>
                                 @empty

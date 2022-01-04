@@ -28,7 +28,7 @@ class AbsencesController extends GetxController {
      if (res.statusCode == 200) {
      student.value = StudentModel.fromJson(json.decode(res.body)['data']);
     print('====================6========================');
-    print(student.value.absences[2].subject.name);
+    print(student.value.absences[0].subject.absencesCount);
     print('==================6==========================');
      }
     update();

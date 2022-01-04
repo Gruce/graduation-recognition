@@ -84,17 +84,7 @@ class AbsencesScreen extends GetView {
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   children: [
-                                                    Expanded(
-                                                        child: Text(
-                                                      'f',
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      maxLines: 1,
-                                                      style: TextStyle(
-                                                          color: Colors.black
-                                                              .withOpacity(
-                                                                  0.6)),
-                                                    )),
+                                                    
                                                     Container(
                                                         height: 20,
                                                         width: 100,
@@ -109,15 +99,18 @@ class AbsencesScreen extends GetView {
                                                                       6.0),
                                                         ),
                                                         child: Row(
-                                                          children: const [
-                                                            Text(
-                                                              ' Absences : ',
-                                                              style: TextStyle(
-                                                                  fontSize: 15),
-                                                            ),
-                                                            Center(
-                                                                child:
-                                                                    Text('0'))
+                                                          children:  [
+                                                            // Text(
+                                                            //   ' Absences : '+controller
+                                                            //           .student
+                                                            //           .value
+                                                            //           .absences[
+                                                            //               index]
+                                                            //           .subject.absencesCount.toString(),
+                                                            //   style: TextStyle(
+                                                            //       fontSize: 15),
+                                                            // ),
+                                                            
                                                           ],
                                                         )),
                                                   ],

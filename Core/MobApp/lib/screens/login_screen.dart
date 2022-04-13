@@ -50,7 +50,7 @@ class LoginScreen extends GetView<LoginController> {
                         height: 10,
                       ),
                       Text(
-                        "Welcome To Smart Tracker App",
+                        "Welcome To Students and Teachers Management System",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 22.0,
